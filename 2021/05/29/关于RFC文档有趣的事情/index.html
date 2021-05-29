@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Table of Contents  事情的起源 研究经过  查询相关资料  查询相关RFC 一个想法  第一个发现  第二个发现  第三个发现  第四个发现      总结   事情的起源一次被问起，为何TLSv1.0(RFC2246),TLSv1.1(RFC4346),TLSv1.2(RFC5246),TLSv1.3(RFC8446)中的RFC编号都是以64结尾。印象中关于RFC编号都是递增的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于RFC文档有趣的事情">
+<meta property="og:url" content="http://example.com/2021/05/29/%E5%85%B3%E4%BA%8ERFC%E6%96%87%E6%A1%A3%E6%9C%89%E8%B6%A3%E7%9A%84%E4%BA%8B%E6%83%85/index.html">
+<meta property="og:site_name" content="点我试试的个人博客">
+<meta property="og:description" content="Table of Contents  事情的起源 研究经过  查询相关资料  查询相关RFC 一个想法  第一个发现  第二个发现  第三个发现  第四个发现      总结   事情的起源一次被问起，为何TLSv1.0(RFC2246),TLSv1.1(RFC4346),TLSv1.2(RFC5246),TLSv1.3(RFC8446)中的RFC编号都是以64结尾。印象中关于RFC编号都是递增的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2021/05/29/%E5%85%B3%E4%BA%8ERFC%E6%96%87%E6%A1%A3%E6%9C%89%E8%B6%A3%E7%9A%84%E4%BA%8B%E6%83%85/%E5%B9%B4%E4%BB%BD%E5%9B%BE.png">
+<meta property="og:image" content="http://example.com/2021/05/29/%E5%85%B3%E4%BA%8ERFC%E6%96%87%E6%A1%A3%E6%9C%89%E8%B6%A3%E7%9A%84%E4%BA%8B%E6%83%85/image-20201218225458777.png">
+<meta property="og:image" content="http://example.com/2021/05/29/%E5%85%B3%E4%BA%8ERFC%E6%96%87%E6%A1%A3%E6%9C%89%E8%B6%A3%E7%9A%84%E4%BA%8B%E6%83%85/%E6%95%B4%E6%95%B0%E9%97%B4%E9%9A%94%E7%A4%BA%E6%84%8F%E5%9B%BE.png">
+<meta property="og:image" content="http://example.com/2021/05/29/%E5%85%B3%E4%BA%8ERFC%E6%96%87%E6%A1%A3%E6%9C%89%E8%B6%A3%E7%9A%84%E4%BA%8B%E6%83%85/%E7%A4%BA%E6%84%8F%E5%9B%BE.png">
+<meta property="og:image" content="http://example.com/2021/05/29/%E5%85%B3%E4%BA%8ERFC%E6%96%87%E6%A1%A3%E6%9C%89%E8%B6%A3%E7%9A%84%E4%BA%8B%E6%83%85/%E7%A4%BA%E6%84%8F%E5%9B%BE%E6%94%BE%E5%A4%A7.png">
+<meta property="og:image" content="http://example.com/2021/05/29/%E5%85%B3%E4%BA%8ERFC%E6%96%87%E6%A1%A3%E6%9C%89%E8%B6%A3%E7%9A%84%E4%BA%8B%E6%83%85/image-20201218231640006.png">
+<meta property="article:published_time" content="2021-05-29T03:17:15.941Z">
+<meta property="article:modified_time" content="2021-05-29T03:54:02.032Z">
+<meta property="article:author" content="点我试试">
+<meta property="article:tag" content="网络 安全 珠宝">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/05/29/%E5%85%B3%E4%BA%8ERFC%E6%96%87%E6%A1%A3%E6%9C%89%E8%B6%A3%E7%9A%84%E4%BA%8B%E6%83%85/%E5%B9%B4%E4%BB%BD%E5%9B%BE.png">
+
+<link rel="canonical" href="http://example.com/2021/05/29/%E5%85%B3%E4%BA%8ERFC%E6%96%87%E6%A1%A3%E6%9C%89%E8%B6%A3%E7%9A%84%E4%BA%8B%E6%83%85/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>关于RFC文档有趣的事情 | 点我试试的个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">点我试试的个人博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/29/%E5%85%B3%E4%BA%8ERFC%E6%96%87%E6%A1%A3%E6%9C%89%E8%B6%A3%E7%9A%84%E4%BA%8B%E6%83%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="点我试试">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="点我试试的个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          关于RFC文档有趣的事情
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-05-29 11:17:15 / 修改时间：11:54:02" itemprop="dateCreated datePublished" datetime="2021-05-29T11:17:15+08:00">2021-05-29</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Table-of-Contents"><a href="#Table-of-Contents" class="headerlink" title="Table of Contents"></a>Table of Contents</h1><ol>
+<li> <a href="#org34ce3f0">事情的起源</a></li>
+<li><a href="#orgbd0ef9b">研究经过</a><ol>
+<li> <a href="#orgd742468">查询相关资料</a></li>
+<li> <a href="#org7b36c8c">查询相关RFC</a></li>
+<li><a href="#orge2e0fc8">一个想法</a><ol>
+<li> <a href="#org3061772">第一个发现</a></li>
+<li> <a href="#org4e04c37">第二个发现</a></li>
+<li> <a href="#org2636b5a">第三个发现</a></li>
+<li> <a href="#org9ff55be">第四个发现</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li> <a href="#org9564d4b">总结</a></li>
+</ol>
+<p><a id="org34ce3f0"></a></p>
+<h1 id="事情的起源"><a href="#事情的起源" class="headerlink" title="事情的起源"></a>事情的起源</h1><p>一次被问起，为何TLSv1.0(RFC2246),TLSv1.1(RFC4346),TLSv1.2(RFC5246),TLSv1.3(RFC8446)中的RFC编号都是以64结尾。印象中关于RFC编号都是递增的，因为RFC写好之后就不允许再修改了，如果有新的标准出来，只能在其后某个编号出现，并且引用之前的RFC。<br>但是上述这个问题，TLS四个版本均以64结尾，也太凑巧了，确实很让人疑惑。本着好奇，去研究了研究这事。</p>
+<p><a id="orgbd0ef9b"></a></p>
+<h1 id="研究经过"><a href="#研究经过" class="headerlink" title="研究经过"></a>研究经过</h1><p><a id="orgd742468"></a></p>
+<h2 id="查询相关资料"><a href="#查询相关资料" class="headerlink" title="查询相关资料"></a>查询相关资料</h2><p>首先在网上搜索为什么TLS均以64结尾，网上的回答基本上来自如下解释</p>
+<blockquote>
+<p>In the IETF, protocols are called RFCs. TLS 1.0 was RFC 2246, TLS 1.1 was RFC 4346, and TLS 1.2 was RFC 5246. Today, TLS 1.3 was published as RFC 8446. RFCs are generally published in order, keeping 46 as part of the RFC number is a nice touch<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>.</p>
+</blockquote>
+<p>显然，并没有解决我们的问题。</p>
+<p><a id="org7b36c8c"></a></p>
+<h2 id="查询相关RFC"><a href="#查询相关RFC" class="headerlink" title="查询相关RFC"></a>查询相关RFC</h2><p>思考是否会有某个RFC对这事做了说明吗？查询未果。<br>但是在此过程中，我发现了在RFC文档中，有相邻两个递增编号文档，但是RFC时间并不递增的现象。举个例子</p>
+<blockquote>
+<p>1478 An Architecture for Inter-Domain Policy Routing. M. Steenstrup. June</p>
+<ol>
+<li> (Format: TXT, HTML) (Status: HISTORIC) (DOI: 10.17487/RFC1478)</li>
+</ol>
+<p>1479 Inter-Domain Policy Routing Protocol Specification: Version 1. M.<br>     Steenstrup. July 1993. (Format: TXT, HTML) (Status: HISTORIC) (DOI:<br>     10.17487/RFC1479) </p>
+<p>1480 The US Domain. A. Cooper, J. Postel. June 1993. (Format: TXT, HTML)<br>     (Obsoletes RFC1386) (Status: INFORMATIONAL) (DOI: 10.17487/RFC1480) </p>
+</blockquote>
+<p>其中RFC1478的时间为1993年6月，RFC1479的时间为1993年7月，但是RFC1480的时间为1993年6月，出现了非递增的情况。</p>
+<p>虽然又发现，但好像并没有什么卵用。但是自然会想到，有可能时间上有大的反复吗？有年的反复现象吗？</p>
+<p><a id="orge2e0fc8"></a></p>
+<h2 id="一个想法"><a href="#一个想法" class="headerlink" title="一个想法"></a>一个想法</h2><p><a id="org3061772"></a></p>
+<h3 id="第一个发现"><a href="#第一个发现" class="headerlink" title="第一个发现"></a>第一个发现</h3><p>所以就想分析分析RFC文档的编号的时间问题。第一想法是爬虫，但是工作量太复杂。左搜索右搜索，找到了官网提供的XML版列表<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>.超级开心。然后写了个python脚本，自动进行了分析(忽略并不想改的变量名，来自一个豆瓣电影爬虫)。</p>
+<pre><code>#!/usr/bin/python3
+import calendar
+from xml.dom.minidom import parse
+import xml.dom.minidom
+
+import numpy as np
+import matplotlib.pyplot as plt 
+
+# 使用minidom解析器打开 XML 文档
+DOMTree = xml.dom.minidom.parse(&quot;rfc-index.xml&quot;)
+collection = DOMTree.documentElement
+if collection.hasAttribute(&quot;shelf&quot;):
+   print (&quot;Root element : %s&quot; % collection.getAttribute(&quot;shelf&quot;))
+
+# 在集合中获取所有电影
+movies = collection.getElementsByTagName(&quot;rfc-entry&quot;)
+
+# 打印每部电影的详细信息
+print (&quot;*****Movie*****&quot;)
+x = [];
+years = [];
+months = [];
+total = [];
+for movie in movies:
+
+   type = movie.getElementsByTagName(&#39;doc-id&#39;)[0].childNodes[0].data
+
+   id = int(type[3:]);
+   x.append(id);
+#    print (&quot;doc-id: %d&quot; % id)
+#    author = movie.getElementsByTagName(&#39;author&#39;)[0]
+#    print (&quot;author: %s&quot; % author.childNodes[1].data)
+   date = movie.getElementsByTagName(&#39;date&#39;)[0]
+   month = date.getElementsByTagName(&#39;month&#39;)[0].childNodes[0].data;
+   int_month = int(list(calendar.month_name).index(month))
+   months.append(int_month);
+#    print (&quot;date month: %d&quot; % int_month)
+   year = int(date.getElementsByTagName(&#39;year&#39;)[0].childNodes[0].data);
+#    print (&quot;date year: %d&quot; % year)
+   years.append(year);
+#    description = movie.getElementsByTagName(&#39;description&#39;)[0]
+#    print (&quot;Description: %s&quot; % description.childNodes[0].data)
+   total.append(year + 10  + int_month  )
+
+plt.rcParams[&#39;font.sans-serif&#39;] = [&#39;Arial Unicode MS&#39;]
+plt.rcParams[&#39;axes.unicode_minus&#39;] = False   # 解决保存图像是负号&#39;-&#39;显示为方块的问题
+plt.title(&quot;Matplotlib&quot;) 
+plt.xlabel(&quot;RFC编号&quot;) 
+plt.ylabel(&quot;年份&quot;) 
+
+plt.plot(x,years, label=r&#39;年&#39;) 
+plt.plot(x,total, label=r&#39;年 + 月 + 10(向上平移10)&#39;) 
+# plt.subplot(2,1,1)
+# plt.plot(x,years) 
+# plt.subplot(2,1,2)
+# plt.plot(x,months) 
+plt.legend();
+
+plt.grid()
+plt.show()
+</code></pre>
+<p>经过经过分析有了如下所示图：<br><img src="/2021/05/29/%E5%85%B3%E4%BA%8ERFC%E6%96%87%E6%A1%A3%E6%9C%89%E8%B6%A3%E7%9A%84%E4%BA%8B%E6%83%85/%E5%B9%B4%E4%BB%BD%E5%9B%BE.png" alt="img"><br>果然有问题！！！！上图横坐标为RFC编号，纵坐标为RFC编号对应的年份。可以看出RFC文档从一九六几年到今天一共发表8000余份。有意思的是，其中有一些凸起的部分，就是一些异常点。例如2000年前有一个极高的凸起，这代表这个编号的年份远远超出这个编号附近的年份，这与我们的常识不符。实际上，查看这个异常点，如下图所示：<br><img src="/2021/05/29/%E5%85%B3%E4%BA%8ERFC%E6%96%87%E6%A1%A3%E6%9C%89%E8%B6%A3%E7%9A%84%E4%BA%8B%E6%83%85/image-20201218225458777.png" alt="img"><br>其中RFC1849的年份为2010年，但其附近的RFC文档编号均为1995年，其中相差15年，造成第一幅图中的凸起。</p>
+<p><a id="org4e04c37"></a></p>
+<h3 id="第二个发现"><a href="#第二个发现" class="headerlink" title="第二个发现"></a>第二个发现</h3><p>同时，我们还会发现另一个有意思的现象。如下图所示：<br><img src="/2021/05/29/%E5%85%B3%E4%BA%8ERFC%E6%96%87%E6%A1%A3%E6%9C%89%E8%B6%A3%E7%9A%84%E4%BA%8B%E6%83%85/%E6%95%B4%E6%95%B0%E9%97%B4%E9%9A%94%E7%A4%BA%E6%84%8F%E5%9B%BE.png" alt="整数间隔示意图"><br>其中编号为1299，1399，1499，1599，1699,&#x2026;等，均出现凸起现象。并且实际上1299，1399，1499，1599，1699，1799，1899，1999的年份均为1997年。存在明显的人为痕迹。</p>
+<p><a id="org2636b5a"></a></p>
+<h3 id="第三个发现"><a href="#第三个发现" class="headerlink" title="第三个发现"></a>第三个发现</h3><p>年份和月份基本满足递增，但是有波动。如下图所示：<br><img src="/2021/05/29/%E5%85%B3%E4%BA%8ERFC%E6%96%87%E6%A1%A3%E6%9C%89%E8%B6%A3%E7%9A%84%E4%BA%8B%E6%83%85/%E7%A4%BA%E6%84%8F%E5%9B%BE.png" alt="img"><br>放大后：<br><img src="/2021/05/29/%E5%85%B3%E4%BA%8ERFC%E6%96%87%E6%A1%A3%E6%9C%89%E8%B6%A3%E7%9A%84%E4%BA%8B%E6%83%85/%E7%A4%BA%E6%84%8F%E5%9B%BE%E6%94%BE%E5%A4%A7.png" alt="img"><br>为方便对比，将其中月份显示为（年+月，再向上平移10个单位(年)）。</p>
+<p><a id="org9ff55be"></a></p>
+<h3 id="第四个发现"><a href="#第四个发现" class="headerlink" title="第四个发现"></a>第四个发现</h3><p>TLS的主要作者，目前是Eric Rescorla。对TLS四个版本作者做简单统计，如下图：<br><img src="/2021/05/29/%E5%85%B3%E4%BA%8ERFC%E6%96%87%E6%A1%A3%E6%9C%89%E8%B6%A3%E7%9A%84%E4%BA%8B%E6%83%85/image-20201218231640006.png" alt="img"><br>可以看出，最开始Tim Dierks逐渐从第二作者，向第一作者上升，此时带了个徒弟。慢慢Tim Dierks开始退居二线，Eric Rescorla开始独挡一面（纯属胡说八道）。</p>
+<p><a id="org9564d4b"></a></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>虽然并没有直接的证据来回答开头提出的问题，但是我们可以发现以下现象：</p>
+<ul>
+<li>  RFC的编号并非严格的时间递增，而是存在一些波动</li>
+<li>  RFC的编号中存在一些，小概率发生的现象，例如等间隔凸起</li>
+</ul>
+<p>基于以上现象呢，我们可以大胆猜测（hu shuo ba dao）：</p>
+<ul>
+<li>  RFC编号的审批机构，会因为某些原因，保留一些编号</li>
+<li>  RFC的编号其实并没有想象中的那么严格</li>
+<li>  大佬在RFC编号中具有一定的发言权，可以”预定“一些编号。如TLSv1，2，3，4以64结尾</li>
+</ul>
+<h1 id="Footnotes"><a href="#Footnotes" class="headerlink" title="Footnotes"></a>Footnotes</h1><p><sup><a id="fn.1" href="#fnr.1">1</a></sup> <a target="_blank" rel="noopener" href="https://blog.cloudflare.com/rfc-8446-aka-tls-1-3/">https://blog.cloudflare.com/rfc-8446-aka-tls-1-3/</a></p>
+<p><sup><a id="fn.2" href="#fnr.2">2</a></sup> <a target="_blank" rel="noopener" href="https://www.rfc-editor.org/rfc-index.xml">https://www.rfc-editor.org/rfc-index.xml</a></p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat_qrcode.jpg" alt="点我试试 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay_qrcode.jpg" alt="点我试试 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>点我试试
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2021/05/29/%E5%85%B3%E4%BA%8ERFC%E6%96%87%E6%A1%A3%E6%9C%89%E8%B6%A3%E7%9A%84%E4%BA%8B%E6%83%85/" title="关于RFC文档有趣的事情">http://example.com/2021/05/29/关于RFC文档有趣的事情/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/wechat_channel.jpg">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/05/29/%E5%9F%BA%E4%BA%8Enetfilter%E7%9A%84IP%E6%95%B0%E6%8D%AE%E7%BB%9F%E8%AE%A1%E8%AE%BE%E8%AE%A1%E4%B8%8ELinux%E9%A9%B1%E5%8A%A8%E5%AE%9E%E7%8E%B0/" rel="prev" title="基于netfilter的IP数据统计设计">
+      <i class="fa fa-chevron-left"></i> 基于netfilter的IP数据统计设计
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Table-of-Contents"><span class="nav-number">1.</span> <span class="nav-text">Table of Contents</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8B%E6%83%85%E7%9A%84%E8%B5%B7%E6%BA%90"><span class="nav-number">2.</span> <span class="nav-text">事情的起源</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A0%94%E7%A9%B6%E7%BB%8F%E8%BF%87"><span class="nav-number">3.</span> <span class="nav-text">研究经过</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99"><span class="nav-number">3.1.</span> <span class="nav-text">查询相关资料</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E7%9B%B8%E5%85%B3RFC"><span class="nav-number">3.2.</span> <span class="nav-text">查询相关RFC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E6%83%B3%E6%B3%95"><span class="nav-number">3.3.</span> <span class="nav-text">一个想法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8F%91%E7%8E%B0"><span class="nav-number">3.3.1.</span> <span class="nav-text">第一个发现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E4%B8%AA%E5%8F%91%E7%8E%B0"><span class="nav-number">3.3.2.</span> <span class="nav-text">第二个发现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E4%B8%AA%E5%8F%91%E7%8E%B0"><span class="nav-number">3.3.3.</span> <span class="nav-text">第三个发现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E4%B8%AA%E5%8F%91%E7%8E%B0"><span class="nav-number">3.3.4.</span> <span class="nav-text">第四个发现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Footnotes"><span class="nav-number">5.</span> <span class="nav-text">Footnotes</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">点我试试</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/dianwoshishi" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;dianwoshishi" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">dianwoshishi</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">15k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">14 分钟</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

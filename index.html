@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -17,14 +17,14 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="点我试试的个人博客">
 <meta property="og:url" content="http://example.com/index.html">
 <meta property="og:site_name" content="点我试试的个人博客">
-<meta property="og:locale">
+<meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="点我试试">
 <meta property="article:tag" content="网络 安全 珠宝">
 <meta name="twitter:card" content="summary">
@@ -38,7 +38,7 @@
     sidebar: "",
     isHome : true,
     isPost : false,
-    lang   : 'zh'
+    lang   : 'zh-CN'
   };
 </script>
 
@@ -82,7 +82,7 @@
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
+    <div class="toggle" aria-label="切换导航栏">
       <span class="toggle-line toggle-line-first"></span>
       <span class="toggle-line toggle-line-middle"></span>
       <span class="toggle-line toggle-line-last"></span>
@@ -111,12 +111,27 @@
   <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
 
   </li>
   </ul>
@@ -145,8 +160,8 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/29/hello-world/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/29/%E5%85%B3%E4%BA%8ERFC%E6%96%87%E6%A1%A3%E6%9C%89%E8%B6%A3%E7%9A%84%E4%BA%8B%E6%83%85/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -160,7 +175,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/05/29/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
+            <a href="/2021/05/29/%E5%85%B3%E4%BA%8ERFC%E6%96%87%E6%A1%A3%E6%9C%89%E8%B6%A3%E7%9A%84%E4%BA%8B%E6%83%85/" class="post-title-link" itemprop="url">关于RFC文档有趣的事情</a>
         </h2>
 
         <div class="post-meta">
@@ -168,12 +183,27 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="Created: 2021-05-29 09:34:55" itemprop="dateCreated datePublished" datetime="2021-05-29T09:34:55+08:00">2021-05-29</time>
+              <time title="创建时间：2021-05-29 11:17:15 / 修改时间：11:54:02" itemprop="dateCreated datePublished" datetime="2021-05-29T11:17:15+08:00">2021-05-29</time>
             </span>
 
-          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
 
         </div>
       </header>
@@ -184,19 +214,128 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+          <h1 id="Table-of-Contents"><a href="#Table-of-Contents" class="headerlink" title="Table of Contents"></a>Table of Contents</h1><ol>
+<li> <a href="#org34ce3f0">事情的起源</a></li>
+<li><a href="#orgbd0ef9b">研究经过</a><ol>
+<li> <a href="#orgd742468">查询相关资料</a></li>
+<li> <a href="#org7b36c8c">查询相关RFC</a></li>
+<li><a href="#orge2e0fc8">一个想法</a><ol>
+<li> <a href="#org3061772">第一个发现</a></li>
+<li> <a href="#org4e04c37">第二个发现</a></li>
+<li> <a href="#org2636b5a">第三个发现</a></li>
+<li> <a href="#org9ff55be">第四个发现</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li> <a href="#org9564d4b">总结</a></li>
+</ol>
+<p><a id="org34ce3f0"></a></p>
+<h1 id="事情的起源"><a href="#事情的起源" class="headerlink" title="事情的起源"></a>事情的起源</h1><p>一次被问起，为何TLSv1.0(RFC2246),TLSv1.1(RFC4346),TLSv1.2(RFC5246),TLSv1.3(RFC8446)中的RFC编号都是以64结尾。印象中关于RFC编号都是递增的，因为RFC写好之后就不允许再修改了，如果有新的标准出来，只能在其后某个编号出现，并且引用之前的RFC。<br>但是上述这个问题，TLS四个版本均以64结尾，也太凑巧了，确实很让人疑惑。本着好奇，去研究了研究这事。</p>
+<p><a id="orgbd0ef9b"></a></p>
+<h1 id="研究经过"><a href="#研究经过" class="headerlink" title="研究经过"></a>研究经过</h1><p><a id="orgd742468"></a></p>
+<h2 id="查询相关资料"><a href="#查询相关资料" class="headerlink" title="查询相关资料"></a>查询相关资料</h2><p>首先在网上搜索为什么TLS均以64结尾，网上的回答基本上来自如下解释</p>
+<blockquote>
+<p>In the IETF, protocols are called RFCs. TLS 1.0 was RFC 2246, TLS 1.1 was RFC 4346, and TLS 1.2 was RFC 5246. Today, TLS 1.3 was published as RFC 8446. RFCs are generally published in order, keeping 46 as part of the RFC number is a nice touch<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>.</p>
+</blockquote>
+<p>显然，并没有解决我们的问题。</p>
+<p><a id="org7b36c8c"></a></p>
+<h2 id="查询相关RFC"><a href="#查询相关RFC" class="headerlink" title="查询相关RFC"></a>查询相关RFC</h2><p>思考是否会有某个RFC对这事做了说明吗？查询未果。<br>但是在此过程中，我发现了在RFC文档中，有相邻两个递增编号文档，但是RFC时间并不递增的现象。举个例子</p>
+<blockquote>
+<p>1478 An Architecture for Inter-Domain Policy Routing. M. Steenstrup. June</p>
+<ol>
+<li> (Format: TXT, HTML) (Status: HISTORIC) (DOI: 10.17487/RFC1478)</li>
+</ol>
+<p>1479 Inter-Domain Policy Routing Protocol Specification: Version 1. M.<br>     Steenstrup. July 1993. (Format: TXT, HTML) (Status: HISTORIC) (DOI:<br>     10.17487/RFC1479) </p>
+<p>1480 The US Domain. A. Cooper, J. Postel. June 1993. (Format: TXT, HTML)<br>     (Obsoletes RFC1386) (Status: INFORMATIONAL) (DOI: 10.17487/RFC1480) </p>
+</blockquote>
+<p>其中RFC1478的时间为1993年6月，RFC1479的时间为1993年7月，但是RFC1480的时间为1993年6月，出现了非递增的情况。</p>
+<p>虽然又发现，但好像并没有什么卵用。但是自然会想到，有可能时间上有大的反复吗？有年的反复现象吗？</p>
+<p><a id="orge2e0fc8"></a></p>
+<h2 id="一个想法"><a href="#一个想法" class="headerlink" title="一个想法"></a>一个想法</h2><p><a id="org3061772"></a></p>
+<h3 id="第一个发现"><a href="#第一个发现" class="headerlink" title="第一个发现"></a>第一个发现</h3><p>所以就想分析分析RFC文档的编号的时间问题。第一想法是爬虫，但是工作量太复杂。左搜索右搜索，找到了官网提供的XML版列表<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>.超级开心。然后写了个python脚本，自动进行了分析(忽略并不想改的变量名，来自一个豆瓣电影爬虫)。</p>
+<pre><code>#!/usr/bin/python3
+import calendar
+from xml.dom.minidom import parse
+import xml.dom.minidom
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+import numpy as np
+import matplotlib.pyplot as plt 
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+# 使用minidom解析器打开 XML 文档
+DOMTree = xml.dom.minidom.parse(&quot;rfc-index.xml&quot;)
+collection = DOMTree.documentElement
+if collection.hasAttribute(&quot;shelf&quot;):
+   print (&quot;Root element : %s&quot; % collection.getAttribute(&quot;shelf&quot;))
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+# 在集合中获取所有电影
+movies = collection.getElementsByTagName(&quot;rfc-entry&quot;)
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+# 打印每部电影的详细信息
+print (&quot;*****Movie*****&quot;)
+x = [];
+years = [];
+months = [];
+total = [];
+for movie in movies:
+
+   type = movie.getElementsByTagName(&#39;doc-id&#39;)[0].childNodes[0].data
+
+   id = int(type[3:]);
+   x.append(id);
+#    print (&quot;doc-id: %d&quot; % id)
+#    author = movie.getElementsByTagName(&#39;author&#39;)[0]
+#    print (&quot;author: %s&quot; % author.childNodes[1].data)
+   date = movie.getElementsByTagName(&#39;date&#39;)[0]
+   month = date.getElementsByTagName(&#39;month&#39;)[0].childNodes[0].data;
+   int_month = int(list(calendar.month_name).index(month))
+   months.append(int_month);
+#    print (&quot;date month: %d&quot; % int_month)
+   year = int(date.getElementsByTagName(&#39;year&#39;)[0].childNodes[0].data);
+#    print (&quot;date year: %d&quot; % year)
+   years.append(year);
+#    description = movie.getElementsByTagName(&#39;description&#39;)[0]
+#    print (&quot;Description: %s&quot; % description.childNodes[0].data)
+   total.append(year + 10  + int_month  )
+
+plt.rcParams[&#39;font.sans-serif&#39;] = [&#39;Arial Unicode MS&#39;]
+plt.rcParams[&#39;axes.unicode_minus&#39;] = False   # 解决保存图像是负号&#39;-&#39;显示为方块的问题
+plt.title(&quot;Matplotlib&quot;) 
+plt.xlabel(&quot;RFC编号&quot;) 
+plt.ylabel(&quot;年份&quot;) 
+
+plt.plot(x,years, label=r&#39;年&#39;) 
+plt.plot(x,total, label=r&#39;年 + 月 + 10(向上平移10)&#39;) 
+# plt.subplot(2,1,1)
+# plt.plot(x,years) 
+# plt.subplot(2,1,2)
+# plt.plot(x,months) 
+plt.legend();
+
+plt.grid()
+plt.show()
+</code></pre>
+<p>经过经过分析有了如下所示图：<br><img src="/2021/05/29/%E5%85%B3%E4%BA%8ERFC%E6%96%87%E6%A1%A3%E6%9C%89%E8%B6%A3%E7%9A%84%E4%BA%8B%E6%83%85/%E5%B9%B4%E4%BB%BD%E5%9B%BE.png" alt="img"><br>果然有问题！！！！上图横坐标为RFC编号，纵坐标为RFC编号对应的年份。可以看出RFC文档从一九六几年到今天一共发表8000余份。有意思的是，其中有一些凸起的部分，就是一些异常点。例如2000年前有一个极高的凸起，这代表这个编号的年份远远超出这个编号附近的年份，这与我们的常识不符。实际上，查看这个异常点，如下图所示：<br><img src="/2021/05/29/%E5%85%B3%E4%BA%8ERFC%E6%96%87%E6%A1%A3%E6%9C%89%E8%B6%A3%E7%9A%84%E4%BA%8B%E6%83%85/image-20201218225458777.png" alt="img"><br>其中RFC1849的年份为2010年，但其附近的RFC文档编号均为1995年，其中相差15年，造成第一幅图中的凸起。</p>
+<p><a id="org4e04c37"></a></p>
+<h3 id="第二个发现"><a href="#第二个发现" class="headerlink" title="第二个发现"></a>第二个发现</h3><p>同时，我们还会发现另一个有意思的现象。如下图所示：<br><img src="/2021/05/29/%E5%85%B3%E4%BA%8ERFC%E6%96%87%E6%A1%A3%E6%9C%89%E8%B6%A3%E7%9A%84%E4%BA%8B%E6%83%85/%E6%95%B4%E6%95%B0%E9%97%B4%E9%9A%94%E7%A4%BA%E6%84%8F%E5%9B%BE.png" alt="整数间隔示意图"><br>其中编号为1299，1399，1499，1599，1699,&#x2026;等，均出现凸起现象。并且实际上1299，1399，1499，1599，1699，1799，1899，1999的年份均为1997年。存在明显的人为痕迹。</p>
+<p><a id="org2636b5a"></a></p>
+<h3 id="第三个发现"><a href="#第三个发现" class="headerlink" title="第三个发现"></a>第三个发现</h3><p>年份和月份基本满足递增，但是有波动。如下图所示：<br><img src="/2021/05/29/%E5%85%B3%E4%BA%8ERFC%E6%96%87%E6%A1%A3%E6%9C%89%E8%B6%A3%E7%9A%84%E4%BA%8B%E6%83%85/%E7%A4%BA%E6%84%8F%E5%9B%BE.png" alt="img"><br>放大后：<br><img src="/2021/05/29/%E5%85%B3%E4%BA%8ERFC%E6%96%87%E6%A1%A3%E6%9C%89%E8%B6%A3%E7%9A%84%E4%BA%8B%E6%83%85/%E7%A4%BA%E6%84%8F%E5%9B%BE%E6%94%BE%E5%A4%A7.png" alt="img"><br>为方便对比，将其中月份显示为（年+月，再向上平移10个单位(年)）。</p>
+<p><a id="org9ff55be"></a></p>
+<h3 id="第四个发现"><a href="#第四个发现" class="headerlink" title="第四个发现"></a>第四个发现</h3><p>TLS的主要作者，目前是Eric Rescorla。对TLS四个版本作者做简单统计，如下图：<br><img src="/2021/05/29/%E5%85%B3%E4%BA%8ERFC%E6%96%87%E6%A1%A3%E6%9C%89%E8%B6%A3%E7%9A%84%E4%BA%8B%E6%83%85/image-20201218231640006.png" alt="img"><br>可以看出，最开始Tim Dierks逐渐从第二作者，向第一作者上升，此时带了个徒弟。慢慢Tim Dierks开始退居二线，Eric Rescorla开始独挡一面（纯属胡说八道）。</p>
+<p><a id="org9564d4b"></a></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>虽然并没有直接的证据来回答开头提出的问题，但是我们可以发现以下现象：</p>
+<ul>
+<li>  RFC的编号并非严格的时间递增，而是存在一些波动</li>
+<li>  RFC的编号中存在一些，小概率发生的现象，例如等间隔凸起</li>
+</ul>
+<p>基于以上现象呢，我们可以大胆猜测（hu shuo ba dao）：</p>
+<ul>
+<li>  RFC编号的审批机构，会因为某些原因，保留一些编号</li>
+<li>  RFC的编号其实并没有想象中的那么严格</li>
+<li>  大佬在RFC编号中具有一定的发言权，可以”预定“一些编号。如TLSv1，2，3，4以64结尾</li>
+</ul>
+<h1 id="Footnotes"><a href="#Footnotes" class="headerlink" title="Footnotes"></a>Footnotes</h1><p><sup><a id="fn.1" href="#fnr.1">1</a></sup> <a target="_blank" rel="noopener" href="https://blog.cloudflare.com/rfc-8446-aka-tls-1-3/">https://blog.cloudflare.com/rfc-8446-aka-tls-1-3/</a></p>
+<p><sup><a id="fn.2" href="#fnr.2">2</a></sup> <a target="_blank" rel="noopener" href="https://www.rfc-editor.org/rfc-index.xml">https://www.rfc-editor.org/rfc-index.xml</a></p>
 
       
     </div>
@@ -215,8 +354,8 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/20/2021-05-20%20%E5%9F%BA%E4%BA%8Enetfilter%E7%9A%84IP%E6%95%B0%E6%8D%AE%E7%BB%9F%E8%AE%A1%E8%AE%BE%E8%AE%A1%E4%B8%8ELinux%E9%A9%B1%E5%8A%A8%E5%AE%9E%E7%8E%B0/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/29/%E5%9F%BA%E4%BA%8Enetfilter%E7%9A%84IP%E6%95%B0%E6%8D%AE%E7%BB%9F%E8%AE%A1%E8%AE%BE%E8%AE%A1%E4%B8%8ELinux%E9%A9%B1%E5%8A%A8%E5%AE%9E%E7%8E%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -230,7 +369,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/05/20/2021-05-20%20%E5%9F%BA%E4%BA%8Enetfilter%E7%9A%84IP%E6%95%B0%E6%8D%AE%E7%BB%9F%E8%AE%A1%E8%AE%BE%E8%AE%A1%E4%B8%8ELinux%E9%A9%B1%E5%8A%A8%E5%AE%9E%E7%8E%B0/" class="post-title-link" itemprop="url">基于netfilter的IP数据统计设计与Linux驱动实现</a>
+            <a href="/2021/05/29/%E5%9F%BA%E4%BA%8Enetfilter%E7%9A%84IP%E6%95%B0%E6%8D%AE%E7%BB%9F%E8%AE%A1%E8%AE%BE%E8%AE%A1%E4%B8%8ELinux%E9%A9%B1%E5%8A%A8%E5%AE%9E%E7%8E%B0/" class="post-title-link" itemprop="url">基于netfilter的IP数据统计设计</a>
         </h2>
 
         <div class="post-meta">
@@ -238,19 +377,27 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="Created: 2021-05-20 00:00:00" itemprop="dateCreated datePublished" datetime="2021-05-20T00:00:00+08:00">2021-05-20</time>
+              <time title="创建时间：2021-05-29 11:12:54 / 修改时间：11:27:57" itemprop="dateCreated datePublished" datetime="2021-05-29T11:12:54+08:00">2021-05-29</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-05-28 21:35:53" itemprop="dateModified" datetime="2021-05-28T21:35:53+08:00">2021-05-28</time>
-              </span>
 
-          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>11k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>10 分钟</span>
+            </span>
 
         </div>
       </header>
@@ -472,14 +619,11 @@ int test(int argc, char const *argv[])
 #include &lt;linux/ip.h&gt;
 #include &lt;linux/tcp.h&gt;
 #include &lt;linux/sched.h&gt;
-</code></pre>
-<p>​    </p>
-<pre><code>#include &quot;linux/kernel.h&quot;
+#include &quot;linux/kernel.h&quot;
 #include &quot;linux/fs.h&quot;
 #include &quot;linux/errno.h&quot;
 #include &quot;linux/uaccess.h&quot;
 #include &quot;linux/kdev_t.h&quot;
-
 #include &lt;linux/device.h&gt;
 #include &lt;linux/time.h&gt;
 
@@ -523,52 +667,57 @@ unsigned int filter_http(char *type,struct sk_buff *pskb)
   struct sk_buff *skb = pskb;
 
   struct iphdr *iph = ip_hdr(skb);  // 获取ip头
-</code></pre>
-<p>​    </p>
-<pre><code>  sip = iph-&gt;saddr;  
+
+  sip = iph-&gt;saddr;  
   dip = iph-&gt;daddr;  
   //printk(&quot;Packet for source address: %d.%d.%d.%d destination address: %d.%d.%d.%d\n&quot;, NIPQUAD(sip), NIPQUAD(dip));  
 
   //sprintf(message, &quot;Packet for source address: %d.%d.%d.%d destination address: %d.%d.%d.%d\n&quot;, NIPQUAD(sip), NIPQUAD(dip));
-</code></pre>
-<p>​    </p>
-<pre><code>  do_gettimeofday(&amp;time);  /*第一次去获取时间*/  ms = time.tv_sec * 1000 + time.tv_usec / 1000;  ret = insert(sip, ms);  //if(ret == 1)&#123;      roc_dump(&amp;root);  printk(message);  //&#125;  return retval;&#125;
-</code></pre>
-<p>​    </p>
-<pre><code>unsigned int NET_HookLocalIn(void *priv,     struct sk_buff *pskb,     const struct nf_hook_state *state)&#123;  return filter_http(&quot;in&quot;,pskb);&#125;
-</code></pre>
-<p>​    </p>
-<pre><code>unsigned int NET_HookLocalOut(void *priv,     struct sk_buff *pskb,     const struct nf_hook_state *state)&#123;  //return filter_http(&quot;out&quot;,pskb);  return NF_ACCEPT;&#125;
-</code></pre>
-<p>​    </p>
-<pre><code>unsigned int NET_HookPreRouting(void *priv,     struct sk_buff *pskb,     const struct nf_hook_state *state)&#123;  return NF_ACCEPT;&#125;
-</code></pre>
-<p>​    </p>
-<pre><code>unsigned int NET_HookPostRouting(void *priv,     struct sk_buff *pskb,     const struct nf_hook_state *state)&#123;  return NF_ACCEPT;&#125;
-</code></pre>
-<p>​    </p>
-<pre><code>unsigned int NET_HookForward(void *priv,     struct sk_buff *pskb,     const struct nf_hook_state *state)&#123;  return NF_ACCEPT;&#125;
-</code></pre>
-<p>​    </p>
-<pre><code>// 钩子数组static struct nf_hook_ops net_hooks[] = &#123;  &#123;    .hook         = NET_HookLocalIn,        // 发往本地数据包    .pf            = PF_INET,    .hooknum    =    NF_INET_LOCAL_IN,    .priority    = NF_IP_PRI_FILTER-1,  &#125;,  &#123;    .hook         = NET_HookLocalOut,        // 本地发出数据包    .pf            = PF_INET,    .hooknum    =    NF_INET_LOCAL_OUT,    .priority    = NF_IP_PRI_FILTER-1,  &#125;,  &#123;    .hook         = NET_HookForward,        // 转发的数据包    .pf            = PF_INET,    .hooknum    =    NF_INET_FORWARD,    .priority    = NF_IP_PRI_FILTER-1,  &#125;,  &#123;    .hook        = NET_HookPreRouting,    // 进入本机路由前        .pf            = PF_INET,                    .hooknum    = NF_INET_PRE_ROUTING,            .priority    = NF_IP_PRI_FILTER-1,          &#125;,  &#123;    .hook        = NET_HookPostRouting,    // 本机发出包经路由后        .pf            = PF_INET,                    .hooknum    = NF_INET_POST_ROUTING,            .priority    = NF_IP_PRI_FILTER-1,          &#125;,&#125;;
-</code></pre>
-<p>​    </p>
-<pre><code>int my_open(struct inode *inode, struct file *file);int my_release(struct inode *inode, struct file *file);ssize_t my_read(struct file *file, char __user *user, size_t t, loff_t *f);ssize_t my_write(struct file *file, const char __user *user, size_t t, loff_t *f);char* devName = &quot;IPDataSet&quot;;//设备名struct file_operations pStruct =&#123; open:my_open,      release:my_release,      read:my_read,      write:my_write, &#125;;//打开int my_open(struct inode *inode, struct file *file)&#123;  printk(&quot;open lgsDrive OK!\n&quot;);  try_module_get(THIS_MODULE);  return 0;&#125;//关闭int my_release(struct inode *inode, struct file *file)&#123;  printk(&quot;Device released!\n&quot;);  module_put(THIS_MODULE);  return 0;&#125;
-</code></pre>
-<p>​    </p>
-<pre><code>//读设备里的信息ssize_t my_read(struct file *file, char __user *user, size_t t, loff_t *f)&#123;  roc_dump(&amp;root);  if(copy_to_user(user,message,t))  &#123;    return -2;  &#125;  return sizeof(message);&#125;//向设备里写信息ssize_t my_write(struct file *file, const char __user *user, size_t t, loff_t *f)&#123;  if(copy_from_user(message,user,t))  &#123;    return -3;  &#125;  return sizeof(message);&#125;
-</code></pre>
-<p>​    </p>
-<pre><code>static struct class *drv_class = NULL;int major = 0;//设备号static int __init nf_init(void) &#123;  int ret = 0;  //char device  major = register_chrdev(0, &quot;ipdataset_drv&quot;, &amp;pStruct);  drv_class = class_create(THIS_MODULE, &quot;ipdataset_drv&quot;);  device_create(drv_class, NULL, MKDEV(major, 0), NULL, devName);  //    ret = register_chrdev(0, devName, &amp;pStruct);  //    if (ret &lt; 0)  //    &#123;  //        printk(&quot;failed to register_chrdev.\n&quot;);  //        return -1;  //    &#125;  //    else  //    &#123;  //        printk(&quot;the lgsDrive has been registered!\n&quot;);  //        printk(&quot;id: %d\n&quot;, ret);  //        device_num = ret;  //   //        return 0;  //    &#125;  //net device  ret = nf_register_net_hook(&amp;init_net, net_hooks);  //ret = nf_register_hooks(net_hooks,ARRAY_SIZE(net_hooks));    // 安装钩子  if(ret)  &#123;    printk(KERN_ERR &quot;register hook failed\n&quot;);    return -1;  &#125;  printk(&quot;Start...\n&quot;);  return 0;&#125;void close(void)&#123;  roc_destroy(&amp;root, roc_free);&#125;static void __exit nf_exit(void)&#123;  close();  unregister_chrdev(major, &quot;ipdataset_drv&quot;);  device_destroy(drv_class, MKDEV(major, 0));  class_destroy(drv_class);  //unregister_chrdev(device_num, devName);
-</code></pre>
-<p>​    </p>
-<pre><code>  nf_unregister_net_hook(&amp;init_net, net_hooks);  //nf_unregister_hooks(net_hooks,ARRAY_SIZE(net_hooks));    // 卸载钩子  printk(&quot;Exit...\n&quot;);&#125;
-</code></pre>
-<p>​    </p>
-<pre><code>module_init(nf_init);module_exit(nf_exit);
-</code></pre>
-<p>​    </p>
-<pre><code>MODULE_LICENSE(&quot;Dual BSD/GPL&quot;);MODULE_AUTHOR(&quot;dianwoshishi&quot;);MODULE_DESCRIPTION(&quot;Netfilter IP Statistic&quot;);MODULE_VERSION(&quot;1.0.1&quot;);MODULE_ALIAS(&quot;Netfilter 01&quot;);
+
+
+  do_gettimeofday(&amp;time);  /*第一次去获取时间*/  ms = time.tv_sec * 1000 + time.tv_usec / 1000;  ret = insert(sip, ms);  //if(ret == 1)&#123;      roc_dump(&amp;root);  printk(message);  //&#125;  return retval;&#125;
+
+
+unsigned int NET_HookLocalIn(void *priv,     struct sk_buff *pskb,     const struct nf_hook_state *state)&#123;  return filter_http(&quot;in&quot;,pskb);&#125;
+
+
+unsigned int NET_HookLocalOut(void *priv,     struct sk_buff *pskb,     const struct nf_hook_state *state)&#123;  //return filter_http(&quot;out&quot;,pskb);  return NF_ACCEPT;&#125;
+
+
+
+unsigned int NET_HookPreRouting(void *priv,     struct sk_buff *pskb,     const struct nf_hook_state *state)&#123;  return NF_ACCEPT;&#125;
+
+
+
+
+unsigned int NET_HookPostRouting(void *priv,     struct sk_buff *pskb,     const struct nf_hook_state *state)&#123;  return NF_ACCEPT;&#125;
+
+
+unsigned int NET_HookForward(void *priv,     struct sk_buff *pskb,     const struct nf_hook_state *state)&#123;  return NF_ACCEPT;&#125;
+
+
+// 钩子数组static struct nf_hook_ops net_hooks[] = &#123;  &#123;    .hook         = NET_HookLocalIn,        // 发往本地数据包    .pf            = PF_INET,    .hooknum    =    NF_INET_LOCAL_IN,    .priority    = NF_IP_PRI_FILTER-1,  &#125;,  &#123;    .hook         = NET_HookLocalOut,        // 本地发出数据包    .pf            = PF_INET,    .hooknum    =    NF_INET_LOCAL_OUT,    .priority    = NF_IP_PRI_FILTER-1,  &#125;,  &#123;    .hook         = NET_HookForward,        // 转发的数据包    .pf            = PF_INET,    .hooknum    =    NF_INET_FORWARD,    .priority    = NF_IP_PRI_FILTER-1,  &#125;,  &#123;    .hook        = NET_HookPreRouting,    // 进入本机路由前        .pf            = PF_INET,                    .hooknum    = NF_INET_PRE_ROUTING,            .priority    = NF_IP_PRI_FILTER-1,          &#125;,  &#123;    .hook        = NET_HookPostRouting,    // 本机发出包经路由后        .pf            = PF_INET,                    .hooknum    = NF_INET_POST_ROUTING,            .priority    = NF_IP_PRI_FILTER-1,          &#125;,&#125;;
+
+
+int my_open(struct inode *inode, struct file *file);int my_release(struct inode *inode, struct file *file);ssize_t my_read(struct file *file, char __user *user, size_t t, loff_t *f);ssize_t my_write(struct file *file, const char __user *user, size_t t, loff_t *f);char* devName = &quot;IPDataSet&quot;;//设备名struct file_operations pStruct =&#123; open:my_open,      release:my_release,      read:my_read,      write:my_write, &#125;;//打开int my_open(struct inode *inode, struct file *file)&#123;  printk(&quot;open lgsDrive OK!\n&quot;);  try_module_get(THIS_MODULE);  return 0;&#125;//关闭int my_release(struct inode *inode, struct file *file)&#123;  printk(&quot;Device released!\n&quot;);  module_put(THIS_MODULE);  return 0;&#125;
+
+
+//读设备里的信息ssize_t my_read(struct file *file, char __user *user, size_t t, loff_t *f)&#123;  roc_dump(&amp;root);  if(copy_to_user(user,message,t))  &#123;    return -2;  &#125;  return sizeof(message);&#125;//向设备里写信息ssize_t my_write(struct file *file, const char __user *user, size_t t, loff_t *f)&#123;  if(copy_from_user(message,user,t))  &#123;    return -3;  &#125;  return sizeof(message);&#125;
+
+
+static struct class *drv_class = NULL;int major = 0;//设备号static int __init nf_init(void) &#123;  int ret = 0;  //char device  major = register_chrdev(0, &quot;ipdataset_drv&quot;, &amp;pStruct);  drv_class = class_create(THIS_MODULE, &quot;ipdataset_drv&quot;);  device_create(drv_class, NULL, MKDEV(major, 0), NULL, devName);  //    ret = register_chrdev(0, devName, &amp;pStruct);  //    if (ret &lt; 0)  //    &#123;  //        printk(&quot;failed to register_chrdev.\n&quot;);  //        return -1;  //    &#125;  //    else  //    &#123;  //        printk(&quot;the lgsDrive has been registered!\n&quot;);  //        printk(&quot;id: %d\n&quot;, ret);  //        device_num = ret;  //   //        return 0;  //    &#125;  //net device  ret = nf_register_net_hook(&amp;init_net, net_hooks);  //ret = nf_register_hooks(net_hooks,ARRAY_SIZE(net_hooks));    // 安装钩子  if(ret)  &#123;    printk(KERN_ERR &quot;register hook failed\n&quot;);    return -1;  &#125;  printk(&quot;Start...\n&quot;);  return 0;&#125;void close(void)&#123;  roc_destroy(&amp;root, roc_free);&#125;static void __exit nf_exit(void)&#123;  close();  unregister_chrdev(major, &quot;ipdataset_drv&quot;);  device_destroy(drv_class, MKDEV(major, 0));  class_destroy(drv_class);  //unregister_chrdev(device_num, devName);
+
+
+  nf_unregister_net_hook(&amp;init_net, net_hooks);  //nf_unregister_hooks(net_hooks,ARRAY_SIZE(net_hooks));    // 卸载钩子  printk(&quot;Exit...\n&quot;);&#125;
+
+
+
+module_init(nf_init);module_exit(nf_exit);
+
+
+
+
+MODULE_LICENSE(&quot;Dual BSD/GPL&quot;);MODULE_AUTHOR(&quot;dianwoshishi&quot;);MODULE_DESCRIPTION(&quot;Netfilter IP Statistic&quot;);MODULE_VERSION(&quot;1.0.1&quot;);MODULE_ALIAS(&quot;Netfilter 01&quot;);
 </code></pre>
 <p><a id="org8ee7f64"></a></p>
 <h2 id="用户代码"><a href="#用户代码" class="headerlink" title="用户代码"></a>用户代码</h2><p>上述字符型设备创建了一个字符节点为：/dev/IPDataSet， 在用户态程序中，我们通过Linux编程中提供的read函数对驱动中的数据message进行读取。<br>代码如下：</p>
@@ -601,8 +750,8 @@ unsigned int filter_http(char *type,struct sk_buff *pskb)
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/01/06/2016-01-06-ReactiveCocoa-%E8%BF%9B%E9%98%B6/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/29/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -616,7 +765,7 @@ unsigned int filter_http(char *type,struct sk_buff *pskb)
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2017/01/06/2016-01-06-ReactiveCocoa-%E8%BF%9B%E9%98%B6/" class="post-title-link" itemprop="url">ReactiveCocoa 进阶</a>
+            <a href="/2021/05/29/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
         </h2>
 
         <div class="post-meta">
@@ -624,19 +773,26 @@ unsigned int filter_http(char *type,struct sk_buff *pskb)
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              <span class="post-meta-item-text">发表于</span>
 
-              <time title="Created: 2017-01-06 00:00:00" itemprop="dateCreated datePublished" datetime="2017-01-06T00:00:00+08:00">2017-01-06</time>
+              <time title="创建时间：2021-05-29 09:34:55" itemprop="dateCreated datePublished" datetime="2021-05-29T09:34:55+08:00">2021-05-29</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-05-28 21:49:19" itemprop="dateModified" datetime="2021-05-28T21:49:19+08:00">2021-05-28</time>
-              </span>
 
-          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>367</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
 
         </div>
       </header>
@@ -647,447 +803,19 @@ unsigned int filter_http(char *type,struct sk_buff *pskb)
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
-<p>在<a target="_blank" rel="noopener" href="http://qiubaiying.github.io/2016/12/26/ReactiveCocoa-%E5%9F%BA%E7%A1%80/">上篇文章</a>中介绍了<strong>ReactiveCocoa</strong>的基础知识,接下来我们来深入介绍<strong>ReactiveCocoa</strong>及其在<strong>MVVM</strong>中的用法。</p>
-</blockquote>
-<p><img src="https://ww3.sinaimg.cn/large/006y8lVagw1fbgye3re5xj30je0iomz8.jpg" alt="ReactiveCocoa进阶思维导图"></p>
-<h1 id="常见操作方法介绍"><a href="#常见操作方法介绍" class="headerlink" title="常见操作方法介绍"></a>常见操作方法介绍</h1><h4 id="操作须知"><a href="#操作须知" class="headerlink" title="操作须知"></a>操作须知</h4><p>所有的信号（RACSignal）都可以进行操作处理，因为所有操作方法都定义在RACStream.h中，因此只要继承RACStream就有了操作处理方法。</p>
-<h4 id="操作思想"><a href="#操作思想" class="headerlink" title="操作思想"></a>操作思想</h4><p>运用的是Hook（钩子）思想，Hook是一种用于改变API(应用程序编程接口：方法)执行结果的技术.</p>
-<p>Hook用处：截获API调用的技术。</p>
-<p>有关Hook的知识可以看我的这篇博客<a target="_blank" rel="noopener" href="http://www.jianshu.com/p/ff114e69cc0a">《Objective-C Runtime 的一些基本使用》</a>中的 <em>更换代码的实现方法</em> 一节,</p>
-<p>Hook原理：在每次调用一个API返回结果之前，先执行你自己的方法，改变结果的输出。</p>
-<h4 id="操作方法"><a href="#操作方法" class="headerlink" title="操作方法"></a>操作方法</h4><h4 id="bind（绑定）-ReactiveCocoa核心方法"><a href="#bind（绑定）-ReactiveCocoa核心方法" class="headerlink" title="bind（绑定）- ReactiveCocoa核心方法"></a><strong>bind</strong>（绑定）- ReactiveCocoa核心方法</h4><p><strong>ReactiveCocoa</strong> 操作的核心方法是 <strong>bind</strong>（绑定）,而且也是RAC中核心开发方式。之前的开发方式是赋值，而用RAC开发，应该把重心放在绑定，也就是可以在创建一个对象的时候，就绑定好以后想要做的事情，而不是等赋值之后在去做事情。</p>
-<p>列如，把数据展示到控件上，之前都是重写控件的 <code>setModel</code> 方法，用RAC就可以在一开始创建控件的时候，就绑定好数据。</p>
-<ul>
-<li><p><strong>作用</strong></p>
-<p>  RAC底层都是调用<strong>bind</strong>， 在开发中很少直接使用 <strong>bind</strong> 方法，<strong>bind</strong>属于RAC中的底层方法，我们只需要调用封装好的方法，<strong>bind</strong>用作了解即可.</p>
-</li>
-<li><p><strong>bind方法使用步骤</strong></p>
-<ol>
-<li>传入一个返回值 <code>RACStreamBindBlock</code> 的 block。</li>
-<li>描述一个 <code>RACStreamBindBlock</code> 类型的 <code>bindBlock</code>作为block的返回值。</li>
-<li>描述一个返回结果的信号，作为 <code>bindBlock</code> 的返回值。</li>
-</ol>
-<p>   注意：在bindBlock中做信号结果的处理。</p>
-</li>
-<li><p>  <strong>bind方法参数</strong></p>
-<pre><code>  **RACStreamBindBlock**:
-</code></pre>
-<p><code>typedef RACStream * (^RACStreamBindBlock)(id value, BOOL *stop);</code></p>
-</li>
-</ul>
-<pre><code> `参数一(value)`:表示接收到信号的原始值，还没做处理
- 
- `参数二(*stop)`:用来控制绑定Block，如果*stop = yes,那么就会结束绑定。
- 
- `返回值`：信号，做好处理，在通过这个信号返回出去，一般使用 `RACReturnSignal`,需要手动导入头文件`RACReturnSignal.h`
-</code></pre>
-<ul>
-<li><p><strong>使用</strong></p>
-<p>  假设想监听文本框的内容，并且在每次输出结果的时候，都在文本框的内容拼接一段文字“输出：”</p>
-<ul>
-<li><p>使用封装好的方法：在返回结果后，拼接。</p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[_textField.rac_textSignal subscribeNext:^(id x) &#123;</span><br><span class="line"></span><br><span class="line">	// 在返回结果后，拼接 输出：</span><br><span class="line">	NSLog(@&quot;输出:%@&quot;,x);</span><br><span class="line"></span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-<pre><code>- 方式二:，使用RAC中 `bind` 方法做处理，在返回结果前，拼接。
-  
-    这里需要手动导入`#import &lt;ReactiveCocoa/RACReturnSignal.h&gt;`，才能使用`RACReturnSignal`
+          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
-    <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[[_textField.rac_textSignal bind:^RACStreamBindBlock&#123;</span><br><span class="line">   // 什么时候调用:</span><br><span class="line">   // block作用:表示绑定了一个信号.</span><br><span class="line"></span><br><span class="line">   return ^RACStream *(id value, BOOL *stop)&#123;</span><br><span class="line"></span><br><span class="line">       // 什么时候调用block:当信号有新的值发出，就会来到这个block。</span><br><span class="line"></span><br><span class="line">       // block作用:做返回值的处理</span><br><span class="line"></span><br><span class="line">       // 做好处理，在返回结果前，拼接 输出:</span><br><span class="line">       return [RACReturnSignal return:[NSString stringWithFormat:@&quot;输出:%@&quot;,value]];</span><br><span class="line">   &#125;;</span><br><span class="line"></span><br><span class="line">&#125;] subscribeNext:^(id x) &#123;</span><br><span class="line"></span><br><span class="line">   NSLog(@&quot;%@&quot;,x);</span><br><span class="line"></span><br><span class="line">&#125;];</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</code></pre>
-<ul>
-<li><strong>底层实现</strong><ol>
-<li>源信号调用bind,会重新创建一个绑定信号。</li>
-<li>当绑定信号被订阅，就会调用绑定信号中的 <code>didSubscribe</code> ，生成一个 <code>bindingBlock</code> 。</li>
-<li>当源信号有内容发出，就会把内容传递到 <code>bindingBlock</code> 处理，调用<code>bindingBlock(value,stop)</code></li>
-<li>调用<code>bindingBlock(value,stop)</code>，会返回一个内容处理完成的信号<code>RACReturnSignal</code>。</li>
-<li>订阅<code>RACReturnSignal</code>，就会拿到绑定信号的订阅者，把处理完成的信号内容发送出来。</li>
-</ol>
-   注意:不同订阅者，保存不同的nextBlock，看源码的时候，一定要看清楚订阅者是哪个。</li>
-</ul>
-<h4 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h4><p>映射主要用这两个方法实现：<strong>flattenMap</strong>,<strong>Map</strong>,用于把源信号内容映射成新的内容。</p>
-<h6 id="flattenMap"><a href="#flattenMap" class="headerlink" title="flattenMap"></a>flattenMap</h6><ul>
-<li><p><strong>作用</strong></p>
-<p>  把源信号的内容映射成一个新的信号，信号可以是任意类型</p>
-</li>
-<li><p><strong>使用步骤</strong></p>
-<ol>
-<li>传入一个block，block类型是返回值<code>RACStream</code>，参数value</li>
-<li>参数value就是源信号的内容，拿到源信号的内容做处理</li>
-<li>包装成<code>RACReturnSignal</code>信号，返回出去。</li>
-</ol>
-</li>
-</ul>
-<ul>
-<li><p><strong>使用</strong></p>
-<p>  监听文本框的内容改变，把结构重新映射成一个新值.</p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[[_textField.rac_textSignal flattenMap:^RACStream *(id value) &#123;</span><br><span class="line">       </span><br><span class="line">       // block调用时机：信号源发出的时候</span><br><span class="line">       </span><br><span class="line">       // block作用：改变信号的内容</span><br><span class="line">       </span><br><span class="line">       // 返回RACReturnSignal</span><br><span class="line">       return [RACReturnSignal return:[NSString stringWithFormat:@&quot;信号内容：%@&quot;, value]];</span><br><span class="line">       </span><br><span class="line">   &#125;] subscribeNext:^(id x) &#123;</span><br><span class="line">       </span><br><span class="line">       NSLog(@&quot;%@&quot;, x);</span><br><span class="line">   &#125;];</span><br></pre></td></tr></table></figure></li>
-<li><p><strong>底层实现</strong></p>
-<ol start="0">
-<li><strong>flattenMap</strong>内部调用 <code>bind</code> 方法实现的,<strong>flattenMap</strong>中block的返回值，会作为bind中bindBlock的返回值。</li>
-<li>当订阅绑定信号，就会生成 <code>bindBlock</code>。</li>
-<li>当源信号发送内容，就会调用<code> bindBlock(value, *stop)</code></li>
-<li>调用<code>bindBlock</code>，内部就会调用 <strong>flattenMap</strong> 的 bloc k，<strong>flattenMap</strong> 的block作用：就是把处理好的数据包装成信号。</li>
-<li>返回的信号最终会作为 <code>bindBlock</code> 中的返回信号，当做 <code>bindBlock</code> 的返回信号。</li>
-<li>订阅 <code>bindBlock</code> 的返回信号，就会拿到绑定信号的订阅者，把处理完成的信号内容发送出来。</li>
-</ol>
-</li>
-</ul>
-<h6 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h6><ul>
-<li><p><strong>作用</strong></p>
-<p>  把源信号的值映射成一个新的值</p>
-</li>
-<li><p><strong>使用步骤</strong></p>
-<ol>
-<li>传入一个block,类型是返回对象，参数是 <code>value</code></li>
-<li><code>value</code>就是源信号的内容，直接拿到源信号的内容做处理</li>
-<li>把处理好的内容，直接返回就好了，不用包装成信号，返回的值，就是映射的值。</li>
-</ol>
-</li>
-<li><p><strong>使用</strong></p>
-<p>  监听文本框的内容改变，把结构重新映射成一个新值.</p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[[_textField.rac_textSignal map:^id(id value) &#123;</span><br><span class="line">      </span><br><span class="line">      // 拼接完后，返回对象</span><br><span class="line">       return [NSString stringWithFormat:@&quot;信号内容: %@&quot;, value];</span><br><span class="line">       </span><br><span class="line">   &#125;] subscribeNext:^(id x) &#123;</span><br><span class="line">       </span><br><span class="line">       NSLog(@&quot;%@&quot;, x);</span><br><span class="line">   &#125;];</span><br></pre></td></tr></table></figure></li>
-<li><p><strong>底层实现</strong>:</p>
-<ol start="0">
-<li>Map底层其实是调用 <code>flatternMa</code>p,<code>Map</code> 中block中的返回的值会作为 <code>flatternMap</code> 中block中的值</li>
-<li>当订阅绑定信号，就会生成 <code>bindBlock</code> </li>
-<li>当源信号发送内容，就会调用 <code>bindBlock(value, *stop)</code></li>
-<li>调用 <code>bindBlock</code> ，内部就会调用 <code>flattenMap的block</code></li>
-<li><code>flattenMap的block</code> 内部会调用 <code>Map</code> 中的block，把 <code>Map</code> 中的block返回的内容包装成返回的信号</li>
-<li>返回的信号最终会作为 <code>bindBlock</code> 中的返回信号，当做 <code>bindBlock</code> 的返回信号</li>
-<li>订阅 <code>bindBlock</code> 的返回信号，就会拿到绑定信号的订阅者，把处理完成的信号内容发送出来。</li>
-</ol>
-</li>
-</ul>
-<h6 id="FlatternMap-和-Map-的区别"><a href="#FlatternMap-和-Map-的区别" class="headerlink" title="FlatternMap 和 Map 的区别"></a>FlatternMap 和 Map 的区别</h6><ul>
-<li> <strong>FlatternMap</strong> 中的Block <strong>返回信号</strong>。 </li>
-</ul>
-<ol start="2">
-<li><strong>Map</strong> 中的Block <strong>返回对象</strong>。</li>
-<li>开发中，如果信号发出的值 <strong>不是信号</strong> ，映射一般使用 <code>Map</code></li>
-<li>如果信号发出的值 <strong>是信号</strong>，映射一般使用 <code>FlatternMap</code>。</li>
-</ol>
-<ul>
-<li><p><code>signalOfsignals</code>用 <strong>FlatternMap</strong></p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">// 创建信号中的信号</span><br><span class="line">RACSubject *signalOfsignals = [RACSubject subject];</span><br><span class="line">RACSubject *signal = [RACSubject subject];</span><br><span class="line"></span><br><span class="line">[[signalOfsignals flattenMap:^RACStream *(id value) &#123;</span><br><span class="line"></span><br><span class="line"> // 当signalOfsignals的signals发出信号才会调用</span><br><span class="line"></span><br><span class="line">    return value;</span><br><span class="line"></span><br><span class="line">&#125;] subscribeNext:^(id x) &#123;</span><br><span class="line"></span><br><span class="line">    // 只有signalOfsignals的signal发出信号才会调用，因为内部订阅了bindBlock中返回的信号，也就是flattenMap返回的信号。</span><br><span class="line">    // 也就是flattenMap返回的信号发出内容，才会调用。</span><br><span class="line"></span><br><span class="line">    NSLog(@&quot;signalOfsignals：%@&quot;,x);</span><br><span class="line">&#125;];</span><br><span class="line"></span><br><span class="line">// 信号的信号发送信号</span><br><span class="line">[signalOfsignals sendNext:signal];</span><br><span class="line"></span><br><span class="line">// 信号发送内容</span><br><span class="line">[signal sendNext:@&quot;hi&quot;];</span><br><span class="line">	</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h4 id="组合"><a href="#组合" class="headerlink" title="组合"></a>组合</h4><p>组合就是将多个信号按照某种规则进行拼接，合成新的信号。</p>
-<h6 id="concat"><a href="#concat" class="headerlink" title="concat"></a>concat</h6><ul>
-<li><p><strong>作用</strong> </p>
-<p>  按<strong>顺序拼接</strong>信号，当多个信号发出的时候，有顺序的接收信号。</p>
-</li>
-<li><p><strong>底层实现</strong></p>
-<ol>
-<li>当拼接信号被订阅，就会调用拼接信号的didSubscribe</li>
-<li>didSubscribe中，会先订阅第一个源信号（signalA）</li>
-<li>会执行第一个源信号（signalA）的didSubscribe</li>
-<li>第一个源信号（signalA）didSubscribe中发送值，就会调用第一个源信号（signalA）订阅者的nextBlock,通过拼接信号的订阅者把值发送出来.</li>
-<li>第一个源信号（signalA）didSubscribe中发送完成，就会调用第一个源信号（signalA）订阅者的completedBlock,订阅第二个源信号（signalB）这时候才激活（signalB）。</li>
-<li>订阅第二个源信号（signalB）,执行第二个源信号（signalB）的didSubscribe</li>
-<li>第二个源信号（signalA）didSubscribe中发送值,就会通过拼接信号的订阅者把值发送出来.</li>
-</ol>
-</li>
-<li><p><strong>使用步骤</strong></p>
-<ol>
-<li>使用<code>concat:</code>拼接信号</li>
-<li>订阅拼接信号，内部会自动按拼接顺序订阅信号</li>
-</ol>
-</li>
-<li><p><strong>使用</strong></p>
-<p>  拼接信号 <code>signalA</code>、 <code>signalB</code>、 <code>signalC</code></p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">RACSignal *signalA = [RACSignal createSignal:^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line">       </span><br><span class="line">       [subscriber sendNext:@&quot;Hello&quot;];</span><br><span class="line">       </span><br><span class="line">       [subscriber sendCompleted];</span><br><span class="line">       </span><br><span class="line">       return nil;</span><br><span class="line">   &#125;];</span><br><span class="line">   </span><br><span class="line">   RACSignal *signalB = [RACSignal createSignal:^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line">       </span><br><span class="line">       [subscriber sendNext:@&quot;World&quot;];</span><br><span class="line">       </span><br><span class="line">       [subscriber sendCompleted];</span><br><span class="line">       </span><br><span class="line">       return nil;</span><br><span class="line">   &#125;];</span><br><span class="line">   </span><br><span class="line">   RACSignal *signalC = [RACSignal createSignal:^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line">       </span><br><span class="line">       [subscriber sendNext:@&quot;!&quot;];</span><br><span class="line">       </span><br><span class="line">       [subscriber sendCompleted];</span><br><span class="line">       </span><br><span class="line">       return nil;</span><br><span class="line">   &#125;];</span><br><span class="line">   </span><br><span class="line">   // 拼接 A B, 把signalA拼接到signalB后，signalA发送完成，signalB才会被激活。</span><br><span class="line">   RACSignal *concatSignalAB = [signalA concat:signalB];</span><br><span class="line">   </span><br><span class="line">   // A B + C</span><br><span class="line">   RACSignal *concatSignalABC = [concatSignalAB concat:signalC];</span><br><span class="line">   </span><br><span class="line">   </span><br><span class="line">   // 订阅拼接的信号, 内部会按顺序订阅 A-&gt;B-&gt;C</span><br><span class="line">   // 注意：第一个信号必须发送完成，第二个信号才会被激活...</span><br><span class="line">   [concatSignalABC subscribeNext:^(id x) &#123;</span><br><span class="line">       </span><br><span class="line">       NSLog(@&quot;%@&quot;, x);</span><br><span class="line">   &#125;];</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h6 id="then"><a href="#then" class="headerlink" title="then"></a>then</h6><ul>
-<li><p><strong>作用</strong> </p>
-<p>  用于连接两个信号，当第一个信号完成，才会连接then返回的信号。</p>
-</li>
-<li><p><strong>底层实现</strong></p>
-<ol>
-<li>先过滤掉之前的信号发出的值</li>
-<li>使用concat连接then返回的信号</li>
-</ol>
-</li>
-<li><p><strong>使用</strong></p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">[[[RACSignal createSignal:^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line">   </span><br><span class="line">   [subscriber sendNext:@1];</span><br><span class="line">   </span><br><span class="line">   [subscriber sendCompleted];</span><br><span class="line">   </span><br><span class="line">   return nil;</span><br><span class="line">   </span><br><span class="line"> &#125;] then:^RACSignal *&#123;</span><br><span class="line">   </span><br><span class="line">   	return [RACSignal createSignal:^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line">       </span><br><span class="line">       [subscriber sendNext:@2];</span><br><span class="line">       </span><br><span class="line">       return nil;</span><br><span class="line">   &#125;];</span><br><span class="line">   </span><br><span class="line"> &#125;] subscribeNext:^(id x) &#123;</span><br><span class="line">   </span><br><span class="line">   // 只能接收到第二个信号的值，也就是then返回信号的值</span><br><span class="line">   NSLog(@&quot;%@&quot;, x);</span><br><span class="line">   </span><br><span class="line"> &#125;];</span><br><span class="line"> </span><br><span class="line"> ///</span><br><span class="line"> 输出：2</span><br></pre></td></tr></table></figure></li>
-<li><p><strong>注意</strong></p>
-<p>  注意使用<code>then</code>，之前信号的值会被忽略掉.</p>
-</li>
-</ul>
-<h6 id="merge"><a href="#merge" class="headerlink" title="merge"></a>merge</h6><ul>
-<li><p><strong>作用</strong> </p>
-<p>  合并信号,任何一个信号发送数据，都能监听到.</p>
-</li>
-<li><p><strong>底层实现</strong></p>
-<ol>
-<li>合并信号被订阅的时候，就会遍历所有信号，并且发出这些信号。</li>
-<li>每发出一个信号，这个信号就会被订阅</li>
-<li>也就是合并信号一被订阅，就会订阅里面所有的信号。</li>
-<li>只要有一个信号被发出就会被监听。</li>
-</ol>
-</li>
-<li><p><strong>使用</strong></p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">RACSignal *signalA = [RACSignal createSignal:^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line">       </span><br><span class="line">       [subscriber sendNext:@&quot;A&quot;];</span><br><span class="line">       </span><br><span class="line">       return nil;</span><br><span class="line">   &#125;];</span><br><span class="line"></span><br><span class="line">   RACSignal *signalB = [RACSignal createSignal:^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line">       </span><br><span class="line">       [subscriber sendNext:@&quot;B&quot;];</span><br><span class="line">       </span><br><span class="line">       return nil;</span><br><span class="line">   &#125;];</span><br><span class="line"></span><br><span class="line">   // 合并信号, 任何一个信号发送数据，都能监听到</span><br><span class="line">   RACSignal *mergeSianl = [signalA merge:signalB];</span><br><span class="line"></span><br><span class="line">   [mergeSianl subscribeNext:^(id x) &#123;</span><br><span class="line">       </span><br><span class="line">       NSLog(@&quot;%@&quot;, x);</span><br><span class="line">   &#125;];</span><br><span class="line">   </span><br><span class="line">   // 输出</span><br><span class="line">2017-01-03 13:29:08.013 ReactiveCocoa进阶[3627:718315] A</span><br><span class="line">2017-01-03 13:29:08.014 ReactiveCocoa进阶[3627:718315] B</span><br><span class="line"></span><br><span class="line">   </span><br></pre></td></tr></table></figure></li>
-</ul>
-<h6 id="zip"><a href="#zip" class="headerlink" title="zip"></a>zip</h6><ul>
-<li><p><strong>作用</strong> </p>
-<p>  把两个信号压缩成一个信号，只有当两个信号 <strong>同时</strong> 发出信号内容时，并且把两个信号的内容合并成一个元组，才会触发压缩流的next事件。</p>
-</li>
-<li><p><strong>底层实现</strong></p>
-<ol>
-<li>定义压缩信号，内部就会自动订阅signalA，signalB</li>
-<li>每当signalA或者signalB发出信号，就会判断signalA，signalB有没有发出个信号，有就会把每个信号 第一次 发出的值包装成元组发出</li>
-</ol>
-</li>
-<li><p><strong>使用</strong></p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">RACSignal *signalA = [RACSignal createSignal:^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line">       </span><br><span class="line">       [subscriber sendNext:@&quot;A1&quot;];</span><br><span class="line">       [subscriber sendNext:@&quot;A2&quot;];</span><br><span class="line">       </span><br><span class="line">       return nil;</span><br><span class="line">   &#125;];</span><br><span class="line">   </span><br><span class="line">   RACSignal *signalB = [RACSignal createSignal:^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line">       </span><br><span class="line">       [subscriber sendNext:@&quot;B1&quot;];</span><br><span class="line">       [subscriber sendNext:@&quot;B2&quot;];</span><br><span class="line">       [subscriber sendNext:@&quot;B3&quot;];</span><br><span class="line">       </span><br><span class="line">       return nil;</span><br><span class="line">   &#125;];</span><br><span class="line">   </span><br><span class="line">   RACSignal *zipSignal = [signalA zipWith:signalB];</span><br><span class="line">   </span><br><span class="line">   [zipSignal subscribeNext:^(id x) &#123;</span><br><span class="line">       </span><br><span class="line">       NSLog(@&quot;%@&quot;, x);</span><br><span class="line">   &#125;];</span><br><span class="line"></span><br><span class="line">// 输出</span><br><span class="line">2017-01-03 13:48:09.234 ReactiveCocoa进阶[3997:789720] zipWith: &lt;RACTuple: 0x600000004df0&gt; (</span><br><span class="line">   A1,</span><br><span class="line">   B1</span><br><span class="line">)</span><br><span class="line">2017-01-03 13:48:09.234 ReactiveCocoa进阶[3997:789720] zipWith: &lt;RACTuple: 0x608000003410&gt; (</span><br><span class="line">   A2,</span><br><span class="line">   B2</span><br><span class="line">)</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h6 id="combineLatest"><a href="#combineLatest" class="headerlink" title="combineLatest"></a>combineLatest</h6><ul>
-<li><p><strong>作用</strong> </p>
-<p>  将多个信号合并起来，并且拿到各个信号最后一个值,必须每个合并的signal至少都有过一次sendNext，才会触发合并的信号。</p>
-</li>
-<li><p><strong>底层实现</strong></p>
-<ol>
-<li>当组合信号被订阅，内部会自动订阅signalA，signalB,必须两个信号都发出内容，才会被触发。</li>
-<li>并且把两个信号的 最后一次 发送的值组合成元组发出。</li>
-</ol>
-</li>
-<li><p><strong>使用</strong></p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">RACSignal *signalA = [RACSignal createSignal:^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line">       </span><br><span class="line">       [subscriber sendNext:@&quot;A1&quot;];</span><br><span class="line">       [subscriber sendNext:@&quot;A2&quot;];</span><br><span class="line">       </span><br><span class="line">       return nil;</span><br><span class="line">   &#125;];</span><br><span class="line">   </span><br><span class="line">   RACSignal *signalB = [RACSignal createSignal:^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line">       </span><br><span class="line">       [subscriber sendNext:@&quot;B1&quot;];</span><br><span class="line">       [subscriber sendNext:@&quot;B2&quot;];</span><br><span class="line">       [subscriber sendNext:@&quot;B3&quot;];</span><br><span class="line">       </span><br><span class="line">       return nil;</span><br><span class="line">   &#125;];</span><br><span class="line">   </span><br><span class="line">   RACSignal *combineSianal = [signalA combineLatestWith:signalB];</span><br><span class="line">   </span><br><span class="line">   [combineSianal subscribeNext:^(id x) &#123;</span><br><span class="line">       </span><br><span class="line">       NSLog(@&quot;combineLatest:%@&quot;, x);</span><br><span class="line">   &#125;];</span><br><span class="line"></span><br><span class="line">// 输出</span><br><span class="line">2017-01-03 13:48:09.235 ReactiveCocoa进阶[3997:789720] combineLatest:&lt;RACTuple: 0x60800000e150&gt; (</span><br><span class="line">   A2,</span><br><span class="line">   B1</span><br><span class="line">)</span><br><span class="line">2017-01-03 13:48:09.235 ReactiveCocoa进阶[3997:789720] combineLatest:&lt;RACTuple: 0x600000004db0&gt; (</span><br><span class="line">   A2,</span><br><span class="line">   B2</span><br><span class="line">)</span><br><span class="line">2017-01-03 13:48:09.236 ReactiveCocoa进阶[3997:789720] combineLatest:&lt;RACTuple: 0x60800000e180&gt; (</span><br><span class="line">   A2,</span><br><span class="line">   B3</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>注意</strong></p>
-<p>  <strong>combineLatest</strong>与<strong>zip</strong>用法相似，必须每个合并的signal至少都有过一次sendNext，才会触发合并的信号。</p>
-<p>  区别看下图：</p>
-<p>  <img src="https://ww2.sinaimg.cn/large/006y8lVagw1fbdf6cyez6j30id0kkabf.jpg"></p>
-</li>
-</ul>
-<h6 id="reduce"><a href="#reduce" class="headerlink" title="reduce"></a>reduce</h6><ul>
-<li><p><strong>作用</strong> </p>
-<p>  把信号发出元组的值聚合成一个值</p>
-</li>
-<li><p><strong>底层实现</strong></p>
-<ol>
-<li>订阅聚合信号，</li>
-<li>每次有内容发出，就会执行reduceblcok，把信号内容转换成reduceblcok返回的值。</li>
-</ol>
-</li>
-<li><p><strong>使用</strong></p>
-<p>   常见的用法，（先组合在聚合）<code>combineLatest:(id&lt;NSFastEnumeration&gt;)signals reduce:(id (^)())reduceBlock</code></p>
-<p>   reduce中的block简介:</p>
-<p>   reduceblcok中的参数，有多少信号组合，reduceblcok就有多少参数，每个参数就是之前信号发出的内容<br>   reduceblcok的返回值：聚合信号之后的内容。</p>
-</li>
-</ul>
-<pre><code><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">    RACSignal *signalA = [RACSignal createSignal:^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line">       </span><br><span class="line">       [subscriber sendNext:@&quot;A1&quot;];</span><br><span class="line">       [subscriber sendNext:@&quot;A2&quot;];</span><br><span class="line">       </span><br><span class="line">       return nil;</span><br><span class="line">   &#125;];</span><br><span class="line">   </span><br><span class="line">   RACSignal *signalB = [RACSignal createSignal:^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line">       </span><br><span class="line">       [subscriber sendNext:@&quot;B1&quot;];</span><br><span class="line">       [subscriber sendNext:@&quot;B2&quot;];</span><br><span class="line">       [subscriber sendNext:@&quot;B3&quot;];</span><br><span class="line">       </span><br><span class="line">       return nil;</span><br><span class="line">   &#125;];</span><br><span class="line">   </span><br><span class="line">   </span><br><span class="line">   RACSignal *reduceSignal = [RACSignal combineLatest:@[signalA, signalB] reduce:^id(NSString *str1, NSString *str2)&#123;</span><br><span class="line">       </span><br><span class="line">       return [NSString stringWithFormat:@&quot;%@ %@&quot;, str1, str2];</span><br><span class="line">   &#125;];</span><br><span class="line">   </span><br><span class="line">   [reduceSignal subscribeNext:^(id x) &#123;</span><br><span class="line">       </span><br><span class="line">       NSLog(@&quot;%@&quot;, x);</span><br><span class="line">   &#125;];</span><br><span class="line">   </span><br><span class="line">   // 输出</span><br><span class="line">   2017-01-03 15:42:41.803 ReactiveCocoa进阶[4248:1264674] A2 B1</span><br><span class="line">2017-01-03 15:42:41.803 ReactiveCocoa进阶[4248:1264674] A2 B2</span><br><span class="line">2017-01-03 15:42:41.803 ReactiveCocoa进阶[4248:1264674] A2 B3</span><br><span class="line">   </span><br></pre></td></tr></table></figure>
-</code></pre>
-<h4 id="过滤"><a href="#过滤" class="headerlink" title="过滤"></a>过滤</h4><p>过滤就是过滤信号中的 特定值 ，或者过滤指定 发送次数 的信号。</p>
-<h6 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h6><ul>
-<li><p><strong>作用</strong></p>
-<p>  过滤信号，使用它可以获取满足条件的信号.</p>
-<p>  block的返回值是Bool值，返回<code>NO</code>则过滤该信号</p>
-</li>
-<li><p><strong>使用</strong></p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">// 过滤:</span><br><span class="line">// 每次信号发出，会先执行过滤条件判断.</span><br><span class="line">[[_textField.rac_textSignal filter:^BOOL(NSString *value) &#123;</span><br><span class="line">       </span><br><span class="line">       NSLog(@&quot;原信号: %@&quot;, value);</span><br><span class="line"></span><br><span class="line">       // 过滤 长度 &lt;= 3 的信号</span><br><span class="line">       return value.length &gt; 3;</span><br><span class="line">       </span><br><span class="line">   &#125;] subscribeNext:^(id x) &#123;</span><br><span class="line">       </span><br><span class="line">       NSLog(@&quot;长度大于3的信号：%@&quot;, x);</span><br><span class="line">   &#125;];</span><br><span class="line">   </span><br><span class="line">   // 在_textField中输出12345</span><br><span class="line">// 输出</span><br><span class="line">2017-01-03 16:36:54.938 ReactiveCocoa进阶[4714:1552910] 原信号: 1</span><br><span class="line">2017-01-03 16:36:55.383 ReactiveCocoa进阶[4714:1552910] 原信号: 12</span><br><span class="line">2017-01-03 16:36:55.706 ReactiveCocoa进阶[4714:1552910] 原信号: 123</span><br><span class="line">2017-01-03 16:36:56.842 ReactiveCocoa进阶[4714:1552910] 原信号: 1234</span><br><span class="line">2017-01-03 16:36:56.842 ReactiveCocoa进阶[4714:1552910] 长度大于3的信号：1234</span><br><span class="line">2017-01-03 16:36:58.350 ReactiveCocoa进阶[4714:1552910] 原信号: 12345</span><br><span class="line">2017-01-03 16:36:58.351 ReactiveCocoa进阶[4714:1552910] 长度大于3的信号：12345</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h6 id="ignore"><a href="#ignore" class="headerlink" title="ignore"></a>ignore</h6><ul>
-<li><p><strong>作用</strong></p>
-<p>  忽略某些信号.</p>
-</li>
-<li><p><strong>使用</strong></p>
-</li>
-<li><p><strong>作用</strong></p>
-<p>  忽略某些值的信号.</p>
-<p>  底层调用了 <code>filter</code> 与 过滤值进行比较，若相等返回则 <code>NO</code></p>
-</li>
-<li><p><strong>使用</strong></p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">  	// 内部调用filter过滤，忽略掉字符为 @“1”的值</span><br><span class="line">[[_textField.rac_textSignal ignore:@&quot;1&quot;] subscribeNext:^(id x) &#123;</span><br><span class="line"></span><br><span class="line"> 	 NSLog(@&quot;%@&quot;,x);</span><br><span class="line">&#125;];</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h6 id="distinctUntilChanged"><a href="#distinctUntilChanged" class="headerlink" title="distinctUntilChanged"></a>distinctUntilChanged</h6><ul>
-<li><p><strong>作用</strong></p>
-<p>  当上一次的值和当前的值有明显的变化就会发出信号，否则会被忽略掉。</p>
-</li>
-<li><p><strong>使用</strong></p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[[_textField.rac_textSignal distinctUntilChanged] subscribeNext:^(id x) &#123;</span><br><span class="line">       </span><br><span class="line">       NSLog(@&quot;%@&quot;,x);</span><br><span class="line">   &#125;];</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h6 id="skip"><a href="#skip" class="headerlink" title="skip"></a>skip</h6><ul>
-<li><p><strong>作用</strong></p>
-<p>  跳过 <strong>第N次</strong> 的发送的信号.</p>
-</li>
-<li><p><strong>使用</strong></p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 表示输入第一次，不会被监听到，跳过第一次发出的信号</span><br><span class="line">[[_textField.rac_textSignal skip:1] subscribeNext:^(id x) &#123;</span><br><span class="line"></span><br><span class="line">   NSLog(@&quot;%@&quot;,x);</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h5 id="take"><a href="#take" class="headerlink" title="take"></a>take</h5><ul>
-<li><p><strong>作用</strong></p>
-<p>  取 <strong>前N次</strong> 的发送的信号.</p>
-</li>
-<li><p><strong>使用</strong></p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">RACSubject *subject = [RACSubject subject] ;</span><br><span class="line">   </span><br><span class="line">   // 取 前两次 发送的信号</span><br><span class="line">   [[subject take:2] subscribeNext:^(id x) &#123;</span><br><span class="line">       </span><br><span class="line">       NSLog(@&quot;%@&quot;, x);</span><br><span class="line">   &#125;];</span><br><span class="line">   </span><br><span class="line">   [subject sendNext:@1];</span><br><span class="line">   [subject sendNext:@2];</span><br><span class="line">   [subject sendNext:@3];</span><br><span class="line">   </span><br><span class="line">   // 输出</span><br><span class="line">2017-01-03 17:35:54.566 ReactiveCocoa进阶[4969:1677908] 1</span><br><span class="line">2017-01-03 17:35:54.567 ReactiveCocoa进阶[4969:1677908] 2</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h6 id="takeLast"><a href="#takeLast" class="headerlink" title="takeLast"></a>takeLast</h6><ul>
-<li><p><strong>作用</strong></p>
-<p>  取 <strong>最后N次</strong> 的发送的信号</p>
-<p>  前提条件，订阅者必须调用完成 <code>sendCompleted</code>，因为只有完成，就知道总共有多少信号.</p>
-</li>
-<li><p><strong>使用</strong>    </p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">RACSubject *subject = [RACSubject subject] ;</span><br><span class="line">   </span><br><span class="line">   // 取 后两次 发送的信号</span><br><span class="line">   [[subject takeLast:2] subscribeNext:^(id x) &#123;</span><br><span class="line">       </span><br><span class="line">       NSLog(@&quot;%@&quot;, x);</span><br><span class="line">   &#125;];</span><br><span class="line">   </span><br><span class="line">   [subject sendNext:@1];</span><br><span class="line">   [subject sendNext:@2];</span><br><span class="line">   [subject sendNext:@3];</span><br><span class="line">   </span><br><span class="line">   // 必须 跳用完成</span><br><span class="line">   [subject sendCompleted];</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h6 id="takeUntil"><a href="#takeUntil" class="headerlink" title="takeUntil"></a>takeUntil</h6><ul>
-<li><p><strong>作用</strong></p>
-<p>  获取信号直到某个信号执行完成</p>
-</li>
-<li><p><strong>使用</strong>    </p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">	// 监听文本框的改变直到当前对象被销毁</span><br><span class="line">[_textField.rac_textSignal takeUntil:self.rac_willDeallocSignal];</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h6 id="switchToLatest"><a href="#switchToLatest" class="headerlink" title="switchToLatest"></a>switchToLatest</h6><ul>
-<li><p><strong>作用</strong></p>
-<p>  用于signalOfSignals（信号的信号），有时候信号也会发出信号，会在signalOfSignals中，获取signalOfSignals发送的最新信号。</p>
-</li>
-<li><p><strong>注意</strong></p>
-<p>  switchToLatest：只能用于信号中的信号</p>
-</li>
-<li><p><strong>使用</strong>    </p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">RACSubject *signalOfSignals = [RACSubject subject];</span><br><span class="line">   RACSubject *signal = [RACSubject subject];</span><br><span class="line">   </span><br><span class="line">   // 获取信号中信号最近发出信号，订阅最近发出的信号。</span><br><span class="line">   [signalOfSignals.switchToLatest subscribeNext:^(id x) &#123;</span><br><span class="line">       </span><br><span class="line">       NSLog(@&quot;%@&quot;, x);</span><br><span class="line">   &#125;];</span><br><span class="line">   </span><br><span class="line">   [signalOfSignals sendNext:signal];</span><br><span class="line">   [signal sendNext:@1];</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h4 id="秩序"><a href="#秩序" class="headerlink" title="秩序"></a>秩序</h4><p>秩序包括 <code>doNext</code> 和 <code>doCompleted</code> 这两个方法，主要是在 执行<code>sendNext</code> 或者 <code>sendCompleted</code>之前，先执行这些方法中Block。</p>
-<h6 id="doNext"><a href="#doNext" class="headerlink" title="doNext"></a>doNext</h6><p>执行<code>sendNext</code>之前，会先执行这个<code>doNext</code>的 Block</p>
-<h6 id="doCompleted"><a href="#doCompleted" class="headerlink" title="doCompleted"></a>doCompleted</h6><p>执行<code>sendCompleted</code>之前，会先执行这<code>doCompleted</code>的<code>Block</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[[[[RACSignal createSignal:^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line">    </span><br><span class="line">    [subscriber sendNext:@&quot;hi&quot;];</span><br><span class="line">    </span><br><span class="line">    [subscriber sendCompleted];</span><br><span class="line">    </span><br><span class="line">    return nil;</span><br><span class="line">    </span><br><span class="line">&#125;] doNext:^(id x) &#123;</span><br><span class="line">    </span><br><span class="line">    // 执行 [subscriber sendNext:@&quot;hi&quot;] 之前会调用这个 Block</span><br><span class="line">    NSLog(@&quot;doNext&quot;);</span><br><span class="line">    </span><br><span class="line">&#125;] doCompleted:^&#123;</span><br><span class="line">    </span><br><span class="line">    // 执行 [subscriber sendCompleted] 之前会调用这 Block</span><br><span class="line">    NSLog(@&quot;doCompleted&quot;);</span><br><span class="line">&#125;] subscribeNext:^(id x) &#123;</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;%@&quot;, x);</span><br><span class="line">&#125;];</span><br><span class="line">    </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 
-<h4 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h4><p><strong>ReactiveCocoa</strong> 中的线程操作 包括 <code>deliverOn</code> 和 <code>subscribeOn</code>这两种，将 <em>传递的内容</em> 或 创建信号时 <em>block中的代码</em> 切换到指定的线程中执行。</p>
-<h6 id="deliverOn"><a href="#deliverOn" class="headerlink" title="deliverOn"></a>deliverOn</h6><ul>
-<li><p><strong>作用</strong></p>
-<p>  内容传递切换到制定线程中，副作用在原来线程中,把在创建信号时block中的代码称之为副作用。</p>
-</li>
-<li><p><strong>使用</strong></p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">	// 在子线程中执行</span><br><span class="line">	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^&#123;</span><br><span class="line">        </span><br><span class="line">        [[[RACSignal createSignal:^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line">        </span><br><span class="line">            NSLog(@&quot;%@&quot;, [NSThread currentThread]);</span><br><span class="line">            </span><br><span class="line">            [subscriber sendNext:@123];</span><br><span class="line">            </span><br><span class="line">            [subscriber sendCompleted];</span><br><span class="line">            </span><br><span class="line">            return nil;</span><br><span class="line">        &#125;]</span><br><span class="line">          deliverOn:[RACScheduler mainThreadScheduler]]</span><br><span class="line">          </span><br><span class="line">         subscribeNext:^(id x) &#123;</span><br><span class="line">         </span><br><span class="line">             NSLog(@&quot;%@&quot;, x);</span><br><span class="line">             </span><br><span class="line">             NSLog(@&quot;%@&quot;, [NSThread currentThread]);</span><br><span class="line">         &#125;];</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    // 输出</span><br><span class="line">2017-01-04 10:35:55.415 ReactiveCocoa进阶[1183:224535] &lt;NSThread: 0x608000270f00&gt;&#123;number = 3, name = (null)&#125;</span><br><span class="line">2017-01-04 10:35:55.415 ReactiveCocoa进阶[1183:224482] 123</span><br><span class="line">2017-01-04 10:35:55.415 ReactiveCocoa进阶[1183:224482] &lt;NSThread: 0x600000079bc0&gt;&#123;number = 1, name = main&#125;</span><br></pre></td></tr></table></figure>
-<p>  可以看到<code>副作用</code>在 <em>子线程</em> 中执行，而 <code>传递的内容</code> 在 <em>主线程</em> 中接收</p>
-</li>
-</ul>
-<h6 id="subscribeOn"><a href="#subscribeOn" class="headerlink" title="subscribeOn"></a>subscribeOn</h6><ul>
-<li><p><strong>作用</strong></p>
-<p>  <strong>subscribeOn</strong>则是将 <code>内容传递</code> 和 <code>副作用</code> 都会切换到指定线程中</p>
-</li>
-<li><p><strong>使用</strong></p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^&#123;</span><br><span class="line">        </span><br><span class="line">        [[[RACSignal createSignal:^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line">        </span><br><span class="line">            NSLog(@&quot;%@&quot;, [NSThread currentThread]);</span><br><span class="line">            </span><br><span class="line">            [subscriber sendNext:@123];</span><br><span class="line">            </span><br><span class="line">            [subscriber sendCompleted];</span><br><span class="line">            </span><br><span class="line">            return nil;</span><br><span class="line">        &#125;]</span><br><span class="line">          subscribeOn:[RACScheduler mainThreadScheduler]] //传递的内容到主线程中</span><br><span class="line">         subscribeNext:^(id x) &#123;</span><br><span class="line">         </span><br><span class="line">             NSLog(@&quot;%@&quot;, x);</span><br><span class="line">             </span><br><span class="line">             NSLog(@&quot;%@&quot;, [NSThread currentThread]);</span><br><span class="line">         &#125;];</span><br><span class="line">    &#125;);	</span><br><span class="line">	//</span><br><span class="line">2017-01-04 10:44:47.558 ReactiveCocoa进阶[1243:275126] &lt;NSThread: 0x608000077640&gt;&#123;number = 1, name = main&#125;</span><br><span class="line">2017-01-04 10:44:47.558 ReactiveCocoa进阶[1243:275126] 123</span><br><span class="line">2017-01-04 10:44:47.558 ReactiveCocoa进阶[1243:275126] &lt;NSThread: 0x608000077640&gt;&#123;number = 1, name = main&#125;</span><br></pre></td></tr></table></figure>
-<p>  <code>内容传递</code> 和 <code>副作用</code> 都切换到了 <em>主线程</em> 执行</p>
-</li>
-</ul>
-<h4 id="时间"><a href="#时间" class="headerlink" title="时间"></a>时间</h4><p>时间操作就会设置信号超时，定时和延时。</p>
-<h6 id="interval-定时"><a href="#interval-定时" class="headerlink" title="interval 定时"></a>interval 定时</h6><ul>
-<li><p><strong>作用</strong></p>
-<p>  定时：每隔一段时间发出信号</p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 每隔1秒发送信号，指定当前线程执行</span><br><span class="line">[[RACSignal interval:1 onScheduler:[RACScheduler currentScheduler]] subscribeNext:^(id x) &#123;</span><br><span class="line">       </span><br><span class="line">       NSLog(@&quot;定时:%@&quot;, x);</span><br><span class="line">   &#125;];</span><br><span class="line">   </span><br><span class="line">// 输出</span><br><span class="line">2017-01-04 13:48:55.196 ReactiveCocoa进阶[1980:492724] 定时:2017-01-04 05:48:55 +0000</span><br><span class="line">2017-01-04 13:48:56.195 ReactiveCocoa进阶[1980:492724] 定时:2017-01-04 05:48:56 +0000</span><br><span class="line">2017-01-04 13:48:57.196 ReactiveCocoa进阶[1980:492724] 定时:2017-01-04 05:48:57 +0000</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h6 id="timeout-超时"><a href="#timeout-超时" class="headerlink" title="timeout 超时"></a>timeout 超时</h6><ul>
-<li><p><strong>作用</strong></p>
-<p>  超时，可以让一个信号在一定的时间后，自动报错。</p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">RACSignal *signal = [[RACSignal createSignal:^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line">       </span><br><span class="line">       // 不发送信号，模拟超时状态</span><br><span class="line">       // [subscriber sendNext:@&quot;hello&quot;];</span><br><span class="line">       //[subscriber sendCompleted];</span><br><span class="line">       </span><br><span class="line">       return nil;</span><br><span class="line">   &#125;] timeout:1 onScheduler:[RACScheduler currentScheduler]];// 设置1秒超时</span><br><span class="line">   </span><br><span class="line">   [signal subscribeNext:^(id x) &#123;</span><br><span class="line">       </span><br><span class="line">       NSLog(@&quot;%@&quot;, x);</span><br><span class="line">   &#125; error:^(NSError *error) &#123;</span><br><span class="line">       </span><br><span class="line">       NSLog(@&quot;%@&quot;, error);</span><br><span class="line">   &#125;];</span><br><span class="line">   </span><br><span class="line">   // 执行代码 1秒后 输出：</span><br><span class="line">   2017-01-04 13:48:55.195 ReactiveCocoa进阶[1980:492724] Error Domain=RACSignalErrorDomain Code=1 &quot;(null)&quot;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h6 id="delay-延时"><a href="#delay-延时" class="headerlink" title="delay 延时"></a>delay 延时</h6><ul>
-<li><p><strong>作用</strong></p>
-<p>  延时，延迟一段时间后发送信号</p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">RACSignal *signal2 = [[[RACSignal createSignal:^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line">       </span><br><span class="line">       [subscriber sendNext:@&quot;延迟输出&quot;];</span><br><span class="line">       </span><br><span class="line">       return nil;</span><br><span class="line">   &#125;] delay:2] subscribeNext:^(id x) &#123;</span><br><span class="line">       </span><br><span class="line">       NSLog(@&quot;%@&quot;, x);</span><br><span class="line">   &#125;];</span><br><span class="line">   </span><br><span class="line">   // 执行代码 2秒后 输出</span><br><span class="line">   2017-01-04 13:55:23.751 ReactiveCocoa进阶[2030:525038] 延迟输出</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h4 id="重复"><a href="#重复" class="headerlink" title="重复"></a>重复</h4><h6 id="retry"><a href="#retry" class="headerlink" title="retry"></a>retry</h6><ul>
-<li><p><strong>作用</strong></p>
-<p>  重试：只要 发送错误 <code>sendError:</code>,就会 重新执行 创建信号的Block 直到成功</p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">	__block int i = 0;</span><br><span class="line">    </span><br><span class="line">    [[[RACSignal createSignal:^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line">        </span><br><span class="line">        if (i == 5) &#123;</span><br><span class="line">            </span><br><span class="line">            [subscriber sendNext:@&quot;Hello&quot;];</span><br><span class="line">            </span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            </span><br><span class="line">            // 发送错误</span><br><span class="line">            NSLog(@&quot;收到错误:%d&quot;, i);</span><br><span class="line">            [subscriber sendError:nil];</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        i++;</span><br><span class="line">        </span><br><span class="line">        return nil;</span><br><span class="line">        </span><br><span class="line">    &#125;] retry] subscribeNext:^(id x) &#123;</span><br><span class="line">        </span><br><span class="line">        NSLog(@&quot;%@&quot;, x);</span><br><span class="line">        </span><br><span class="line">    &#125; error:^(NSError *error) &#123;</span><br><span class="line">        </span><br><span class="line">        NSLog(@&quot;%@&quot;, error);</span><br><span class="line">        </span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">	// 输出</span><br><span class="line">2017-01-04 14:36:51.594 ReactiveCocoa进阶[2443:667226] 收到错误信息:0</span><br><span class="line">2017-01-04 14:36:51.595 ReactiveCocoa进阶[2443:667226] 收到错误信息:1</span><br><span class="line">2017-01-04 14:36:51.595 ReactiveCocoa进阶[2443:667226] 收到错误信息:2</span><br><span class="line">2017-01-04 14:36:51.596 ReactiveCocoa进阶[2443:667226] 收到错误信息:3</span><br><span class="line">2017-01-04 14:36:51.596 ReactiveCocoa进阶[2443:667226] 收到错误信息:4</span><br><span class="line">2017-01-04 14:36:51.596 ReactiveCocoa进阶[2443:667226] Hello</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h6 id="replay"><a href="#replay" class="headerlink" title="replay"></a>replay</h6><ul>
-<li><p><strong>作用</strong></p>
-<p>  重放：当一个信号被多次订阅,反复播放内容</p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">	RACSignal *signal = [[RACSignal createSignal:^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line">        </span><br><span class="line">        [subscriber sendNext:@1];</span><br><span class="line">        [subscriber sendNext:@2];</span><br><span class="line">        </span><br><span class="line">        return nil;</span><br><span class="line">    &#125;] replay];</span><br><span class="line">    </span><br><span class="line">    [signal subscribeNext:^(id x) &#123;</span><br><span class="line">        NSLog(@&quot;%@&quot;, x);</span><br><span class="line">    &#125;];</span><br><span class="line">    </span><br><span class="line">    [signal subscribeNext:^(id x) &#123;</span><br><span class="line">        NSLog(@&quot;%@&quot;, x);</span><br><span class="line">    &#125;];</span><br><span class="line">    </span><br><span class="line">    // 输出</span><br><span class="line">2017-01-04 14:51:01.934 ReactiveCocoa进阶[2544:706740] 1</span><br><span class="line">2017-01-04 14:51:01.934 ReactiveCocoa进阶[2544:706740] 2</span><br><span class="line">2017-01-04 14:51:01.934 ReactiveCocoa进阶[2544:706740] 1</span><br><span class="line">2017-01-04 14:51:01.935 ReactiveCocoa进阶[2544:706740] 2</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h6 id="throttle"><a href="#throttle" class="headerlink" title="throttle"></a>throttle</h6><ul>
-<li><p><strong>作用</strong></p>
-<p>  节流:当某个信号发送比较频繁时，可以使用节流，在某一段时间不发送信号内容，过了一段时间获取信号的最新内容发出。</p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">RACSubject *subject = [RACSubject subject];</span><br><span class="line">   </span><br><span class="line">   // 节流1秒，1秒后接收最后一个发送的信号</span><br><span class="line">   [[subject throttle:1] subscribeNext:^(id x) &#123;</span><br><span class="line">       </span><br><span class="line">       NSLog(@&quot;%@&quot;, x);</span><br><span class="line">   &#125;];</span><br><span class="line">   </span><br><span class="line">   [subject sendNext:@1];</span><br><span class="line">   [subject sendNext:@2];</span><br><span class="line">   [subject sendNext:@3];</span><br><span class="line">   </span><br><span class="line">   // 输出</span><br><span class="line">   2017-01-04 15:02:37.543 ReactiveCocoa进阶[2731:758193] 3</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h1 id="MVVM架构思想"><a href="#MVVM架构思想" class="headerlink" title="MVVM架构思想"></a>MVVM架构思想</h1><hr>
-<p>程序为什么要有架构？便于程序开发与维护.</p>
-<h4 id="常见的架构"><a href="#常见的架构" class="headerlink" title="常见的架构"></a>常见的架构</h4><ul>
-<li><p><strong>MVC</strong></p>
-<p>  M:模型 V:视图 C:控制器</p>
-</li>
-<li><p><strong>MVVM</strong></p>
-<p>  M:模型 V:视图+控制器 VM:视图模型</p>
-</li>
-<li><p><strong>MVCS</strong></p>
-<p>   M:模型 V:视图 C:控制器 C:服务类</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="http://www.cocoachina.com/ios/20140703/9016.html"><strong>VIPER</strong></a></p>
-<p>  V:视图 I:交互器 P:展示器 E:实体 R:路由</p>
-</li>
-</ul>
-<h4 id="MVVM介绍"><a href="#MVVM介绍" class="headerlink" title="MVVM介绍"></a>MVVM介绍</h4><ul>
-<li><p>模型(M):保存视图数据。</p>
-</li>
-<li><p>视图+控制器(V):展示内容 + 如何展示</p>
-</li>
-<li><p>视图模型(VM):处理展示的业务逻辑，包括按钮的点击，数据的请求和解析等等。</p>
-</li>
-</ul>
-<h1 id="实战一：登录界面"><a href="#实战一：登录界面" class="headerlink" title="实战一：登录界面"></a>实战一：登录界面</h1><h4 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h4><ol>
-<li>监听两个文本框的内容</li>
-<li>有内容登录按键才允许按钮点击</li>
-<li>返回登录结果</li>
-</ol>
-<h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><ol>
-<li>界面的所有业务逻辑都交给控制器做处理</li>
-<li>在MVVM架构中把控制器的业务全部搬去VM模型，也就是每个控制器对应一个VM模型.</li>
-</ol>
-<h4 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h4><ol>
-<li>创建LoginViewModel类，处理登录界面业务逻辑.</li>
-<li>这个类里面应该保存着账号的信息，创建一个账号Account模型</li>
-<li>LoginViewModel应该保存着账号信息Account模型。</li>
-<li>需要时刻监听Account模型中的账号和密码的改变，怎么监听？</li>
-<li>在非RAC开发中，都是习惯赋值，在RAC开发中，需要改变开发思维，由赋值转变为绑定，可以在一开始初始化的时候，就给Account模型中的属性绑定，并不需要重写set方法。</li>
-<li>每次Account模型的值改变，就需要判断按钮能否点击，在VM模型中做处理，给外界提供一个能否点击按钮的信号.</li>
-<li>这个登录信号需要判断Account中账号和密码是否有值，用KVO监听这两个值的改变，把他们聚合成登录信号.</li>
-<li>监听按钮的点击，由VM处理，应该给VM声明一个RACCommand，专门处理登录业务逻辑.</li>
-<li>执行命令，把数据包装成信号传递出去</li>
-<li>监听命令中信号的数据传递</li>
-<li>监听命令的执行时刻</li>
-</ol>
-<h4 id="运行效果"><a href="#运行效果" class="headerlink" title="运行效果"></a>运行效果</h4><p><img src="https://ww3.sinaimg.cn/large/006y8lVagw1fbgvoh8yu6j30bj0l43yz.jpg" alt="登录界面"></p>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><p><code>MyViewController.m</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;MyViewController.h&quot;</span><br><span class="line">#import &quot;LoginViewModel.h&quot;</span><br><span class="line"></span><br><span class="line">@interface MyViewController ()</span><br><span class="line"></span><br><span class="line">@property (nonatomic, strong) LoginViewModel *loginViewModel;</span><br><span class="line"></span><br><span class="line">@property (weak, nonatomic) IBOutlet UITextField *accountField;</span><br><span class="line"></span><br><span class="line">@property (weak, nonatomic) IBOutlet UITextField *pwdField;</span><br><span class="line"></span><br><span class="line">@property (weak, nonatomic) IBOutlet UIButton *loginBtn;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation MyViewController</span><br><span class="line"></span><br><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">    [super viewDidLoad];</span><br><span class="line">    </span><br><span class="line">    [self bindModel];</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)didReceiveMemoryWarning &#123;</span><br><span class="line">    [super didReceiveMemoryWarning];</span><br><span class="line">    // Dispose of any resources that can be recreated.</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 视图模型绑定</span><br><span class="line">- (void)bindModel &#123;</span><br><span class="line"></span><br><span class="line">    // 给模型的属性绑定信号</span><br><span class="line">    //</span><br><span class="line">    RAC(self.loginViewModel.account, account) = _accountField.rac_textSignal;</span><br><span class="line">    RAC(self.loginViewModel.account, pwd) = _pwdField.rac_textSignal;</span><br><span class="line">    </span><br><span class="line">    RAC(self.loginBtn, enabled) = self.loginViewModel.enableLoginSignal;</span><br><span class="line">    </span><br><span class="line">    // 监听登录点击</span><br><span class="line">    [[_loginBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) &#123;</span><br><span class="line">        </span><br><span class="line">        [self.loginViewModel.LoginCommand execute:nil];</span><br><span class="line">    &#125;];</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line">- (IBAction)btnTap:(id)sender &#123;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#pragma mark - lazyLoad</span><br><span class="line"></span><br><span class="line">- (LoginViewModel *)loginViewModel &#123;</span><br><span class="line">    </span><br><span class="line">    if (nil == _loginViewModel) &#123;</span><br><span class="line">        _loginViewModel = [[LoginViewModel alloc] init];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    return _loginViewModel;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>LoginViewModel.h</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#import &lt;UIKit/UIKit.h&gt;</span><br><span class="line"></span><br><span class="line">@interface Account : NSObject</span><br><span class="line"></span><br><span class="line">@property (nonatomic, strong) NSString *account;</span><br><span class="line">@property (nonatomic, strong) NSString *pwd;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@interface LoginViewModel : UIViewController</span><br><span class="line"></span><br><span class="line">@property (nonatomic, strong) Account *account;</span><br><span class="line"></span><br><span class="line">// 是否允许登录的信号</span><br><span class="line">@property (nonatomic, strong, readonly) RACSignal *enableLoginSignal;</span><br><span class="line"></span><br><span class="line">@property (nonatomic, strong, readonly) RACCommand *LoginCommand;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
 
-<p><code>LoginViewModel.m</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;LoginViewModel.h&quot;</span><br><span class="line"></span><br><span class="line">@implementation Account</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@interface LoginViewModel ()</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation LoginViewModel</span><br><span class="line"></span><br><span class="line">- (instancetype)init &#123;</span><br><span class="line">    </span><br><span class="line">    if (self = [super init]) &#123;</span><br><span class="line">        [self initialBind];</span><br><span class="line">    &#125;</span><br><span class="line">    return self;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)initialBind &#123;</span><br><span class="line"></span><br><span class="line">    // 监听账号属性改变， 把他们合成一个信号</span><br><span class="line">    _enableLoginSignal = [RACSubject combineLatest:@[RACObserve(self.account, account), RACObserve(self.account, pwd)] reduce:^id(NSString *accout, NSString *pwd)&#123;</span><br><span class="line">        </span><br><span class="line">        return @(accout.length &amp;&amp; pwd.length);</span><br><span class="line">    &#125;];</span><br><span class="line">    </span><br><span class="line">    // 处理业务逻辑</span><br><span class="line">    _LoginCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) &#123;</span><br><span class="line">        </span><br><span class="line">        NSLog(@&quot;点击了登录&quot;);</span><br><span class="line">        return [RACSignal createSignal:^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line">            </span><br><span class="line">            // 模仿网络延迟</span><br><span class="line"></span><br><span class="line">            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^&#123;</span><br><span class="line">                </span><br><span class="line">                // 返回登录成功 发送成功信号</span><br><span class="line">                [subscriber sendNext:@&quot;登录成功&quot;];</span><br><span class="line">            &#125;);</span><br><span class="line">            </span><br><span class="line">            return nil;</span><br><span class="line">        &#125;];</span><br><span class="line">    &#125;];</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    // 监听登录产生的数据</span><br><span class="line">    [_LoginCommand.executionSignals.switchToLatest subscribeNext:^(id x) &#123;</span><br><span class="line">       </span><br><span class="line">        if ([x isEqualToString:@&quot;登录成功&quot;]) &#123;</span><br><span class="line">            NSLog(@&quot;登录成功&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;];</span><br><span class="line">    </span><br><span class="line">    [[_LoginCommand.executing skip:1] subscribeNext:^(id x) &#123;</span><br><span class="line">        </span><br><span class="line">        if ([x isEqualToNumber:@(YES)]) &#123;</span><br><span class="line">            </span><br><span class="line">            NSLog(@&quot;正在登陆...&quot;);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            </span><br><span class="line">        // 登录成功</span><br><span class="line">        NSLog(@&quot;登陆成功&quot;);</span><br><span class="line">        </span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#pragma mark - lazyLoad</span><br><span class="line"></span><br><span class="line">- (Account *)account</span><br><span class="line">&#123;</span><br><span class="line">    if (_account == nil) &#123;</span><br><span class="line">        _account = [[Account alloc] init];</span><br><span class="line">    &#125;</span><br><span class="line">    return _account;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">    [super viewDidLoad];</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 
-<h1 id="实战二：网络请求数据"><a href="#实战二：网络请求数据" class="headerlink" title="实战二：网络请求数据"></a>实战二：网络请求数据</h1><h4 id="需求-1"><a href="#需求-1" class="headerlink" title="需求"></a>需求</h4><ol>
-<li>请求一段网络数据，将请求到的数据在<code>tableView</code>上展示</li>
-<li>该数据为豆瓣图书的搜索返回结果，URL：url:<a target="_blank" rel="noopener" href="https://api.douban.com/v2/book/search?q=%E6%82%9F%E7%A9%BA%E4%BC%A0">https://api.douban.com/v2/book/search?q=悟空传</a></li>
-</ol>
-<h4 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h4><ol>
-<li>界面的所有业务逻辑都交给<strong>控制器</strong>做处理</li>
-<li>网络请求交给<strong>MV</strong>模型处理</li>
-</ol>
-<h4 id="步骤-1"><a href="#步骤-1" class="headerlink" title="步骤"></a>步骤</h4><ol>
-<li>控制器提供一个视图模型（requesViewModel），处理界面的业务逻辑</li>
-<li>VM提供一个命令，处理请求业务逻辑</li>
-<li>在创建命令的block中，会把请求包装成一个信号，等请求成功的时候，就会把数据传递出去。</li>
-<li>请求数据成功，应该把字典转换成模型，保存到视图模型中，控制器想用就直接从视图模型中获取。</li>
-</ol>
-<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><p>网络请求与图片缓存用到了<a target="_blank" rel="noopener" href="https://github.com/AFNetworking/AFNetworking">AFNetworking</a> 和 <a target="_blank" rel="noopener" href="https://github.com/rs/SDWebImage">SDWebImage</a>,自行在Pods中导入。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">platform :ios, &#x27;8.0&#x27;</span><br><span class="line"></span><br><span class="line">target &#x27;ReactiveCocoa进阶&#x27; do</span><br><span class="line"></span><br><span class="line">use_frameworks!</span><br><span class="line">pod &#x27;ReactiveCocoa&#x27;, &#x27;~&gt; 2.5&#x27;</span><br><span class="line">pod &#x27;AFNetworking&#x27;</span><br><span class="line">pod &#x27;SDWebImage&#x27;</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-
-<h4 id="运行效果-1"><a href="#运行效果-1" class="headerlink" title="运行效果"></a>运行效果</h4><p><img src="https://ww3.sinaimg.cn/large/006y8lVagw1fbgw1xnz74j30bj0l4408.jpg"></p>
-<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><p><code>SearchViewController.m</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;SearchViewController.h&quot;</span><br><span class="line">#import &quot;RequestViewModel.h&quot;</span><br><span class="line"></span><br><span class="line">@interface SearchViewController ()&lt;UITableViewDataSource&gt;</span><br><span class="line"></span><br><span class="line">@property (nonatomic, strong) UITableView *tableView;</span><br><span class="line"></span><br><span class="line">@property (nonatomic, strong) RequestViewModel *requesViewModel;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation SearchViewController</span><br><span class="line"></span><br><span class="line">- (RequestViewModel *)requesViewModel</span><br><span class="line">&#123;</span><br><span class="line">    if (_requesViewModel == nil) &#123;</span><br><span class="line">        _requesViewModel = [[RequestViewModel alloc] init];</span><br><span class="line">    &#125;</span><br><span class="line">    return _requesViewModel;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">    [super viewDidLoad];</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    self.tableView = [[UITableView alloc] initWithFrame:self.view.frame];</span><br><span class="line">    </span><br><span class="line">    self.tableView.dataSource = self;</span><br><span class="line">    </span><br><span class="line">    [self.view addSubview:self.tableView];</span><br><span class="line">    </span><br><span class="line">    //</span><br><span class="line">    RACSignal *requesSiganl = [self.requesViewModel.reuqesCommand execute:nil];</span><br><span class="line">    </span><br><span class="line">    [requesSiganl subscribeNext:^(NSArray *x) &#123;</span><br><span class="line">        </span><br><span class="line">        self.requesViewModel.models = x;</span><br><span class="line">        </span><br><span class="line">        [self.tableView reloadData];</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)didReceiveMemoryWarning &#123;</span><br><span class="line">    [super didReceiveMemoryWarning];</span><br><span class="line">    // Dispose of any resources that can be recreated.</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section</span><br><span class="line">&#123;</span><br><span class="line">    return self.requesViewModel.models.count;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath</span><br><span class="line">&#123;</span><br><span class="line">    static NSString *ID = @&quot;cell&quot;;</span><br><span class="line">    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];</span><br><span class="line">    if (cell == nil) &#123;</span><br><span class="line">        </span><br><span class="line">        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    Book *book = self.requesViewModel.models[indexPath.row];</span><br><span class="line">    cell.detailTextLabel.text = book.subtitle;</span><br><span class="line">    cell.textLabel.text = book.title;</span><br><span class="line">    </span><br><span class="line">    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:book.image] placeholderImage:[UIImage imageNamed:@&quot;cellImage&quot;]];</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    return cell;</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-
-<p><code>RequestViewModel.h</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">#import &lt;Foundation/Foundation.h&gt;</span><br><span class="line"></span><br><span class="line">@interface Book : NSObject</span><br><span class="line"></span><br><span class="line">@property (nonatomic, copy) NSString *subtitle;</span><br><span class="line">@property (nonatomic, copy) NSString *title;</span><br><span class="line">@property (nonatomic, copy) NSString *image;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@interface RequestViewModel : NSObject</span><br><span class="line"></span><br><span class="line">// 请求命令</span><br><span class="line">@property (nonatomic, strong, readonly) RACCommand *reuqesCommand;</span><br><span class="line"></span><br><span class="line">//模型数组</span><br><span class="line">@property (nonatomic, strong) NSArray *models;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-
-<p><code>RequestViewModel.m</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;RequestViewModel.h&quot;</span><br><span class="line"></span><br><span class="line">@implementation Book</span><br><span class="line"></span><br><span class="line">- (instancetype)initWithValue:(NSDictionary *)value &#123;</span><br><span class="line">    </span><br><span class="line">    if (self = [super init]) &#123;</span><br><span class="line">        </span><br><span class="line">        self.title = value[@&quot;title&quot;];</span><br><span class="line">        self.subtitle = value[@&quot;subtitle&quot;];</span><br><span class="line">        self.image = value[@&quot;image&quot;];</span><br><span class="line">    &#125;</span><br><span class="line">    return self;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">+ (Book *)bookWithDict:(NSDictionary *)value &#123;</span><br><span class="line">    </span><br><span class="line">    return [[self alloc] initWithValue:value];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation RequestViewModel</span><br><span class="line"></span><br><span class="line">- (instancetype)init</span><br><span class="line">&#123;</span><br><span class="line">    if (self = [super init]) &#123;</span><br><span class="line">        </span><br><span class="line">        [self initialBind];</span><br><span class="line">    &#125;</span><br><span class="line">    return self;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- (void)initialBind</span><br><span class="line">&#123;</span><br><span class="line">    _reuqesCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) &#123;</span><br><span class="line">        </span><br><span class="line">      RACSignal *requestSiganl = [RACSignal createSignal:^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line">          </span><br><span class="line">          NSMutableDictionary *parameters = [NSMutableDictionary dictionary];</span><br><span class="line">          parameters[@&quot;q&quot;] = @&quot;悟空传&quot;;</span><br><span class="line">          </span><br><span class="line">          //</span><br><span class="line">          [[AFHTTPSessionManager manager] GET:@&quot;https://api.douban.com/v2/book/search&quot; parameters:parameters progress:^(NSProgress * _Nonnull downloadProgress) &#123;</span><br><span class="line">              </span><br><span class="line">              NSLog(@&quot;downloadProgress: %@&quot;, downloadProgress);</span><br><span class="line">          &#125; success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) &#123;</span><br><span class="line">              </span><br><span class="line">              // 数据请求成功就讲数据发送出去</span><br><span class="line">              NSLog(@&quot;responseObject:%@&quot;, responseObject);</span><br><span class="line">              </span><br><span class="line">              [subscriber sendNext:responseObject];</span><br><span class="line">              </span><br><span class="line">              [subscriber sendCompleted];</span><br><span class="line">              </span><br><span class="line">          &#125; failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) &#123;</span><br><span class="line">              </span><br><span class="line">              NSLog(@&quot;error: %@&quot;, error);</span><br><span class="line">          &#125;];</span><br><span class="line">          </span><br><span class="line">          </span><br><span class="line">         return nil;</span><br><span class="line">      &#125;];</span><br><span class="line">        </span><br><span class="line">        // 在返回数据信号时，把数据中的字典映射成模型信号，传递出去</span><br><span class="line">        return [requestSiganl map:^id(NSDictionary *value) &#123;</span><br><span class="line">            </span><br><span class="line">            NSMutableArray *dictArr = value[@&quot;books&quot;];</span><br><span class="line">            </span><br><span class="line">            NSArray *modelArr = [[dictArr.rac_sequence map:^id(id value) &#123;</span><br><span class="line">                </span><br><span class="line">                return [Book bookWithDict:value];</span><br><span class="line">                </span><br><span class="line">            &#125;] array];</span><br><span class="line">            </span><br><span class="line">            return modelArr;</span><br><span class="line">            </span><br><span class="line">        &#125;];</span><br><span class="line">        </span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>最后附上GitHub：<a target="_blank" rel="noopener" href="https://github.com/qiubaiying/ReactiveCocoa_Demo">https://github.com/qiubaiying/ReactiveCocoa_Demo</a></p>
-</blockquote>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 
       
     </div>
@@ -1147,10 +875,10 @@ unsigned int filter_http(char *type,struct sk_buff *pskb)
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
-          Table of Contents
+          文章目录
         </li>
         <li class="sidebar-nav-overview">
-          Overview
+          站点概览
         </li>
       </ul>
 
@@ -1170,15 +898,19 @@ unsigned int filter_http(char *type,struct sk_buff *pskb)
           <a href="/archives/">
         
           <span class="site-state-item-count">3</span>
-          <span class="site-state-item-name">posts</span>
+          <span class="site-state-item-name">日志</span>
         </a>
-      </div>
-      <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">7</span>
-        <span class="site-state-item-name">tags</span>
       </div>
   </nav>
 </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/dianwoshishi" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;dianwoshishi" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
 
 
 
@@ -1203,11 +935,21 @@ unsigned int filter_http(char *type,struct sk_buff *pskb)
   &copy; 
   <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">点我试试</span>
+  <span class="author" itemprop="copyrightHolder">dianwoshishi</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">15k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">14 分钟</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
   </div>
 
         
@@ -1233,7 +975,7 @@ unsigned int filter_http(char *type,struct sk_buff *pskb)
 <script src="/js/motion.js"></script>
 
 
-<script src="/js/schemes/pisces.js"></script>
+<script src="/js/schemes/muse.js"></script>
 
 
 <script src="/js/next-boot.js"></script>
@@ -1261,5 +1003,5 @@ unsigned int filter_http(char *type,struct sk_buff *pskb)
 
   
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</body>
 </html>
