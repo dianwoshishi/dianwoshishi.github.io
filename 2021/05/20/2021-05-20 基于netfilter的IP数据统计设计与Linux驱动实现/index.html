@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Table of Contents  背景 IP信息统计  统计信息设计  存储数据结构   Linux驱动  网络型驱动设备  字符型设备  用户代码   总结  Linux 驱动  Linux内核  其他    参考资料   背景当今社会，没有都有自己的信息处理设备，如手机、计算机甚至可能是路由器。在使用这些设备的时候，我们想知道的一件事就是，我的电脑和那些设备有过通信，通信情况怎么样，以便在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于netfilter的IP数据统计设计与Linux驱动实现">
+<meta property="og:url" content="http://example.com/2021/05/20/2021-05-20%20%E5%9F%BA%E4%BA%8Enetfilter%E7%9A%84IP%E6%95%B0%E6%8D%AE%E7%BB%9F%E8%AE%A1%E8%AE%BE%E8%AE%A1%E4%B8%8ELinux%E9%A9%B1%E5%8A%A8%E5%AE%9E%E7%8E%B0/index.html">
+<meta property="og:site_name" content="点我试试的个人博客">
+<meta property="og:description" content="Table of Contents  背景 IP信息统计  统计信息设计  存储数据结构   Linux驱动  网络型驱动设备  字符型设备  用户代码   总结  Linux 驱动  Linux内核  其他    参考资料   背景当今社会，没有都有自己的信息处理设备，如手机、计算机甚至可能是路由器。在使用这些设备的时候，我们想知道的一件事就是，我的电脑和那些设备有过通信，通信情况怎么样，以便在">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-05-19T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-05-28T13:35:53.233Z">
+<meta property="article:author" content="点我试试">
+<meta property="article:tag" content="netfilter">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="驱动">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2021/05/20/2021-05-20%20%E5%9F%BA%E4%BA%8Enetfilter%E7%9A%84IP%E6%95%B0%E6%8D%AE%E7%BB%9F%E8%AE%A1%E8%AE%BE%E8%AE%A1%E4%B8%8ELinux%E9%A9%B1%E5%8A%A8%E5%AE%9E%E7%8E%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh'
+  };
+</script>
+
+  <title>基于netfilter的IP数据统计设计与Linux驱动实现 | 点我试试的个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">点我试试的个人博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/20/2021-05-20%20%E5%9F%BA%E4%BA%8Enetfilter%E7%9A%84IP%E6%95%B0%E6%8D%AE%E7%BB%9F%E8%AE%A1%E8%AE%BE%E8%AE%A1%E4%B8%8ELinux%E9%A9%B1%E5%8A%A8%E5%AE%9E%E7%8E%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="点我试试">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="点我试试的个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          基于netfilter的IP数据统计设计与Linux驱动实现
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-05-20 00:00:00" itemprop="dateCreated datePublished" datetime="2021-05-20T00:00:00+08:00">2021-05-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-05-28 21:35:53" itemprop="dateModified" datetime="2021-05-28T21:35:53+08:00">2021-05-28</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Table-of-Contents"><a href="#Table-of-Contents" class="headerlink" title="Table of Contents"></a>Table of Contents</h1><ol>
+<li> <a href="#orgab76e7a">背景</a></li>
+<li><a href="#org02ac451">IP信息统计</a><ol>
+<li> <a href="#org62d4d73">统计信息设计</a></li>
+<li> <a href="#org44f97b2">存储数据结构</a></li>
+</ol>
+</li>
+<li><a href="#orgde188bf">Linux驱动</a><ol>
+<li> <a href="#orgc0bb933">网络型驱动设备</a></li>
+<li> <a href="#org9e48264">字符型设备</a></li>
+<li> <a href="#org8ee7f64">用户代码</a></li>
+</ol>
+</li>
+<li><a href="#org3f4753d">总结</a><ol>
+<li> <a href="#org01bad05">Linux 驱动</a></li>
+<li> <a href="#orgd1e6a5e">Linux内核</a></li>
+<li> <a href="#org4c6ff33">其他</a></li>
+</ol>
+</li>
+<li> <a href="#orgfe8069d">参考资料</a></li>
+</ol>
+<p><a id="orgab76e7a"></a></p>
+<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>当今社会，没有都有自己的信息处理设备，如手机、计算机甚至可能是路由器。在使用这些设备的时候，我们想知道的一件事就是，我的电脑和那些设备有过通信，通信情况怎么样，以便在网络出现问题，如拥塞，或是自己主机被黑客控制出现异常数据的时候，能够通过上述统计信息快速定位问题所在。因此本文通过Linux驱动中的netfilter对IP数据报中的IP信息进行统计，通过字符型驱动实现用户态查看统计信息，达到了统计主机通信的目的，为进一步做好异常处理打下了基础。</p>
+<p><a id="org02ac451"></a></p>
+<h1 id="IP信息统计"><a href="#IP信息统计" class="headerlink" title="IP信息统计"></a>IP信息统计</h1><p><a id="org62d4d73"></a></p>
+<h2 id="统计信息设计"><a href="#统计信息设计" class="headerlink" title="统计信息设计"></a>统计信息设计</h2><p>统计对象为源IP地址，信息内容目前设计为：IP出现频次，最后一个IP数据包出现时的时间戳。</p>
+<pre><code>typedef struct IPData&#123;
+  int timestamp;
+  int count
+&#125;ipdata;
+</code></pre>
+<p><a id="org44f97b2"></a></p>
+<h2 id="存储数据结构"><a href="#存储数据结构" class="headerlink" title="存储数据结构"></a>存储数据结构</h2><p>由于在Linux Kernel中没有C++的set，map等数据结构，因此使用其提供的红黑树实现IP信息的快速存储和读取。其中红黑树节点的信息如下所示：</p>
+<pre><code>   typedef struct roc_node_s
+&#123;
+    struct rb_node node;
+    void *ctx;
+    int key;
+    ipdata ipcount;
+&#125;roc_node_t;
+</code></pre>
+<p>红黑树的实现使用Linux Kernel自带的rbtree数据结构，头文件为：</p>
+<pre><code>#include &lt;linux/rbtree.h&gt;
+</code></pre>
+<p>红黑树插入，删除等代码参考链接为：<a target="_blank" rel="noopener" href="https://blog.csdn.net/chn475111/article/details/52594457">https://blog.csdn.net/chn475111/article/details/52594457</a>.</p>
+<pre><code>/**
+ * filename: my_rbtree.h
+ * @author lijk@.infosec.com.cn
+ * @version 0.0.1
+ * @date 2016-9-20 11:52:06
+ */
+#include &lt;linux/string.h&gt;
+#include &lt;linux/rbtree.h&gt;
+typedef struct IPData&#123;
+  int timestamp;
+  int count
+&#125;ipdata;
+typedef struct roc_node_s
+&#123;
+    struct rb_node node;
+    void *ctx;
+    int key;
+    ipdata ipcount;
+&#125;roc_node_t;
+
+typedef void (*roc_cb)(void*);
+
+roc_node_t* roc_search(struct rb_root *root, int key)
+&#123;
+    struct rb_node *node = root-&gt;rb_node;
+    while(node)
+    &#123;
+        roc_node_t *data = rb_entry(node, roc_node_t, node);
+        int result = key - data-&gt;key;
+
+        if (result &lt; 0)
+            node = node-&gt;rb_left;
+        else if (result &gt; 0)
+            node = node-&gt;rb_right;
+        else
+            return data;
+    &#125;
+    return NULL;
+&#125;
+
+int roc_insert(struct rb_root *root, roc_node_t *data)
+&#123;
+    struct rb_node **new = &amp;(root-&gt;rb_node), *parent = NULL;
+    while(*new)
+    &#123;
+        roc_node_t *this = rb_entry(*new, roc_node_t, node);
+        int result = data-&gt;key - this-&gt;key;
+
+        parent = *new;
+        if (result &lt; 0)
+            new = &amp;((*new)-&gt;rb_left);
+        else if (result &gt; 0)
+            new = &amp;((*new)-&gt;rb_right);
+        else
+            return 0;
+    &#125;
+
+    rb_link_node(&amp;data-&gt;node, parent, new);
+    rb_insert_color(&amp;data-&gt;node, root);
+
+    return 1;
+&#125;
+
+void roc_erase(struct rb_root *root, int key, roc_cb cb)
+&#123;
+    roc_node_t *data = roc_search(root, key);
+    if(data)
+    &#123;
+        rb_erase(&amp;data-&gt;node, root);
+        RB_CLEAR_NODE(&amp;data-&gt;node);
+        if(cb) cb(data);
+    &#125;
+&#125;
+
+void roc_destroy(struct rb_root *root, roc_cb cb)
+&#123;
+    roc_node_t *pos = NULL;
+    struct rb_node *node = NULL;
+    while((node = rb_first(root)))
+    &#123;
+        pos = rb_entry(node, roc_node_t, node);
+    #ifdef _DEBUG
+        sprintf(message, &quot;key = %d\n&quot;, pos-&gt;key);
+    #endif
+        rb_erase(&amp;pos-&gt;node, root);
+        RB_CLEAR_NODE(&amp;pos-&gt;node);
+        if(cb) cb(pos);
+    &#125;
+&#125;
+
+void roc_dump(struct rb_root *root)
+&#123;
+    struct rb_node *node = NULL;
+  int sip, count, timestamp;
+  //printk(&quot;roc_dump&quot;);
+    memset(message, 0, MAX_SIZE);
+    for(node = rb_first(root); strlen(message) &lt; MAX_SIZE &amp;&amp; node != NULL; node = rb_next(node))&#123;
+
+  sip = (unsigned int)rb_entry(node, roc_node_t, node)-&gt;key ;   
+  count = (unsigned int)rb_entry(node, roc_node_t, node)-&gt;ipcount.count ;   
+  timestamp = (unsigned int)rb_entry(node, roc_node_t, node)-&gt;ipcount.timestamp ;  
+  sprintf(message, &quot;%s%d.%d.%d.%d|%d|%d,&quot;,message, NIPQUAD( sip), count, timestamp);
+      //printk(message);
+    &#125;
+&#125;
+
+void roc_free(void *ptr)
+&#123;
+    roc_node_t *node = (roc_node_t*)ptr;
+    if(node)
+    &#123;
+        if(node-&gt;ctx) kfree(node-&gt;ctx);
+        kfree(node);
+    &#125;
+&#125;
+
+int test(int argc, char const *argv[])
+&#123;
+    struct rb_root root = RB_ROOT;
+
+    int loop = 0;
+    roc_node_t *node = NULL;
+    for(loop = 0; loop &lt; 100; loop ++)
+    &#123;
+        node = (roc_node_t*)kmalloc(sizeof(roc_node_t), GFP_KERNEL );
+        if(node == NULL)
+            break;
+        node-&gt;ctx = NULL;
+        node-&gt;key = loop;
+        roc_insert(&amp;root, node);
+    &#125;
+
+#if 0
+    for(loop = 0; loop &lt; 100; loop ++)
+        roc_erase(&amp;root, loop, roc_free);
+#endif
+
+    roc_dump(&amp;root);
+    roc_destroy(&amp;root, roc_free);
+    return 0;
+&#125;
+</code></pre>
+<p><a id="orgde188bf"></a></p>
+<h1 id="Linux驱动"><a href="#Linux驱动" class="headerlink" title="Linux驱动"></a>Linux驱动</h1><p>考虑在内核实现的原因是目前Linux相关设备非常多，可能具有一定的参考价值和移植性。<br>笔者的内核环境为：</p>
+<pre><code>  uname -r
+4.15.0-142-generic
+</code></pre>
+<p><a id="orgc0bb933"></a></p>
+<h2 id="网络型驱动设备"><a href="#网络型驱动设备" class="headerlink" title="网络型驱动设备"></a>网络型驱动设备</h2><p>netfilter的相关参考资料为：Linnux5.0.0下，基于Netlink与NetFilter对本机数据包进行筛选监控,<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40758751/article/details/105117750">https://blog.csdn.net/qq_40758751/article/details/105117750</a> , netfilter数据包过滤, <a target="_blank" rel="noopener" href="https://blog.csdn.net/specialsun/article/details/84695519">https://blog.csdn.net/specialsun/article/details/84695519</a><br>因为本文为源Ip数据包信息统计，所以netfilter hook的层级在NF<sub>INET</sub><sub>LOCAL</sub><sub>IN</sub>.<br>Hook 函数为filter<sub>http</sub>(忽略函数名，粘贴过来，不想改了).</p>
+<p><a id="org9e48264"></a></p>
+<h2 id="字符型设备"><a href="#字符型设备" class="headerlink" title="字符型设备"></a>字符型设备</h2><p>内核态数据在用户态访问需要通过字符型设备驱动进行。因此建立一个字符型设备/dev/IPDataSet 使得用户态能够访问内核 态的数据信息。<br>参考资料：ubuntu 添加字符设备驱动程序, <a target="_blank" rel="noopener" href="https://blog.csdn.net/ARAFATms/article/details/79397800">https://blog.csdn.net/ARAFATms/article/details/79397800</a><br>因为上述驱动需要自己手动添加字符设备，所以通过以下方法自动添加设备节点。<br>参考资料：linux驱动：自动创建设备节点, <a target="_blank" rel="noopener" href="https://blog.csdn.net/u012247418/article/details/83684029">https://blog.csdn.net/u012247418/article/details/83684029</a></p>
+<pre><code>// filename: filter_ip.c
+#ifndef __KERNEL__
+#define __KERNEL__
+#endif  /* __KERNEL__ */
+
+#include &lt;linux/module.h&gt;
+#include &lt;linux/init.h&gt;
+#include &lt;linux/types.h&gt;
+#include &lt;linux/string.h&gt;
+//#include &lt;asm/uaccess.h&gt;
+#include &lt;linux/netdevice.h&gt;
+#include &lt;linux/netfilter_ipv4.h&gt;  // ip4 netfilter,ipv6则需引入相应 linux/netfilter_ipv6.h
+#include &lt;linux/ip.h&gt;
+#include &lt;linux/tcp.h&gt;
+#include &lt;linux/sched.h&gt;
+</code></pre>
+<p>​    </p>
+<pre><code>#include &quot;linux/kernel.h&quot;
+#include &quot;linux/fs.h&quot;
+#include &quot;linux/errno.h&quot;
+#include &quot;linux/uaccess.h&quot;
+#include &quot;linux/kdev_t.h&quot;
+
+#include &lt;linux/device.h&gt;
+#include &lt;linux/time.h&gt;
+
+#define NIPQUAD(addr) \  
+((unsigned char *)&amp;addr)[0], \  
+((unsigned char *)&amp;addr)[1], \  
+((unsigned char *)&amp;addr)[2], \  
+((unsigned char *)&amp;addr)[3]  
+
+#define MAX_SIZE 1024 * 1024 * 8
+char message[MAX_SIZE] = &quot;&quot;;  //打开设备时会显示的消息
+#include &quot;my_rbtree.h&quot;
+
+struct rb_root root = RB_ROOT;
+int insert(int key, int timestamp)
+&#123;
+
+  roc_node_t *node = NULL;
+  node = roc_search(&amp;root, key);
+  if(node != NULL) &#123;
+    node-&gt;ipcount.count++;
+    node-&gt;ipcount.timestamp = timestamp;
+    return 1;
+  &#125;
+  node = (roc_node_t*)kmalloc(sizeof(roc_node_t), GFP_KERNEL );
+  node-&gt;ctx = NULL;
+  node-&gt;key = key;
+  node-&gt;ipcount.count = 1;
+  node-&gt;ipcount.timestamp = timestamp;
+  return roc_insert(&amp;root, node);
+
+&#125;
+
+struct timeval time;
+// 过滤http数据包
+unsigned int filter_http(char *type,struct sk_buff *pskb)
+&#123;
+  __be32 sip,dip;
+  int retval = NF_ACCEPT;
+  int ret, ms;
+  struct sk_buff *skb = pskb;
+
+  struct iphdr *iph = ip_hdr(skb);  // 获取ip头
+</code></pre>
+<p>​    </p>
+<pre><code>  sip = iph-&gt;saddr;  
+  dip = iph-&gt;daddr;  
+  //printk(&quot;Packet for source address: %d.%d.%d.%d destination address: %d.%d.%d.%d\n&quot;, NIPQUAD(sip), NIPQUAD(dip));  
+
+  //sprintf(message, &quot;Packet for source address: %d.%d.%d.%d destination address: %d.%d.%d.%d\n&quot;, NIPQUAD(sip), NIPQUAD(dip));
+</code></pre>
+<p>​    </p>
+<pre><code>  do_gettimeofday(&amp;time);  /*第一次去获取时间*/  ms = time.tv_sec * 1000 + time.tv_usec / 1000;  ret = insert(sip, ms);  //if(ret == 1)&#123;      roc_dump(&amp;root);  printk(message);  //&#125;  return retval;&#125;
+</code></pre>
+<p>​    </p>
+<pre><code>unsigned int NET_HookLocalIn(void *priv,     struct sk_buff *pskb,     const struct nf_hook_state *state)&#123;  return filter_http(&quot;in&quot;,pskb);&#125;
+</code></pre>
+<p>​    </p>
+<pre><code>unsigned int NET_HookLocalOut(void *priv,     struct sk_buff *pskb,     const struct nf_hook_state *state)&#123;  //return filter_http(&quot;out&quot;,pskb);  return NF_ACCEPT;&#125;
+</code></pre>
+<p>​    </p>
+<pre><code>unsigned int NET_HookPreRouting(void *priv,     struct sk_buff *pskb,     const struct nf_hook_state *state)&#123;  return NF_ACCEPT;&#125;
+</code></pre>
+<p>​    </p>
+<pre><code>unsigned int NET_HookPostRouting(void *priv,     struct sk_buff *pskb,     const struct nf_hook_state *state)&#123;  return NF_ACCEPT;&#125;
+</code></pre>
+<p>​    </p>
+<pre><code>unsigned int NET_HookForward(void *priv,     struct sk_buff *pskb,     const struct nf_hook_state *state)&#123;  return NF_ACCEPT;&#125;
+</code></pre>
+<p>​    </p>
+<pre><code>// 钩子数组static struct nf_hook_ops net_hooks[] = &#123;  &#123;    .hook         = NET_HookLocalIn,        // 发往本地数据包    .pf            = PF_INET,    .hooknum    =    NF_INET_LOCAL_IN,    .priority    = NF_IP_PRI_FILTER-1,  &#125;,  &#123;    .hook         = NET_HookLocalOut,        // 本地发出数据包    .pf            = PF_INET,    .hooknum    =    NF_INET_LOCAL_OUT,    .priority    = NF_IP_PRI_FILTER-1,  &#125;,  &#123;    .hook         = NET_HookForward,        // 转发的数据包    .pf            = PF_INET,    .hooknum    =    NF_INET_FORWARD,    .priority    = NF_IP_PRI_FILTER-1,  &#125;,  &#123;    .hook        = NET_HookPreRouting,    // 进入本机路由前        .pf            = PF_INET,                    .hooknum    = NF_INET_PRE_ROUTING,            .priority    = NF_IP_PRI_FILTER-1,          &#125;,  &#123;    .hook        = NET_HookPostRouting,    // 本机发出包经路由后        .pf            = PF_INET,                    .hooknum    = NF_INET_POST_ROUTING,            .priority    = NF_IP_PRI_FILTER-1,          &#125;,&#125;;
+</code></pre>
+<p>​    </p>
+<pre><code>int my_open(struct inode *inode, struct file *file);int my_release(struct inode *inode, struct file *file);ssize_t my_read(struct file *file, char __user *user, size_t t, loff_t *f);ssize_t my_write(struct file *file, const char __user *user, size_t t, loff_t *f);char* devName = &quot;IPDataSet&quot;;//设备名struct file_operations pStruct =&#123; open:my_open,      release:my_release,      read:my_read,      write:my_write, &#125;;//打开int my_open(struct inode *inode, struct file *file)&#123;  printk(&quot;open lgsDrive OK!\n&quot;);  try_module_get(THIS_MODULE);  return 0;&#125;//关闭int my_release(struct inode *inode, struct file *file)&#123;  printk(&quot;Device released!\n&quot;);  module_put(THIS_MODULE);  return 0;&#125;
+</code></pre>
+<p>​    </p>
+<pre><code>//读设备里的信息ssize_t my_read(struct file *file, char __user *user, size_t t, loff_t *f)&#123;  roc_dump(&amp;root);  if(copy_to_user(user,message,t))  &#123;    return -2;  &#125;  return sizeof(message);&#125;//向设备里写信息ssize_t my_write(struct file *file, const char __user *user, size_t t, loff_t *f)&#123;  if(copy_from_user(message,user,t))  &#123;    return -3;  &#125;  return sizeof(message);&#125;
+</code></pre>
+<p>​    </p>
+<pre><code>static struct class *drv_class = NULL;int major = 0;//设备号static int __init nf_init(void) &#123;  int ret = 0;  //char device  major = register_chrdev(0, &quot;ipdataset_drv&quot;, &amp;pStruct);  drv_class = class_create(THIS_MODULE, &quot;ipdataset_drv&quot;);  device_create(drv_class, NULL, MKDEV(major, 0), NULL, devName);  //    ret = register_chrdev(0, devName, &amp;pStruct);  //    if (ret &lt; 0)  //    &#123;  //        printk(&quot;failed to register_chrdev.\n&quot;);  //        return -1;  //    &#125;  //    else  //    &#123;  //        printk(&quot;the lgsDrive has been registered!\n&quot;);  //        printk(&quot;id: %d\n&quot;, ret);  //        device_num = ret;  //   //        return 0;  //    &#125;  //net device  ret = nf_register_net_hook(&amp;init_net, net_hooks);  //ret = nf_register_hooks(net_hooks,ARRAY_SIZE(net_hooks));    // 安装钩子  if(ret)  &#123;    printk(KERN_ERR &quot;register hook failed\n&quot;);    return -1;  &#125;  printk(&quot;Start...\n&quot;);  return 0;&#125;void close(void)&#123;  roc_destroy(&amp;root, roc_free);&#125;static void __exit nf_exit(void)&#123;  close();  unregister_chrdev(major, &quot;ipdataset_drv&quot;);  device_destroy(drv_class, MKDEV(major, 0));  class_destroy(drv_class);  //unregister_chrdev(device_num, devName);
+</code></pre>
+<p>​    </p>
+<pre><code>  nf_unregister_net_hook(&amp;init_net, net_hooks);  //nf_unregister_hooks(net_hooks,ARRAY_SIZE(net_hooks));    // 卸载钩子  printk(&quot;Exit...\n&quot;);&#125;
+</code></pre>
+<p>​    </p>
+<pre><code>module_init(nf_init);module_exit(nf_exit);
+</code></pre>
+<p>​    </p>
+<pre><code>MODULE_LICENSE(&quot;Dual BSD/GPL&quot;);MODULE_AUTHOR(&quot;dianwoshishi&quot;);MODULE_DESCRIPTION(&quot;Netfilter IP Statistic&quot;);MODULE_VERSION(&quot;1.0.1&quot;);MODULE_ALIAS(&quot;Netfilter 01&quot;);
+</code></pre>
+<p><a id="org8ee7f64"></a></p>
+<h2 id="用户代码"><a href="#用户代码" class="headerlink" title="用户代码"></a>用户代码</h2><p>上述字符型设备创建了一个字符节点为：/dev/IPDataSet， 在用户态程序中，我们通过Linux编程中提供的read函数对驱动中的数据message进行读取。<br>代码如下：</p>
+<pre><code>   #include &lt;stdio.h&gt;#include &lt;sys/types.h&gt;#include &lt;sys/stat.h&gt;#include &lt;fcntl.h&gt;#define MAX_SIZE 1024 char message[MAX_SIZE] ;  //打开设备时会显示的消息int main(int num, char *arg[])&#123;    if(2 != num)&#123;        printf(&quot;Usage: %s /dev/IPDataSet\n&quot;, arg[0]);        return -1;    &#125;    int fd = open(arg[1], O_RDWR);    if(0 &gt; fd)&#123;        perror(&quot;open&quot;);        return -1;    &#125;    int ret = read(fd, message, MAX_SIZE);    printf(&quot;read: ret = %d. %s\n&quot;, ret, message);    memset(message, 0, MAX_SIZE);    ret = write(fd, message, MAX_SIZE);    printf(&quot;write: ret = %d.\n&quot;, ret);    close(fd);    return 0;&#125;
+</code></pre>
+<p><a id="org3f4753d"></a></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p><a id="org01bad05"></a></p>
+<h2 id="Linux-驱动"><a href="#Linux-驱动" class="headerlink" title="Linux 驱动"></a>Linux 驱动</h2><p>熟悉Linux驱动的编写流程。 了解了Linux内核代码与用户代码的不同，比较明显的就是缺少了类似C++ STL类似的好用的库，只能使用类似红黑树（rbtree)这样的数据结构来做一些set的操作，需要对红黑树有一定的了解。<br>网络设备驱动和字符型设备驱动的编写结构都差不多，但是目前也是一知半解，尤其是一些简单操作之外的特性还不了解，例如加锁？多线程？不知道</p>
+<p><a id="orgd1e6a5e"></a></p>
+<h2 id="Linux内核"><a href="#Linux内核" class="headerlink" title="Linux内核"></a>Linux内核</h2><p>Linux内核的设计模式还是比较令人佩服的，虽然不懂全貌，但是也能从局部出发，贡献一些力量。再一次感受到了设计的魅力。</p>
+<p><a id="org4c6ff33"></a></p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>一定要在虚拟机中编写、测试驱动，不知道有什么错出现，你就要重启你的电脑，boring！</p>
+<p><a id="orgfe8069d"></a></p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>linux驱动编写（总结篇）,<a target="_blank" rel="noopener" href="https://blog.csdn.net/feixiaoxing/article/details/79913476?spm=1001.2014.3001.5506">https://blog.csdn.net/feixiaoxing/article/details/79913476?spm=1001.2014.3001.5506</a><br>智能路由器设备流量、网速统计及上下线提醒（基于netfilter编程）,<a target="_blank" rel="noopener" href="https://blog.csdn.net/u012819339/article/details/50513387?spm=1001.2014.3001.5506">https://blog.csdn.net/u012819339/article/details/50513387?spm=1001.2014.3001.5506</a><br>利用Linux内核模块Netfilter hook UDP报文, <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41791640/article/details/104933006?spm=1001.2014.3001.5506">https://blog.csdn.net/qq_41791640/article/details/104933006?spm=1001.2014.3001.5506</a><br>Netfilter的使用和实现, <a target="_blank" rel="noopener" href="https://blog.csdn.net/zhangskd/article/details/22678659?spm=1001.2014.3001.5506">https://blog.csdn.net/zhangskd/article/details/22678659?spm=1001.2014.3001.5506</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/netfilter/" rel="tag"># netfilter</a>
+              <a href="/tags/linux/" rel="tag"># linux</a>
+              <a href="/tags/%E9%A9%B1%E5%8A%A8/" rel="tag"># 驱动</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/01/06/2016-01-06-ReactiveCocoa-%E8%BF%9B%E9%98%B6/" rel="prev" title="ReactiveCocoa 进阶">
+      <i class="fa fa-chevron-left"></i> ReactiveCocoa 进阶
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/05/29/hello-world/" rel="next" title="Hello World">
+      Hello World <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Table-of-Contents"><span class="nav-number">1.</span> <span class="nav-text">Table of Contents</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">2.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IP%E4%BF%A1%E6%81%AF%E7%BB%9F%E8%AE%A1"><span class="nav-number">3.</span> <span class="nav-text">IP信息统计</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%9F%E8%AE%A1%E4%BF%A1%E6%81%AF%E8%AE%BE%E8%AE%A1"><span class="nav-number">3.1.</span> <span class="nav-text">统计信息设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-number">3.2.</span> <span class="nav-text">存储数据结构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux%E9%A9%B1%E5%8A%A8"><span class="nav-number">4.</span> <span class="nav-text">Linux驱动</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%9E%8B%E9%A9%B1%E5%8A%A8%E8%AE%BE%E5%A4%87"><span class="nav-number">4.1.</span> <span class="nav-text">网络型驱动设备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E5%9E%8B%E8%AE%BE%E5%A4%87"><span class="nav-number">4.2.</span> <span class="nav-text">字符型设备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E4%BB%A3%E7%A0%81"><span class="nav-number">4.3.</span> <span class="nav-text">用户代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux-%E9%A9%B1%E5%8A%A8"><span class="nav-number">5.1.</span> <span class="nav-text">Linux 驱动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux%E5%86%85%E6%A0%B8"><span class="nav-number">5.2.</span> <span class="nav-text">Linux内核</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-number">5.3.</span> <span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">点我试试</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">点我试试</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
