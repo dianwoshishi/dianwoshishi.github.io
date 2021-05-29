@@ -140,7 +140,8 @@ plt.show()
   <entry>
     <title>区块链中的密码学知识</title>
     <url>/2021/05/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E4%B8%AD%E7%9A%84%E5%AF%86%E7%A0%81%E5%AD%A6%E7%9F%A5%E8%AF%86/</url>
-    <content><![CDATA[<h1 id="Table-of-Contents"><a href="#Table-of-Contents" class="headerlink" title="Table of Contents"></a>Table of Contents</h1><ol>
+    <content><![CDATA[<p>原文为<a href="https://zhuanlan.zhihu.com/p/304725930">知乎</a>，现转移到个人博客。<br>转发微信公众号<a href="https://mp.weixin.qq.com/s/NkAWmPokc86Jc6nWtz4-yA">文章</a></p>
+<h1 id="Table-of-Contents"><a href="#Table-of-Contents" class="headerlink" title="Table of Contents"></a>Table of Contents</h1><ol>
 <li> <a href="#org63a3294">BitCoin是什么</a></li>
 <li> <a href="#org1839db4">密码学是什么</a></li>
 <li><a href="#org44c3a48">BitCoin中的密码学知识</a><pre><code> 1.  [哈希(Hash)](#org87067ef)
