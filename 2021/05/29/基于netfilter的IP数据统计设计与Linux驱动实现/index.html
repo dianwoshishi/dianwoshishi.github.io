@@ -26,12 +26,12 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="基于netfilter的IP数据统计设计">
 <meta property="og:url" content="http://dianwoshishi.github.io/2021/05/29/%E5%9F%BA%E4%BA%8Enetfilter%E7%9A%84IP%E6%95%B0%E6%8D%AE%E7%BB%9F%E8%AE%A1%E8%AE%BE%E8%AE%A1%E4%B8%8ELinux%E9%A9%B1%E5%8A%A8%E5%AE%9E%E7%8E%B0/index.html">
-<meta property="og:site_name" content="点我试试的个人博客">
+<meta property="og:site_name" content="懂珠宝的NetW0rker的个人博客">
 <meta property="og:description" content="Table of Contents  1.  背景  2. IP信息统计 1.  统计信息设计      2.  存储数据结构            3. Linux驱动 1.  网络型驱动设备      2.  字符型设备      3.  用户代码            4. 总结 1.  Linux 驱动      2.  Linux内核      3.  其他            5.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-05-29T03:12:54.799Z">
 <meta property="article:modified_time" content="2021-05-29T11:43:34.458Z">
-<meta property="article:author" content="点我试试">
+<meta property="article:author" content="懂珠宝的NetW0rker">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="netfilter">
 <meta property="article:tag" content="内核">
@@ -50,7 +50,7 @@
   };
 </script>
 
-  <title>基于netfilter的IP数据统计设计 | 点我试试的个人博客</title>
+  <title>基于netfilter的IP数据统计设计 | 懂珠宝的NetW0rker的个人博客</title>
   
 
 
@@ -81,7 +81,7 @@
   </style>
 </noscript>
 
-<link rel="alternate" href="/atom.xml" title="点我试试的个人博客" type="application/atom+xml">
+<link rel="alternate" href="/atom.xml" title="懂珠宝的NetW0rker的个人博客" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -102,7 +102,7 @@
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">点我试试的个人博客</h1>
+      <h1 class="site-title">懂珠宝的NetW0rker的个人博客</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
@@ -131,7 +131,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">9</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">11</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -141,7 +141,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">3</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">5</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -211,12 +211,12 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="点我试试">
+      <meta itemprop="name" content="懂珠宝的NetW0rker">
       <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="点我试试的个人博客">
+      <meta itemprop="name" content="懂珠宝的NetW0rker的个人博客">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -614,12 +614,12 @@ MODULE_LICENSE(&quot;Dual BSD/GPL&quot;);MODULE_AUTHOR(&quot;dianwoshishi&quot;)
   <div id="qr" style="display: none;">
       
       <div style="display: inline-block;">
-        <img src="/images/wechat_qrcode.jpg" alt="点我试试 微信支付">
+        <img src="/images/wechat_qrcode.jpg" alt="懂珠宝的NetW0rker 微信支付">
         <p>微信支付</p>
       </div>
       
       <div style="display: inline-block;">
-        <img src="/images/alipay_qrcode.jpg" alt="点我试试 支付宝">
+        <img src="/images/alipay_qrcode.jpg" alt="懂珠宝的NetW0rker 支付宝">
         <p>支付宝</p>
       </div>
 
@@ -631,7 +631,7 @@ MODULE_LICENSE(&quot;Dual BSD/GPL&quot;);MODULE_AUTHOR(&quot;dianwoshishi&quot;)
 <div>
 <ul class="post-copyright">
   <li class="post-copyright-author">
-    <strong>本文作者： </strong>点我试试
+    <strong>本文作者： </strong>懂珠宝的NetW0rker
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
@@ -764,9 +764,9 @@ MODULE_LICENSE(&quot;Dual BSD/GPL&quot;);MODULE_AUTHOR(&quot;dianwoshishi&quot;)
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="点我试试"
+    <img class="site-author-image" itemprop="image" alt="懂珠宝的NetW0rker"
       src="/images/avatar.jpg">
-  <p class="site-author-name" itemprop="name">点我试试</p>
+  <p class="site-author-name" itemprop="name">懂珠宝的NetW0rker</p>
   <div class="site-description" itemprop="description"></div>
 </div>
 <div class="site-state-wrap motion-element">
@@ -774,7 +774,7 @@ MODULE_LICENSE(&quot;Dual BSD/GPL&quot;);MODULE_AUTHOR(&quot;dianwoshishi&quot;)
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -787,7 +787,7 @@ MODULE_LICENSE(&quot;Dual BSD/GPL&quot;);MODULE_AUTHOR(&quot;dianwoshishi&quot;)
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -812,11 +812,14 @@ MODULE_LICENSE(&quot;Dual BSD/GPL&quot;);MODULE_AUTHOR(&quot;dianwoshishi&quot;)
 
 
 
+        
       </div>
+    
+    
     <div class="wechat_OA">
-    <h2>欢迎关注我的公众号</h2>
+        <h2>扫描下方微信公众号，我会持续为你分享 IT 技术和珠宝知识</h2>
              <!-- 这里添加你的二维码图片 -->
-            <img src ="/images/wechat_channel.jpg">
+        <img src ="/images/wechat_channel.jpg">
             
             
     </div>
@@ -847,12 +850,12 @@ MODULE_LICENSE(&quot;Dual BSD/GPL&quot;);MODULE_AUTHOR(&quot;dianwoshishi&quot;)
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">18k</span>
+    <span title="站点总字数">24k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">16 分钟</span>
+    <span title="站点阅读时长">21 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
@@ -878,8 +881,7 @@ setInterval("createtime()",250);
 
         
 <div class="busuanzi-count">
- <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
+ <script type="text/javascript" src="/js/busuanzi.pure.mini.js"></script>
     <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
