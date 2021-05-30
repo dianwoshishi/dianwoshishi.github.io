@@ -555,19 +555,10 @@ MODULE_LICENSE(&quot;Dual BSD/GPL&quot;);MODULE_AUTHOR(&quot;dianwoshishi&quot;)
       </tags>
   </entry>
   <entry>
-    <title></title>
-    <url>/2021/05/30/readme/</url>
-    <content><![CDATA[<hr>
-<p>欢迎关注我的微信公众号，扫描下方二维码，就可以找到我，我会持续为你分享 IT 技术和珠宝知识。</p>
-<p><img src="https://pic1.zhimg.com/80/v2-8ff04a9934840c3c552ed41497bc4748_720w.jpg" alt="欢迎关注我的微信公众号，扫描下方二维码，就可以找到我，我会持续为你分享 IT 技术和珠宝知识"></p>
-<p>也可以关注我的个人博客</p>
-<p><a href="https://dianwoshishi.github.io/">点我试试的个人博客</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>Linux系统下的系统资源和网络资源控制</title>
     <url>/2021/05/30/%E8%B5%84%E6%BA%90%E4%BF%9D%E9%9A%9C/</url>
-    <content><![CDATA[<h1 id="Linux系统下的系统资源和网络资源控制"><a href="#Linux系统下的系统资源和网络资源控制" class="headerlink" title="Linux系统下的系统资源和网络资源控制"></a>Linux系统下的系统资源和网络资源控制</h1><h2 id="如何获取进程ID"><a href="#如何获取进程ID" class="headerlink" title="如何获取进程ID"></a>如何获取进程ID</h2><h3 id="根据进程名称获取pid"><a href="#根据进程名称获取pid" class="headerlink" title="根据进程名称获取pid"></a>根据进程名称获取pid</h3><p> 最简单的方法是使用 <strong>pidof</strong> 命令，用法：pidof  process_name，例如：</p>
+    <content><![CDATA[<p>知乎文章:  <a href="https://zhuanlan.zhihu.com/p/376501404" class="ListCard"> 知乎 </a></p>
+<h1 id="Linux系统下的系统资源和网络资源控制"><a href="#Linux系统下的系统资源和网络资源控制" class="headerlink" title="Linux系统下的系统资源和网络资源控制"></a>Linux系统下的系统资源和网络资源控制</h1><h2 id="如何获取进程ID"><a href="#如何获取进程ID" class="headerlink" title="如何获取进程ID"></a>如何获取进程ID</h2><h3 id="根据进程名称获取pid"><a href="#根据进程名称获取pid" class="headerlink" title="根据进程名称获取pid"></a>根据进程名称获取pid</h3><p> 最简单的方法是使用 <strong>pidof</strong> 命令，用法：pidof  process_name，例如：</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 查看初始进程的pid
 pidof init
 # <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
@@ -732,10 +723,7 @@ ip link set dev $indevice up
 <p>流量控制 <a href="https://tonydeng.github.io/sdn-handbook/linux/tc.html">https://tonydeng.github.io/sdn-handbook/linux/tc.html</a></p>
 <p>Traffic Control HOWTO <a href="https://tldp.org/HOWTO/Traffic-Control-HOWTO/">https://tldp.org/HOWTO/Traffic-Control-HOWTO/</a></p>
 <p>Linux TC(Traffic Control)框架原理解析， <a href="https://blog.csdn.net/dog250/article/details/40483627">https://blog.csdn.net/dog250/article/details/40483627</a></p>
-<p>欢迎关注我的微信公众号，扫描下方二维码，就可以找到我，我会持续为你分享 IT 技术和珠宝知识。</p>
-<p><img src="https://pic1.zhimg.com/80/v2-8ff04a9934840c3c552ed41497bc4748_720w.jpg" alt="欢迎关注我的微信公众号，扫描下方二维码，就可以找到我，我会持续为你分享 IT 技术和珠宝知识"></p>
-<p>也可以关注我的个人博客</p>
-<p><a href="https://dianwoshishi.github.io/">点我试试的个人博客</a></p>
+<p><a href="https://dianwoshishi.github.io/">https://dianwoshishi.github.io/</a>)</p>
 ]]></content>
       <categories>
         <category>学习</category>
