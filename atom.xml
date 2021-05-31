@@ -6,7 +6,7 @@
   <link href="http://dianwoshishi.github.io/atom.xml" rel="self"/>
   
   <link href="http://dianwoshishi.github.io/"/>
-  <updated>2021-05-31T02:45:48.440Z</updated>
+  <updated>2021-05-31T02:49:00.967Z</updated>
   <id>http://dianwoshishi.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
+    <title>互联网发展简史(1)</title>
     <link href="http://dianwoshishi.github.io/2021/05/31/%E4%BA%92%E8%81%94%E7%BD%91%E5%8F%91%E5%B1%95%E7%AE%80%E5%8F%B2(1)/"/>
     <id>http://dianwoshishi.github.io/2021/05/31/%E4%BA%92%E8%81%94%E7%BD%91%E5%8F%91%E5%B1%95%E7%AE%80%E5%8F%B2(1)/</id>
     <published>2021-05-31T02:46:19.332Z</published>
-    <updated>2021-05-31T02:45:48.440Z</updated>
+    <updated>2021-05-31T02:49:00.967Z</updated>
     
     <content type="html"><![CDATA[<h2 id="互联网发展简史-1"><a href="#互联网发展简史-1" class="headerlink" title="互联网发展简史(1)"></a>互联网发展简史(1)</h2><h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><p>[TOC]</p><p>Internet发展简史（ARPANET的建立）</p><h3 id="1955年"><a href="#1955年" class="headerlink" title="1955年"></a>1955年</h3><p>要了解互联网的起源，我们必须回到1957年。这一年大家都致力于收集有关高层大气在一个强烈的太阳活动时期的信息。1955年，艾森豪威尔宣布，作为活动的一部分，美国希望发射一颗小型地球轨道卫星。克里姆林宫宣布也希望这样做。美国的计划集中在精密的三级火箭上，但在俄罗斯他们采取了更直接的方法。把四枚军用火箭绑在一起。苏联的行为似乎一夜之间消除了自13年前第一颗核弹爆炸以来，美国一直享有的无懈可击的感觉。立即的反应之一是在国防部内设立了高级研究计划局。它的任务是将最先进的技术应用于美国国防，并避免(再次)被敌人的技术进步吓到。在1958年10月美国国家航空航天局成立之前，它还被授予了美国卫星计划的临时控制权。</p><p>‌ARPA成为了美国国防努力的技术智囊团，直接雇佣了几百名顶级科学家，并拥有足够的预算将研究分包给美国其他顶级机构。尽管先进的计算技术将主导其工作，但ARPA最初的活动重点是空间、弹道导弹和核试验监测。即便如此，从一开始，ARPA就对它的操作基地和它的分包商之间的通信很感兴趣，最好是通过各种计算机之间的直接连接。</p><h3 id="1962年"><a href="#1962年" class="headerlink" title="1962年"></a>1962年</h3><p>1962年，ARPA启动了一个计算机研究项目，并任命麻省理工学院(MIT)的科学家约翰·利克利德(John Licklider)为负责人。利克里德刚刚发表了他关于“银河网络”概念的第一份备忘录<strong>……一个未来的愿景，电脑将联网，并将接近每个人。</strong>在ARPA内部，Leonard Klienrock已经在研究如何将信息分解成“数据包”，将它们分别发送到目的地，然后在另一端重新组装。这将比打开一行并通过该行发送信息更具灵活性。例如，系统将不依赖于单个路由，如果文件在传输前被破坏，将更难以被窃听……两者都有有用的安全优势。1965年，人们发现了电话网络在运行程序和传输数据方面的不足。当时，伯克利和麻省理工学院的计算机通过低速拨号电话线连接起来，成为有史以来第一个“广域网”(WAN)。</p><p>‌到1966/67年，研究工作已经发展到足以让计算机研究部的新主管伦纳德·罗伯茨(Leonard Roberts)发布了一个名为阿帕网(ARPANET)的计算机网络系统计划。当这些计划发表显然是彼此独立的,和无知的彼此的工作,团队在麻省理工学院,国家物理实验室(英国),兰德公司都致力于广泛的区域网络的可行性,及其最佳创意纳入阿帕网的设计。最后的要求是设计一个允许计算机发送和接收消息和数据的协议，称为接口消息处理器(IMPs)。这方面的工作在1968年完成。</p><h3 id="‌1969年"><a href="#‌1969年" class="headerlink" title="‌1969年"></a>‌1969年</h3><p>‌美军在ARPA（阿帕网，美国国防部研究计划署）制定的协定，该协定下将美国西南部的大学UCLA(加利福尼亚大学洛杉矶分校)、Stanford ResearchInstitute(斯坦福大学研究学院)、UCSB(加利福尼亚大学)和UniversityofUtah(犹他州大学)的四台主要计算机相连，形成了互联网最初的样子。</p><p><img src="https://www.let.leidenuniv.nl/history/ivh/arpanet.gif" alt="ARPANET(1969)"></p><h3 id="1971年"><a href="#1971年" class="headerlink" title="1971年"></a>1971年</h3><p>这个协定有剑桥大学的BBN和MA执行，在1969年12月开始联机。到1970年6月，MIT(麻省理工学院)、Harvard(哈佛大学)、BBN和SystemsDevelopmentCorpinSantaMonica(加州圣达莫尼卡系统发展公司)加入进来。到1972年1月，Stanford(斯坦福大学)、MIT’sLincolnLabs(麻省理工学院的林肯实验室)、Carnegie-Mellon(卡内基梅隆大学)和Case-WesternReserveU加入进来。紧接着的几个月内NASA/Ames(国家航空和宇宙航行局)、Mitre、Burroughs、RAND(兰德公司)和theUofIllinois(伊利诺利州大学)也加入进来。到1971年12月，阿帕网将23台主机相互连接起来。由此，<strong>ARPAnet成为现代计算机网络诞生的标志。</strong></p><p><img src="https://www.let.leidenuniv.nl/history/ivh/arpanet1.gif" alt="ARPANET(1971)"></p><p>自此第一个真正的计算机网络诞生。</p><p>‌</p><h3 id="参考连接："><a href="#参考连接：" class="headerlink" title="参考连接："></a>参考连接：</h3><p>‌[1] <a href="https://www.let.leidenuniv.nl/history/ivh/chap2.htm#The%20Creation%20of%20ARPANET">Chapter Two: From ARPANET to World Wide Web</a> , </p><p>[‌2] <a href="https://baijiahao.baidu.com/s?id=1639113082776464538&wfr=spider&for=pc">关于互联网的由来和发展简史</a></p>]]></content>
     
@@ -37,6 +37,12 @@ Internet发展简史（ARPANET的建立）
     
     
     
+    <category term="总结" scheme="http://dianwoshishi.github.io/categories/%E6%80%BB%E7%BB%93/"/>
+    
+    
+    <category term="互联网" scheme="http://dianwoshishi.github.io/tags/%E4%BA%92%E8%81%94%E7%BD%91/"/>
+    
+    <category term="历史" scheme="http://dianwoshishi.github.io/tags/%E5%8E%86%E5%8F%B2/"/>
     
   </entry>
   
