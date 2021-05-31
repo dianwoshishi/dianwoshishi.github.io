@@ -219,10 +219,9 @@ plt<span class="token punctuation">.</span>show<span class="token punctuation">(
       </tags>
   </entry>
   <entry>
-    <title>Linux系统下的系统资源和网络资源控制</title>
-    <url>/2021/05/30/%E8%B5%84%E6%BA%90%E4%BF%9D%E9%9A%9C/</url>
-    <content><![CDATA[<p>知乎文章:  <a href="https://zhuanlan.zhihu.com/p/376501404" class="LinkCard"> 知乎 </a></p>
-<h1 id="Linux系统下的系统资源和网络资源控制"><a href="#Linux系统下的系统资源和网络资源控制" class="headerlink" title="Linux系统下的系统资源和网络资源控制"></a>Linux系统下的系统资源和网络资源控制</h1><h2 id="如何获取进程ID"><a href="#如何获取进程ID" class="headerlink" title="如何获取进程ID"></a>如何获取进程ID</h2><h3 id="根据进程名称获取pid"><a href="#根据进程名称获取pid" class="headerlink" title="根据进程名称获取pid"></a>根据进程名称获取pid</h3><p> 最简单的方法是使用 <strong>pidof</strong> 命令，用法：pidof  process_name，例如：</p>
+    <title></title>
+    <url>/2021/05/31/%E8%B5%84%E6%BA%90%E4%BF%9D%E9%9A%9C/</url>
+    <content><![CDATA[<h1 id="Linux系统下的系统资源和网络资源控制"><a href="#Linux系统下的系统资源和网络资源控制" class="headerlink" title="Linux系统下的系统资源和网络资源控制"></a>Linux系统下的系统资源和网络资源控制</h1><h2 id="如何获取进程ID"><a href="#如何获取进程ID" class="headerlink" title="如何获取进程ID"></a>如何获取进程ID</h2><h3 id="根据进程名称获取pid"><a href="#根据进程名称获取pid" class="headerlink" title="根据进程名称获取pid"></a>根据进程名称获取pid</h3><p> 最简单的方法是使用 <strong>pidof</strong> 命令，用法：pidof  process_name，例如：</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 查看初始进程的pid
 pidof init
 # <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
@@ -250,7 +249,25 @@ lsof -i -n | awk   &#39;&#123;print $2, $9&#125;&#39;
 
 
 
-<h3 id="内存限制实例"><a href="#内存限制实例" class="headerlink" title="内存限制实例"></a><strong>内存限制实例</strong></h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">1. [root@localhost &#x2F;]# mkdir -p &#x2F;cgroup&#x2F;memory&#x2F;foo 
+<h3 id="内存限制实例"><a href="#内存限制实例" class="headerlink" title="内存限制实例"></a><strong>内存限制实例</strong></h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 内存参数
+ cgroup.event_control       #用于eventfd的接口
+ memory.usage_in_bytes      #显示当前已用的内存
+ memory.limit_in_bytes      #设置&#x2F;显示当前限制的内存额度
+ memory.failcnt             #显示内存使用量达到限制值的次数
+ memory.max_usage_in_bytes  #历史内存最大使用量
+ memory.soft_limit_in_bytes #设置&#x2F;显示当前限制的内存软额度
+ memory.stat                #显示当前cgroup的内存使用情况
+ memory.use_hierarchy       #设置&#x2F;显示是否将子cgroup的内存使用情况统计到当前cgroup里面
+ memory.force_empty         #触发系统立即尽可能的回收当前cgroup中可以回收的内存
+ memory.pressure_level      #设置内存压力的通知事件，配合cgroup.event_control一起使用
+ memory.swappiness          #设置和显示当前的swappiness
+ memory.move_charge_at_immigrate #设置当进程移动到其他cgroup中时，它所占用的内存是否也随着移动过去
+ memory.oom_control         #设置&#x2F;显示oom controls相关的配置
+ memory.numa_stat           #显示numa相关的内存<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">1. [root@localhost &#x2F;]# mkdir -p &#x2F;cgroup&#x2F;memory&#x2F;foo 
 2. [root@localhost &#x2F;]# echo &gt; &#x2F;cgroup&#x2F;memory&#x2F;foo&#x2F;memory.limit_in_bytes 
 3. [root@localhost &#x2F;]# echo 44476 &gt; &#x2F;cgroup&#x2F;memory&#x2F;foo&#x2F;tasks  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
@@ -323,7 +340,7 @@ cgdelete cpu:$dname<span aria-hidden="true" class="line-numbers-rows"><span></sp
 
 <p>可以看出，两次的CPU使用率不一样，显示出了cgroup的限制效果。</p>
 <h2 id="限制网络资源"><a href="#限制网络资源" class="headerlink" title="限制网络资源"></a>限制网络资源</h2><p>流量控制（<code>Traffic Control</code>， <code>tc</code>）是<code>Linux</code>内核提供的流量限速、整形和策略控制机制。它以<code>qdisc-class-filter</code>的树形结构来实现对流量的分层控制</p>
-<p><img src="/2021/05/30/%E8%B5%84%E6%BA%90%E4%BF%9D%E9%9A%9C/tc2.jpeg" alt="Traffic Control"></p>
+<p><img src="/2021/05/31/%E8%B5%84%E6%BA%90%E4%BF%9D%E9%9A%9C/tc2.jpeg" alt="Traffic Control"></p>
 <h3 id="基本组成"><a href="#基本组成" class="headerlink" title="基本组成"></a>基本组成</h3><p>从上图中可以看到，tc由<code>qdisc</code>、<code>fitler</code>和<code>class</code>三部分组成：</p>
 <ul>
 <li><code>qdisc</code>通过队列将数据包缓存起来，用来控制网络收发的速度</li>
@@ -381,22 +398,14 @@ ip link set dev $indevice up
 	tc filter add dev $indevice parent 1: protocol all prio 1 u32 match ip src 192.168.0.3 classid 1:11
 	tc qdisc add dev $indevice parent 1:11 handle 11: sfq<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h1 id="今日珠宝"><a href="#今日珠宝" class="headerlink" title="今日珠宝"></a>今日珠宝</h1><p>宝格丽BVLGARI系列戒指18K玫瑰金材质镶嵌7颗钻石，非常经典优雅的设计风格。指圈大小63号（正品实拍）<br><img src="https://pic1.zhimg.com/80/v2-a78042ef069ac261a2b24c645c26204c_720w.jpg" alt="宝格丽BVLGARI系列戒指18K玫瑰金材质镶嵌7颗钻石，非常经典优雅的设计风格。指圈大小63号（正品实拍）"></p>
+
+
 <h2 id="参考资料："><a href="#参考资料：" class="headerlink" title="参考资料："></a>参考资料：</h2><p>Linux 资源隔离机制 – CGroup <a href="https://zhuanlan.zhihu.com/p/47590418">https://zhuanlan.zhihu.com/p/47590418</a></p>
 <p><a href="https://www.cnblogs.com/caoxiaojian/p/5633430.html">CGroup 介绍、应用实例及原理描述</a> <a href="https://www.cnblogs.com/caoxiaojian/p/5633430.html">https://www.cnblogs.com/caoxiaojian/p/5633430.html</a></p>
 <p>流量控制 <a href="https://tonydeng.github.io/sdn-handbook/linux/tc.html">https://tonydeng.github.io/sdn-handbook/linux/tc.html</a></p>
 <p>Traffic Control HOWTO <a href="https://tldp.org/HOWTO/Traffic-Control-HOWTO/">https://tldp.org/HOWTO/Traffic-Control-HOWTO/</a></p>
 <p>Linux TC(Traffic Control)框架原理解析， <a href="https://blog.csdn.net/dog250/article/details/40483627">https://blog.csdn.net/dog250/article/details/40483627</a></p>
-<p><a href="https://dianwoshishi.github.io/">https://dianwoshishi.github.io/</a>)</p>
 ]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>TC</tag>
-        <tag>CGroup</tag>
-      </tags>
   </entry>
   <entry>
     <title>基于netfilter的IP数据统计设计</title>
@@ -737,7 +746,9 @@ MODULE_LICENSE(&quot;Dual BSD/GPL&quot;);MODULE_AUTHOR(&quot;dianwoshishi&quot;)
   <entry>
     <title>互联网发展简史(1)</title>
     <url>/2021/05/31/%E4%BA%92%E8%81%94%E7%BD%91%E5%8F%91%E5%B1%95%E7%AE%80%E5%8F%B2(1)/</url>
-    <content><![CDATA[<h2 id="互联网发展简史-1"><a href="#互联网发展简史-1" class="headerlink" title="互联网发展简史(1)"></a>互联网发展简史(1)</h2><h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><p>[TOC]</p>
+    <content><![CDATA[<p>原文为<a href="https://zhuanlan.zhihu.com/p/376627686">知乎</a>，现转移到个人博客。<br><a href="https://zhuanlan.zhihu.com/p/376627686" target="_blank" class="LinkCard">知乎原文</a></p>
+<p>原文为<a href="https://mp.weixin.qq.com/s/eiYEhlHfRICdkzf2aXxCDg">微信公众号原文</a>，现转移到个人博客。<br><a href="https://mp.weixin.qq.com/s/eiYEhlHfRICdkzf2aXxCDg" target="_blank" class="LinkCard">微信公众号原文</a></p>
+<h2 id="互联网发展简史-1"><a href="#互联网发展简史-1" class="headerlink" title="互联网发展简史(1)"></a>互联网发展简史(1)</h2><h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><p>[TOC]</p>
 <p>Internet发展简史（ARPANET的建立）</p>
 <h3 id="1955年"><a href="#1955年" class="headerlink" title="1955年"></a>1955年</h3><p>要了解互联网的起源，我们必须回到1957年。这一年大家都致力于收集有关高层大气在一个强烈的太阳活动时期的信息。1955年，艾森豪威尔宣布，作为活动的一部分，美国希望发射一颗小型地球轨道卫星。克里姆林宫宣布也希望这样做。美国的计划集中在精密的三级火箭上，但在俄罗斯他们采取了更直接的方法。把四枚军用火箭绑在一起。苏联的行为似乎一夜之间消除了自13年前第一颗核弹爆炸以来，美国一直享有的无懈可击的感觉。立即的反应之一是在国防部内设立了高级研究计划局。它的任务是将最先进的技术应用于美国国防，并避免(再次)被敌人的技术进步吓到。在1958年10月美国国家航空航天局成立之前，它还被授予了美国卫星计划的临时控制权。</p>
 <p>‌ARPA成为了美国国防努力的技术智囊团，直接雇佣了几百名顶级科学家，并拥有足够的预算将研究分包给美国其他顶级机构。尽管先进的计算技术将主导其工作，但ARPA最初的活动重点是空间、弹道导弹和核试验监测。即便如此，从一开始，ARPA就对它的操作基地和它的分包商之间的通信很感兴趣，最好是通过各种计算机之间的直接连接。</p>
