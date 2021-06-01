@@ -862,4 +862,51 @@ MODULE_LICENSE(&quot;Dual BSD/GPL&quot;);MODULE_AUTHOR(&quot;dianwoshishi&quot;)
         <tag>历史</tag>
       </tags>
   </entry>
+  <entry>
+    <title>互联网发展简史(2)</title>
+    <url>/2021/06/01/%E4%BA%92%E8%81%94%E7%BD%91%E5%8F%91%E5%B1%95%E7%AE%80%E5%8F%B2(2)/</url>
+    <content><![CDATA[<p><strong>今日珠宝</strong></p>
+<p><img src="https://pic4.zhimg.com/80/v2-5b67214ba6baf09e996ae7954768f217_720w.jpg"></p>
+<p>原文为知乎，现转移到个人博客。<br><a href="https://zhuanlan.zhihu.com/p/376893651" target="_blank" class="LinkCard">知乎原文</a></p>
+<p>原文为微信公众号文章，现转移到个人博客。<br><a href="https://mp.weixin.qq.com/s/LH6PU0afKLVra6Kn6coemQ" target="_blank" class="LinkCard">微信公众号原文</a></p>
+<h2 id="互联网发展简史-2-从ARPANET到Internet"><a href="#互联网发展简史-2-从ARPANET到Internet" class="headerlink" title="互联网发展简史(2) 从ARPANET到Internet"></a>互联网发展简史(2) 从ARPANET到Internet</h2><h3 id="ARPANET公开亮相"><a href="#ARPANET公开亮相" class="headerlink" title="ARPANET公开亮相"></a>ARPANET公开亮相</h3><p><strong>1972年10月，ARPANET公开亮相</strong>。在华盛顿举行的第一届国际计算机与通信会议上，ARPA的科学家们演示了这个系统：<strong>将来自40个不同地点的计算机连接在一起</strong>。</p>
+<h3 id="ARPANET发展"><a href="#ARPANET发展" class="headerlink" title="ARPANET发展"></a>ARPANET发展</h3><p>与此同时，美国国防部高级研究计划局(ARPA)的科学家们正在改进该系统，扩大其能力。</p>
+<ul>
+<li><p>1972年，他们成功地采用了一种新的程序，即我们现在所称的<strong>电子邮件</strong>，允许在网上发送信息，允许人与人之间的直接交流。</p>
+</li>
+<li><p>同样在70年代早期，科学家们开发了主机(host)对主机的协议。 在此之前，系统只允许一个“远程终端”访问每个单独主机的文件。 新的协议允许访问主机的程序(在连接期间有效地将两台主机合并为一台)。  </p>
+</li>
+<li><p>1974年，ARPA的科学家们与斯坦福大学的专家们密切合作，开发出一种使不同的网络能够相互交流的“共同语言”。这被称为**传输控制协议/互联网协议(TCP/IP)**。</p>
+<blockquote>
+<p>TCP/IP的发展标志着网络发展的一个关键阶段，现如今使用最广泛的协议仍然是TCP/IP协议，其分层、解耦合的设计是他生命力所在。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="各种NET的”百家争鸣”"><a href="#各种NET的”百家争鸣”" class="headerlink" title="各种NET的”百家争鸣”"></a>各种NET的”百家争鸣”</h3><p>前面讲到ARPANET的公开亮相，激发了整个西方世界科学界对互联网的进一步的研究。很快其他的网络也出现了。在这个阶段，各类网络各自为战，提出了自己的技术和协议。华盛顿会议还成立了一个互联工作组(IWG，Internetworking Working Group)来协调正在进行的研究。例如：</p>
+<ul>
+<li>1974年，斯坦福大学开通了<strong>Telenet</strong>，这是第一个公开访问的公共“分组数据服务”(ARPANET的商业版本)。</li>
+<li>上世纪70年代，美国能源部为磁性聚变能的研究人员建立了<strong>MFENet</strong>，这催生了致力于高能物理的HEPNet。这启发了NASA的物理学家们建立了空间物理学家<strong>SPAN</strong>。</li>
+<li>1976年，美国电话电报公司贝尔实验室开发了一种<strong>Unix-to-Unix协议</strong>，并免费分发给所有使用Unix的计算机用户(因为Unix是大学使用的主要操作系统，这为学术界打开了网络的大门)。</li>
+<li>在1979年<strong>Usenet</strong>建立，一个开放的系统专注于电子邮件通信和致力于“新闻组”的开放，并仍然蓬勃发展到今天。</li>
+<li>在1981年，纽约城市大学开发了<strong>Bitnet</strong>，用来连接美国东部大学的科学家，使用IBM计算机，不管学科。</li>
+<li><strong>CSNet</strong>由美国国家科学基金会资助，旨在促进大学、工业和政府计算机科学家的交流。</li>
+<li>1982年，欧洲版本的Unix网络<strong>Eunet</strong>建立，连接了英国、斯堪的纳维亚和荷兰的网络。</li>
+<li>1984年又建立了欧洲版本的Bitnet，称为<strong>EARN</strong>(欧洲学术和研究网络)。 </li>
+</ul>
+<p>在这一时期，世界仍然相当混乱，有过多的相互竞争的技术和协议。<strong>ARPANET仍然是整个系统的主干。</strong></p>
+<p><img src="https://www.let.leidenuniv.nl/history/ivh/arpanet2.gif" alt="ARPANET (1980)"></p>
+<h3 id="TCP-IP一统天下"><a href="#TCP-IP一统天下" class="headerlink" title="TCP/IP一统天下"></a>TCP/IP一统天下</h3><p>虽然1974年标志着TCP/IP协议的开始，但它需要经过几年的修改和重新设计，才得以竞争和普遍采用。例如，在20世纪70年代中期，已经设计了一个简化版，可以并入正在开发的新型微型计算机中。第二个设计挑战是开发一个与每个计算机网络(包括阿帕网本身)兼容的软件版本。</p>
+<p>最终在1982年， TCP/IP 协议统一了天下，成为了标准，<strong>使用TCP/IP标准的互联网诞生了！</strong></p>
+<p>下一期，我们将讲述：从Internet到WWW，从因特网到万维网。敬请关注</p>
+<h3 id="参考连接："><a href="#参考连接：" class="headerlink" title="参考连接："></a>参考连接：</h3><p>‌[1] <a href="https://www.let.leidenuniv.nl/history/ivh/chap2.htm#The%20Creation%20of%20ARPANET">Chapter Two: From ARPANET to World Wide Web</a> , </p>
+<p>[‌2] <a href="https://baijiahao.baidu.com/s?id=1639113082776464538&wfr=spider&for=pc">关于互联网的由来和发展简史</a></p>
+]]></content>
+      <categories>
+        <category>总结</category>
+      </categories>
+      <tags>
+        <tag>互联网</tag>
+        <tag>历史</tag>
+      </tags>
+  </entry>
 </search>
