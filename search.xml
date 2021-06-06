@@ -1114,4 +1114,82 @@ MODULE_LICENSE(&quot;Dual BSD/GPL&quot;);MODULE_AUTHOR(&quot;dianwoshishi&quot;)
         <tag>RFC</tag>
       </tags>
   </entry>
+  <entry>
+    <title>俄罗斯-格鲁吉亚网络冲突事件</title>
+    <url>/2021/06/06/2008%E4%BF%84%E7%BD%97%E6%96%AF-%E6%A0%BC%E9%B2%81%E5%90%89%E4%BA%9A%E7%BD%91%E7%BB%9C%E5%86%B2%E7%AA%81%E4%BA%8B%E4%BB%B6/</url>
+    <content><![CDATA[<h1 id="俄罗斯-格鲁吉亚网络冲突事件"><a href="#俄罗斯-格鲁吉亚网络冲突事件" class="headerlink" title="俄罗斯-格鲁吉亚网络冲突事件"></a>俄罗斯-格鲁吉亚网络冲突事件</h1><p>“正如你所看到的，看似平静的世界，硝烟弥漫。” ——点我试试</p>
+<h2 id="事件简介"><a href="#事件简介" class="headerlink" title="事件简介"></a>事件简介</h2><p>2008 年 8 月，为了把格鲁吉亚从南奥塞梯驱逐出去，俄罗斯军队进攻格鲁吉亚。此次军事行动开展的同时，也伴随了大量经过协调的网络攻击行动。这是第一次与大规模地面作战行动配合的大规模网络攻击，对格鲁吉亚展开了全面的“蜂群”式网络阻瘫攻击，致使格方电视媒体、金融和交通等重要系统瘫痪，机场、物流和通信等信息网络崩溃，急需的战争物资无法及时运达指定位置，战争潜力被严重削弱，直接影响了格鲁吉亚的社会秩序以及军队的作战指挥和调度。</p>
+<h2 id="网络攻击阶段"><a href="#网络攻击阶段" class="headerlink" title="网络攻击阶段"></a>网络攻击阶段</h2><p>一位安全专家将俄罗斯对格鲁吉亚的网络攻击分为两个阶段。</p>
+<h3 id="第一阶段"><a href="#第一阶段" class="headerlink" title="第一阶段"></a>第一阶段</h3><p>在第一阶段中，俄罗斯黑客发起的攻击类型主要是<strong>分布式拒绝服务（DDoS）攻击</strong>。</p>
+<p><img src="https://vinsep.com/wp-content/uploads/2020/12/What-is-a-DDoS-attack.png"></p>
+<p>此阶段的DDoS主要通过<strong>僵尸网络</strong>开展。</p>
+<p><img src="https://tse1-mm.cn.bing.net/th/id/OIP.IoiJwYnib7wq7fFUU6gOowHaFO?pid=ImgDet&rs=1">俄罗斯商业网络（Russian Business Network ，RBN)这类犯罪组织出于各种目的使用并租赁僵尸网络。攻击格鲁吉亚网站中所使用的僵尸网络都隶属于俄罗斯的犯罪组织，其中就有包括 RBN。</p>
+<p><img src="https://cdn.medcom.id/dynamic/content/2015/08/12/156965/dJb2yGIKj8.jpg?w=1024"></p>
+<blockquote>
+<p>注：RBN是一种专门为违法犯罪分子进行网络犯罪提供庇护的自治域。</p>
+</blockquote>
+<p>第一阶段的攻击主要针对格鲁吉亚政府和媒体网站。俄罗斯的僵尸网络依靠强力的 DDoS 对这些目标采取行动。爱沙尼亚的网络在一年前受到俄罗斯黑客攻击，而格鲁吉亚的网络，由于其本身脆弱，比起前者更容易受到数据洪流包的影响 </p>
+<h3 id="第二阶段"><a href="#第二阶段" class="headerlink" title="第二阶段"></a>第二阶段</h3><p>格鲁吉亚媒体和政府网站持续受到 DDoS 攻击的同时，俄罗斯第二阶段的网络作战力求对更多目标进行破坏，其破坏目标名单上包括金融机构企业教育机构西方媒体（英国广播公司和美国有线电视新闻网络）以及一处格鲁吉亚黑客网站 （图 3.1）。对这些服务器的攻击不仅包括 DDoS 攻击，还包括篡改服务器的网站（如：在政府网站上添加将格鲁吉亚总统米哈伊尔·萨卡什维利比作阿道夫·希特勒的亲俄涂鸦）。此外，一些俄罗斯黑客利用格鲁吉亚政治人物公开可用的电子邮件地址，发起垃圾邮件攻击。</p>
+<p>同时，俄罗斯黑客利用BGP劫持，通过俄罗斯的服务器重新路由了格鲁吉亚的互联网流量，借机破坏政府网站，入侵电视和广播电台。</p>
+<p><img src="https://th.bing.com/th/id/Rd683502377568ecde40b05694d1209ab?rik=85rCIN7iXtnnpA&pid=ImgRaw"></p>
+<h2 id="对格鲁吉亚网络攻击的特点"><a href="#对格鲁吉亚网络攻击的特点" class="headerlink" title="对格鲁吉亚网络攻击的特点"></a>对格鲁吉亚网络攻击的特点</h2><h3 id="攻击目标"><a href="#攻击目标" class="headerlink" title="攻击目标"></a>攻击目标</h3><p>俄罗斯网络攻击的目标是“隔离和压制”格鲁吉亚人。攻击有效地使（1）格鲁吉亚媒体沉默并（2）使格鲁吉亚从国际社会孤立开来。</p>
+<h3 id="与常规部队的配合"><a href="#与常规部队的配合" class="headerlink" title="与常规部队的配合"></a><strong>与常规部队的配合</strong></h3><p>网络攻击与常规部队的协调是非常有限的。</p>
+<h3 id="侦察和准备"><a href="#侦察和准备" class="headerlink" title="侦察和准备"></a><strong>侦察和准备</strong></h3><p>许多安全专家认为，在 8 月 7 日最初的网络攻击之前，俄罗斯黑客已经准备好行动。</p>
+<h2 id="影响"><a href="#影响" class="headerlink" title="影响"></a>影响</h2><p>2008 年 8 月俄罗斯对格鲁吉亚发动的网络攻击是第一次与主要常规军事行动同时发生的大规模网络攻击。这些网络攻击削弱了格鲁吉亚人与外界沟通的能力，在信息和心理上对媒体、政府以及公众产生了重大影响。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="网络武器库"><a href="#网络武器库" class="headerlink" title="网络武器库"></a>网络武器库</h3><p>2017年，NSA网络武器库的泄露[2]更是像世界展示了美国在网络战领域的狼子野心。僵尸网络，DDoS是发动网络攻击中非常有效的工具和手段。</p>
+<h3 id="好用又廉价，网络战是未来战争不可缺少的一环"><a href="#好用又廉价，网络战是未来战争不可缺少的一环" class="headerlink" title="好用又廉价，网络战是未来战争不可缺少的一环"></a>好用又廉价，网络战是未来战争不可缺少的一环</h3><p>1991年海湾战争让世界眼前一亮。现在网络战、网络武器也进入人民的视野。网络战具有隐蔽、攻击范围大，对信息基础设施影响大（甚至是物理基础设施，见震网、美东部输油管道中断等），容易制造舆论压力等特点，<strong>好用又廉价。</strong>未来战争，网络战是其中必不可少的一部分。</p>
+<h3 id="“网络人民战争”"><a href="#“网络人民战争”" class="headerlink" title="“网络人民战争”"></a>“网络人民战争”</h3><p>有意思的是，在网络攻击期间，俄罗斯网民可以从网站上下载黑客软件，安装之后点击“开始攻击”按钮即可进行网络攻击。媒体评论俄罗斯打了一场名副其实的“网络人民战争”。</p>
+<p>正如你所看到的，看似平静的世界，硝烟弥漫。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1]<strong>《网络战》中文第三章：2008 年俄罗斯对格鲁吉亚的网络</strong>，<a href="https://blog.51cto.com/tasnrh/1908672">https://blog.51cto.com/tasnrh/1908672</a></p>
+<p>[2] 2017 NSA网络武器库泄露工具总结分析,<a href="https://zhuanlan.zhihu.com/p/31793688">https://zhuanlan.zhihu.com/p/31793688</a></p>
+]]></content>
+      <categories>
+        <category>网络空间</category>
+        <category>网络战</category>
+      </categories>
+      <tags>
+        <tag>网络攻击</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>网络战武器——震网(Stuxnet)病毒</title>
+    <url>/2021/06/06/%E7%BD%91%E7%BB%9C%E6%88%98%E6%AD%A6%E5%99%A8%E2%80%94%E2%80%94%E9%9C%87%E7%BD%91(Stuxnet)%E7%97%85%E6%AF%92/</url>
+    <content><![CDATA[<h1 id="网络战武器——震网-Stuxnet-病毒"><a href="#网络战武器——震网-Stuxnet-病毒" class="headerlink" title="网络战武器——震网(Stuxnet)病毒"></a>网络战武器——震网(Stuxnet)病毒</h1><h2 id="震网事件"><a href="#震网事件" class="headerlink" title="震网事件"></a>震网事件</h2><p> 2010 年 6 月 17 日，白俄罗斯一家小 公司 VirusBlockAda 的安全研究人员 发现一种能感染可移动存储设备的恶意软 件。2010年7月，“震网”（Stuxnet）蠕虫攻击事件浮出水面，引发了国际主流安全厂商和安全研究者的全面关注，卡巴斯基、赛门铁克、安天等安全厂商，Ralph Langne等著名安全研究者，以及多国的应急组织和研究机构，都投入到了全面的分析接力中。2010 年 11 月，伊朗总统艾哈迈迪内贾 德公开承认，一种计算机病毒对“我国（核） 离心机中为数不多的几台机制造了一些问 题，”</p>
+<p>最终使这场攻击的大量细节被呈现出来：这是一起经过长期规划准备和入侵潜伏作业；借助高度复杂的恶意代码和多个零日漏洞作为攻击武器；以铀离心机为攻击目标；以造成超压导致离心机批量损坏和改变离心机转数导致铀无法满足武器要求为致效机理，以阻断伊朗核武器进程为目的的攻击。</p>
+<h3 id="事件时间轴"><a href="#事件时间轴" class="headerlink" title="事件时间轴"></a>事件时间轴</h3><p>下图取自安天实验室关于震网的报告：</p>
+<p><img src="https://www.antiy.cn/images/20190930/1-1.jpg"></p>
+<h2 id="震网病毒"><a href="#震网病毒" class="headerlink" title="震网病毒"></a>震网病毒</h2><p>Stuxnet 是一种计算机蠕虫，大约写于 2005 年到 2010 年之间。主要针对西门子型号为S7-315 和 S7-417 的工控机。其中对于315在攻击发生时，就让他宕机，对于417就使用类似中间人攻击的方式，对工控系统进行欺骗。具体可参考[3].</p>
+<h3 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h3><p>工作原理如下图所示，蠕虫的基本操作。</p>
+<p><img src="https://static.oschina.net/uploads/space/2018/0520/075415_tRMq_2720166.jpg"></p>
+<h2 id="震网影响"><a href="#震网影响" class="headerlink" title="震网影响"></a>震网影响</h2><h3 id="Stuxnet-是网空武器针对工业设备的首件案例。"><a href="#Stuxnet-是网空武器针对工业设备的首件案例。" class="headerlink" title="Stuxnet 是网空武器针对工业设备的首件案例。"></a>Stuxnet 是网空武器针对工业设备的首件案例。</h3><p>Stuxnet 成功地 影响了一个非虚拟实体。这是武器研制的一 项重大进展——在计算机打开后才存在的一 个 软 件 能 成 功 地 对 真 实 世 界 造 成 破 坏。 Stuxnet 清楚地展示，网空武器在军事行动中 能发挥重要作用。</p>
+<h3 id="Stuxnet-所引发的军事革命-的最后一个方面是，它证明一些安全假设是-站不住脚的。"><a href="#Stuxnet-所引发的军事革命-的最后一个方面是，它证明一些安全假设是-站不住脚的。" class="headerlink" title="Stuxnet 所引发的军事革命 的最后一个方面是，它证明一些安全假设是 站不住脚的。"></a>Stuxnet 所引发的军事革命 的最后一个方面是，它证明一些安全假设是 站不住脚的。</h3><h4 id="常见的第一个假设是，物理隔-离的系统更安全。"><a href="#常见的第一个假设是，物理隔-离的系统更安全。" class="headerlink" title="常见的第一个假设是，物理隔 离的系统更安全。"></a>常见的第一个假设是，物理隔 离的系统更安全。</h4><p>按照定义，SCADA 系统控 制对使命具有关键意义的设备，很多管理人 员不把这些计算机同外部网络相连，以物理 隔离的方式来保证安全，结果是采用可移动 媒介把文件传至计算机。Stuxnet 的设计者利 用了这一假设，使病毒通过 U 盘等可移动存 储设备来传播。一旦 U 盘被感染，病毒软件 本身就在后来使用被感染驱动器的计算机上 运行 ；使用者只要在视窗上点击相关图形， 便开始被感染。这是 Stuxnet 利用其中一个 零日漏洞的直接应用。</p>
+<h4 id="被-Stuxnet-证明是错误的另外一个关键-安全假设，是数字签名证书设立的信任关系。"><a href="#被-Stuxnet-证明是错误的另外一个关键-安全假设，是数字签名证书设立的信任关系。" class="headerlink" title="被 Stuxnet 证明是错误的另外一个关键 安全假设，是数字签名证书设立的信任关系。"></a>被 Stuxnet 证明是错误的另外一个关键 安全假设，是数字签名证书设立的信任关系。</h4><p>为了提供更大的稳定性，当代操作系统，包 括微软视窗，限制计算机的程序访问系统部 件。一个正常的程序要求系统经由驱动软件 呼叫硬件。鉴于这种情况，驱动软件比其他 程序具更高权限访问低层级系统部件。为了 避免轻易产生恶意驱动软件，微软视窗依赖 数字签名证书识别。Stuxnet 为了防止被杀毒 软件发现，使用了合法的数字签名证书。这 是此前没有发现的 Stuxnet 的另外一个方 面。早期的 Stuxnet 版本使用瑞昱（Realtek） 半导体系统公司提供的证书，后来的版本使 用智微（JMicron）科技公司的证书。使用这 些证书使病毒在微软视窗面前呈现合法软件 的假象。ESET 的安全专家注意到，两家公司 都在台湾地区，因此怀疑这些证书系被盗窃。 此外，他们相信，这极可能是实物盗窃（甚 至可能是内贼所为），因为在互联网的黑市上 驱动软件的数字证书并不常见。</p>
+<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><ol>
+<li><strong>网络空间作为一个新的虚拟空间，网络作战的参与方的能量不能以现实实体的大小来标定。</strong></li>
+</ol>
+<p>最近的事件表面，即使是个人，也能够宣告对公司、企业发动勒索；即使是组织，也能在网络空间中，对某国发动攻击。那么，网络空间的国家意志如何体现呢？在美国，或许就是网络空间作战司令部吧。</p>
+<ol start="2">
+<li><strong>网络空间已经渗透入生活的方方面面，发动网络攻击对现实社会的影响巨大。</strong></li>
+</ol>
+<p>前段时间，美国东部输油管道被勒索，导致供应紧张，这件事情前后还报道了有相关的对物理基础设施的攻击事件，足以见到网络武器的威力。一枪一炮或许威力有限，但是对信息社会来说，信息类攻击的损失无可估量，每天都上演的DDoS分布式拒绝服务攻击造成了极大的经济损失。</p>
+<ol start="3">
+<li><strong>与自然空间相比，人造空间还是有差距啊。</strong></li>
+</ol>
+<p>在网络空间中，规则是协议，落地是代码，协议和代码都是人设计和实现的，所以难免有漏洞，只要还有人的参与，漏洞就依旧会存在。自然空间就不一样了，规律就是规律(谁设计的呢？)，例如热力学第一定律（解释了为什么没有永动机），熵增定律（解释了人为啥会内卷）</p>
+<blockquote>
+<p> 闲扯一句：这就是为什么唯物辩证法说，一定要掌握事物运行的规律，运动和静止都是相对的等等</p>
+<p>马克思诚不欺我也</p>
+</blockquote>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1]震网事件的九年再复盘与思考，<a href="https://www.antiy.cn/research/notice&amp;report/research_report/20190930.html">https://www.antiy.cn/research/notice&amp;report/research_report/20190930.html</a></p>
+<p>[2]震网——掀起网空战争军事革命， <a href="http://www.knowfar.org.cn/publication/uploadfiles/0204/0129/4.1.pdf">http://www.knowfar.org.cn/publication/uploadfiles/0204/0129/4.1.pdf</a></p>
+<p>[3]  Stuxnet: Dissecting a Cyberwarfare Weapon, <a href="https://courses.cs.duke.edu/spring20/compsci342/netid/readings/stuxnet-dissect.pdf">https://courses.cs.duke.edu/spring20/compsci342/netid/readings/stuxnet-dissect.pdf</a></p>
+]]></content>
+      <categories>
+        <category>网络空间</category>
+        <category>网络战</category>
+      </categories>
+      <tags>
+        <tag>网络攻击</tag>
+      </tags>
+  </entry>
 </search>
