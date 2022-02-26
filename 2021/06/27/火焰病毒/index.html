@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-corner-indicator.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dianwoshishi.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":"Trebuchet","style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="火焰病毒 火焰病毒（Flame，也被称为Flamer或者Skywiper），2012年5月，俄罗斯卡巴斯基安全研究人员发现的一种新型的恶意软件，它主要在中东肆虐，可能针对中东的国家政府部门系统。火焰病毒是那时候最先进的病毒：超过20 MB的大小和超过20个攻击模块（一般的恶意软件包括网络嗅探、打开麦克风和文件获取等），而且使用轻量级关系型数据库（SQLite）和脚本语言（Lua）等组件。它以这种形">
+<meta property="og:type" content="article">
+<meta property="og:title" content="懂珠宝的NetW0rker的个人博客">
+<meta property="og:url" content="http://dianwoshishi.github.io/2021/06/27/%E7%81%AB%E7%84%B0%E7%97%85%E6%AF%92/index.html">
+<meta property="og:site_name" content="懂珠宝的NetW0rker的个人博客">
+<meta property="og:description" content="火焰病毒 火焰病毒（Flame，也被称为Flamer或者Skywiper），2012年5月，俄罗斯卡巴斯基安全研究人员发现的一种新型的恶意软件，它主要在中东肆虐，可能针对中东的国家政府部门系统。火焰病毒是那时候最先进的病毒：超过20 MB的大小和超过20个攻击模块（一般的恶意软件包括网络嗅探、打开麦克风和文件获取等），而且使用轻量级关系型数据库（SQLite）和脚本语言（Lua）等组件。它以这种形">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-06-27T09:59:36.000Z">
+<meta property="article:modified_time" content="2021-06-27T09:59:36.000Z">
+<meta property="article:author" content="懂珠宝的NetW0rker">
+<meta property="article:tag" content="网络 安全 珠宝">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://dianwoshishi.github.io/2021/06/27/%E7%81%AB%E7%84%B0%E7%97%85%E6%AF%92/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title> | 懂珠宝的NetW0rker的个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="懂珠宝的NetW0rker的个人博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">懂珠宝的NetW0rker的个人博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">16</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">6</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">61</span></a>
+
+  </li>
+        <li class="menu-item menu-item-幻灯片">
+
+    <a href="/slideshare/" rel="section"><i class="fa fa-fw fa-question-circle fa-fw"></i>幻灯片</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/dianwoshishi" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+  <!--知乎卡片链接-->
+<script type="text/javascript" src="/js/linkcard.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Sanarous/files@1.13/js/linkcard.js"></script>
+
+
+  
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://dianwoshishi.github.io/2021/06/27/%E7%81%AB%E7%84%B0%E7%97%85%E6%AF%92/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="懂珠宝的NetW0rker">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="懂珠宝的NetW0rker的个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-27 17:59:36" itemprop="dateCreated datePublished" datetime="2021-06-27T17:59:36+08:00">2021-06-27</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="火焰病毒"><a href="#火焰病毒" class="headerlink" title="火焰病毒"></a>火焰病毒</h1><p>火焰病毒（Flame，也被称为Flamer或者Skywiper），2012年5月，俄罗斯卡巴斯基安全研究人员发现的一种新型的恶意软件，它主要在中东肆虐，可能针对中东的国家政府部门系统。火焰病毒是那时候最先进的病毒：超过20 MB的大小和超过20个攻击模块（一般的恶意软件包括网络嗅探、打开麦克风和文件获取等），而且使用轻量级关系型数据库（SQLite）和脚本语言（Lua）等组件。它以这种形式隐藏了相当长一段时间（意味着非常低的感染率或者无法被察觉到，很明显这不是一般水平的人能开发出来的）。</p>
+<p>总的来说，火焰病毒在大约1000个系统中被发现，看起来是一种目标性非常明确的攻击。伊朗CERT于2012年5月份发表了一篇关于火焰病毒的新闻稿。不久之后，火焰病毒的创造者发出了自杀命令，让所有的火焰病毒将自身删除。不过之后还是发现了很多恶意软件存留，并且捕获和分析了几个命令和控制服务器的实例。</p>
+<p>研究人员怀疑，火焰病毒与臭名昭著的恶意的“震网”(Stuxnet)病毒及其后继者Duqu病毒属于同一家族。火焰病毒将网络作战带入了一个新的阶段。</p>
+<h2 id="火焰病毒对抗Windows更新"><a href="#火焰病毒对抗Windows更新" class="headerlink" title="火焰病毒对抗Windows更新"></a>火焰病毒对抗Windows更新</h2><p>火焰病毒对抗Windows更新之后发生的事情震惊了所有人。据报道，火焰病毒一个功能是攻击Windows的更新机制，可以传播到本地网络里面安装的任意Windows系统。更让人惊讶的部分是，<strong>火焰病毒使用密码学</strong>作为攻击手段来完成这次攻击。</p>
+<p>一旦处于同一个本地网络，破坏Windows的更新机制就非常容易了。InternetExplorer支持Web代理自动发现机制（web proxy autodiscovery, WPAD），是一种可以让程序在本地网络自动找到HTTP代理服务器的协议。有本地网络访问权限的攻击者能够以代理的身份进行广播，从而获得受害者的HTTP(S)的流量。火焰病毒正是这样做的，而且包含一个简单的Web服务器去假装成Windows更新服务器，来广播带有恶意代码的可用“更新”。</p>
+<h2 id="火焰病毒对抗Windows终端服务"><a href="#火焰病毒对抗Windows终端服务" class="headerlink" title="火焰病毒对抗Windows终端服务"></a>火焰病毒对抗Windows终端服务</h2><p>当Microsoft开始讨论遭到火焰病毒攻击的弱点的时候，一个更深藏的问题暴露了出来。为了运营终端服务许可（terminal services licensing），每台终端服务装置在激活的时候会收到特殊的二级CA证书。然后使用这个二级CA创建最终用户许可。Microsoft在设计系统的时候出现了以下几个严重的错误。</p>
+<p>(1) 主终端服务CA证书（用来给每个单独的客户签发二级CA）与Windows更新CA一样，都是由同一个可信的根签发出来的。</p>
+<p>(2) 父终端服务CA可以用于许可，以及出于一些无法解释的原因，用于代码签名。</p>
+<p>(3) 二级CA证书没有用途限制，意味着对它们的约束限制与它们的父证书是一样的。</p>
+<p>这些意味着每一个终端服务器用户都拥有一个不受限制的二级CA，这个CA可以用来给Windows更新的二进制文件进行签名，不需要任何的黑客行为。幸运的是，这些证书只能用于对付安装Windows XP的机器。二级CA证书包含了一个独有的X.509扩展，名为Hydra，被标记为关键扩展。Windows XP的代码在进行证书校验的时候忽略了这个关键扩展，但是从Windows Vista（于2007年1月30日在全球发布）以及之后的Windows版本开始，都能够理解这个关键性的扩展并且很好地处理它。也就是说火焰病毒的作者必须找到一种没有Hydra扩展的证书。</p>
+<h2 id="火焰病毒对抗MD5"><a href="#火焰病毒对抗MD5" class="headerlink" title="火焰病毒对抗MD5"></a>火焰病毒对抗MD5</h2><p>Microsoft犯下的另外一个严重错误是在设计终端服务器许可协议的时候给证书用的是MD5签名。其他的错误（4.10.2节中讨论过的）相对来说没这么容易，并且需要对PKI的了解非常深入才能发现。但是在Microsoft设计系统的时候，MD5已经被广泛认为是不安全的。到了2008年，MD5的不安全性已经有了非常有效的证明–在对RapidSSL的攻击中生成了一张伪造的证书。从长远角度来看，Microsoft那时候根本就不应该在他们的证书程序里面允许MD5证书，但却将它们用在了终端服务许可上。</p>
+<p>如果你阅读了前面讲的RapidSSL攻击以及伪造CA证书的生成过程，也许可以猜测到后面发生的事情：火焰病毒利用针对MD5的前缀选择碰撞攻击来生成一张伪造的CA证书。这次攻击原理上与之前介绍的RapidSSL攻击是一样的。下面是我们所知道的一些事情。</p>
+<p>(1) 因为使用了不安全的MD5签名，所以可以对系统进行密码学相关的攻击。</p>
+<p>(2) 证书签发过程是自动的，而且攻击者可以控制时间。除了证书有效期和序列号之外所有字段都可以事先知晓。</p>
+<p>(3) 证书有效期只需要秒级精度，可以被预测。</p>
+<p>(4) 序列号不像RapidSSL那样逐步加一，但也可以被预测（启动之后的毫秒数加上两个固定的字节和一个序列证书号），不过需要毫秒级精度。</p>
+<p>对毫秒级别的精度要求可能让整个事情变得困难很多，因为需要一个非常好的网络连接来降低抖动。如果可以访问高性能计算集群将会加速碰撞搜索并提高准确性。我们无法得知需要尝试多少次（如果Microsoft很好地记录了许可行为，那么也许他们能够知道），不过攻击者最终显然是成功了。</p>
+<p>无论是谁设计了火焰病毒并对Microsoft实施了攻击，他们一定有自己非常厉害的硬件、一个非常厉害的开发团队以及世界级的密码学家。</p>
+
+      
+    </div>
+    
+    
+    
+    
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
+<div class="social-share share-component" style='text-align:center'>
+</div>
+<div class="reward-container">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！.</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat_qrcode.jpg" alt="懂珠宝的NetW0rker 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay_qrcode.jpg" alt="懂珠宝的NetW0rker 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>懂珠宝的NetW0rker
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://dianwoshishi.github.io/2021/06/27/%E7%81%AB%E7%84%B0%E7%97%85%E6%AF%92/" title="">http://dianwoshishi.github.io/2021/06/27/火焰病毒/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+    
+    <div class="wechat_OA">
+        <HR  SIZE=3>
+        <div style='text-align:center'>扫描下方微信公众号，我会持续为你分享 IT 技术和珠宝知识</div>
+             <!-- 这里添加你的二维码图片 -->
+        <img src ="/images/wechat_channel.jpg">
+            
+            
+    </div>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/wechat_channel.jpg">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+         
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/06/27/%E7%BD%91%E7%BB%9C%E6%AD%A6%E5%99%A8%E7%9A%84%E5%85%B4%E8%B5%B7%E5%8F%8A%E5%85%B6%E5%AF%B9%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E7%9A%84%E7%9B%B8%E5%AF%B9%E5%BD%B1%E5%93%8D/" rel="prev" title="">
+      <i class="fa fa-chevron-left"></i> 
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/06/28/%E9%92%88%E5%AF%B9%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E9%A9%B1%E5%8A%A8%E7%9A%84%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%96%B0%E6%94%BB%E5%87%BB%E6%96%B9%E6%B3%95/" rel="next" title="">
+       <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%81%AB%E7%84%B0%E7%97%85%E6%AF%92"><span class="nav-number">1.</span> <span class="nav-text">火焰病毒</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%81%AB%E7%84%B0%E7%97%85%E6%AF%92%E5%AF%B9%E6%8A%97Windows%E6%9B%B4%E6%96%B0"><span class="nav-number">1.1.</span> <span class="nav-text">火焰病毒对抗Windows更新</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%81%AB%E7%84%B0%E7%97%85%E6%AF%92%E5%AF%B9%E6%8A%97Windows%E7%BB%88%E7%AB%AF%E6%9C%8D%E5%8A%A1"><span class="nav-number">1.2.</span> <span class="nav-text">火焰病毒对抗Windows终端服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%81%AB%E7%84%B0%E7%97%85%E6%AF%92%E5%AF%B9%E6%8A%97MD5"><span class="nav-number">1.3.</span> <span class="nav-text">火焰病毒对抗MD5</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="懂珠宝的NetW0rker"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">懂珠宝的NetW0rker</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">61</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/dianwoshishi" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;dianwoshishi" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/wanglihongwm" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;wanglihongwm" rel="noopener" target="_blank"><i class="stack-overflow fa-fw"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:dianwoshishi@sina.com" title="E-Mail → mailto:dianwoshishi@sina.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/dianwoshishi" title="知乎 → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;dianwoshishi" rel="noopener" target="_blank"><i class="custom zhihu fa-fw"></i>知乎</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/2119505607" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;2119505607" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/432126410" title="B站 → https:&#x2F;&#x2F;space.bilibili.com&#x2F;432126410" rel="noopener" target="_blank"><i class="fab fa-stack-overflow fa-fw"></i>B站</a>
+      </span>
+  </div>
+
+
+
+        
+      </div>
+    
+    
+
+    <div class="wechat_OA">
+        <HR  SIZE=3>
+        <div style='text-align:center'>扫描下方微信公众号，我会持续为你分享 IT 技术和珠宝知识</div>
+             <!-- 这里添加你的二维码图片 -->
+        <img src ="/images/wechat_channel.jpg">
+            
+            
+    </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">dianwoshishi</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">150k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:16</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+<div>
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("05/28/2021 00:00:00");
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+</div>
+
+        
+<div class="busuanzi-count">
+ <script type="text/javascript" src="/js/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'f0ced082166f6e157dec',
+      clientSecret: '70d5c7a1abda67a442a2fd5ba8efc35bc5c372e7',
+      repo        : 'dianwoshishi.github.io',
+      owner       : 'dianwoshishi',
+      admin       : ['dianwoshishi'],
+      id          : '62962c56cdf22e4d6f34feacfa1c9d4b',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-corner-indicator.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dianwoshishi.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":"Trebuchet","style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="C语言回头看–诡异的i++和++i C语言中的i++和++i使用非常的方便，简单明了。但是很多人在学习C语言的过程中，对这两个语句还是存在恐惧，因为这两条语句会引起不必要的麻烦。例如：到底是先用再加，还是先加再用？ 同时在一些程序语句中也会出现一些令人意想不到的结果，例如i&#x3D;1,((++i)+(++i))&#x3D;6的情况，非常的诡异。  因此本文针对这个问题，深入到汇编层面，理解双胞胎i++和++i的故">
+<meta property="og:type" content="article">
+<meta property="og:title" content="懂珠宝的NetW0rker的个人博客">
+<meta property="og:url" content="http://dianwoshishi.github.io/2021/07/26/C%E8%AF%AD%E8%A8%80%E5%9B%9E%E5%A4%B4%E7%9C%8B--%E5%8F%8C%E8%83%9E%E8%83%8Ei++%E5%92%8C++i%E7%9A%84%E6%95%85%E4%BA%8B/index.html">
+<meta property="og:site_name" content="懂珠宝的NetW0rker的个人博客">
+<meta property="og:description" content="C语言回头看–诡异的i++和++i C语言中的i++和++i使用非常的方便，简单明了。但是很多人在学习C语言的过程中，对这两个语句还是存在恐惧，因为这两条语句会引起不必要的麻烦。例如：到底是先用再加，还是先加再用？ 同时在一些程序语句中也会出现一些令人意想不到的结果，例如i&#x3D;1,((++i)+(++i))&#x3D;6的情况，非常的诡异。  因此本文针对这个问题，深入到汇编层面，理解双胞胎i++和++i的故">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://dianwoshishi.github.io/2021/07/26/C%E8%AF%AD%E8%A8%80%E5%9B%9E%E5%A4%B4%E7%9C%8B--%E5%8F%8C%E8%83%9E%E8%83%8Ei++%E5%92%8C++i%E7%9A%84%E6%95%85%E4%BA%8B/image-20210726110945317.png">
+<meta property="og:image" content="http://dianwoshishi.github.io/2021/07/26/C%E8%AF%AD%E8%A8%80%E5%9B%9E%E5%A4%B4%E7%9C%8B--%E5%8F%8C%E8%83%9E%E8%83%8Ei++%E5%92%8C++i%E7%9A%84%E6%95%85%E4%BA%8B/image-20210726111037526.png">
+<meta property="article:published_time" content="2021-07-26T01:27:04.167Z">
+<meta property="article:modified_time" content="2021-07-26T14:54:25.672Z">
+<meta property="article:author" content="懂珠宝的NetW0rker">
+<meta property="article:tag" content="网络 安全 珠宝">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://dianwoshishi.github.io/2021/07/26/C%E8%AF%AD%E8%A8%80%E5%9B%9E%E5%A4%B4%E7%9C%8B--%E5%8F%8C%E8%83%9E%E8%83%8Ei++%E5%92%8C++i%E7%9A%84%E6%95%85%E4%BA%8B/image-20210726110945317.png">
+
+<link rel="canonical" href="http://dianwoshishi.github.io/2021/07/26/C%E8%AF%AD%E8%A8%80%E5%9B%9E%E5%A4%B4%E7%9C%8B--%E5%8F%8C%E8%83%9E%E8%83%8Ei++%E5%92%8C++i%E7%9A%84%E6%95%85%E4%BA%8B/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title> | 懂珠宝的NetW0rker的个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="懂珠宝的NetW0rker的个人博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">懂珠宝的NetW0rker的个人博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">16</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">6</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">61</span></a>
+
+  </li>
+        <li class="menu-item menu-item-幻灯片">
+
+    <a href="/slideshare/" rel="section"><i class="fa fa-fw fa-question-circle fa-fw"></i>幻灯片</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/dianwoshishi" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+  <!--知乎卡片链接-->
+<script type="text/javascript" src="/js/linkcard.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Sanarous/files@1.13/js/linkcard.js"></script>
+
+
+  
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://dianwoshishi.github.io/2021/07/26/C%E8%AF%AD%E8%A8%80%E5%9B%9E%E5%A4%B4%E7%9C%8B--%E5%8F%8C%E8%83%9E%E8%83%8Ei++%E5%92%8C++i%E7%9A%84%E6%95%85%E4%BA%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="懂珠宝的NetW0rker">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="懂珠宝的NetW0rker的个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-07-26 09:27:04 / 修改时间：22:54:25" itemprop="dateCreated datePublished" datetime="2021-07-26T09:27:04+08:00">2021-07-26</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>7 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="C语言回头看–诡异的i-和-i"><a href="#C语言回头看–诡异的i-和-i" class="headerlink" title="C语言回头看–诡异的i++和++i"></a>C语言回头看–诡异的i++和++i</h1><p>C语言中的<code>i++</code>和<code>++i</code>使用非常的方便，简单明了。但是很多人在学习C语言的过程中，对这两个语句还是存在恐惧，因为这两条语句会引起不必要的麻烦。例如：到底是先用再加，还是先加再用？ 同时在一些程序语句中也会出现一些令人意想不到的结果，例如<code>i=1,((++i)+(++i))=6</code>的情况，非常的诡异。</p>
+<p>因此本文针对这个问题，深入到汇编层面，理解双胞胎i++和++i的故事。相信通过本文，你能够更加深刻的理解C语言中的自加自减等操作。</p>
+<h2 id="例子介绍"><a href="#例子介绍" class="headerlink" title="例子介绍"></a>例子介绍</h2><h3 id="本文所用程序"><a href="#本文所用程序" class="headerlink" title="本文所用程序"></a>本文所用程序</h3><p>C语言文件如下所示，逻辑为：分别输出<code>i++</code>和<code>++i</code>的结果。</p>
+<pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">#include &lt;stdio.h&gt;
+
+int main()&#123;
+	int i &#x3D; 0;
+	printf(&quot;i &#x3D; 0,++i &#x3D; %d\n&quot;, ++i);
+	i &#x3D; 0;
+	
+	printf(&quot;i &#x3D; 0,i++ &#x3D; %d\n&quot;, i++);
+
+
+
+	i &#x3D; 1;
+	printf(&quot;i &#x3D; 1,(i++)+(++i) &#x3D; %d\n&quot;, (i++)+(++i));
+
+
+	i &#x3D; 1;
+	printf(&quot;i &#x3D; 1,(++i)+(i++) &#x3D; %d\n&quot;, (++i)+(i++));
+
+	i &#x3D; 1;
+	printf(&quot;i &#x3D; 1,(++i)+(++i) &#x3D; %d\n&quot;, (++i)+(++i));
+
+	return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>使用<code>make</code>进行构建，<code>makefile</code>如下所示</p>
+<pre class="line-numbers language-makefile" data-language="makefile"><code class="language-makefile">OBJ<span class="token operator">=</span>selfincre
+
+<span class="token symbol"><span class="token variable">$</span>(OBJ)</span><span class="token punctuation">:</span>
+	g++ -Wall main.c -o <span class="token variable">$@</span>
+
+<span class="token symbol">clean</span><span class="token punctuation">:</span>
+	-rm -rf <span class="token variable">$</span><span class="token punctuation">(</span>OBJ<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>本机所用的环境如下所示：</p>
+<pre class="line-numbers language-txt" data-language="txt"><code class="language-txt">Ubuntu 16.04 (64位，内核版本4.15.0-142-generic）
+gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.12)
+make：GNU Make 4.1，Built for x86_64-pc-linux-gnu<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>结果如下：</p>
+<p><img src="/2021/07/26/C%E8%AF%AD%E8%A8%80%E5%9B%9E%E5%A4%B4%E7%9C%8B--%E5%8F%8C%E8%83%9E%E8%83%8Ei++%E5%92%8C++i%E7%9A%84%E6%95%85%E4%BA%8B/image-20210726110945317.png" alt="image-20210726110945317"></p>
+<h2 id="汇编分析"><a href="#汇编分析" class="headerlink" title="汇编分析"></a>汇编分析</h2><p>在ubuntu中我们使用<code>objdump ~d ./selfincre &gt; objdump.txt</code>，将程序进行反汇编，我们将不重要的信息剔除，只保留<code>main</code>函数，如下所示，在部分汇编语句中进行了注释，可以结合‘餐食’。</p>
+<pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">
+.&#x2F;selfincre:     file format elf64-x86-64
+
+0000000000400526 &lt;main&gt;:
+  400526:	55                   	push   %rbp
+  400527:	48 89 e5             	mov    %rsp,%rbp
+  40052a:	48 83 ec 10          	sub    $0x10,%rsp
+  40052e:	c7 45 fc 00 00 00 00 	movl   $0x0,-0x4(%rbp) # -0x4(%rbp) 是局部变量i，本操作为赋值为0
+  400535:	83 45 fc 01          	addl   $0x1,-0x4(%rbp) # i + 1
+  400539:	8b 45 fc             	mov    -0x4(%rbp),%eax # 将i放入eax
+  40053c:	89 c6                	mov    %eax,%esi				# 将eax复制给esi，作为printf的第一个参数
+  40053e:	bf 04 06 40 00       	mov    $0x400604,%edi
+  400543:	b8 00 00 00 00       	mov    $0x0,%eax
+  400548:	e8 b3 fe ff ff       	callq  400400 &lt;printf@plt&gt;
+  40054d:	c7 45 fc 00 00 00 00 	movl   $0x0,-0x4(%rbp)	## -0x4(%rbp) 是局部变量i，本操作为赋值为0
+  400554:	8b 45 fc             	mov    -0x4(%rbp),%eax	## i赋值给eax
+  400557:	8d 50 01             	lea    0x1(%rax),%edx					## 取rax的值加一（注意：rax本身并没有+1)，并赋值给edx
+  40055a:	89 55 fc             	mov    %edx,-0x4(%rbp)				## 将edx赋值给局部变量i
+  40055d:	89 c6                	mov    %eax,%esi				## 注意这里的eax并没有进行+1操作，所以值自赋值为0后并未改变，作为printf的第一个参数
+  40055f:	bf 0e 06 40 00       	mov    $0x40060e,%edi
+  400564:	b8 00 00 00 00       	mov    $0x0,%eax
+  400569:	e8 92 fe ff ff       	callq  400400 &lt;printf@plt&gt;
+  40056e:	b8 00 00 00 00       	mov    $0x0,%eax
+  400573:	c9                   	leaveq 
+  400574:	c3                   	retq   
+  400575:	66 2e 0f 1f 84 00 00 	nopw   %cs:0x0(%rax,%rax,1)
+  40057c:	00 00 00 
+  40057f:	90                   	nop<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="分析-i"><a href="#分析-i" class="headerlink" title="分析++i"></a>分析++i</h3><p>主要分析一下C代码</p>
+<pre class="line-numbers language-C" data-language="C"><code class="language-C">++i;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>汇编如下所示：</p>
+<pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">40052e:	c7 45 fc 00 00 00 00 	movl   $0x0,-0x4(%rbp) # -0x4(%rbp) 是局部变量i，本操作为赋值为0
+ 400535:	83 45 fc 01          	addl   $0x1,-0x4(%rbp) # i + 1
+ 400539:	8b 45 fc             	mov    -0x4(%rbp),%eax # 将i放入eax
+ 40053c:	89 c6                	mov    %eax,%esi				# 将eax复制给esi，作为printf的第一个参数
+ 40053e:	bf 04 06 40 00       	mov    $0x400604,%edi
+ 400543:	b8 00 00 00 00       	mov    $0x0,%eax
+ 400548:	e8 b3 fe ff ff       	callq  400400 &lt;printf@plt&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>++i正如字面的意思一样，先加后用！</strong></p>
+<p>其加一汇编操作，均在<code>-0x4(%rbp)</code>进行，加一操作为<code>addl   $0x1,-0x4(%rbp)</code>，<strong>因此++i直接造成的结果就是i的改变。</strong></p>
+<h3 id="分析i"><a href="#分析i" class="headerlink" title="分析i++"></a>分析i++</h3><p>C代码如下</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">i<span class="token operator">++</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>汇编如下所示：</p>
+<pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">40054d:	c7 45 fc 00 00 00 00 	movl   $0x0,-0x4(%rbp)	## -0x4(%rbp) 是局部变量i，本操作为赋值为0
+400554:	8b 45 fc             	mov    -0x4(%rbp),%eax	## i赋值给eax
+400557:	8d 50 01             	lea    0x1(%rax),%edx					## 取rax的值加一（注意：rax本身并没有+1)，并赋值给edx
+40055a:	89 55 fc             	mov    %edx,-0x4(%rbp)				## 将edx赋值给局部变量i
+40055d:	89 c6                	mov    %eax,%esi				## 注意这里的eax并没有进行+1操作，所以值自赋值为0后并未改变，作为printf的第一个参数
+40055f:	bf 0e 06 40 00       	mov    $0x40060e,%edi
+400564:	b8 00 00 00 00       	mov    $0x0,%eax
+400569:	e8 92 fe ff ff       	callq  400400 &lt;printf@plt&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>i++正如字面的意思一样，先用后加！</strong></p>
+<p>其加一汇编操作，在寄存器<code>eax</code>的值的基础上进行，加一操作为<code>lea    0x1(%rax),%edx；mov    %edx,-0x4(%rbp)</code>。</p>
+<p>我们可以如下理解i++， 拆分为两句：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">i<span class="token operator">++</span> 	<span class="token operator">--</span><span class="token operator">></span> 	i<span class="token punctuation">;</span>i <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><code>i++</code>相当于：先使用<code>i</code>，在对<code>i</code>进行加一操作。</p>
+<ul>
+<li><p>先使用i：操作为将i的值存储在eax以便在后面使用，<code>eax</code>代表了<code>i++</code>这条语句的结果</p>
+</li>
+<li><p>对i进行加一操作：<code>lea    0x1(%rax),%edx；mov    %edx,-0x4(%rbp)</code>，加一操作并不影响eax寄存器。 </p>
+</li>
+</ul>
+<p>因此<code>i++</code>的结果是<code>i</code>，使用的方法是<code>eax寄存器</code>。只不过在使用完<code>i</code>，会有一个加一的操作而已。</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p><strong>++i，先加后用！</strong></p>
+<p><strong>i++，先用后加！</strong></p>
+<p>出现<code>i++</code>，<code>++i</code>这样语句的目的可能在于减少语句操作吧。通过上述字面理解，其实是最快的。</p>
+<h2 id="i-i-6？？？"><a href="#i-i-6？？？" class="headerlink" title="(i++)+(++i)=6？？？"></a>(i++)+(++i)=6？？？</h2><h3 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h3><p>使用如下代码进行分析</p>
+<pre class="line-numbers language-C" data-language="C"><code class="language-C">i &#x3D; 1;
+printf(&quot;i &#x3D; 1,(i++)+(++i) &#x3D; %d\n&quot;, (i++)+(++i));
+
+
+i &#x3D; 1;
+printf(&quot;i &#x3D; 1,(++i)+(++i) &#x3D; %d\n&quot;, (++i)+(++i));<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="分析-i-i"><a href="#分析-i-i" class="headerlink" title="分析(i++)+(++i)"></a>分析(i++)+(++i)</h3><p>首先我们先进行一个简单一些的分析，<code>i = 1;(i++)+(++i)</code> 的结果是多少呢？</p>
+<pre class="line-numbers language-asm" data-language="asm"><code class="language-asm"># (i++)+(++i)
+# i &#x3D; 1
+40056e:	c7 45 fc 01 00 00 00 	movl   $0x1,-0x4(%rbp)		## -0x4(%rbp) 就是局部变量i，本操作为赋值为1,i &#x3D; 1
+# i++
+400575:	8b 45 fc             	mov    -0x4(%rbp),%eax		## eax &#x3D; i &#x3D; 1
+400578:	8d 50 01             	lea    0x1(%rax),%edx			## 取rax的值加一，赋值给edx
+40057b:	89 55 fc             	mov    %edx,-0x4(%rbp)		## i &#x3D; edx, 此时i &#x3D; 2
+# ++i
+40057e:	83 45 fc 01          	addl   $0x1,-0x4(%rbp)		## i+ 1 &#x3D; i,此时i &#x3D; 3
+# $1 + $2
+400582:	8b 55 fc             	mov    -0x4(%rbp),%edx		## i的值赋给edx，也就是3
+400585:	01 d0                	add    %edx,%eax					## 执行eax + edx &#x3D; eax 也就是1 + 3 &#x3D; 4
+400587:	89 c6                	mov    %eax,%esi					## eax赋给esi，作为printf的第一个参数，也就是4
+400589:	bf 74 06 40 00       	mov    $0x400674,%edi
+40058e:	b8 00 00 00 00       	mov    $0x0,%eax
+400593:	e8 68 fe ff ff       	callq  400400 &lt;printf@plt&gt;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>通过第二节的分析，我们知道，其实<code>(i++)+(++i) </code>的可以看做<code>(i_1 + (++i_2))</code>（<code>i_1</code>是因为此时<code>i_1</code>的值是eax的值，<code>i_1</code> 不等同于<code>i_2</code>，并不随<code>i</code>的值变化）， <del>再由C语言中表达式的计算是由右到左，所以会先计算<code>++i</code>，然后是</del>再相加。那么结果应该是1 + 2 = 3。</p>
+<p>但是，实际结果却是4.为什么呢？</p>
+<p>原因就是在进行<code>++i</code>的时候，虽然后续用的是<code>eax</code>的值，但是这句话（第5行）随后进行的操作改变了<code>-0x4(%rbp)</code>的值（第6、7行）。其本意是<code>-0x4(%rbp)+1</code>，但是此时<code>-0x4(%rbp)</code>的值已经被<code>i++</code>修改过了，为2，所以<code>++i</code>的结果就成为了3。最终两式一加，结果为4.</p>
+<h3 id="分析-i-i-1"><a href="#分析-i-i-1" class="headerlink" title="分析(++i)+(++i)"></a>分析(++i)+(++i)</h3><p>下面我们分析<code>(++i)+(++i) = 6？</code></p>
+<p>汇编代码如下所示：</p>
+<pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">
+# (++i)+(++i)
+# i &#x3D; 1
+400598:	c7 45 fc 01 00 00 00 	movl   $0x1,-0x4(%rbp)		# -0x4(%rbp) &#x3D; i &#x3D; 1
+#(++i)
+40059f:	83 45 fc 01          	addl   $0x1,-0x4(%rbp)		# -0x4(%rbp) &#x3D; i &#x3D; 2
+#(++i)
+4005a3:	83 45 fc 01          	addl   $0x1,-0x4(%rbp)		# -0x4(%rbp) &#x3D; i &#x3D; 3
+# $1 + $2
+4005a7:	8b 45 fc             	mov    -0x4(%rbp),%eax		# -0x4(%rbp)赋值给eax， eax &#x3D; 3
+4005aa:	01 c0                	add    %eax,%eax					# eax + eax &#x3D; 6
+4005ac:	89 c6                	mov    %eax,%esi
+4005ae:	bf 8c 06 40 00       	mov    $0x40068c,%edi
+4005b3:	b8 00 00 00 00       	mov    $0x0,%eax
+4005b8:	e8 43 fe ff ff       	callq  400400 &lt;printf@plt&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>经过上一小节的分析，其实这里已经非常简单了，因为两次<code>++i</code>不断的改变<code>-0x4(%rbp)</code>的值，使得<code>-0x4(%rbp)</code>在使用时变成了3，最终两式相加为6.</p>
+<h3 id="练手题目"><a href="#练手题目" class="headerlink" title="练手题目"></a>练手题目</h3><pre class="line-numbers language-txt" data-language="txt"><code class="language-txt">i &#x3D; 1;
+printf(&quot;i &#x3D; 1,(++i)+(i++) &#x3D; %d\n&quot;, (++i)+(i++));<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+
+
+<pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">400598:	c7 45 fc 01 00 00 00 	movl   $0x1,-0x4(%rbp)
+40059f:	83 45 fc 01          	addl   $0x1,-0x4(%rbp)
+4005a3:	8b 45 fc             	mov    -0x4(%rbp),%eax
+4005a6:	8d 50 01             	lea    0x1(%rax),%edx
+4005a9:	89 55 fc             	mov    %edx,-0x4(%rbp)
+4005ac:	8b 55 fc             	mov    -0x4(%rbp),%edx
+4005af:	01 d0                	add    %edx,%eax
+4005b1:	89 c6                	mov    %eax,%esi
+4005b3:	bf ac 06 40 00       	mov    $0x4006ac,%edi
+4005b8:	b8 00 00 00 00       	mov    $0x0,%eax
+4005bd:	e8 3e fe ff ff       	callq  400400 &lt;printf@plt&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>他的结果是5，通过上述分析，你算对了吗？</p>
+<p>关键提示：</p>
+<ul>
+<li><del>C语言中运行由右至左，所以先算<code>i++</code>，再算<code>++i</code></del></li>
+<li><code>i++</code>和<code>++i</code>的运算过程改变了<code>-0x4(%rbp)</code>的值，所以出现了非预期的结果。</li>
+</ul>
+<h2 id="未定义行为"><a href="#未定义行为" class="headerlink" title="未定义行为"></a>未定义行为</h2><p>虽然这有点复杂，感觉确定性非常的不高。但是不用担心，在C语言的编译过程中，会警告我们，这样的语句中i没有定义。如果你发现这样的问题后，就需要注意了。</p>
+<p><img src="/2021/07/26/C%E8%AF%AD%E8%A8%80%E5%9B%9E%E5%A4%B4%E7%9C%8B--%E5%8F%8C%E8%83%9E%E8%83%8Ei++%E5%92%8C++i%E7%9A%84%E6%95%85%E4%BA%8B/image-20210726111037526.png" alt="image-20210726111037526"></p>
+<p>下面文章中对这个问题进行了解释，不再赘述。</p>
+<blockquote>
+<p>i＝1，为什么 (++i)+(++i)＝6？ - CWKSC的回答 - 知乎 <a target="_blank" rel="noopener" href="https://www.zhihu.com/question/347864795/answer/836263029">https://www.zhihu.com/question/347864795/answer/836263029</a></p>
+</blockquote>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>从汇编角度理解++i和i++，可以更好的得出一些奇奇怪怪的语句的结果，让我们更好的理解C语言，理解编译器。</li>
+<li>一定不建议写这样的语句！一定不建议写这样的语句！一定不建议写这样的语句！请用<code>i += 1</code>这样代替。多写一个字符而已。如果一定要写i++或++i，请将其单独为一个语句，不要进行组合！不要进行组合！不要进行组合！这样，你好我好大家好，不然当某一天你维护的代码出现灵异事件时，就只有祷告了。</li>
+</ul>
+<p>====</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token keyword">int</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	<span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+	<span class="token keyword">return</span> i<span class="token operator">++</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">int</span> <span class="token function">g</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	<span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+	<span class="token keyword">return</span> i<span class="token operator">++</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+
+	<span class="token keyword">int</span> ret <span class="token operator">=</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token function">g</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	
+
+	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span> ret<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token function">g</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> b <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">,</span> c <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">,</span> d <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span>
+	d <span class="token operator">=</span> a <span class="token operator">*</span> b <span class="token operator">+</span> c <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span>
+	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span> d<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">
+0000000000400526 &lt;_Z1fv&gt;:
+  400526:	55                   	push   %rbp
+  400527:	48 89 e5             	mov    %rsp,%rbp
+  40052a:	c7 45 fc 01 00 00 00 	movl   $0x1,-0x4(%rbp)
+  400531:	8b 45 fc             	mov    -0x4(%rbp),%eax
+  400534:	8d 50 01             	lea    0x1(%rax),%edx
+  400537:	89 55 fc             	mov    %edx,-0x4(%rbp)
+  40053a:	5d                   	pop    %rbp
+  40053b:	c3                   	retq   
+
+000000000040053c &lt;_Z1gv&gt;:
+  40053c:	55                   	push   %rbp
+  40053d:	48 89 e5             	mov    %rsp,%rbp
+  400540:	c7 45 fc 01 00 00 00 	movl   $0x1,-0x4(%rbp)
+  400547:	8b 45 fc             	mov    -0x4(%rbp),%eax
+  40054a:	8d 50 01             	lea    0x1(%rax),%edx
+  40054d:	89 55 fc             	mov    %edx,-0x4(%rbp)
+  400550:	5d                   	pop    %rbp
+  400551:	c3                   	retq   
+
+0000000000400552 &lt;main&gt;:
+  400552:	55                   	push   %rbp
+  400553:	48 89 e5             	mov    %rsp,%rbp
+  400556:	53                   	push   %rbx
+  400557:	48 83 ec 28          	sub    $0x28,%rsp
+  40055b:	e8 c6 ff ff ff       	callq  400526 &lt;_Z1fv&gt;		#f()
+  400560:	89 c3                	mov    %eax,%ebx
+  400562:	e8 d5 ff ff ff       	callq  40053c &lt;_Z1gv&gt;		#g()
+  400567:	01 d8                	add    %ebx,%eax
+  400569:	89 45 dc             	mov    %eax,-0x24(%rbp)
+  40056c:	8b 45 dc             	mov    -0x24(%rbp),%eax
+  40056f:	89 c6                	mov    %eax,%esi
+  400571:	bf 74 06 40 00       	mov    $0x400674,%edi
+  400576:	b8 00 00 00 00       	mov    $0x0,%eax
+  40057b:	e8 80 fe ff ff       	callq  400400 &lt;printf@plt&gt;
+  400580:	e8 a1 ff ff ff       	callq  400526 &lt;_Z1fv&gt;		#f()
+  400585:	89 c3                	mov    %eax,%ebx
+  400587:	e8 b0 ff ff ff       	callq  40053c &lt;_Z1gv&gt;		#g()
+  40058c:	01 d8                	add    %ebx,%eax
+  40058e:	89 c6                	mov    %eax,%esi
+  400590:	bf 74 06 40 00       	mov    $0x400674,%edi
+  400595:	b8 00 00 00 00       	mov    $0x0,%eax
+  40059a:	e8 61 fe ff ff       	callq  400400 &lt;printf@plt&gt;
+  40059f:	c7 45 e0 01 00 00 00 	movl   $0x1,-0x20(%rbp) #a
+  4005a6:	c7 45 e4 02 00 00 00 	movl   $0x2,-0x1c(%rbp)	#b
+  4005ad:	c7 45 e8 03 00 00 00 	movl   $0x3,-0x18(%rbp)	#c
+  4005b4:	c7 45 ec 04 00 00 00 	movl   $0x4,-0x14(%rbp) #d
+  4005bb:	8b 45 e0             	mov    -0x20(%rbp),%eax
+  4005be:	0f af 45 e4          	imul   -0x1c(%rbp),%eax # a * b
+  4005c2:	8b 55 e8             	mov    -0x18(%rbp),%edx 
+  4005c5:	01 d2                	add    %edx,%edx				# c + c &#x3D; c*2
+  4005c7:	01 d0                	add    %edx,%eax				# 相加
+  4005c9:	89 45 ec             	mov    %eax,-0x14(%rbp)
+  4005cc:	8b 45 ec             	mov    -0x14(%rbp),%eax
+  4005cf:	89 c6                	mov    %eax,%esi
+  4005d1:	bf 74 06 40 00       	mov    $0x400674,%edi
+  4005d6:	b8 00 00 00 00       	mov    $0x0,%eax
+  4005db:	e8 20 fe ff ff       	callq  400400 &lt;printf@plt&gt;
+  4005e0:	b8 00 00 00 00       	mov    $0x0,%eax
+  4005e5:	48 83 c4 28          	add    $0x28,%rsp
+  4005e9:	5b                   	pop    %rbx
+  4005ea:	5d                   	pop    %rbp
+  4005eb:	c3                   	retq   
+  4005ec:	0f 1f 40 00          	nopl   0x0(%rax)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>从汇编代码可以看出，实际上<code>f()+g()</code> 和<code>a * b + c *2</code>的顺序均为从左向右。</p>
+<p>实际上，之前自己记忆中一直是以下这句：</p>
+<ul>
+<li><strong>复合赋值运算的优先级符合C语言运算符的优先级表，结合方向为从右到左。</strong> C语言中可以进行连续赋值,如a=b=c=1,“=”运算符是从右至左结合</li>
+<li> <strong>函数参数：</strong>主要是函数参数入栈的方式造成有，入栈从右向左，运算也就从右向左。 i=1; printf(“%d%d”,i,i++);//输出2 1</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+    
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
+<div class="social-share share-component" style='text-align:center'>
+</div>
+<div class="reward-container">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！.</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat_qrcode.jpg" alt="懂珠宝的NetW0rker 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay_qrcode.jpg" alt="懂珠宝的NetW0rker 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>懂珠宝的NetW0rker
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://dianwoshishi.github.io/2021/07/26/C%E8%AF%AD%E8%A8%80%E5%9B%9E%E5%A4%B4%E7%9C%8B--%E5%8F%8C%E8%83%9E%E8%83%8Ei++%E5%92%8C++i%E7%9A%84%E6%95%85%E4%BA%8B/" title="">http://dianwoshishi.github.io/2021/07/26/C语言回头看--双胞胎i++和++i的故事/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+    
+    <div class="wechat_OA">
+        <HR  SIZE=3>
+        <div style='text-align:center'>扫描下方微信公众号，我会持续为你分享 IT 技术和珠宝知识</div>
+             <!-- 这里添加你的二维码图片 -->
+        <img src ="/images/wechat_channel.jpg">
+            
+            
+    </div>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/wechat_channel.jpg">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+         
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/07/24/Linux%E4%B8%8B%E6%89%8B%E6%92%95c++-%E5%80%BC%E4%BC%A0%E9%80%92%E5%92%8C%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92/" rel="prev" title="">
+      <i class="fa fa-chevron-left"></i> 
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/08/23/MQTT%E5%8D%8F%E8%AE%AE/" rel="next" title="">
+       <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#C%E8%AF%AD%E8%A8%80%E5%9B%9E%E5%A4%B4%E7%9C%8B%E2%80%93%E8%AF%A1%E5%BC%82%E7%9A%84i-%E5%92%8C-i"><span class="nav-number">1.</span> <span class="nav-text">C语言回头看–诡异的i++和++i</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E5%AD%90%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.1.</span> <span class="nav-text">例子介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E6%96%87%E6%89%80%E7%94%A8%E7%A8%8B%E5%BA%8F"><span class="nav-number">1.1.1.</span> <span class="nav-text">本文所用程序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B1%87%E7%BC%96%E5%88%86%E6%9E%90"><span class="nav-number">1.2.</span> <span class="nav-text">汇编分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%9E%90-i"><span class="nav-number">1.2.1.</span> <span class="nav-text">分析++i</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%9E%90i"><span class="nav-number">1.2.2.</span> <span class="nav-text">分析i++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-number">1.2.3.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#i-i-6%EF%BC%9F%EF%BC%9F%EF%BC%9F"><span class="nav-number">1.3.</span> <span class="nav-text">(i++)+(++i)&#x3D;6？？？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81"><span class="nav-number">1.3.1.</span> <span class="nav-text">示例代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%9E%90-i-i"><span class="nav-number">1.3.2.</span> <span class="nav-text">分析(i++)+(++i)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%9E%90-i-i-1"><span class="nav-number">1.3.3.</span> <span class="nav-text">分析(++i)+(++i)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%83%E6%89%8B%E9%A2%98%E7%9B%AE"><span class="nav-number">1.3.4.</span> <span class="nav-text">练手题目</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AA%E5%AE%9A%E4%B9%89%E8%A1%8C%E4%B8%BA"><span class="nav-number">1.4.</span> <span class="nav-text">未定义行为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.5.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="懂珠宝的NetW0rker"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">懂珠宝的NetW0rker</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">61</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/dianwoshishi" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;dianwoshishi" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/wanglihongwm" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;wanglihongwm" rel="noopener" target="_blank"><i class="stack-overflow fa-fw"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:dianwoshishi@sina.com" title="E-Mail → mailto:dianwoshishi@sina.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/dianwoshishi" title="知乎 → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;dianwoshishi" rel="noopener" target="_blank"><i class="custom zhihu fa-fw"></i>知乎</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/2119505607" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;2119505607" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/432126410" title="B站 → https:&#x2F;&#x2F;space.bilibili.com&#x2F;432126410" rel="noopener" target="_blank"><i class="fab fa-stack-overflow fa-fw"></i>B站</a>
+      </span>
+  </div>
+
+
+
+        
+      </div>
+    
+    
+
+    <div class="wechat_OA">
+        <HR  SIZE=3>
+        <div style='text-align:center'>扫描下方微信公众号，我会持续为你分享 IT 技术和珠宝知识</div>
+             <!-- 这里添加你的二维码图片 -->
+        <img src ="/images/wechat_channel.jpg">
+            
+            
+    </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">dianwoshishi</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">150k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:16</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+<div>
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("05/28/2021 00:00:00");
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+</div>
+
+        
+<div class="busuanzi-count">
+ <script type="text/javascript" src="/js/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'f0ced082166f6e157dec',
+      clientSecret: '70d5c7a1abda67a442a2fd5ba8efc35bc5c372e7',
+      repo        : 'dianwoshishi.github.io',
+      owner       : 'dianwoshishi',
+      admin       : ['dianwoshishi'],
+      id          : '4a62bdbf4bf49cf8876498250e95d99f',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

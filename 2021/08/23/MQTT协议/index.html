@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-corner-indicator.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dianwoshishi.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":"Trebuchet","style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="MQTT 大家好，我是明说网络的小明同学。今天我们来聊一聊物联网通协议MQTT。  什么是MQ 消息队列最原始的模型：生产者先将消息投递一个叫做「队列」的容器中，然后再从这个容器中取出消息，最后再转发给消费者    消息队列有什么优势呢？ MQ 解决的最核心的问题：系统解耦和异步：    参考：https:&#x2F;&#x2F;www.zhihu.com&#x2F;question&#x2F;54152397  从MQ的角度去理解MQ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="懂珠宝的NetW0rker的个人博客">
+<meta property="og:url" content="http://dianwoshishi.github.io/2021/08/23/MQTT%E5%8D%8F%E8%AE%AE/index.html">
+<meta property="og:site_name" content="懂珠宝的NetW0rker的个人博客">
+<meta property="og:description" content="MQTT 大家好，我是明说网络的小明同学。今天我们来聊一聊物联网通协议MQTT。  什么是MQ 消息队列最原始的模型：生产者先将消息投递一个叫做「队列」的容器中，然后再从这个容器中取出消息，最后再转发给消费者    消息队列有什么优势呢？ MQ 解决的最核心的问题：系统解耦和异步：    参考：https:&#x2F;&#x2F;www.zhihu.com&#x2F;question&#x2F;54152397  从MQ的角度去理解MQ">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-c38c2609bee9a1f9a638a38ef503d604_720w.jpg?source=1940ef5c">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-b0b81fcf533970cd71d23a85ec266e5b_720w.jpg?source=1940ef5c">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1355489/201808/1355489-20180823155237825-1191723728.png">
+<meta property="og:image" content="https://pic3.zhimg.com/v2-55ba5fc5be6df6ec686e9d149e24fc6b_1440w.jpg?source=172ae18b">
+<meta property="og:image" content="http://dianwoshishi.github.io/2021/08/23/MQTT%E5%8D%8F%E8%AE%AE/image-20210721090551290.png">
+<meta property="og:image" content="http://dianwoshishi.github.io/2021/08/23/MQTT%E5%8D%8F%E8%AE%AE/image-20210721090656372.png">
+<meta property="og:image" content="https://pic1.zhimg.com/v2-1c26fc1a94a6fe3da6982d7e699c5ce8_r.jpg">
+<meta property="og:image" content="http://dianwoshishi.github.io/2021/08/23/MQTT%E5%8D%8F%E8%AE%AE/mqtt-fidge-2.svg">
+<meta property="article:published_time" content="2021-08-23T08:16:07.000Z">
+<meta property="article:modified_time" content="2021-08-23T08:16:07.000Z">
+<meta property="article:author" content="懂珠宝的NetW0rker">
+<meta property="article:tag" content="网络 安全 珠宝">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic2.zhimg.com/80/v2-c38c2609bee9a1f9a638a38ef503d604_720w.jpg?source=1940ef5c">
+
+<link rel="canonical" href="http://dianwoshishi.github.io/2021/08/23/MQTT%E5%8D%8F%E8%AE%AE/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title> | 懂珠宝的NetW0rker的个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="懂珠宝的NetW0rker的个人博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">懂珠宝的NetW0rker的个人博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">16</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">6</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">61</span></a>
+
+  </li>
+        <li class="menu-item menu-item-幻灯片">
+
+    <a href="/slideshare/" rel="section"><i class="fa fa-fw fa-question-circle fa-fw"></i>幻灯片</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/dianwoshishi" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+  <!--知乎卡片链接-->
+<script type="text/javascript" src="/js/linkcard.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Sanarous/files@1.13/js/linkcard.js"></script>
+
+
+  
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://dianwoshishi.github.io/2021/08/23/MQTT%E5%8D%8F%E8%AE%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="懂珠宝的NetW0rker">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="懂珠宝的NetW0rker的个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-08-23 16:16:07" itemprop="dateCreated datePublished" datetime="2021-08-23T16:16:07+08:00">2021-08-23</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="MQTT"><a href="#MQTT" class="headerlink" title="MQTT"></a>MQTT</h1><p>大家好，我是明说网络的小明同学。今天我们来聊一聊物联网通协议MQTT。</p>
+<h2 id="什么是MQ"><a href="#什么是MQ" class="headerlink" title="什么是MQ"></a>什么是MQ</h2><p>消息队列最原始的模型：生产者先将消息投递一个叫做「队列」的容器中，然后再从这个容器中取出消息，最后再转发给消费者</p>
+<p><img src="https://pic2.zhimg.com/80/v2-c38c2609bee9a1f9a638a38ef503d604_720w.jpg?source=1940ef5c" alt="img"></p>
+<h3 id="消息队列有什么优势呢？"><a href="#消息队列有什么优势呢？" class="headerlink" title="消息队列有什么优势呢？"></a>消息队列有什么优势呢？</h3><p>MQ 解决的最核心的问题：系统解耦和异步：</p>
+<p><img src="https://pic3.zhimg.com/80/v2-b0b81fcf533970cd71d23a85ec266e5b_720w.jpg?source=1940ef5c" alt="img"></p>
+<blockquote>
+<p>参考：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/54152397">https://www.zhihu.com/question/54152397</a></p>
+</blockquote>
+<h3 id="从MQ的角度去理解MQTT"><a href="#从MQ的角度去理解MQTT" class="headerlink" title="从MQ的角度去理解MQTT"></a>从MQ的角度去理解MQTT</h3><p><strong>而MQTT是专门针对物联网设计的消息队列</strong>！实际上使用的是MQ其中的<strong>发布/订阅模式</strong></p>
+<p><img src="https://images2018.cnblogs.com/blog/1355489/201808/1355489-20180823155237825-1191723728.png" alt="img"></p>
+<h2 id="MQTT简介"><a href="#MQTT简介" class="headerlink" title="MQTT简介"></a>MQTT简介</h2><p>随着 5G 时代的来临，万物互联的伟大构想正在成为现实。海量的设备接入和设备管理对网络带宽、通信协议以及平台服务架构都带来了很大挑战。尤其对于物联网设备来说，电量消耗，资源控制等都尤为重要。在此背景下MQTT应运而生。</p>
+<p><img src="https://pic3.zhimg.com/v2-55ba5fc5be6df6ec686e9d149e24fc6b_1440w.jpg?source=172ae18b" alt="物联网MQTT协议简易入门教程"></p>
+<p>MQTT（Message Queuing Telemetry Transport，消息队列遥测传输协议），是一种基于发布/订阅（publish/subscribe）模式的”轻量级”通讯协议，该协议构建于TCP/IP协议上，由IBM在1999年发布（由 IBM 的 Andy Stanford-Clark 和 Arcom 的 Arlen Nipper 为了一个通过卫星网络连接输油管道的项目开发，之后 IBM 一直将 MQTT 作为一个内部协议在其产品中使用，直到 2010 年，IBM 公开发布了 MQTT 3.1 版本。在 2014 年，MQTT 协议正式成为了 OASIS（结构化信息标准促进组织）的标准协议，<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/79455828">来源</a>）。MQTT最大优点在于，可以以极少的代码和有限的带宽，为连接远程设备提供实时可靠的消息服务。作为一种低开销、低带宽占用的即时通讯协议，使其在物联网、小型设备、移动应用等方面有较广泛的应用。MQTT 3 （当前版本3.1.1）是目前使用的最为广泛的 MQTT 协议标准。</p>
+<h3 id="为什么选择MQTT"><a href="#为什么选择MQTT" class="headerlink" title="为什么选择MQTT"></a>为什么选择MQTT</h3><p>它的设计思想是轻巧、开放、简单、规范，易于实现。这些特点使得它对很多场景来说都是很好的选择，特别是对于受限的环境如机器与机器的通信（M2M）以及物联网环境（IoT）。</p>
+<p><img src="/2021/08/23/MQTT%E5%8D%8F%E8%AE%AE/image-20210721090551290.png" alt="image-20210721090551290"></p>
+<h3 id="MQTT的应用场景"><a href="#MQTT的应用场景" class="headerlink" title="MQTT的应用场景"></a>MQTT的应用场景</h3><p>MQTT 协议广泛应用于物联网、移动互联网、智能硬件、车联网、电力、能源等领域。</p>
+<p><img src="/2021/08/23/MQTT%E5%8D%8F%E8%AE%AE/image-20210721090656372.png" alt="image-20210721090656372"></p>
+<h3 id="相关参考资料"><a href="#相关参考资料" class="headerlink" title="相关参考资料"></a>相关参考资料</h3><p><a target="_blank" rel="noopener" href="https://www.emqx.cn/mqtt">https://www.emqx.cn/mqtt</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/mqtt-intro.html">https://www.runoob.com/w3cnote/mqtt-intro.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/ecde412d2eeb">https://www.jianshu.com/p/ecde412d2eeb</a></p>
+<p>MQTT协议中文版，<a target="_blank" rel="noopener" href="https://mcxiaoke.gitbooks.io/mqtt-cn/content/">https://mcxiaoke.gitbooks.io/mqtt-cn/content/</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/158145940">https://zhuanlan.zhihu.com/p/158145940</a></p>
+<h2 id="MQTT通信模型"><a href="#MQTT通信模型" class="headerlink" title="MQTT通信模型"></a>MQTT通信模型</h2><p>有别于传统的客户端/服务器通讯协议，MQTT协议并不是端到端的，消息传递通过代理，包括会话（session）也不是建立在发布者和订阅者之间，而是建立在端和代理之间。代理解除了发布者和订阅者之间的耦合。这对理解MQTT很重要</p>
+<p>通过下面两个图理解MQTT</p>
+<p><img src="https://pic1.zhimg.com/v2-1c26fc1a94a6fe3da6982d7e699c5ce8_r.jpg" alt="preview"></p>
+<p><img src="/2021/08/23/MQTT%E5%8D%8F%E8%AE%AE/mqtt-fidge-2.svg" alt="img"></p>
+<h3 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h3><p>在MQTT中，有三个主要的角色：</p>
+<ul>
+<li>发布者（Publish）：类似于报纸发布者</li>
+<li>代理（Broker）（服务器）：MQTT服务器以称为”消息代理”（Broker），可以是一个应用程序或一台设备。它是位于消息发布者和订阅者之间。类似于以前的报刊亭，会有很多人向报亭发布报纸，报停会更具不同的订阅分发报纸。</li>
+<li>订阅者（Subscribe）：类似于报纸订阅者。</li>
+</ul>
+<p>需要注意的是，这里的发布者和订阅者并不是绝对的。发布者可以变成订阅者，订阅者也可以变成发布者，甚至是同一台设备既可以是发布者也可以是订阅者，甚至是broker。这是与现实中报亭的例子有些区别的地方，人们可以订报纸，同时还能发报纸，甚至是自己给自己卖报纸！</p>
+<h3 id="消息"><a href="#消息" class="headerlink" title="消息"></a>消息</h3><p>这三个角色之间通过消息进行通信：MQTT传输的消息分为：主题（Topic）和负载（payload）两部分：</p>
+<ul>
+<li><p>（1）Topic，可以理解为消息的类型，订阅者订阅（Subscribe）后，就会收到该主题的消息内容（payload）</p>
+<ul>
+<li>连接到一个应用程序消息的标签，该标签与服务器的订阅相匹配。服务器会将消息发送给订阅所匹配标签的每个客户端。一个主题可以有多个级别，级别之间用斜杠字符分隔。例如，<code>/world</code> 和 <code>emq/emqtt/emqx</code> 是有效的主题。订阅者的Topic name支持通配符<code>#</code>和<code>+</code> ：<ul>
+<li># 支持一个主题内任意级别话题</li>
+<li>+只匹配一个主题级别的通配符</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>（2）payload，可以理解为消息的内容，是指订阅者具体要使用的内容。</p>
+<ul>
+<li><p>Payload`消息体</p>
+<p>`CONNECT、SUBSCRIBE、SUBACK、UNSUBSCRIBE四种类型的消息 有消息体：</p>
+<ul>
+<li><code>CONNECT</code>，消息体内容主要是：客户端的ClientID、订阅的Topic、Message以及用户名和密码</li>
+<li><code>SUBSCRIBE</code>，消息体内容是一系列的要订阅的主题以及<code>QoS</code>。</li>
+<li><code>SUBACK</code>，消息体内容是服务器对于<code>SUBSCRIBE</code>所申请的主题及<code>QoS</code>进行确认和回复。</li>
+<li><code>UNSUBSCRIBE</code>，消息体内容是要订阅的主题。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="mosquitto使用"><a href="#mosquitto使用" class="headerlink" title="mosquitto使用"></a>mosquitto使用</h2><p>Mosquitto是一个实现了MQTT3.1协议的代理服务器，由MQTT协议创始人之一的Andy Stanford-Clark开发</p>
+<p>学习网址：</p>
+<p>libmosquitto编程：<a target="_blank" rel="noopener" href="https://blog.csdn.net/dancer__sky/article/details/77855249">https://blog.csdn.net/dancer__sky/article/details/77855249</a></p>
+<p> <a target="_blank" rel="noopener" href="https://www.cnblogs.com/chen1-kerr/p/7258487.html">MQTT的学习之Mosquitto安装&amp;使用</a></p>
+<p>MQTT服务端软件使用：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/56727359">https://zhuanlan.zhihu.com/p/56727359</a></p>
+<h2 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h2><p>MQTT安全篇：为何以及如何运用MQTT提供的安全特性来保证物联网项目的顺利实施 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/21421094">https://zhuanlan.zhihu.com/p/21421094</a></p>
+
+      
+    </div>
+    
+    
+    
+    
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
+<div class="social-share share-component" style='text-align:center'>
+</div>
+<div class="reward-container">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！.</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat_qrcode.jpg" alt="懂珠宝的NetW0rker 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay_qrcode.jpg" alt="懂珠宝的NetW0rker 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>懂珠宝的NetW0rker
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://dianwoshishi.github.io/2021/08/23/MQTT%E5%8D%8F%E8%AE%AE/" title="">http://dianwoshishi.github.io/2021/08/23/MQTT协议/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+    
+    <div class="wechat_OA">
+        <HR  SIZE=3>
+        <div style='text-align:center'>扫描下方微信公众号，我会持续为你分享 IT 技术和珠宝知识</div>
+             <!-- 这里添加你的二维码图片 -->
+        <img src ="/images/wechat_channel.jpg">
+            
+            
+    </div>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/wechat_channel.jpg">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+         
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/07/26/C%E8%AF%AD%E8%A8%80%E5%9B%9E%E5%A4%B4%E7%9C%8B--%E5%8F%8C%E8%83%9E%E8%83%8Ei++%E5%92%8C++i%E7%9A%84%E6%95%85%E4%BA%8B/" rel="prev" title="">
+      <i class="fa fa-chevron-left"></i> 
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MQTT"><span class="nav-number">1.</span> <span class="nav-text">MQTT</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFMQ"><span class="nav-number">1.1.</span> <span class="nav-text">什么是MQ</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E6%9C%89%E4%BB%80%E4%B9%88%E4%BC%98%E5%8A%BF%E5%91%A2%EF%BC%9F"><span class="nav-number">1.1.1.</span> <span class="nav-text">消息队列有什么优势呢？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8EMQ%E7%9A%84%E8%A7%92%E5%BA%A6%E5%8E%BB%E7%90%86%E8%A7%A3MQTT"><span class="nav-number">1.1.2.</span> <span class="nav-text">从MQ的角度去理解MQTT</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MQTT%E7%AE%80%E4%BB%8B"><span class="nav-number">1.2.</span> <span class="nav-text">MQTT简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9MQTT"><span class="nav-number">1.2.1.</span> <span class="nav-text">为什么选择MQTT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MQTT%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">1.2.2.</span> <span class="nav-text">MQTT的应用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">1.2.3.</span> <span class="nav-text">相关参考资料</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MQTT%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.3.</span> <span class="nav-text">MQTT通信模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%92%E8%89%B2"><span class="nav-number">1.3.1.</span> <span class="nav-text">角色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B6%88%E6%81%AF"><span class="nav-number">1.3.2.</span> <span class="nav-text">消息</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mosquitto%E4%BD%BF%E7%94%A8"><span class="nav-number">1.4.</span> <span class="nav-text">mosquitto使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E5%85%A8"><span class="nav-number">1.5.</span> <span class="nav-text">安全</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="懂珠宝的NetW0rker"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">懂珠宝的NetW0rker</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">61</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/dianwoshishi" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;dianwoshishi" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/wanglihongwm" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;wanglihongwm" rel="noopener" target="_blank"><i class="stack-overflow fa-fw"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:dianwoshishi@sina.com" title="E-Mail → mailto:dianwoshishi@sina.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/dianwoshishi" title="知乎 → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;dianwoshishi" rel="noopener" target="_blank"><i class="custom zhihu fa-fw"></i>知乎</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/2119505607" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;2119505607" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/432126410" title="B站 → https:&#x2F;&#x2F;space.bilibili.com&#x2F;432126410" rel="noopener" target="_blank"><i class="fab fa-stack-overflow fa-fw"></i>B站</a>
+      </span>
+  </div>
+
+
+
+        
+      </div>
+    
+    
+
+    <div class="wechat_OA">
+        <HR  SIZE=3>
+        <div style='text-align:center'>扫描下方微信公众号，我会持续为你分享 IT 技术和珠宝知识</div>
+             <!-- 这里添加你的二维码图片 -->
+        <img src ="/images/wechat_channel.jpg">
+            
+            
+    </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">dianwoshishi</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">150k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:16</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+<div>
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("05/28/2021 00:00:00");
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+</div>
+
+        
+<div class="busuanzi-count">
+ <script type="text/javascript" src="/js/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'f0ced082166f6e157dec',
+      clientSecret: '70d5c7a1abda67a442a2fd5ba8efc35bc5c372e7',
+      repo        : 'dianwoshishi.github.io',
+      owner       : 'dianwoshishi',
+      admin       : ['dianwoshishi'],
+      id          : '068b3e6469d52f28816721c846a69c37',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
