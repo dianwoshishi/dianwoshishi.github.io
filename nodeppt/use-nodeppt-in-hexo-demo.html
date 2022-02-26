@@ -1,0 +1,63 @@
+<!doctype html><html><head><meta charset=UTF-8><title>another ppt - By dianwoshishi</title><link rel=stylesheet href=https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css><link rel=stylesheet href=https://cdn.staticfile.org/prism/1.15.0/themes/prism.min.css><link rel=stylesheet href=https://cdn.staticfile.org/KaTeX/0.10.0-rc.1/katex.min.css><link href=./css/chunk-vendors.4e4765ff.css rel=stylesheet></head><body><div><article id=webslides><section slide class="slide bg-black-blue aligncenter" image="https://source.unsplash.com/C1HhAQrbykQ/ .dark"><span class="background dark" style="background-image:url('https://source.unsplash.com/C1HhAQrbykQ/')"></span><div class=wrap wrap=true><h1 class="text-landing text-shadow">How to use nodeppt in your hexo blog system</h1><p class=text-intro>By dianwoshishi</p><p><a href=https://github.com/dianwoshishi class="button ghost" target=_blank><i class="fa fa-github"></i> Github</a></p></div></section><section slide class=slide :class="size-50 aligncenter"><div class="wrap size-50 aligncenter" wrap=true><h3>前言</h3><hr><p>确保你的noteppt能够正常使用</p><p class=text-content>这是前提，至于怎么熟练的玩好nodeppt，额…… 还是去<a href=https://github.com/ksky521/nodeppt target=_blank>官网</a>吧，这里不误导人了。</p></div></section><section slide class=slide :class="size-30 aligncenter"><div class="wrap size-30 aligncenter" wrap=true><p class=text-content>整体的思路是，两步走：</p><ul><li><p>第一步先使用nodeppt在相应的public目录生成相应的文件,如html,js,img等等</p></li><li><p>在post中引用相应的文件</p></li></ul></div></section><section slide class=slide :class="size-30 aligncenter"><div class="wrap size-30 aligncenter" wrap=true><h3><code>nodeppt build --help</code></h3><hr><pre class=language-textile><code class=language-textile><span class="token phrase">Usage: nodeppt build [options] [entry]</span>
+
+<span class="token phrase">build html file</span>
+
+<span class="token phrase">Options:
+  <span class="token inline"><span class="token punctuation">-</span><span class="token deleted">m, </span><span class="token punctuation">-</span></span>-map         Release sourcemap
+  <span class="token inline"><span class="token punctuation">-</span><span class="token deleted">d, </span><span class="token punctuation">-</span></span>-dest </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dir</span><span class="token punctuation">></span></span>  output directory
+  -h, --help        output usage information
+  Examples:
+
+    nodeppt build slide.md
+</code></pre><p><em>我们需要使用的就是这个<code>-d</code>参数。目的是将生成的文件放入网站的public目录下</em></p></div></section><section slide class=slide :class="size-30 aligncenter"><div class="wrap size-30 aligncenter" wrap=true><p>存放源文件的目录结构如下所示</p><pre class=language-textile><code class=language-textile><span class="token phrase">root/public
+		├──nodeppt
+root/source
+├── slideshare
+│   ├── another.md
+│   ├── build.sh
+│   ├── buildlist.txt
+│   ├── makefile
+│   └── slides.md
+</span></code></pre></div></section><section slide class=slide :class="size-30 alignleft"><div class="wrap size-30 alignleft" wrap=true><h3>文件说明</h3><hr><ul><li>buildlist.txt 代表等待生成的ppt文件列表</li></ul><pre class=language-textile><code class=language-textile><span class="token phrase"><span class="token block-tag"><span class="token tag">slides</span><span class="token punctuation">.</span></span>md
+another.md%
+</span></code></pre><ul><li><p>build.sh</p><p>在slideshare目录下运行本文件，作用是使用nodeppt按上面文件内容的顺序构建，输出目录为<code>public/nodeppt</code></p></li></ul><pre class=language-textile><code class=language-textile><span class="token phrase">NODEPPT=/usr/local/Cellar/node/17.5.0/bin/nodeppt
+Destination=../../public/nodeppt/
+build_files=$(cat buildlist.txt | xargs)
+for file in $build_files
+do
+    # echo $file
+    $NODEPPT build ./$file -d $Destination
+done
+</span></code></pre><ul><li>makefile 本文件主要用于使用一个脚本完成所有的工作</li></ul><pre class=language-makefile><code class=language-makefile><span class="token target symbol">all</span><span class="token punctuation">:</span>
+        bash build.sh
+</code></pre></div></section><section slide class=slide :class="size-30 aligncenter"><div class="wrap size-30 aligncenter" wrap=true><h3>引用文件</h3><hr><p>在上一步中，我们生成了ppt文件，放在了<code>public/nodeppt/</code>中，假设文件名为<code>slides.html</code></p><p>那么我们可以在hexo的post中简单的使用如下命令，就可以引用我们的PPT</p><pre class=language-html><code class=language-html><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>iframe</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>../nodeppt/slides.html<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>100%<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>500<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>topFrame<span class="token punctuation">"</span></span> <span class="token attr-name">scrolling</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>yes<span class="token punctuation">"</span></span> <span class="token attr-name">noresize</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>noresize<span class="token punctuation">"</span></span> <span class="token attr-name">frameborder</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>topFrame<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>iframe</span><span class="token punctuation">></span></span>
+</code></pre></div><div class=speaker-note><div class=wrap><h2>需要修改的部分就是iframe中的src部分。</h2></div></div></section><section slide class=slide image="https://webslides.tv/static/images/iphone-hand.png .right-bottom"><span class=background-right-bottom style="background-image:url('https://webslides.tv/static/images/iphone-hand.png')"></span><div class=wrap wrap=true><h2>总结</h2><p>通过生成复制、引用两个步骤，完成了在hexo博客系统中引入nodeppt的功能，撒花！</p></div></section></article></div><script src=https://cdn.staticfile.org/echarts/4.8.0/echarts.min.js></script><script>window.pluginsOptions = {}
+
+
+
+    window.webslidesOptions = {}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    let isPrintMode = false;
+    if(~location.search.indexOf('print-pdf')){
+        isPrintMode = true;
+        WebSlides.registerPlugin('scroll', function(){});
+    }
+    const wsOptions = {
+        loop: false
+    };
+    if(window.webslidesOptions){
+        for (let i in webslidesOptions){
+            if(webslidesOptions.hasOwnProperty(i)){
+                wsOptions[i] = webslidesOptions[i];
+            }
+        }
+    }
+    const ws = new WebSlides(wsOptions)
+
+    window.wsInstance = ws;
+    if(isPrintMode){
+        ws.slides.forEach(s=>s.show())
+    }
+}, false)</script><script src=./js/chunk-vendors.js></script><script src=./js/use-nodeppt-in-hexo-demo.js></script></body></html>

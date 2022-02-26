@@ -864,7 +864,10 @@ display2(num2);&#x2F;&#x2F;使用引用传递，相当于指针操作，作用�
   <entry>
     <title>一个github快速建站主题推荐GitHub+Hexo+AURORA</title>
     <url>//post/%E4%B8%80%E4%B8%AAgithub%E5%BF%AB%E9%80%9F%E5%BB%BA%E7%AB%99%E4%B8%BB%E9%A2%98%E6%8E%A8%E8%8D%90.html</url>
-    <content><![CDATA[<p>大家好，我是明说网络的小明同学</p>
+    <content><![CDATA[<hr>
+<p>title: 大家好，我是明说网络的小明同学<br>date: 2022-02-26 17:20:22</p>
+<hr>
+<p>大家好，我是明说网络的小明同学</p>
 <p>今天给大家推荐一块非常快速的建站工具Github + AURORA</p>
 <h1 id="Github建站"><a href="#Github建站" class="headerlink" title="Github建站"></a>Github建站</h1><p>github免费建站就不说了，网上有很多教程。</p>
 <h1 id="Hexo快速生成可以用Markdown协作写作的网站"><a href="#Hexo快速生成可以用Markdown协作写作的网站" class="headerlink" title="Hexo快速生成可以用Markdown协作写作的网站"></a>Hexo快速生成可以用Markdown协作写作的网站</h1><p>如果你还没有使用过Hexo，那么从官方文档里可以快速学会使用。<a href="https://hexo.io/zh-cn/docs/">https://hexo.io/zh-cn/docs/</a></p>
@@ -3823,5 +3826,144 @@ lsof -i -n -P  | awk &#39;&#123;print $1, $2,$5,$9&#125;&#39;
       <tags>
         <tag>网络安全</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>VSCode Markdown Snippet插件的使用问题备注</title>
+    <url>//post/VSCode%20Markdown%20Snippet%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98%E5%A4%87%E6%B3%A8.html</url>
+    <content><![CDATA[<h1 id="VSCode-Markdown-Snippet插件的使用问题备注"><a href="#VSCode-Markdown-Snippet插件的使用问题备注" class="headerlink" title="VSCode Markdown Snippet插件的使用问题备注"></a>VSCode Markdown Snippet插件的使用问题备注</h1><h2 id="官方给出的使用帮助"><a href="#官方给出的使用帮助" class="headerlink" title="官方给出的使用帮助"></a>官方给出的使用帮助</h2><p><a href="https://code.visualstudio.com/docs/editor/userdefinedsnippets">https://code.visualstudio.com/docs/editor/userdefinedsnippets</a></p>
+<h2 id="一个简短的示例"><a href="#一个简短的示例" class="headerlink" title="一个简短的示例"></a>一个简短的示例</h2><p><a href="https://www.jianshu.com/p/a87e9ca2d208">https://www.jianshu.com/p/a87e9ca2d208</a></p>
+<p>记得在配置文件中添加相应的配置，不仅仅是相关语言的配置哦，setting中也记得</p>
+<p><a href="https://blog.csdn.net/serryuer/article/details/89393760">https://blog.csdn.net/serryuer/article/details/89393760</a></p>
+<h2 id="代码备注"><a href="#代码备注" class="headerlink" title="代码备注"></a>代码备注</h2><pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"hexo title"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+		<span class="token property">"prefix"</span><span class="token operator">:</span> <span class="token string">"hexo"</span><span class="token punctuation">,</span>
+		<span class="token property">"body"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+			<span class="token string">"---"</span><span class="token punctuation">,</span>
+			<span class="token string">"title: $CLIPBOARD"</span><span class="token punctuation">,</span>
+			<span class="token string">"date: $&#123;3:$CURRENT_YEAR&#125;-$&#123;4:$CURRENT_MONTH&#125;-$&#123;5:$CURRENT_DATE&#125; $&#123;6:$CURRENT_HOUR&#125;:$&#123;7:$CURRENT_MINUTE&#125;:$&#123;8:$CURRENT_SECOND&#125;"</span><span class="token punctuation">,</span>
+			<span class="token comment">// "categories: $&#123;9|咨询, 编程开发, 网络空间, 学习笔记, 科普|&#125;",</span>
+			<span class="token comment">// "tags: [$&#123;10:tags&#125;]",</span>
+			<span class="token string">"---"</span><span class="token punctuation">,</span>
+			<span class="token string">"$11"</span>
+		<span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"Front-Matter"</span>
+	<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>效果如下所示：</p>
+<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">---
+title: 大家好，我是明说网络的小明同学
+date: 2022-02-26 17:20:22
+---<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+]]></content>
+  </entry>
+  <entry>
+    <title>在你的hexo博客中使用nodeppt，一款迄今为止最好的网页版演示库</title>
+    <url>//post/NODEPPT%E8%BF%99%E5%8F%AF%E8%83%BD%E6%98%AF%E8%BF%84%E4%BB%8A%E4%B8%BA%E6%AD%A2%E6%9C%80%E5%A5%BD%E7%9A%84%E7%BD%91%E9%A1%B5%E7%89%88%E6%BC%94%E7%A4%BA%E5%BA%93.html</url>
+    <content><![CDATA[<p>大家好，我是明说网络的小明同学。</p>
+<p>今天我和大家分享一个非常酷的网页PPT工具，NODEPPT</p>
+<h1 id="NODEPPT这可能是迄今为止最好的网页版演示库"><a href="#NODEPPT这可能是迄今为止最好的网页版演示库" class="headerlink" title="NODEPPT这可能是迄今为止最好的网页版演示库"></a>NODEPPT这可能是迄今为止最好的网页版演示库</h1><p>一开始看到这个库的时候，我就喜欢上了。因为他效果非常的棒，而且能够非常好的和hexo结合。这样我们能够一次生成，到哪都可以演示PPT，还能配上相应的技术文档，是不是很酷啊！</p>
+<h2 id="NODEPPT-Demo"><a href="#NODEPPT-Demo" class="headerlink" title="NODEPPT Demo"></a>NODEPPT Demo</h2><p>项目的演示网址在这：<a href="https://nodeppt.js.org/#slide=1">https://nodeppt.js.org/#slide=1</a></p>
+<p><img src="/post/NODEPPT%E8%BF%99%E5%8F%AF%E8%83%BD%E6%98%AF%E8%BF%84%E4%BB%8A%E4%B8%BA%E6%AD%A2%E6%9C%80%E5%A5%BD%E7%9A%84%E7%BD%91%E9%A1%B5%E7%89%88%E6%BC%94%E7%A4%BA%E5%BA%93/image-20220226172518524.png" alt="image-20220226172518524"></p>
+<p>主要说明了这个库包含什么样的功能</p>
+<h2 id="NODE-PPT-Github"><a href="#NODE-PPT-Github" class="headerlink" title="NODE PPT Github"></a>NODE PPT Github</h2><p>官网地址：<a href="https://github.com/ksky521/nodeppt">https://github.com/ksky521/nodeppt</a></p>
+<h1 id="Hexo中使用PPT-Demo"><a href="#Hexo中使用PPT-Demo" class="headerlink" title="Hexo中使用PPT Demo"></a>Hexo中使用PPT Demo</h1><p>以下是我使用官网的<a href="https://raw.githubusercontent.com/ksky521/nodeppt/master/site/index.md">demo</a>制作的一个PPT，注意它是嵌入在我这个网页中的，以下网页你可以左右滑动。</p>
+<iframe src="../nodeppt/slides.html" width="100%" height="500" name="topFrame" scrolling="yes" noresize="noresize" frameborder="0" id="topFrame"></iframe>
+
+
+
+<p>如果你觉得这个功能很酷，想要添加到你的站点里面去，那么就和我一起往下走吧。</p>
+<h2 id="如何在Hexo中添加Nodeppt"><a href="#如何在Hexo中添加Nodeppt" class="headerlink" title="如何在Hexo中添加Nodeppt"></a>如何在Hexo中添加Nodeppt</h2><p>前提，确保你的noteppt能够正常使用。这是前提，至于怎么熟练的玩好nodeppt，额…… 还是去官网吧，这里不误导人了。</p>
+<p>整体的思路是，两步走：</p>
+<ul>
+<li>第一步先使用nodeppt在相应的public目录生成相应的文件,如html,js,img等等</li>
+<li>在post中引用相应的文件</li>
+</ul>
+<h3 id="首先熟悉nodeppt的build方法"><a href="#首先熟悉nodeppt的build方法" class="headerlink" title="首先熟悉nodeppt的build方法"></a>首先熟悉nodeppt的build方法</h3><p>输入<code>nodeppt build --help</code></p>
+<pre class="line-numbers language-none"><code class="language-none">Usage: nodeppt build [options] [entry]
+
+build html file
+
+Options:
+  -m, --map         Release sourcemap
+  -d, --dest &lt;dir&gt;  output directory
+  -h, --help        output usage information
+  Examples:
+
+    nodeppt build slide.md<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>我们需要使用的就是这个<code>-d</code>参数。目的是将生成的文件放入网站的public目录下</p>
+<h3 id="源文件目录说明"><a href="#源文件目录说明" class="headerlink" title="源文件目录说明"></a>源文件目录说明</h3><p>存放源文件的目录结构如下所示</p>
+<pre class="line-numbers language-none"><code class="language-none">root&#x2F;public
+		├──nodeppt
+root&#x2F;source
+├── slideshare
+│   ├── another.md
+│   ├── build.sh
+│   ├── buildlist.txt
+│   ├── makefile
+│   └── slides.md<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>buildlist.txt 代表等待生成的ppt文件列表</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">slides.md
+another.md%<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<ul>
+<li><p>build.sh </p>
+<p>在slideshare目录下运行本文件，作用是使用nodeppt按上面文件内容的顺序构建，输出目录为<code>public/nodeppt</code></p>
+</li>
+</ul>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">NODEPPT&#x3D;&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;node&#x2F;17.5.0&#x2F;bin&#x2F;nodeppt
+Destination&#x3D;..&#x2F;..&#x2F;public&#x2F;nodeppt&#x2F;
+build_files&#x3D;$(cat buildlist.txt | xargs)
+for file in $build_files
+do
+    # echo $file
+    $NODEPPT build .&#x2F;$file -d $Destination
+done<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>makefile 本文件主要用于使用一个脚本完成所有的工作</li>
+</ul>
+<pre class="line-numbers language-makefile" data-language="makefile"><code class="language-makefile"><span class="token symbol">all</span><span class="token punctuation">:</span>
+        bash build.sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>至此，你使用在当前目录<code>make</code>就能将生成好的PPT网页放入public目录的noteppt目录中。</p>
+<h3 id="那么怎么使用呢？"><a href="#那么怎么使用呢？" class="headerlink" title="那么怎么使用呢？"></a>那么怎么使用呢？</h3><p>在上一步中，我们生成了ppt文件，放在了<code>public/nodeppt/</code>中，假设文件名为<code>slides.html</code></p>
+<p>那么我们可以在hexo的post中简单的使用如下命令，就可以引用我们的PPT</p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>iframe</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>../nodeppt/slides.html<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>100%<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>500<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>topFrame<span class="token punctuation">"</span></span> <span class="token attr-name">scrolling</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>yes<span class="token punctuation">"</span></span> <span class="token attr-name">noresize</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>noresize<span class="token punctuation">"</span></span> <span class="token attr-name">frameborder</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>topFrame<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>iframe</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>需要修改的部分就是iframe中的src部分。</p>
+<p>最后放下一个一键上线部署的脚本</p>
+<pre class="line-numbers language-makefile" data-language="makefile"><code class="language-makefile"><span class="token symbol">all</span><span class="token punctuation">:</span>
+	make nodeppt
+	hexo g 
+	hexo d 
+
+<span class="token symbol">nodeppt</span><span class="token punctuation">:</span>
+	<span class="token variable">$</span><span class="token punctuation">(</span>MAKE<span class="token punctuation">)</span> -C source/slideshare/
+
+<span class="token symbol">test</span><span class="token punctuation">:</span>
+	make nodeppt
+	hexo g
+	hexo s
+
+<span class="token symbol">deploy</span><span class="token punctuation">:</span>
+	make nodeppt
+	hexo g 
+	hexo d
+	<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="最后附上本次示例的PPT"><a href="#最后附上本次示例的PPT" class="headerlink" title="最后附上本次示例的PPT"></a>最后附上本次示例的PPT</h2><p>试试看左右滑动</p>
+<iframe src="../nodeppt/use-nodeppt-in-hexo-demo.html" width="100%" height="500" name="topFrame" scrolling="yes" noresize="noresize" frameborder="0" id="topFrame"></iframe>
+
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><h2 id="静态压缩"><a href="#静态压缩" class="headerlink" title="静态压缩"></a>静态压缩</h2><p><a href="https://hasaik.com/posts/495d0b23.html">https://hasaik.com/posts/495d0b23.html</a></p>
+<p>使用Hexo-Neat成功<a href="https://github.com/rozbo/hexo-neat">https://github.com/rozbo/hexo-neat</a></p>
+<p>Hexo静态资源压缩<a href="https://www.jianshu.com/p/5e48e532ae58">https://www.jianshu.com/p/5e48e532ae58</a></p>
+<p><a href="https://rye-catcher.github.io/2019/10/21/Nodeppt-%E5%85%A5%E5%9D%91%E6%8C%87%E5%8D%97/">https://rye-catcher.github.io/2019/10/21/Nodeppt-%E5%85%A5%E5%9D%91%E6%8C%87%E5%8D%97/</a></p>
+<p>给博客文章嵌入 PPT 演示<a href="https://hexo.fluid-dev.com/posts/hexo-nodeppt/">https://hexo.fluid-dev.com/posts/hexo-nodeppt/</a></p>
+<h3 id="添加自定义网页"><a href="#添加自定义网页" class="headerlink" title="添加自定义网页"></a>添加自定义网页</h3><p><a href="https://www.jianshu.com/p/524b073f9b37">https://www.jianshu.com/p/524b073f9b37</a></p>
+]]></content>
   </entry>
 </search>

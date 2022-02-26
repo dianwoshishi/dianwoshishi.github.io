@@ -6,7 +6,7 @@
   <link href="http://dianwoshishi.github.io/atom.xml" rel="self"/>
   
   <link href="http://dianwoshishi.github.io/"/>
-  <updated>2022-02-26T08:47:52.912Z</updated>
+  <updated>2022-02-26T12:16:28.949Z</updated>
   <id>http://dianwoshishi.github.io/</id>
   
   <author>
@@ -17,16 +17,87 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>在你的hexo博客中使用nodeppt，一款迄今为止最好的网页版演示库</title>
+    <link href="http://dianwoshishi.github.io/post/NODEPPT%E8%BF%99%E5%8F%AF%E8%83%BD%E6%98%AF%E8%BF%84%E4%BB%8A%E4%B8%BA%E6%AD%A2%E6%9C%80%E5%A5%BD%E7%9A%84%E7%BD%91%E9%A1%B5%E7%89%88%E6%BC%94%E7%A4%BA%E5%BA%93.html"/>
+    <id>http://dianwoshishi.github.io/post/NODEPPT%E8%BF%99%E5%8F%AF%E8%83%BD%E6%98%AF%E8%BF%84%E4%BB%8A%E4%B8%BA%E6%AD%A2%E6%9C%80%E5%A5%BD%E7%9A%84%E7%BD%91%E9%A1%B5%E7%89%88%E6%BC%94%E7%A4%BA%E5%BA%93.html</id>
+    <published>2022-02-26T09:25:15.461Z</published>
+    <updated>2022-02-26T12:16:28.949Z</updated>
+    
+    <content type="html"><![CDATA[<p>大家好，我是明说网络的小明同学。</p><p>今天我和大家分享一个非常酷的网页PPT工具，NODEPPT</p><h1 id="NODEPPT这可能是迄今为止最好的网页版演示库"><a href="#NODEPPT这可能是迄今为止最好的网页版演示库" class="headerlink" title="NODEPPT这可能是迄今为止最好的网页版演示库"></a>NODEPPT这可能是迄今为止最好的网页版演示库</h1><p>一开始看到这个库的时候，我就喜欢上了。因为他效果非常的棒，而且能够非常好的和hexo结合。这样我们能够一次生成，到哪都可以演示PPT，还能配上相应的技术文档，是不是很酷啊！</p><h2 id="NODEPPT-Demo"><a href="#NODEPPT-Demo" class="headerlink" title="NODEPPT Demo"></a>NODEPPT Demo</h2><p>项目的演示网址在这：<a href="https://nodeppt.js.org/#slide=1">https://nodeppt.js.org/#slide=1</a></p><p><img src="/post/NODEPPT%E8%BF%99%E5%8F%AF%E8%83%BD%E6%98%AF%E8%BF%84%E4%BB%8A%E4%B8%BA%E6%AD%A2%E6%9C%80%E5%A5%BD%E7%9A%84%E7%BD%91%E9%A1%B5%E7%89%88%E6%BC%94%E7%A4%BA%E5%BA%93/image-20220226172518524.png" alt="image-20220226172518524"></p><p>主要说明了这个库包含什么样的功能</p><h2 id="NODE-PPT-Github"><a href="#NODE-PPT-Github" class="headerlink" title="NODE PPT Github"></a>NODE PPT Github</h2><p>官网地址：<a href="https://github.com/ksky521/nodeppt">https://github.com/ksky521/nodeppt</a></p><h1 id="Hexo中使用PPT-Demo"><a href="#Hexo中使用PPT-Demo" class="headerlink" title="Hexo中使用PPT Demo"></a>Hexo中使用PPT Demo</h1><p>以下是我使用官网的<a href="https://raw.githubusercontent.com/ksky521/nodeppt/master/site/index.md">demo</a>制作的一个PPT，注意它是嵌入在我这个网页中的，以下网页你可以左右滑动。</p><iframe src="../nodeppt/slides.html" width="100%" height="500" name="topFrame" scrolling="yes" noresize="noresize" frameborder="0" id="topFrame"></iframe><p>如果你觉得这个功能很酷，想要添加到你的站点里面去，那么就和我一起往下走吧。</p><h2 id="如何在Hexo中添加Nodeppt"><a href="#如何在Hexo中添加Nodeppt" class="headerlink" title="如何在Hexo中添加Nodeppt"></a>如何在Hexo中添加Nodeppt</h2><p>前提，确保你的noteppt能够正常使用。这是前提，至于怎么熟练的玩好nodeppt，额…… 还是去官网吧，这里不误导人了。</p><p>整体的思路是，两步走：</p><ul><li>第一步先使用nodeppt在相应的public目录生成相应的文件,如html,js,img等等</li><li>在post中引用相应的文件</li></ul><h3 id="首先熟悉nodeppt的build方法"><a href="#首先熟悉nodeppt的build方法" class="headerlink" title="首先熟悉nodeppt的build方法"></a>首先熟悉nodeppt的build方法</h3><p>输入<code>nodeppt build --help</code></p><pre class="line-numbers language-none"><code class="language-none">Usage: nodeppt build [options] [entry]build html fileOptions:  -m, --map         Release sourcemap  -d, --dest &lt;dir&gt;  output directory  -h, --help        output usage information  Examples:    nodeppt build slide.md<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>我们需要使用的就是这个<code>-d</code>参数。目的是将生成的文件放入网站的public目录下</p><h3 id="源文件目录说明"><a href="#源文件目录说明" class="headerlink" title="源文件目录说明"></a>源文件目录说明</h3><p>存放源文件的目录结构如下所示</p><pre class="line-numbers language-none"><code class="language-none">root&#x2F;public├──nodepptroot&#x2F;source├── slideshare│   ├── another.md│   ├── build.sh│   ├── buildlist.txt│   ├── makefile│   └── slides.md<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><ul><li>buildlist.txt 代表等待生成的ppt文件列表</li></ul><pre class="line-numbers language-none"><code class="language-none">slides.mdanother.md%<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><ul><li><p>build.sh </p><p>在slideshare目录下运行本文件，作用是使用nodeppt按上面文件内容的顺序构建，输出目录为<code>public/nodeppt</code></p></li></ul><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">NODEPPT&#x3D;&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;node&#x2F;17.5.0&#x2F;bin&#x2F;nodepptDestination&#x3D;..&#x2F;..&#x2F;public&#x2F;nodeppt&#x2F;build_files&#x3D;$(cat buildlist.txt | xargs)for file in $build_filesdo    # echo $file    $NODEPPT build .&#x2F;$file -d $Destinationdone<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><ul><li>makefile 本文件主要用于使用一个脚本完成所有的工作</li></ul><pre class="line-numbers language-makefile" data-language="makefile"><code class="language-makefile"><span class="token symbol">all</span><span class="token punctuation">:</span>        bash build.sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p>至此，你使用在当前目录<code>make</code>就能将生成好的PPT网页放入public目录的noteppt目录中。</p><h3 id="那么怎么使用呢？"><a href="#那么怎么使用呢？" class="headerlink" title="那么怎么使用呢？"></a>那么怎么使用呢？</h3><p>在上一步中，我们生成了ppt文件，放在了<code>public/nodeppt/</code>中，假设文件名为<code>slides.html</code></p><p>那么我们可以在hexo的post中简单的使用如下命令，就可以引用我们的PPT</p><pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>iframe</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>../nodeppt/slides.html<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>100%<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>500<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>topFrame<span class="token punctuation">"</span></span> <span class="token attr-name">scrolling</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>yes<span class="token punctuation">"</span></span> <span class="token attr-name">noresize</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>noresize<span class="token punctuation">"</span></span> <span class="token attr-name">frameborder</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>topFrame<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>iframe</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>需要修改的部分就是iframe中的src部分。</p><p>最后放下一个一键上线部署的脚本</p><pre class="line-numbers language-makefile" data-language="makefile"><code class="language-makefile"><span class="token symbol">all</span><span class="token punctuation">:</span>make nodeppthexo g hexo d <span class="token symbol">nodeppt</span><span class="token punctuation">:</span><span class="token variable">$</span><span class="token punctuation">(</span>MAKE<span class="token punctuation">)</span> -C source/slideshare/<span class="token symbol">test</span><span class="token punctuation">:</span>make nodeppthexo ghexo s<span class="token symbol">deploy</span><span class="token punctuation">:</span>make nodeppthexo g hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="最后附上本次示例的PPT"><a href="#最后附上本次示例的PPT" class="headerlink" title="最后附上本次示例的PPT"></a>最后附上本次示例的PPT</h2><p>试试看左右滑动</p><iframe src="../nodeppt/use-nodeppt-in-hexo-demo.html" width="100%" height="500" name="topFrame" scrolling="yes" noresize="noresize" frameborder="0" id="topFrame"></iframe><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><h2 id="静态压缩"><a href="#静态压缩" class="headerlink" title="静态压缩"></a>静态压缩</h2><p><a href="https://hasaik.com/posts/495d0b23.html">https://hasaik.com/posts/495d0b23.html</a></p><p>使用Hexo-Neat成功<a href="https://github.com/rozbo/hexo-neat">https://github.com/rozbo/hexo-neat</a></p><p>Hexo静态资源压缩<a href="https://www.jianshu.com/p/5e48e532ae58">https://www.jianshu.com/p/5e48e532ae58</a></p><p><a href="https://rye-catcher.github.io/2019/10/21/Nodeppt-%E5%85%A5%E5%9D%91%E6%8C%87%E5%8D%97/">https://rye-catcher.github.io/2019/10/21/Nodeppt-%E5%85%A5%E5%9D%91%E6%8C%87%E5%8D%97/</a></p><p>给博客文章嵌入 PPT 演示<a href="https://hexo.fluid-dev.com/posts/hexo-nodeppt/">https://hexo.fluid-dev.com/posts/hexo-nodeppt/</a></p><h3 id="添加自定义网页"><a href="#添加自定义网页" class="headerlink" title="添加自定义网页"></a>添加自定义网页</h3><p><a href="https://www.jianshu.com/p/524b073f9b37">https://www.jianshu.com/p/524b073f9b37</a></p>]]></content>
+    
+    
+    <summary type="html">大家好，我是明说网络的小明同学。
+
+今天我和大家分享一个非常酷的网页PPT工具，NODEPPT
+
+NODEPPT这可能是迄今为止最好的网页版演示库
+一开始看到这个库的时候，我就喜欢上了。因为他效果非常的棒，而且能够非常好的和hexo结合。这样我们能够一次生成，到哪都可以演示PPT，还能配上相应的技术文档，是不是很酷啊！
+
+NODEPPT Demo
+项目的演示网址在这：https://nodeppt.js.org/#slide=1
+
+
+
+主要说明了这个库包含什么样的功能
+
+NODE PPT Github
+官网地址：https://github.com/ksky521/nodeppt
+
+Hexo中</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>VSCode Markdown Snippet插件的使用问题备注</title>
+    <link href="http://dianwoshishi.github.io/post/VSCode%20Markdown%20Snippet%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98%E5%A4%87%E6%B3%A8.html"/>
+    <id>http://dianwoshishi.github.io/post/VSCode%20Markdown%20Snippet%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98%E5%A4%87%E6%B3%A8.html</id>
+    <published>2022-02-26T09:22:13.000Z</published>
+    <updated>2022-02-26T09:20:42.785Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="VSCode-Markdown-Snippet插件的使用问题备注"><a href="#VSCode-Markdown-Snippet插件的使用问题备注" class="headerlink" title="VSCode Markdown Snippet插件的使用问题备注"></a>VSCode Markdown Snippet插件的使用问题备注</h1><h2 id="官方给出的使用帮助"><a href="#官方给出的使用帮助" class="headerlink" title="官方给出的使用帮助"></a>官方给出的使用帮助</h2><p><a href="https://code.visualstudio.com/docs/editor/userdefinedsnippets">https://code.visualstudio.com/docs/editor/userdefinedsnippets</a></p><h2 id="一个简短的示例"><a href="#一个简短的示例" class="headerlink" title="一个简短的示例"></a>一个简短的示例</h2><p><a href="https://www.jianshu.com/p/a87e9ca2d208">https://www.jianshu.com/p/a87e9ca2d208</a></p><p>记得在配置文件中添加相应的配置，不仅仅是相关语言的配置哦，setting中也记得</p><p><a href="https://blog.csdn.net/serryuer/article/details/89393760">https://blog.csdn.net/serryuer/article/details/89393760</a></p><h2 id="代码备注"><a href="#代码备注" class="headerlink" title="代码备注"></a>代码备注</h2><pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"hexo title"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span><span class="token property">"prefix"</span><span class="token operator">:</span> <span class="token string">"hexo"</span><span class="token punctuation">,</span><span class="token property">"body"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"---"</span><span class="token punctuation">,</span><span class="token string">"title: $CLIPBOARD"</span><span class="token punctuation">,</span><span class="token string">"date: $&#123;3:$CURRENT_YEAR&#125;-$&#123;4:$CURRENT_MONTH&#125;-$&#123;5:$CURRENT_DATE&#125; $&#123;6:$CURRENT_HOUR&#125;:$&#123;7:$CURRENT_MINUTE&#125;:$&#123;8:$CURRENT_SECOND&#125;"</span><span class="token punctuation">,</span><span class="token comment">// "categories: $&#123;9|咨询, 编程开发, 网络空间, 学习笔记, 科普|&#125;",</span><span class="token comment">// "tags: [$&#123;10:tags&#125;]",</span><span class="token string">"---"</span><span class="token punctuation">,</span><span class="token string">"$11"</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"Front-Matter"</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>效果如下所示：</p><pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">---title: 大家好，我是明说网络的小明同学date: 2022-02-26 17:20:22---<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+    
+    
+    <summary type="html">VSCode Markdown Snippet插件的使用问题备注
+官方给出的使用帮助
+https://code.visualstudio.com/docs/editor/userdefinedsnippets
+
+一个简短的示例
+https://www.jianshu.com/p/a87e9ca2d208
+
+记得在配置文件中添加相应的配置，不仅仅是相关语言的配置哦，setting中也记得
+
+https://blog.csdn.net/serryuer/article/details/89393760
+
+代码备注
+&quot;hexo title&quot;: {
+		&quot;prefix&quot;: &quot;hexo&quot;,
+		&quot;bod</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>一个github快速建站主题推荐GitHub+Hexo+AURORA</title>
     <link href="http://dianwoshishi.github.io/post/%E4%B8%80%E4%B8%AAgithub%E5%BF%AB%E9%80%9F%E5%BB%BA%E7%AB%99%E4%B8%BB%E9%A2%98%E6%8E%A8%E8%8D%90.html"/>
     <id>http://dianwoshishi.github.io/post/%E4%B8%80%E4%B8%AAgithub%E5%BF%AB%E9%80%9F%E5%BB%BA%E7%AB%99%E4%B8%BB%E9%A2%98%E6%8E%A8%E8%8D%90.html</id>
     <published>2022-02-26T07:22:13.000Z</published>
-    <updated>2022-02-26T08:47:52.912Z</updated>
+    <updated>2022-02-26T09:23:50.522Z</updated>
     
-    <content type="html"><![CDATA[<p>大家好，我是明说网络的小明同学</p><p>今天给大家推荐一块非常快速的建站工具Github + AURORA</p><h1 id="Github建站"><a href="#Github建站" class="headerlink" title="Github建站"></a>Github建站</h1><p>github免费建站就不说了，网上有很多教程。</p><h1 id="Hexo快速生成可以用Markdown协作写作的网站"><a href="#Hexo快速生成可以用Markdown协作写作的网站" class="headerlink" title="Hexo快速生成可以用Markdown协作写作的网站"></a>Hexo快速生成可以用Markdown协作写作的网站</h1><p>如果你还没有使用过Hexo，那么从官方文档里可以快速学会使用。<a href="https://hexo.io/zh-cn/docs/">https://hexo.io/zh-cn/docs/</a></p><p>Hexo一个比较吸引我的功能就是，能够以极少的代价，完成网站主题的切换。</p><p>必备评论插件GitTalk，可以看这篇文章</p><p><a href="https://blog.csdn.net/qq_33384402/article/details/107200465">https://blog.csdn.net/qq_33384402/article/details/107200465</a></p><h1 id="推荐一块比较好的主题AURORA"><a href="#推荐一块比较好的主题AURORA" class="headerlink" title="推荐一块比较好的主题AURORA"></a>推荐一块比较好的主题AURORA</h1><p>插件主题长这个样子</p><p><img src="/post/%E4%B8%80%E4%B8%AAgithub%E5%BF%AB%E9%80%9F%E5%BB%BA%E7%AB%99%E4%B8%BB%E9%A2%98%E6%8E%A8%E8%8D%90/image-20220226162421002.png" alt="image-20220226162421002"></p><p>插件具有详细的说明文档 <a href="https://aurora.tridiamond.tech/zh/guide/">https://aurora.tridiamond.tech/zh/guide/</a></p><p>该主题的网址：<a href="https://github.com/auroral-ui/hexo-theme-aurora">https://github.com/auroral-ui/hexo-theme-aurora</a></p><h1 id="关于图片显示的问题"><a href="#关于图片显示的问题" class="headerlink" title="关于图片显示的问题"></a>关于图片显示的问题</h1><p>关于图片显示，建议看这篇文章，<a href="https://moeci.com/posts/hexo-typora/">https://moeci.com/posts/hexo-typora/</a></p><p>描述了，怎么结合hexo和typora来实现markdown无缝衔接，并且还能深入了解图片出错到底是什么原因</p><p>不过该博主的插件最终也没有让我成功，还是hexo-asset-image救了我<a href="https://github.com/xcodebuild/hexo-asset-image">https://github.com/xcodebuild/hexo-asset-image</a></p><h1 id="最后给自己打个广告吧"><a href="#最后给自己打个广告吧" class="headerlink" title="最后给自己打个广告吧"></a>最后给自己打个广告吧</h1><p>发现大家都好牛啊！</p><p><img src="/post/%E4%B8%80%E4%B8%AAgithub%E5%BF%AB%E9%80%9F%E5%BB%BA%E7%AB%99%E4%B8%BB%E9%A2%98%E6%8E%A8%E8%8D%90/image-20220226163311302.png" alt="image-20220226163311302"></p><p>大家可以通过主页的相关链接在你喜欢的平台找到我！</p>]]></content>
+    <content type="html"><![CDATA[<hr><p>title: 大家好，我是明说网络的小明同学<br>date: 2022-02-26 17:20:22</p><hr><p>大家好，我是明说网络的小明同学</p><p>今天给大家推荐一块非常快速的建站工具Github + AURORA</p><h1 id="Github建站"><a href="#Github建站" class="headerlink" title="Github建站"></a>Github建站</h1><p>github免费建站就不说了，网上有很多教程。</p><h1 id="Hexo快速生成可以用Markdown协作写作的网站"><a href="#Hexo快速生成可以用Markdown协作写作的网站" class="headerlink" title="Hexo快速生成可以用Markdown协作写作的网站"></a>Hexo快速生成可以用Markdown协作写作的网站</h1><p>如果你还没有使用过Hexo，那么从官方文档里可以快速学会使用。<a href="https://hexo.io/zh-cn/docs/">https://hexo.io/zh-cn/docs/</a></p><p>Hexo一个比较吸引我的功能就是，能够以极少的代价，完成网站主题的切换。</p><p>必备评论插件GitTalk，可以看这篇文章</p><p><a href="https://blog.csdn.net/qq_33384402/article/details/107200465">https://blog.csdn.net/qq_33384402/article/details/107200465</a></p><h1 id="推荐一块比较好的主题AURORA"><a href="#推荐一块比较好的主题AURORA" class="headerlink" title="推荐一块比较好的主题AURORA"></a>推荐一块比较好的主题AURORA</h1><p>插件主题长这个样子</p><p><img src="/post/%E4%B8%80%E4%B8%AAgithub%E5%BF%AB%E9%80%9F%E5%BB%BA%E7%AB%99%E4%B8%BB%E9%A2%98%E6%8E%A8%E8%8D%90/image-20220226162421002.png" alt="image-20220226162421002"></p><p>插件具有详细的说明文档 <a href="https://aurora.tridiamond.tech/zh/guide/">https://aurora.tridiamond.tech/zh/guide/</a></p><p>该主题的网址：<a href="https://github.com/auroral-ui/hexo-theme-aurora">https://github.com/auroral-ui/hexo-theme-aurora</a></p><h1 id="关于图片显示的问题"><a href="#关于图片显示的问题" class="headerlink" title="关于图片显示的问题"></a>关于图片显示的问题</h1><p>关于图片显示，建议看这篇文章，<a href="https://moeci.com/posts/hexo-typora/">https://moeci.com/posts/hexo-typora/</a></p><p>描述了，怎么结合hexo和typora来实现markdown无缝衔接，并且还能深入了解图片出错到底是什么原因</p><p>不过该博主的插件最终也没有让我成功，还是hexo-asset-image救了我<a href="https://github.com/xcodebuild/hexo-asset-image">https://github.com/xcodebuild/hexo-asset-image</a></p><h1 id="最后给自己打个广告吧"><a href="#最后给自己打个广告吧" class="headerlink" title="最后给自己打个广告吧"></a>最后给自己打个广告吧</h1><p>发现大家都好牛啊！</p><p><img src="/post/%E4%B8%80%E4%B8%AAgithub%E5%BF%AB%E9%80%9F%E5%BB%BA%E7%AB%99%E4%B8%BB%E9%A2%98%E6%8E%A8%E8%8D%90/image-20220226163311302.png" alt="image-20220226163311302"></p><p>大家可以通过主页的相关链接在你喜欢的平台找到我！</p>]]></content>
     
     
-    <summary type="html">大家好，我是明说网络的小明同学
+    <summary type="html">title: 大家好，我是明说网络的小明同学
+date: 2022-02-26 17:20:22
+
+
+
+
+大家好，我是明说网络的小明同学
 
 今天给大家推荐一块非常快速的建站工具Github + AURORA
 
@@ -40,9 +111,7 @@ Hexo一个比较吸引我的功能就是，能够以极少的代价，完成网�
 
 必备评论插件GitTalk，可以看这篇文章
 
-https://blog.csdn.net/qq_33384402/article/details/107200465
-
-推荐一块比</summary>
+https://blog.</summary>
     
     
     
@@ -501,59 +570,6 @@ BitScam和CloudScam
 
 成长
 Junaid Hussain(朱奈德侯赛因)约 1994 年出生，第二代英国国民。他的家人来自克什米尔的巴基斯坦一侧。小时候，他的家人住在伯明翰的Small Heath区，该地区南亚人人口稠密，犯罪率在伯明翰排名第二。后来，侯赛因的家人搬到了Kings Heath，这个</summary>
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>时尚零售商Guess披露数据泄露</title>
-    <link href="http://dianwoshishi.github.io/post/%E6%97%B6%E5%B0%9A%E9%9B%B6%E5%94%AE%E5%95%86Guess%E6%8A%AB%E9%9C%B2%E6%95%B0%E6%8D%AE%E6%B3%84%E9%9C%B2.html"/>
-    <id>http://dianwoshishi.github.io/post/%E6%97%B6%E5%B0%9A%E9%9B%B6%E5%94%AE%E5%95%86Guess%E6%8A%AB%E9%9C%B2%E6%95%B0%E6%8D%AE%E6%B3%84%E9%9C%B2.html</id>
-    <published>2022-02-26T06:08:55.000Z</published>
-    <updated>2022-02-26T06:08:56.463Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="时尚零售商Guess披露数据泄露"><a href="#时尚零售商Guess披露数据泄露" class="headerlink" title="时尚零售商Guess披露数据泄露"></a>时尚零售商Guess披露数据泄露</h1><p><img src="https://www.cybersafe.news/wp-content/uploads/2021/07/guess.jpg" alt="img"></p><h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>美国时尚品牌和零售商Guess在2月份的勒索软件攻击导致数据被盗后，又遭遇了数据泄露。</p><h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>该公司已经开始通知受影响的客户有关数据泄露的情况，其中指出，经调查发现，在2021年2月2日至2021年2月23日期间，Guess的系统遭到未经授权的访问。</p><p>经过调查，在2021年5月26日，确定与某些人有关的个人信息可能已经被未经授权的行为者使用。在这次攻击中暴露的信息包括社会安全号码、驾驶执照号码、护照号码和&#x2F;或金融账户号码等细节。尽管受影响的个人数量没有透露，但提交给缅因州总检察长办公室的信息显示，在2月份的攻击中，有超过1300人的数据被暴露或被访问。</p><p>Guess没有提供任何关于勒索软件攻击背后的威胁者的细节，但DarkSide勒索软件团伙已将Guess列入其数据泄露网站。</p><p>该团伙声称，在试图加密他们的系统之前，已经从这家时尚零售商的网络中窃取了价值超过200GB的文件。</p><h2 id="措施和进展"><a href="#措施和进展" class="headerlink" title="措施和进展"></a>措施和进展</h2><p>这家时尚零售商在2021年6月3日完成了对存储在被入侵系统中的文件的全面审查后，确定了所有受影响个人的地址。</p><p>Guess已经通过Experian向所有受影响的个人提供免费的身份盗窃保护服务和一年的免费信用监测。</p><p>Guess公司已经实施了额外的措施来提高其安全协议，并正在与执法部门合作，作为正在进行的事件调查的一部分。</p><p>截至2021年5月，Guess在美洲、欧洲和亚洲直接经营1041家零售店，其分销商和合作伙伴在全球另有539家店。属于Guess零售网络的商店目前在大约100个国家经营。</p>]]></content>
-    
-    
-    <summary type="html">时尚零售商Guess披露数据泄露
-
-
-摘要
-美国时尚品牌和零售商Guess在2月份的勒索软件攻击导致数据被盗后，又遭遇了数据泄露。
-
-正文
-该公司已经开始通知受影响的客户有关数据泄露的情况，其中指出，经调查发现，在2021年2月2日至2021年2月23日期间，Guess的系统遭到未经授权的访问。
-
-经过调查，在2021年5月26日，确定与某些人有关的个人信息可能已经被未经授权的行为者使用。在这次攻击中暴露的信息包括社会安全号码、驾驶执照号码、护照号码和/或金融账户号码等细节。尽管受影响的个人数量没有透露，但提交给缅因州总检察长办公室的信息显示，在2月份的攻击中，有超过1300人的数据被暴露或被</summary>
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>欧盟将成立联合网络部门</title>
-    <link href="http://dianwoshishi.github.io/post/%E6%AC%A7%E7%9B%9F%E5%B0%86%E6%88%90%E7%AB%8B%E8%81%94%E5%90%88%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%B7%A5%E4%BD%9C%E7%BB%84.html"/>
-    <id>http://dianwoshishi.github.io/post/%E6%AC%A7%E7%9B%9F%E5%B0%86%E6%88%90%E7%AB%8B%E8%81%94%E5%90%88%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%B7%A5%E4%BD%9C%E7%BB%84.html</id>
-    <published>2022-02-26T06:08:41.000Z</published>
-    <updated>2022-02-26T06:08:42.675Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="欧盟将成立联合网络部门"><a href="#欧盟将成立联合网络部门" class="headerlink" title="欧盟将成立联合网络部门"></a>欧盟将成立联合网络部门</h1><p>2021年6月23日，欧盟委员会已宣布计划建立一个联合网络部门(Joint Cyber Unit)，以应对大规模的网络攻击。</p><p><img src="https://th.bing.com/th/id/R140d41d13c7defe4ab06784a6c675230?rik=we3K7vZ/LEn+AA&pid=ImgRaw"></p><h2 id="前因"><a href="#前因" class="headerlink" title="前因"></a>前因</h2><p>这不是欧盟委员会第一次提出在整个欧洲建立一个协调的网络部门的想法。此前欧盟也试图建立这样一个组织，但收效甚微。欧盟成员国认为他们自己可以完全掌控自己的安全问题，导致很难说服他们与其他国家合作。</p><p>然而，随着电子设备互联数量的增加、5G 网络的广泛安装以及利用 COVID-19 大流行造成的混乱而实施的网络攻击，给欧盟带来了新的挑战。尤其是过去几年席卷该地区的网络攻击，特别是在医疗保健领域，促使欧盟国家寻求其他方式来打击网络犯罪。</p><p>欧盟面临的压力越来越大，需要采取措施应对这些网络攻击。</p><h2 id="导火索"><a href="#导火索" class="headerlink" title="导火索"></a>导火索</h2><p>网络攻击是一种国家安全威胁，欧洲的网络安全事件从 2019 年的 432 起增加到 2020 年的 756 起。</p><p>4 月，包括欧盟委员会在内的一系列欧盟机构遭到重大网络攻击。尤其是最近针对爱尔兰和美国关键服务的勒索软件事件“引起了人们的关注”。</p><p>今年五月爱尔兰的 Health Service Executive (HSE) 遭到名为 Conti 的勒索软件组织的攻击，该组织扰乱了 IT 系统，对许多医院造成了重大破坏。</p><p>同样是五月，美国燃料供应遭到黑客攻击。一个名为 Darkside 的网络犯罪团伙迫使美国燃料供应商Colonial Pipeline 离线近一周，导致恐慌性购买和燃料短缺。</p><p><img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.ngeiTMQCTZaWVNaCWDNhoQHaE8?pid=ImgDet&rs=1"></p><p>勒索软件黑客使用恶意软件来扰乱和窃取组织的计算机数据 - 向受害者收取费用以将服务恢复正常。勒索软件攻击已造成超过 3.5 亿美元的损失。</p><p><img src="https://tse4-mm.cn.bing.net/th/id/OIP-C.4hKr-zd_OP96oSeLBNek0AHaFP?pid=ImgDet&w=1600&h=1131&rs=1"></p><p>美国政府最近还成立了勒索软件工作组，而英国国家网络安全中心警告说，勒索软件是英国最大的网络威胁。</p><p>再此背景下，提出了建立联合网络部门，来应对这些网络事件。</p><h2 id="部门简介"><a href="#部门简介" class="headerlink" title="部门简介"></a>部门简介</h2><p>欧盟委员会已宣布计划建立一个联合网络部门。委员会声明称，联合网络部门“旨在汇集欧盟（EU）及其成员国可用的资源和专业知识，以有效预防、阻止和应对大规模网络事件和危机”。</p><h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><p>该部门计划为“网络犯罪警察、网络机构、外交官、军事服务和网络安全公司协调响应和共享资源“提供一个对抗网络攻击的虚拟和物理平台，以便与成员国合作并通过安全渠道共享资源。最终，联合网络部门将实现成员国和欧盟机构之间的互助协议以及国家和跨境监测和检测。</p><h3 id="职能"><a href="#职能" class="headerlink" title="职能"></a>职能</h3><p>该部门职能包括：协调成员国和欧盟机构之间对严重网络事件的响应；提供一个协作平台，让受网络攻击困扰的欧盟成员国能够获得其他成员国的帮助，抵御网络攻击；在发生严重攻击时，一个由多国网络专家组成的专门团队将迅速部署到欧洲国家；</p><h3 id="地点"><a href="#地点" class="headerlink" title="地点"></a>地点</h3><p>欧盟计划中的联合网络单位，位于欧盟网络安全局 (ENISA) 和欧盟机构、机构和机构的计算机应急响应小组 (CERT-EU) 布鲁塞尔新办事处旁边。</p><h3 id="时间"><a href="#时间" class="headerlink" title="时间"></a>时间</h3><p>明年 6 月投入使用，并在一年后，即 2023 年 6 月 30 日之前完全建立。</p><h3 id="资金来源"><a href="#资金来源" class="headerlink" title="资金来源"></a>资金来源</h3><p>根据该机构的声明，设立该部门的投资将来自欧盟委员会数字欧洲计划(European Commission Digital Europe Programme)。 投资将包括“构建物理和虚拟平台，建立和维护安全的通信渠道，以及提高检测能力。”</p><p>用于发展成员国网络防御能力等更长期任务的资源将来自欧洲国防基金(European Defence Fund)。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul><li>勒索软件和基础设施安全</li></ul><p>​        近年来，大规模网络事件被报道的越来越多，其中针对关键基础设施的攻击尤为引人注意，如输油管道、卫生服务、供水系统等。尤其是勒索软件低成本、高收益、难解决的特点，使得勒索软件横行。勒索软件盯上基础设施的原因是：与物理世界息息相关，一旦中招，就不得不支付赎金。</p><ul><li>协作防御</li></ul><p>​        欧盟在网络攻击的响应中采取的是协作平台的方式，这也许是未来网络安全防御的趋势。在当今网络空间中，面对大规模网络攻击，合作共赢是一个趋势。随着技术的进步，在网络攻击中谁也不能全身而退，唯有合作，才能将损失减到最小。</p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://abcnews.go.com/International/irelands-health-service-hit-significant-ransomware-attack/story?id=77685241">https://abcnews.go.com/International/irelands-health-service-hit-significant-ransomware-attack/story?id=77685241</a></p><p><a href="https://balkaninsight.com/2021/06/23/eu-sets-up-joint-cyber-unit-to-tackle-steep-rise-in-cyber-attacks/">https://balkaninsight.com/2021/06/23/eu-sets-up-joint-cyber-unit-to-tackle-steep-rise-in-cyber-attacks/</a></p><p><a href="https://igca.org/2021/06/23/eu-to-launch-cybersecurity-joint-task-force/">https://igca.org/2021/06/23/eu-to-launch-cybersecurity-joint-task-force/</a></p><p><a href="https://www.siliconrepublic.com/enterprise/joint-cyber-unit-eu-cyberattacks">https://www.siliconrepublic.com/enterprise/joint-cyber-unit-eu-cyberattacks</a></p><p><a href="https://www.thedefensepost.com/2021/06/23/eu-joint-cyber-unit/">https://www.thedefensepost.com/2021/06/23/eu-joint-cyber-unit/</a></p><p><a href="https://news.yahoo.com/eu-wants-emergency-team-nightmare-123014135.html?guccounter=1&amp;guce_referrer=aHR0cHM6Ly9jbi5iaW5nLmNvbS8&amp;guce_referrer_sig=AQAAAG2x8KqN3MAlhHZKrQqweB3N_umneTJv2XRD9ToL2zQWF4Nx7CDTTXjNXZHD2PDsdYEdplyyY3cg5P00EInHKrEjTulc1Y3OIkS2J1qp1WbWATAli91CdA4WR-SLe7u9n8F9UJdE8DRlOwdp1tEBmSk15xfgPCqSXIpttYN6Tn3q">https://news.yahoo.com/eu-wants-emergency-team-nightmare-123014135.html?guccounter=1&amp;guce_referrer=aHR0cHM6Ly9jbi5iaW5nLmNvbS8&amp;guce_referrer_sig=AQAAAG2x8KqN3MAlhHZKrQqweB3N_umneTJv2XRD9ToL2zQWF4Nx7CDTTXjNXZHD2PDsdYEdplyyY3cg5P00EInHKrEjTulc1Y3OIkS2J1qp1WbWATAli91CdA4WR-SLe7u9n8F9UJdE8DRlOwdp1tEBmSk15xfgPCqSXIpttYN6Tn3q</a></p>]]></content>
-    
-    
-    <summary type="html">欧盟将成立联合网络部门
-2021年6月23日，欧盟委员会已宣布计划建立一个联合网络部门(Joint Cyber Unit)，以应对大规模的网络攻击。
-
-
-
-前因
-这不是欧盟委员会第一次提出在整个欧洲建立一个协调的网络部门的想法。此前欧盟也试图建立这样一个组织，但收效甚微。欧盟成员国认为他们自己可以完全掌控自己的安全问题，导致很难说服他们与其他国家合作。
-
-然而，随着电子设备互联数量的增加、5G 网络的广泛安装以及利用 COVID-19 大流行造成的混乱而实施的网络攻击，给欧盟带来了新的挑战。尤其是过去几年席卷该地区的网络攻击，特别是在医疗保健领域，促使欧盟国家寻求其他方式来打击网络犯罪。
-
-欧</summary>
     
     
     
