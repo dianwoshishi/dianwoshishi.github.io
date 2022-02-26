@@ -6,5 +6,3 @@ do
     # echo $file
     $NODEPPT build ./$file -d $Destination
 done
-
-# rm -rf ../../public/slideshare

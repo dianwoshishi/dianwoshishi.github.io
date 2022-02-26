@@ -89,6 +89,21 @@
       </tags>
   </entry>
   <entry>
+    <title>IT、制造业和医疗卫生部门成为网络攻击的重点目标</title>
+    <url>//post/IT%E3%80%81%E5%88%B6%E9%80%A0%E4%B8%9A%E5%92%8C%E5%8C%BB%E7%96%97%E5%8D%AB%E7%94%9F%E9%83%A8%E9%97%A8%E6%88%90%E4%B8%BA%E7%BD%91%E7%BB%9C%E6%94%BB%E5%87%BB%E7%9A%84%E9%87%8D%E7%82%B9%E7%9B%AE%E6%A0%87.html</url>
+    <content><![CDATA[<h1 id="IT、制造业和医疗卫生部门成为网络攻击的重点目标"><a href="#IT、制造业和医疗卫生部门成为网络攻击的重点目标" class="headerlink" title="IT、制造业和医疗卫生部门成为网络攻击的重点目标"></a>IT、制造业和医疗卫生部门成为网络攻击的重点目标</h1><p><img src="https://cyware-ent.s3.amazonaws.com/image_bank/shutterstock_178125287.jpg" alt="IT, Manufacturing, and Healthcare Sectors Need to Stay Away from Cyberattacks"></p>
+<p>医疗保健和制造业受到主动的网络攻击，这已经不是什么秘密。威胁形势已经发生了巨大的变化，而且事情正在变得越来越糟糕。除了这两个行业，IT行业也已成为网络攻击的最主要目标之一。</p>
+<h2 id="一些统计数字"><a href="#一些统计数字" class="headerlink" title="一些统计数字"></a>一些统计数字</h2><p>Avanan公司最近的一份报告对今年上半年的网络攻击趋势作了说明。</p>
+<ul>
+<li>IT行业的公司见证了9000多封钓鱼邮件，其次是医疗保健和制造业，每10,000名用户每30天大约有6000封钓鱼邮件。</li>
+<li>在所有网络钓鱼攻击中，凭证收集占54%，BEC攻击占20.7%，敲诈占2.2%。</li>
+<li>黑客已经开始瞄准非行政人员，而不是C级行政人员，占据了77%的份额。</li>
+</ul>
+<h2 id="为什么这很重要？"><a href="#为什么这很重要？" class="headerlink" title="为什么这很重要？"></a>为什么这很重要？</h2><p>当医疗机构受到勒索软件攻击者的攻击，制造业公司不断遭受供应链中断的影响时，黑客已经诉诸于最基本的战术–钓鱼邮件来进行未经授权的访问。这些行业非常容易受到网络攻击，因为它们管理着有价值的信息，而这些信息在暗网市场上需求很大。此外，设施设备仍然使用过时的技术，再加上缺乏适当的员工培训和基本的网络安全防护知识，使这些部门被攻击者盯上。</p>
+<h2 id="底线"><a href="#底线" class="headerlink" title="底线"></a>底线</h2><p>现在，我们已经意识到网络犯罪分子为实现其邪恶的意图会不惜一切代价。诸如网络钓鱼和社会工程等经久不衰的方法，以及诸如供应链攻击等独特而复杂的方法，都被用来获得对未受保护或保护不力的系统的访问。如果没有适当的防御措施，这些部门将继续成为网络攻击的目标。</p>
+]]></content>
+  </entry>
+  <entry>
     <title>C语言回头看--诡异的i++和++i</title>
     <url>//post/C%E8%AF%AD%E8%A8%80%E5%9B%9E%E5%A4%B4%E7%9C%8B--%E5%8F%8C%E8%83%9E%E8%83%8Ei++%E5%92%8C++i%E7%9A%84%E6%95%85%E4%BA%8B.html</url>
     <content><![CDATA[<h1 id="C语言回头看–诡异的i-和-i"><a href="#C语言回头看–诡异的i-和-i" class="headerlink" title="C语言回头看–诡异的i++和++i"></a>C语言回头看–诡异的i++和++i</h1><p>C语言中的<code>i++</code>和<code>++i</code>使用非常的方便，简单明了。但是很多人在学习C语言的过程中，对这两个语句还是存在恐惧，因为这两条语句会引起不必要的麻烦。例如：到底是先用再加，还是先加再用？ 同时在一些程序语句中也会出现一些令人意想不到的结果，例如<code>i=1,((++i)+(++i))=6</code>的情况，非常的诡异。</p>
@@ -408,21 +423,6 @@ printf(&quot;i &#x3D; 1,(++i)+(i++) &#x3D; %d\n&quot;, (++i)+(i++));<span aria-h
       </tags>
   </entry>
   <entry>
-    <title>IT、制造业和医疗卫生部门成为网络攻击的重点目标</title>
-    <url>//post/IT%E3%80%81%E5%88%B6%E9%80%A0%E4%B8%9A%E5%92%8C%E5%8C%BB%E7%96%97%E5%8D%AB%E7%94%9F%E9%83%A8%E9%97%A8%E6%88%90%E4%B8%BA%E7%BD%91%E7%BB%9C%E6%94%BB%E5%87%BB%E7%9A%84%E9%87%8D%E7%82%B9%E7%9B%AE%E6%A0%87.html</url>
-    <content><![CDATA[<h1 id="IT、制造业和医疗卫生部门成为网络攻击的重点目标"><a href="#IT、制造业和医疗卫生部门成为网络攻击的重点目标" class="headerlink" title="IT、制造业和医疗卫生部门成为网络攻击的重点目标"></a>IT、制造业和医疗卫生部门成为网络攻击的重点目标</h1><p><img src="https://cyware-ent.s3.amazonaws.com/image_bank/shutterstock_178125287.jpg" alt="IT, Manufacturing, and Healthcare Sectors Need to Stay Away from Cyberattacks"></p>
-<p>医疗保健和制造业受到主动的网络攻击，这已经不是什么秘密。威胁形势已经发生了巨大的变化，而且事情正在变得越来越糟糕。除了这两个行业，IT行业也已成为网络攻击的最主要目标之一。</p>
-<h2 id="一些统计数字"><a href="#一些统计数字" class="headerlink" title="一些统计数字"></a>一些统计数字</h2><p>Avanan公司最近的一份报告对今年上半年的网络攻击趋势作了说明。</p>
-<ul>
-<li>IT行业的公司见证了9000多封钓鱼邮件，其次是医疗保健和制造业，每10,000名用户每30天大约有6000封钓鱼邮件。</li>
-<li>在所有网络钓鱼攻击中，凭证收集占54%，BEC攻击占20.7%，敲诈占2.2%。</li>
-<li>黑客已经开始瞄准非行政人员，而不是C级行政人员，占据了77%的份额。</li>
-</ul>
-<h2 id="为什么这很重要？"><a href="#为什么这很重要？" class="headerlink" title="为什么这很重要？"></a>为什么这很重要？</h2><p>当医疗机构受到勒索软件攻击者的攻击，制造业公司不断遭受供应链中断的影响时，黑客已经诉诸于最基本的战术–钓鱼邮件来进行未经授权的访问。这些行业非常容易受到网络攻击，因为它们管理着有价值的信息，而这些信息在暗网市场上需求很大。此外，设施设备仍然使用过时的技术，再加上缺乏适当的员工培训和基本的网络安全防护知识，使这些部门被攻击者盯上。</p>
-<h2 id="底线"><a href="#底线" class="headerlink" title="底线"></a>底线</h2><p>现在，我们已经意识到网络犯罪分子为实现其邪恶的意图会不惜一切代价。诸如网络钓鱼和社会工程等经久不衰的方法，以及诸如供应链攻击等独特而复杂的方法，都被用来获得对未受保护或保护不力的系统的访问。如果没有适当的防御措施，这些部门将继续成为网络攻击的目标。</p>
-]]></content>
-  </entry>
-  <entry>
     <title>Linux下从汇编手撕c++-值传递和引用传递e</title>
     <url>//post/Linux%E4%B8%8B%E6%89%8B%E6%92%95c++-%E5%80%BC%E4%BC%A0%E9%80%92%E5%92%8C%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92.html</url>
     <content><![CDATA[<h1 id="Linux下从汇编手撕c-值传递和引用传递"><a href="#Linux下从汇编手撕c-值传递和引用传递" class="headerlink" title="Linux下从汇编手撕c++-值传递和引用传递"></a>Linux下从汇编手撕c++-值传递和引用传递</h1><h2 id="示例程序"><a href="#示例程序" class="headerlink" title="示例程序"></a>示例程序</h2><p><code>main.c</code></p>
@@ -672,6 +672,116 @@ display2(num2);&#x2F;&#x2F;使用引用传递，相当于指针操作，作用�
       </tags>
   </entry>
   <entry>
+    <title>在你的hexo博客中使用nodeppt，一款迄今为止最好的网页版演示库</title>
+    <url>//post/NODEPPT%E8%BF%99%E5%8F%AF%E8%83%BD%E6%98%AF%E8%BF%84%E4%BB%8A%E4%B8%BA%E6%AD%A2%E6%9C%80%E5%A5%BD%E7%9A%84%E7%BD%91%E9%A1%B5%E7%89%88%E6%BC%94%E7%A4%BA%E5%BA%93.html</url>
+    <content><![CDATA[<p>大家好，我是明说网络的小明同学。</p>
+<p>今天我和大家分享一个非常酷的网页PPT工具，NODEPPT</p>
+<h1 id="NODEPPT这可能是迄今为止最好的网页版演示库"><a href="#NODEPPT这可能是迄今为止最好的网页版演示库" class="headerlink" title="NODEPPT这可能是迄今为止最好的网页版演示库"></a>NODEPPT这可能是迄今为止最好的网页版演示库</h1><p>一开始看到这个库的时候，我就喜欢上了。因为他效果非常的棒，而且能够非常好的和hexo结合。这样我们能够一次生成，到哪都可以演示PPT，还能配上相应的技术文档，是不是很酷啊！</p>
+<h2 id="NODEPPT-Demo"><a href="#NODEPPT-Demo" class="headerlink" title="NODEPPT Demo"></a>NODEPPT Demo</h2><p>项目的演示网址在这：<a href="https://nodeppt.js.org/#slide=1">https://nodeppt.js.org/#slide=1</a></p>
+<p><img src="/post/NODEPPT%E8%BF%99%E5%8F%AF%E8%83%BD%E6%98%AF%E8%BF%84%E4%BB%8A%E4%B8%BA%E6%AD%A2%E6%9C%80%E5%A5%BD%E7%9A%84%E7%BD%91%E9%A1%B5%E7%89%88%E6%BC%94%E7%A4%BA%E5%BA%93/image-20220226172518524.png" alt="image-20220226172518524"></p>
+<p>主要说明了这个库包含什么样的功能</p>
+<h2 id="NODE-PPT-Github"><a href="#NODE-PPT-Github" class="headerlink" title="NODE PPT Github"></a>NODE PPT Github</h2><p>官网地址：<a href="https://github.com/ksky521/nodeppt">https://github.com/ksky521/nodeppt</a></p>
+<h1 id="Hexo中使用PPT-Demo"><a href="#Hexo中使用PPT-Demo" class="headerlink" title="Hexo中使用PPT Demo"></a>Hexo中使用PPT Demo</h1><p>以下是我使用官网的<a href="https://raw.githubusercontent.com/ksky521/nodeppt/master/site/index.md">demo</a>制作的一个PPT，注意它是嵌入在我这个网页中的，以下网页你可以左右滑动。</p>
+<iframe src="../nodeppt/slides.html" width="100%" height="500" name="topFrame" scrolling="yes" noresize="noresize" frameborder="0" id="topFrame"></iframe>
+
+
+
+<p>如果你觉得这个功能很酷，想要添加到你的站点里面去，那么就和我一起往下走吧。</p>
+<h2 id="如何在Hexo中添加Nodeppt"><a href="#如何在Hexo中添加Nodeppt" class="headerlink" title="如何在Hexo中添加Nodeppt"></a>如何在Hexo中添加Nodeppt</h2><p>前提，确保你的noteppt能够正常使用。这是前提，至于怎么熟练的玩好nodeppt，额…… 还是去官网吧，这里不误导人了。</p>
+<p>整体的思路是，两步走：</p>
+<ul>
+<li>第一步先使用nodeppt在相应的public目录生成相应的文件,如html,js,img等等</li>
+<li>在post中引用相应的文件</li>
+</ul>
+<h3 id="首先熟悉nodeppt的build方法"><a href="#首先熟悉nodeppt的build方法" class="headerlink" title="首先熟悉nodeppt的build方法"></a>首先熟悉nodeppt的build方法</h3><p>输入<code>nodeppt build --help</code></p>
+<pre class="line-numbers language-none"><code class="language-none">Usage: nodeppt build [options] [entry]
+
+build html file
+
+Options:
+  -m, --map         Release sourcemap
+  -d, --dest &lt;dir&gt;  output directory
+  -h, --help        output usage information
+  Examples:
+
+    nodeppt build slide.md<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>我们需要使用的就是这个<code>-d</code>参数。目的是将生成的文件放入网站的public目录下</p>
+<h3 id="源文件目录说明"><a href="#源文件目录说明" class="headerlink" title="源文件目录说明"></a>源文件目录说明</h3><p>存放源文件的目录结构如下所示</p>
+<pre class="line-numbers language-none"><code class="language-none">root&#x2F;public
+		├──nodeppt
+root&#x2F;source
+├── slideshare
+│   ├── another.md
+│   ├── build.sh
+│   ├── buildlist.txt
+│   ├── makefile
+│   └── slides.md<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>buildlist.txt 代表等待生成的ppt文件列表</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">slides.md
+another.md%<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<ul>
+<li><p>build.sh </p>
+<p>在slideshare目录下运行本文件，作用是使用nodeppt按上面文件内容的顺序构建，输出目录为<code>public/nodeppt</code></p>
+</li>
+</ul>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">NODEPPT&#x3D;&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;node&#x2F;17.5.0&#x2F;bin&#x2F;nodeppt
+Destination&#x3D;..&#x2F;..&#x2F;public&#x2F;nodeppt&#x2F;
+build_files&#x3D;$(cat buildlist.txt | xargs)
+for file in $build_files
+do
+    # echo $file
+    $NODEPPT build .&#x2F;$file -d $Destination
+done<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>makefile 本文件主要用于使用一个脚本完成所有的工作</li>
+</ul>
+<pre class="line-numbers language-makefile" data-language="makefile"><code class="language-makefile"><span class="token symbol">all</span><span class="token punctuation">:</span>
+        bash build.sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>至此，你使用在当前目录<code>make</code>就能将生成好的PPT网页放入public目录的noteppt目录中。</p>
+<h3 id="那么怎么使用呢？"><a href="#那么怎么使用呢？" class="headerlink" title="那么怎么使用呢？"></a>那么怎么使用呢？</h3><p>在上一步中，我们生成了ppt文件，放在了<code>public/nodeppt/</code>中，假设文件名为<code>slides.html</code></p>
+<p>那么我们可以在hexo的post中简单的使用如下命令，就可以引用我们的PPT</p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>iframe</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>../nodeppt/slides.html<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>100%<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>500<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>topFrame<span class="token punctuation">"</span></span> <span class="token attr-name">scrolling</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>yes<span class="token punctuation">"</span></span> <span class="token attr-name">noresize</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>noresize<span class="token punctuation">"</span></span> <span class="token attr-name">frameborder</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>topFrame<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>iframe</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>需要修改的部分就是iframe中的src部分。</p>
+<p>最后放下一个一键上线部署的脚本</p>
+<pre class="line-numbers language-makefile" data-language="makefile"><code class="language-makefile"><span class="token symbol">all</span><span class="token punctuation">:</span>
+	make nodeppt
+	hexo g 
+	hexo d 
+
+<span class="token symbol">nodeppt</span><span class="token punctuation">:</span>
+	<span class="token variable">$</span><span class="token punctuation">(</span>MAKE<span class="token punctuation">)</span> -C source/slideshare/
+
+<span class="token symbol">test</span><span class="token punctuation">:</span>
+	make nodeppt
+	hexo g
+	hexo s
+
+<span class="token symbol">deploy</span><span class="token punctuation">:</span>
+	make nodeppt
+	hexo g 
+	hexo d
+	<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="最后附上本次示例的PPT"><a href="#最后附上本次示例的PPT" class="headerlink" title="最后附上本次示例的PPT"></a>最后附上本次示例的PPT</h2><p>试试看左右滑动</p>
+<iframe src="../nodeppt/use-nodeppt-in-hexo-demo.html" width="100%" height="500" name="topFrame" scrolling="yes" noresize="noresize" frameborder="0" id="topFrame"></iframe>
+
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><h2 id="静态压缩"><a href="#静态压缩" class="headerlink" title="静态压缩"></a>静态压缩</h2><p><a href="https://hasaik.com/posts/495d0b23.html">https://hasaik.com/posts/495d0b23.html</a></p>
+<p>使用Hexo-Neat成功<a href="https://github.com/rozbo/hexo-neat">https://github.com/rozbo/hexo-neat</a></p>
+<p>Hexo静态资源压缩<a href="https://www.jianshu.com/p/5e48e532ae58">https://www.jianshu.com/p/5e48e532ae58</a></p>
+<p><a href="https://rye-catcher.github.io/2019/10/21/Nodeppt-%E5%85%A5%E5%9D%91%E6%8C%87%E5%8D%97/">https://rye-catcher.github.io/2019/10/21/Nodeppt-%E5%85%A5%E5%9D%91%E6%8C%87%E5%8D%97/</a></p>
+<p>给博客文章嵌入 PPT 演示<a href="https://hexo.fluid-dev.com/posts/hexo-nodeppt/">https://hexo.fluid-dev.com/posts/hexo-nodeppt/</a></p>
+<h3 id="添加自定义网页"><a href="#添加自定义网页" class="headerlink" title="添加自定义网页"></a>添加自定义网页</h3><p><a href="https://www.jianshu.com/p/524b073f9b37">https://www.jianshu.com/p/524b073f9b37</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>Unit 8200 世界上最强的网络部队之一</title>
     <url>//post/Unit%208200%20%E4%B8%96%E7%95%8C%E4%B8%8A%E6%9C%80%E5%BC%BA%E7%9A%84%E7%BD%91%E7%BB%9C%E9%83%A8%E9%98%9F%E4%B9%8B%E4%B8%80.html</url>
     <content><![CDATA[<h1 id="Unit-8200-世界上最强的网络部队之一"><a href="#Unit-8200-世界上最强的网络部队之一" class="headerlink" title="Unit 8200 世界上最强的网络部队之一"></a>Unit 8200 世界上最强的网络部队之一</h1><h2 id="神秘的Unit-8200"><a href="#神秘的Unit-8200" class="headerlink" title="神秘的Unit 8200"></a>神秘的Unit 8200</h2><p>2014年，以色列出口的网络安全产品（即公司、银行和政府购买使自己免受黑客、病毒攻击的产品）总值达60亿美金，首次超越了以色列军事硬件的出口值，占领了全球10%的网络安全市场。2014-2016年，微软用3.2亿美元买下数据隐私公司Adallom；Facebook花了1.5亿美元收购移动端数据分析公司Onavo；PayPal以6千万美元收下CyActive, 一家能预判黑客进攻行为的公司；谷歌更是斥11亿美元收购Waze ，一款通过众包形式更新地图数据的导航应用</p>
@@ -759,6 +869,35 @@ display2(num2);&#x2F;&#x2F;使用引用传递，相当于指针操作，作用�
       <tags>
         <tag>Attack</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>VSCode Markdown Snippet插件的使用问题备注</title>
+    <url>//post/VSCode%20Markdown%20Snippet%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98%E5%A4%87%E6%B3%A8.html</url>
+    <content><![CDATA[<h1 id="VSCode-Markdown-Snippet插件的使用问题备注"><a href="#VSCode-Markdown-Snippet插件的使用问题备注" class="headerlink" title="VSCode Markdown Snippet插件的使用问题备注"></a>VSCode Markdown Snippet插件的使用问题备注</h1><h2 id="官方给出的使用帮助"><a href="#官方给出的使用帮助" class="headerlink" title="官方给出的使用帮助"></a>官方给出的使用帮助</h2><p><a href="https://code.visualstudio.com/docs/editor/userdefinedsnippets">https://code.visualstudio.com/docs/editor/userdefinedsnippets</a></p>
+<h2 id="一个简短的示例"><a href="#一个简短的示例" class="headerlink" title="一个简短的示例"></a>一个简短的示例</h2><p><a href="https://www.jianshu.com/p/a87e9ca2d208">https://www.jianshu.com/p/a87e9ca2d208</a></p>
+<p>记得在配置文件中添加相应的配置，不仅仅是相关语言的配置哦，setting中也记得</p>
+<p><a href="https://blog.csdn.net/serryuer/article/details/89393760">https://blog.csdn.net/serryuer/article/details/89393760</a></p>
+<h2 id="代码备注"><a href="#代码备注" class="headerlink" title="代码备注"></a>代码备注</h2><pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"hexo title"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+		<span class="token property">"prefix"</span><span class="token operator">:</span> <span class="token string">"hexo"</span><span class="token punctuation">,</span>
+		<span class="token property">"body"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+			<span class="token string">"---"</span><span class="token punctuation">,</span>
+			<span class="token string">"title: $CLIPBOARD"</span><span class="token punctuation">,</span>
+			<span class="token string">"date: $&#123;3:$CURRENT_YEAR&#125;-$&#123;4:$CURRENT_MONTH&#125;-$&#123;5:$CURRENT_DATE&#125; $&#123;6:$CURRENT_HOUR&#125;:$&#123;7:$CURRENT_MINUTE&#125;:$&#123;8:$CURRENT_SECOND&#125;"</span><span class="token punctuation">,</span>
+			<span class="token comment">// "categories: $&#123;9|咨询, 编程开发, 网络空间, 学习笔记, 科普|&#125;",</span>
+			<span class="token comment">// "tags: [$&#123;10:tags&#125;]",</span>
+			<span class="token string">"---"</span><span class="token punctuation">,</span>
+			<span class="token string">"$11"</span>
+		<span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"Front-Matter"</span>
+	<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>效果如下所示：</p>
+<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">---
+title: 大家好，我是明说网络的小明同学
+date: 2022-02-26 17:20:22
+---<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+]]></content>
   </entry>
   <entry>
     <title>网络电子身份标识(eID) -你的网络空间身份证</title>
@@ -2736,6 +2875,17 @@ MODULE_LICENSE(&quot;Dual BSD/GPL&quot;);MODULE_AUTHOR(&quot;dianwoshishi&quot;)
       </tags>
   </entry>
   <entry>
+    <title>小心! 网络犯罪分子正在对加密货币用户进行攻击</title>
+    <url>//post/%E5%B0%8F%E5%BF%83!%20%E7%BD%91%E7%BB%9C%E7%8A%AF%E7%BD%AA%E5%88%86%E5%AD%90%E6%AD%A3%E5%9C%A8%E5%AF%B9%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81%E7%94%A8%E6%88%B7%E8%BF%9B%E8%A1%8C%E6%94%BB%E5%87%BB.html</url>
+    <content><![CDATA[<h1 id="小心-网络犯罪分子正在对加密货币用户进行攻击"><a href="#小心-网络犯罪分子正在对加密货币用户进行攻击" class="headerlink" title="小心! 网络犯罪分子正在对加密货币用户进行攻击"></a>小心! 网络犯罪分子正在对加密货币用户进行攻击</h1><p><img src="https://cyware-ent.s3.amazonaws.com/image_bank/f464_shutterstock_1076473562.jpg" alt="Watch Out! Cybercriminals are Hitting Hard at Cryptocurrency Users"></p>
+<p>随着网络犯罪分子不断发展他们的攻击技术和恶意软件，非法的加密挖矿活动正在飞速增长。上升的主要原因之一是快速增长的加密货币汇率。</p>
+<p>此外，新数字货币的引入和加密货币的正式交易，使人们对加密货币滥用和加密货币诈骗带来的新威胁产生了怀疑。根据Akamai最近的报告，在2020年3月至2021年5月期间，虚假的加密货币交易所钓鱼网址激增超过500%。这些钓鱼网址最终使攻击者能够秘密地盗取钱财。然而，攻击者正在将重点从URL转移到恶意应用程序，以欺骗用户并赚取更多利润。</p>
+<h2 id="BitScam和CloudScam"><a href="#BitScam和CloudScam" class="headerlink" title="BitScam和CloudScam"></a>BitScam和CloudScam</h2><p>最近，Lookout威胁实验室的安全研究人员发现了170多个安卓应用，这些应用欺骗对加密货币感兴趣的人。<br>根据研究人员的发现，这些应用程序被归类为BitScam和CloudScam。这些应用程序承诺帮助受害者进行云采矿，而不需要额外的商品或服务。<br>这两个版本都提供了加密采矿的订阅和服务，用户可以通过Google Play的应用内付费系统来启用。<br>BitScam与CloudScam的唯一区别是在支付选项中增加了比特币和以太坊。<br>然而，受害者并不知道，攻击者正在眼皮下利用他们。据悉，攻击者至少骗取了35万美元的加密货币资金。</p>
+<h2 id="更深层次-的攻击"><a href="#更深层次-的攻击" class="headerlink" title="更深层次 的攻击"></a>更深层次 的攻击</h2><p>联邦调查局发布了一份关于正在进行的针对加密货币所有者和第三方平台的攻击的警告。<br>该警告显示，攻击者正在使用几种战术来控制目标的加密货币交易所账户并窃取数字货币。<br>冒充支付平台和利用SIM卡交换攻击是攻击者用来发动攻击的一些战术。</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>随着加密货币变得更加重要，看到它在越来越多的受到攻击将不足为奇，例如DDoS勒索和勒索软件攻击。鉴于与加密货币相关的攻击对消费者和企业的潜在影响，强烈建议建立主动的安全监测和控制。</p>
+]]></content>
+  </entry>
+  <entry>
     <title>威胁情报</title>
     <url>//post/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5.html</url>
     <content><![CDATA[<h1 id="威胁情报"><a href="#威胁情报" class="headerlink" title="威胁情报"></a>威胁情报</h1><p>网络威胁情报（CTI）仍然可以说是一个新生的、快速发展的领域。但是，情报工作本身在历史上和商业上是一门非常成熟的学科。</p>
@@ -2852,17 +3002,6 @@ MODULE_LICENSE(&quot;Dual BSD/GPL&quot;);MODULE_AUTHOR(&quot;dianwoshishi&quot;)
 <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z"></path>
 </svg>
 </span><p>(i)基于 Ethereum 区块链的网络威胁情报(CTI)共享激励模型。新的进化经济激励措施是通过 Ether 和一种新的威胁情报数字资产 CTI 令牌(ERC20兼容)的组合提供的。(ii)新增强版的同侪。动态风险管理(DRM)过程中网络威胁情报共享系统的语义方法。为此，我们支持在所有级别(操作、战术和战略级别)以 SWRL 和 STIXTMv2的 OWL 增强版的形式交换 CTI 语义 web 算法(不包括交换 IoC 数据)。(三)模拟模型优化和实验，以证明其好处和限制，特别是在成本方面。</p></blockquote>
-]]></content>
-  </entry>
-  <entry>
-    <title>小心! 网络犯罪分子正在对加密货币用户进行攻击</title>
-    <url>//post/%E5%B0%8F%E5%BF%83!%20%E7%BD%91%E7%BB%9C%E7%8A%AF%E7%BD%AA%E5%88%86%E5%AD%90%E6%AD%A3%E5%9C%A8%E5%AF%B9%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81%E7%94%A8%E6%88%B7%E8%BF%9B%E8%A1%8C%E6%94%BB%E5%87%BB.html</url>
-    <content><![CDATA[<h1 id="小心-网络犯罪分子正在对加密货币用户进行攻击"><a href="#小心-网络犯罪分子正在对加密货币用户进行攻击" class="headerlink" title="小心! 网络犯罪分子正在对加密货币用户进行攻击"></a>小心! 网络犯罪分子正在对加密货币用户进行攻击</h1><p><img src="https://cyware-ent.s3.amazonaws.com/image_bank/f464_shutterstock_1076473562.jpg" alt="Watch Out! Cybercriminals are Hitting Hard at Cryptocurrency Users"></p>
-<p>随着网络犯罪分子不断发展他们的攻击技术和恶意软件，非法的加密挖矿活动正在飞速增长。上升的主要原因之一是快速增长的加密货币汇率。</p>
-<p>此外，新数字货币的引入和加密货币的正式交易，使人们对加密货币滥用和加密货币诈骗带来的新威胁产生了怀疑。根据Akamai最近的报告，在2020年3月至2021年5月期间，虚假的加密货币交易所钓鱼网址激增超过500%。这些钓鱼网址最终使攻击者能够秘密地盗取钱财。然而，攻击者正在将重点从URL转移到恶意应用程序，以欺骗用户并赚取更多利润。</p>
-<h2 id="BitScam和CloudScam"><a href="#BitScam和CloudScam" class="headerlink" title="BitScam和CloudScam"></a>BitScam和CloudScam</h2><p>最近，Lookout威胁实验室的安全研究人员发现了170多个安卓应用，这些应用欺骗对加密货币感兴趣的人。<br>根据研究人员的发现，这些应用程序被归类为BitScam和CloudScam。这些应用程序承诺帮助受害者进行云采矿，而不需要额外的商品或服务。<br>这两个版本都提供了加密采矿的订阅和服务，用户可以通过Google Play的应用内付费系统来启用。<br>BitScam与CloudScam的唯一区别是在支付选项中增加了比特币和以太坊。<br>然而，受害者并不知道，攻击者正在眼皮下利用他们。据悉，攻击者至少骗取了35万美元的加密货币资金。</p>
-<h2 id="更深层次-的攻击"><a href="#更深层次-的攻击" class="headerlink" title="更深层次 的攻击"></a>更深层次 的攻击</h2><p>联邦调查局发布了一份关于正在进行的针对加密货币所有者和第三方平台的攻击的警告。<br>该警告显示，攻击者正在使用几种战术来控制目标的加密货币交易所账户并窃取数字货币。<br>冒充支付平台和利用SIM卡交换攻击是攻击者用来发动攻击的一些战术。</p>
-<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>随着加密货币变得更加重要，看到它在越来越多的受到攻击将不足为奇，例如DDoS勒索和勒索软件攻击。鉴于与加密货币相关的攻击对消费者和企业的潜在影响，强烈建议建立主动的安全监测和控制。</p>
 ]]></content>
   </entry>
   <entry>
@@ -3029,33 +3168,6 @@ MODULE_LICENSE(&quot;Dual BSD/GPL&quot;);MODULE_AUTHOR(&quot;dianwoshishi&quot;)
 ]]></content>
   </entry>
   <entry>
-    <title>（转载）来网络空间钓鱼吧</title>
-    <url>//post/%E6%9D%A5%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E9%92%93%E9%B1%BC%E5%90%A7.html</url>
-    <content><![CDATA[<h1 id="（转载）来网络空间钓鱼吧"><a href="#（转载）来网络空间钓鱼吧" class="headerlink" title="（转载）来网络空间钓鱼吧"></a>（转载）来网络空间钓鱼吧</h1><p><img src="https://img.php.cn/upload/article/000/000/024/5c2dbc0a34396146.jpg"></p>
-<h2 id="什么是网络钓鱼？"><a href="#什么是网络钓鱼？" class="headerlink" title="什么是网络钓鱼？"></a>什么是网络钓鱼？</h2><p>网络钓鱼是一种尝试使用欺骗性电子邮件和网站收集个人信息的攻击方式。攻击者会伪装成信誉良好的实体或个人通过电子邮件或其他通信渠道，使用网络钓鱼电子邮件分发可执行各种功能的恶意链接或附件，从受害者中提取登录凭据或帐户信息；或者自动下载恶意软件，让受害者使用恶意软件感染自己的计算机。</p>
-<p><img src="https://tse4-mm.cn.bing.net/th/id/OIP.7PzuDJygEAmoeVP7YAWqZgHaDx?pid=ImgDet&rs=1"></p>
-<h2 id="网络钓鱼的类型"><a href="#网络钓鱼的类型" class="headerlink" title="网络钓鱼的类型"></a>网络钓鱼的类型</h2><p>网络钓鱼很猖獗，这使得它很危险。模拟网站与真实网站普通人无法区分，黑客们正在寻找方法来克服日益复杂的垃圾邮件过滤。除了电子邮件和网站钓鱼之外，还有“vishing”（语音网络钓鱼），“smishing”（短信网络钓鱼）和网络犯罪分子不断提出的其他几种网络钓鱼技术。 下面我们来看看常见的网络钓鱼攻击类型。</p>
-<h3 id="1、鱼叉式网络钓鱼攻击"><a href="#1、鱼叉式网络钓鱼攻击" class="headerlink" title="1、鱼叉式网络钓鱼攻击"></a>1、鱼叉式网络钓鱼攻击</h3><p>这是一种个人触摸的大量网络钓鱼。发件人将使用可用信息看似合法。此类别中最常见的伪装是银行，攻击可以发送您的姓名，地址等。</p>
-<p>它针对特定的个人或公司，通常是用来收集的受害者特定信息，以更成功地将该信息表示为真实信息。鱼叉式网络钓鱼电子邮件可能包括对受害者组织的同事或管理人员的引用，以及受害者姓名，地点或其他个人信息的使用。</p>
-<p><img src="https://inews.gtimg.com/newsapp_bt/0/10449960979/1000"></p>
-<h3 id="2、捕鲸攻击（行政网络钓鱼）"><a href="#2、捕鲸攻击（行政网络钓鱼）" class="headerlink" title="2、捕鲸攻击（行政网络钓鱼）"></a>2、捕鲸攻击（行政网络钓鱼）</h3><p>这是一种专门针对组织内的高级管理人员的钓鱼攻击，通常是为了窃取大笔资金。</p>
-<p>典型的捕鲸攻击针对的是能够授权付款的员工，网络钓鱼消息似乎是来自管理人员的命令，用于向供应商授予大额付款，而实际上是向攻击者付款。</p>
-<h3 id="3、克隆网络钓鱼"><a href="#3、克隆网络钓鱼" class="headerlink" title="3、克隆网络钓鱼"></a>3、克隆网络钓鱼</h3><p>它会收集先前已发送的电子邮件并复制其内容，将任何合法链接替换为恶意链接。然后使用欺骗帐户将电子邮件发送给原始电子邮件的收件人。基本上，攻击者克隆了合法的电子邮件。</p>
-<p>大多数克隆网络钓鱼的目标是感染目标计算机上的病毒，恶意软件传播到分支机器网络。随着链接的消失，更多用户被感染，然后发送更多受感染的链接。</p>
-<h3 id="4、域欺骗"><a href="#4、域欺骗" class="headerlink" title="4、域欺骗"></a>4、域欺骗</h3><p>它是一种新的网络钓鱼形式，依赖于DNS缓存污染，将用户从合法站点重定向到欺诈站点，并欺骗用户使用他们的登录凭据尝试登录欺诈站点。</p>
-<h3 id="5、语音网络钓鱼"><a href="#5、语音网络钓鱼" class="headerlink" title="5、语音网络钓鱼"></a>5、语音网络钓鱼</h3><p>它也称为vishing，是一种通过语音通信媒体发生的网络钓鱼形式，包括IP语音（VoIP）或POTS（普通老式电话服务）。犯罪者会使用语音合成软件留下声称通知受害者银行或信用账户中的可疑活动的语音邮件，并请求受害者回复恶意电话号码以验证他的身份 - 从而危及受害者的账户凭证。</p>
-<h3 id="6、短信网络钓鱼"><a href="#6、短信网络钓鱼" class="headerlink" title="6、短信网络钓鱼"></a>6、短信网络钓鱼</h3><p>它也称为SMishing或SMShing，犯罪者会使用短信来说服受害者披露帐户凭据或安装恶意软件。</p>
-<h2 id="原文"><a href="#原文" class="headerlink" title="原文"></a>原文</h2><p><a href="https://www.php.cn/windows-414137.html">https://www.php.cn/windows-414137.html</a></p>
-]]></content>
-      <categories>
-        <category>网络空间</category>
-        <category>网络战</category>
-      </categories>
-      <tags>
-        <tag>网络攻击</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>欧盟将成立联合网络部门</title>
     <url>//post/%E6%AC%A7%E7%9B%9F%E5%B0%86%E6%88%90%E7%AB%8B%E8%81%94%E5%90%88%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%B7%A5%E4%BD%9C%E7%BB%84.html</url>
     <content><![CDATA[<h1 id="欧盟将成立联合网络部门"><a href="#欧盟将成立联合网络部门" class="headerlink" title="欧盟将成立联合网络部门"></a>欧盟将成立联合网络部门</h1><p>2021年6月23日，欧盟委员会已宣布计划建立一个联合网络部门(Joint Cyber Unit)，以应对大规模的网络攻击。</p>
@@ -3096,6 +3208,43 @@ MODULE_LICENSE(&quot;Dual BSD/GPL&quot;);MODULE_AUTHOR(&quot;dianwoshishi&quot;)
 ]]></content>
   </entry>
   <entry>
+    <title>（转载）来网络空间钓鱼吧</title>
+    <url>//post/%E6%9D%A5%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E9%92%93%E9%B1%BC%E5%90%A7.html</url>
+    <content><![CDATA[<h1 id="（转载）来网络空间钓鱼吧"><a href="#（转载）来网络空间钓鱼吧" class="headerlink" title="（转载）来网络空间钓鱼吧"></a>（转载）来网络空间钓鱼吧</h1><p><img src="https://img.php.cn/upload/article/000/000/024/5c2dbc0a34396146.jpg"></p>
+<h2 id="什么是网络钓鱼？"><a href="#什么是网络钓鱼？" class="headerlink" title="什么是网络钓鱼？"></a>什么是网络钓鱼？</h2><p>网络钓鱼是一种尝试使用欺骗性电子邮件和网站收集个人信息的攻击方式。攻击者会伪装成信誉良好的实体或个人通过电子邮件或其他通信渠道，使用网络钓鱼电子邮件分发可执行各种功能的恶意链接或附件，从受害者中提取登录凭据或帐户信息；或者自动下载恶意软件，让受害者使用恶意软件感染自己的计算机。</p>
+<p><img src="https://tse4-mm.cn.bing.net/th/id/OIP.7PzuDJygEAmoeVP7YAWqZgHaDx?pid=ImgDet&rs=1"></p>
+<h2 id="网络钓鱼的类型"><a href="#网络钓鱼的类型" class="headerlink" title="网络钓鱼的类型"></a>网络钓鱼的类型</h2><p>网络钓鱼很猖獗，这使得它很危险。模拟网站与真实网站普通人无法区分，黑客们正在寻找方法来克服日益复杂的垃圾邮件过滤。除了电子邮件和网站钓鱼之外，还有“vishing”（语音网络钓鱼），“smishing”（短信网络钓鱼）和网络犯罪分子不断提出的其他几种网络钓鱼技术。 下面我们来看看常见的网络钓鱼攻击类型。</p>
+<h3 id="1、鱼叉式网络钓鱼攻击"><a href="#1、鱼叉式网络钓鱼攻击" class="headerlink" title="1、鱼叉式网络钓鱼攻击"></a>1、鱼叉式网络钓鱼攻击</h3><p>这是一种个人触摸的大量网络钓鱼。发件人将使用可用信息看似合法。此类别中最常见的伪装是银行，攻击可以发送您的姓名，地址等。</p>
+<p>它针对特定的个人或公司，通常是用来收集的受害者特定信息，以更成功地将该信息表示为真实信息。鱼叉式网络钓鱼电子邮件可能包括对受害者组织的同事或管理人员的引用，以及受害者姓名，地点或其他个人信息的使用。</p>
+<p><img src="https://inews.gtimg.com/newsapp_bt/0/10449960979/1000"></p>
+<h3 id="2、捕鲸攻击（行政网络钓鱼）"><a href="#2、捕鲸攻击（行政网络钓鱼）" class="headerlink" title="2、捕鲸攻击（行政网络钓鱼）"></a>2、捕鲸攻击（行政网络钓鱼）</h3><p>这是一种专门针对组织内的高级管理人员的钓鱼攻击，通常是为了窃取大笔资金。</p>
+<p>典型的捕鲸攻击针对的是能够授权付款的员工，网络钓鱼消息似乎是来自管理人员的命令，用于向供应商授予大额付款，而实际上是向攻击者付款。</p>
+<h3 id="3、克隆网络钓鱼"><a href="#3、克隆网络钓鱼" class="headerlink" title="3、克隆网络钓鱼"></a>3、克隆网络钓鱼</h3><p>它会收集先前已发送的电子邮件并复制其内容，将任何合法链接替换为恶意链接。然后使用欺骗帐户将电子邮件发送给原始电子邮件的收件人。基本上，攻击者克隆了合法的电子邮件。</p>
+<p>大多数克隆网络钓鱼的目标是感染目标计算机上的病毒，恶意软件传播到分支机器网络。随着链接的消失，更多用户被感染，然后发送更多受感染的链接。</p>
+<h3 id="4、域欺骗"><a href="#4、域欺骗" class="headerlink" title="4、域欺骗"></a>4、域欺骗</h3><p>它是一种新的网络钓鱼形式，依赖于DNS缓存污染，将用户从合法站点重定向到欺诈站点，并欺骗用户使用他们的登录凭据尝试登录欺诈站点。</p>
+<h3 id="5、语音网络钓鱼"><a href="#5、语音网络钓鱼" class="headerlink" title="5、语音网络钓鱼"></a>5、语音网络钓鱼</h3><p>它也称为vishing，是一种通过语音通信媒体发生的网络钓鱼形式，包括IP语音（VoIP）或POTS（普通老式电话服务）。犯罪者会使用语音合成软件留下声称通知受害者银行或信用账户中的可疑活动的语音邮件，并请求受害者回复恶意电话号码以验证他的身份 - 从而危及受害者的账户凭证。</p>
+<h3 id="6、短信网络钓鱼"><a href="#6、短信网络钓鱼" class="headerlink" title="6、短信网络钓鱼"></a>6、短信网络钓鱼</h3><p>它也称为SMishing或SMShing，犯罪者会使用短信来说服受害者披露帐户凭据或安装恶意软件。</p>
+<h2 id="原文"><a href="#原文" class="headerlink" title="原文"></a>原文</h2><p><a href="https://www.php.cn/windows-414137.html">https://www.php.cn/windows-414137.html</a></p>
+]]></content>
+      <categories>
+        <category>网络空间</category>
+        <category>网络战</category>
+      </categories>
+      <tags>
+        <tag>网络攻击</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>由SolarWinds提供的Serv-U管理的文件传输服务中的一个RCE漏洞被人利用</title>
+    <url>//post/%E7%94%B1SolarWinds%E6%8F%90%E4%BE%9B%E7%9A%84Serv-U%E7%AE%A1%E7%90%86%E7%9A%84%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93%E6%9C%8D%E5%8A%A1%E4%B8%AD%E7%9A%84%E4%B8%80%E4%B8%AARCE%E6%BC%8F%E6%B4%9E%E8%A2%AB%E4%BA%BA%E5%88%A9%E7%94%A8.html</url>
+    <content><![CDATA[<h1 id="由SolarWinds提供的Serv-U管理的文件传输服务中的一个RCE漏洞被人利用"><a href="#由SolarWinds提供的Serv-U管理的文件传输服务中的一个RCE漏洞被人利用" class="headerlink" title="由SolarWinds提供的Serv-U管理的文件传输服务中的一个RCE漏洞被人利用"></a>由SolarWinds提供的Serv-U管理的文件传输服务中的一个RCE漏洞被人利用</h1><p><img src="https://cyware-ent.s3.amazonaws.com/image_bank/08ab_shutterstock_1092298922.jpg" alt="SolarWinds Zero-Day Vulnerability Under Active Attack"></p>
+<p>由SolarWinds提供的Serv-U管理的文件传输服务中的一个RCE漏洞被人利用。SolarWinds公司早些时候通过供应链攻击成为目标，该公司已发布补丁以修复该漏洞。</p>
+<h2 id="发生了什么？"><a href="#发生了什么？" class="headerlink" title="发生了什么？"></a>发生了什么？</h2><p>微软已经提出了有限的和目标客户受到被追踪为CVE-2021-35211的零日漏洞影响的证据。然而，SolarWinds 並沒有准确估计有多少客戶可能受到该漏洞的影响。<br>该漏洞影响到Serv-U 15.2.3 HF1及之前的版本。成功利用该漏洞后，攻击者可在受感染的系统上运行任意代码。<br>此外，该漏洞使攻击者能够安装恶意程序并查看、更改或删除重要数据。然而，该漏洞在Serv-U 15.2.3版热修复（HF）2中得到解决。<br>该公司要求管理员注意任何通过SSH从IP地址98[.]176[.]196[.]89和68[.]235[.]178[.]32或208[.]113[.]35[.]58通过TCP 443的潜在可疑连接。<br>SolarWinds在其最近的公告中表示，发现的零日与SUNBURST供应链攻击没有任何关系。此外，它不影响任何其他产品，特别是Orion平台。</p>
+<h2 id="最近的供应链攻击"><a href="#最近的供应链攻击" class="headerlink" title="最近的供应链攻击"></a>最近的供应链攻击</h2><p>有几起事件被曝光，其中有供应链攻击。<br>最近，卡西亚在一次供应链攻击中被REvil勒索软件盯上，目标是其虚拟系统管理员解决方案中的关键安全漏洞（CVE-2021-30116&#x2F;19&#x2F;20）。<br>6月，对航空业的一次巨大的供应链攻击与中国国家行为者APT41有关。<br>5月，加拿大邮政遭遇数据泄露事件，影响到其95万名客户。该安全漏洞是由于基于恶意软件的供应链攻击而发生的。</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>最近的供应链攻击突出了现代网络和供应链的脆弱性。攻击者越来越多地发现广泛使用的软件链中的漏洞，以部署恶意软件。因此，建议企业遵循安全机构提供的建议，并定期审查其网络安全态势。</p>
+]]></content>
+  </entry>
+  <entry>
     <title>犯罪分子进入一个网络需要多少钱？可能是7200美元</title>
     <url>//post/%E7%8A%AF%E7%BD%AA%E5%88%86%E5%AD%90%E8%BF%9B%E5%85%A5%E4%B8%80%E4%B8%AA%E7%BD%91%E7%BB%9C%E9%9C%80%E8%A6%81%E5%A4%9A%E5%B0%91%E9%92%B1%EF%BC%9F%E5%8F%AF%E8%83%BD%E6%98%AF7200%E7%BE%8E%E5%85%83.html</url>
     <content><![CDATA[<h1 id="犯罪分子进入一个网络需要多少钱？可能是7200美元"><a href="#犯罪分子进入一个网络需要多少钱？可能是7200美元" class="headerlink" title="犯罪分子进入一个网络需要多少钱？可能是7200美元"></a>犯罪分子进入一个网络需要多少钱？可能是7200美元</h1><p><img src="https://cybernews.com/wp-content/uploads/2021/07/hacker-2-750x375.jpg" alt="Average cost to break into a network – $7,200"></p>
@@ -3110,16 +3259,6 @@ MODULE_LICENSE(&quot;Dual BSD/GPL&quot;);MODULE_AUTHOR(&quot;dianwoshishi&quot;)
 <p>研究人员正在研究各种非法市场。自2020年以来，他们已经看到了500个不同的网络访问权限的销售清单。这意味着，如果你有一个不安全的网络，可能会被出售。</p>
 <p>根据数字风险保护公司Digital Shadows的数据，平均而言，网络犯罪分子进入一个网络要花费7200美元。</p>
 <p>远程桌面协议（RDP）访问是列出的最常见的访问类型，平均价格为9,874美元。</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>由SolarWinds提供的Serv-U管理的文件传输服务中的一个RCE漏洞被人利用</title>
-    <url>//post/%E7%94%B1SolarWinds%E6%8F%90%E4%BE%9B%E7%9A%84Serv-U%E7%AE%A1%E7%90%86%E7%9A%84%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93%E6%9C%8D%E5%8A%A1%E4%B8%AD%E7%9A%84%E4%B8%80%E4%B8%AARCE%E6%BC%8F%E6%B4%9E%E8%A2%AB%E4%BA%BA%E5%88%A9%E7%94%A8.html</url>
-    <content><![CDATA[<h1 id="由SolarWinds提供的Serv-U管理的文件传输服务中的一个RCE漏洞被人利用"><a href="#由SolarWinds提供的Serv-U管理的文件传输服务中的一个RCE漏洞被人利用" class="headerlink" title="由SolarWinds提供的Serv-U管理的文件传输服务中的一个RCE漏洞被人利用"></a>由SolarWinds提供的Serv-U管理的文件传输服务中的一个RCE漏洞被人利用</h1><p><img src="https://cyware-ent.s3.amazonaws.com/image_bank/08ab_shutterstock_1092298922.jpg" alt="SolarWinds Zero-Day Vulnerability Under Active Attack"></p>
-<p>由SolarWinds提供的Serv-U管理的文件传输服务中的一个RCE漏洞被人利用。SolarWinds公司早些时候通过供应链攻击成为目标，该公司已发布补丁以修复该漏洞。</p>
-<h2 id="发生了什么？"><a href="#发生了什么？" class="headerlink" title="发生了什么？"></a>发生了什么？</h2><p>微软已经提出了有限的和目标客户受到被追踪为CVE-2021-35211的零日漏洞影响的证据。然而，SolarWinds 並沒有准确估计有多少客戶可能受到该漏洞的影响。<br>该漏洞影响到Serv-U 15.2.3 HF1及之前的版本。成功利用该漏洞后，攻击者可在受感染的系统上运行任意代码。<br>此外，该漏洞使攻击者能够安装恶意程序并查看、更改或删除重要数据。然而，该漏洞在Serv-U 15.2.3版热修复（HF）2中得到解决。<br>该公司要求管理员注意任何通过SSH从IP地址98[.]176[.]196[.]89和68[.]235[.]178[.]32或208[.]113[.]35[.]58通过TCP 443的潜在可疑连接。<br>SolarWinds在其最近的公告中表示，发现的零日与SUNBURST供应链攻击没有任何关系。此外，它不影响任何其他产品，特别是Orion平台。</p>
-<h2 id="最近的供应链攻击"><a href="#最近的供应链攻击" class="headerlink" title="最近的供应链攻击"></a>最近的供应链攻击</h2><p>有几起事件被曝光，其中有供应链攻击。<br>最近，卡西亚在一次供应链攻击中被REvil勒索软件盯上，目标是其虚拟系统管理员解决方案中的关键安全漏洞（CVE-2021-30116&#x2F;19&#x2F;20）。<br>6月，对航空业的一次巨大的供应链攻击与中国国家行为者APT41有关。<br>5月，加拿大邮政遭遇数据泄露事件，影响到其95万名客户。该安全漏洞是由于基于恶意软件的供应链攻击而发生的。</p>
-<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>最近的供应链攻击突出了现代网络和供应链的脆弱性。攻击者越来越多地发现广泛使用的软件链中的漏洞，以部署恶意软件。因此，建议企业遵循安全机构提供的建议，并定期审查其网络安全态势。</p>
 ]]></content>
   </entry>
   <entry>
@@ -3339,21 +3478,6 @@ MODULE_LICENSE(&quot;Dual BSD/GPL&quot;);MODULE_AUTHOR(&quot;dianwoshishi&quot;)
 <p>彼得斯和约翰逊在2019年提出了类似的立法。那项法案得到了参议院的批准，但没有得到众议院的投票，其目的是让联邦人员做好准备，以识别和减轻在软件采购过程中出现的反情报威胁。</p>
 <h2 id="建立在行政命令基础之上"><a href="#建立在行政命令基础之上" class="headerlink" title="建立在行政命令基础之上"></a>建立在行政命令基础之上</h2><p>新的提案希望建立在乔-拜登总统于5月12日发布的网络安全行政命令的基础上，该命令要求政府部门为软件建立基线安全标准–包括应用程序的可见性和对安全数据的访问。该指令还要求供应商在开发过程中纳入安全性。此外，将创建一个新的标签，类似于能源之星的标签，供政府和私营企业确定软件是否是安全开发的）。</p>
 <p>在关于该行政命令的补充文件中，白宫指出：”我们有太多的软件，包括关键软件，存在严重的漏洞，被我们的对手所利用。” 利用联邦政府的购买力，政府希望 “从头开始在所有软件中建立安全”。</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>警报! 物联网恶意软件Mirai和其他十几个变种依然活跃</title>
-    <url>//post/%E8%AD%A6%E6%8A%A5!%20Mirai%E5%83%B5%E5%B0%B8%E7%BD%91%E7%BB%9C%E6%B4%BB%E8%B7%83%EF%BC%8C%E5%85%B6%E4%BB%96%E5%8D%81%E5%87%A0%E4%B8%AA%E5%8F%98%E7%A7%8D%E4%B9%9F%E6%98%AF%E5%A6%82%E6%AD%A4.html</url>
-    <content><![CDATA[<h1 id="警报-物联网恶意软件Mirai和其他十几个变种依然活跃"><a href="#警报-物联网恶意软件Mirai和其他十几个变种依然活跃" class="headerlink" title="警报! 物联网恶意软件Mirai和其他十几个变种依然活跃"></a>警报! 物联网恶意软件Mirai和其他十几个变种依然活跃</h1><h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>Mirai僵尸网络自2016年首次出现以来，已经有近五年的时间。自Mirai出现以来，一直是一个持续的物联网安全威胁。该恶意软件及其几个变种被认为是2021年第一季度引发对物联网（55%）和Linux（38%）系统攻击激增的原因。物联网设备制造商需要及时修补漏洞，并遵循适当的物联网安全标准。</p>
-<p><img src="https://i.pcmag.com/imagery/articles/04radPg0HVCyUfpdTaKkJ63-2.1569487823.fit_lim.jpg" alt="img"></p>
-<p>Mirai僵尸网络自2016年首次出现以来，已经有近五年的时间。自Mirai出现以来，一直是一个持续的物联网安全威胁。在McAfee最近的一份报告中，该恶意软件及其几个变种被认为是2021年第一季度引发对物联网（55%）和Linux（38%）系统攻击激增的原因。 安全研究人员警告说，恶意软件一直在控制世界各地的路由器、网络摄像机和DVR，以创建一个能够扰乱互联网的巨大僵尸网络。</p>
-<p><img src="https://cyware-ent.s3.amazonaws.com/image_bank/90cf_shutterstock_530465965.jpg" alt="Alert! Mirai Botnet is Active and So are its Dozen Other Variants"></p>
-<p>物联网恶意软件在互联网上扫描使用默认或薄弱用户名和密码的物联网设备。他们还寻求利用已知的，有时甚至是零日(0Day)漏洞来增加他们获得设备访问权限的机会。一旦触发漏洞，就会自动下载并执行恶意二进制文件，使物联网设备成为僵尸网络的一部分，然后可能被攻击者控制参与分布式拒绝服务（DDOS）攻击，导致被攻击目标服务中断。一些威胁者甚至将这些控制的僵尸网络作为一项服务（DDoS-for-Hire&#x2F; DDoS as a Service)出售。</p>
-<h2 id="变种继续增长"><a href="#变种继续增长" class="headerlink" title="变种继续增长"></a>变种继续增长</h2><p>自从Mirai的作者发布源代码以来，威胁者一直在通过创建他们自己的物联网僵尸网络军队的来发动大量的攻击。<br>虽然各种Mirai变体不断增加新的功能和漏洞，但其结构和目标仍然是相同的。</p>
-<p><img src="https://tse4-mm.cn.bing.net/th/id/OIP-C.kDawNYcjW-OuXL0ZbHHzawHaFW?pid=ImgDet&rs=1" alt="See the source image"></p>
-<h2 id="评估Mirai的突出地位"><a href="#评估Mirai的突出地位" class="headerlink" title="评估Mirai的突出地位"></a>评估Mirai的突出地位</h2><p>Fortinet的研究人员在跟踪物联网僵尸网络活动的过程中遇到了许多有趣的方面。<br>一个用于此目的的新蜜罐(Honeypot)系统被发现每天收到约200次攻击，在短短三周内总和接近4700次攻击。<br>这些攻击中约有4000次与Mirai变体有关。根据这些攻击，使用最多的变种是Hajime, SYLVEON, Kyton, PEDO, DNXFCOW, SORA, Cult, BOTNET, OWARI, 和Ecchi。<br>除了蜜罐，研究人员还发现Mirai的一个变种MANGA正在积极更新其列表中的漏洞载体。其中一些漏洞是针对OptiLink ONT1GEW GPON、Cisco HyperFlex和Tenda路由器中发现的漏洞。</p>
-<h2 id="另一个Mirai变体Moobot的活动出现了高峰"><a href="#另一个Mirai变体Moobot的活动出现了高峰" class="headerlink" title="另一个Mirai变体Moobot的活动出现了高峰"></a>另一个Mirai变体Moobot的活动出现了高峰</h2><p>根据AT&amp;T外星人实验室(AT&amp;T Alien Labs)的说法，另一个Mirai变体Moobot的活动出现了高峰。<br>事实证明，它是从一个新的网络地下恶意软件域推送出来的，该域被称为Cyberium，一直在锚定大量的Mirai变体活动。<br>研究人员观察到，Moobot正在积极扫描Tenda路由器中的一个远程代码执行漏洞。<br>Moobot的主要特征之一是在代码中多次使用硬编码字符串，如生成执行时使用的进程名称。</p>
-<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>随着智能设备的数量不断爆炸，物联网在未来仍将是恶意软件运作的温床。显然，Mirai变种在攻击和发展方面的活跃状态使其更加令人担忧。它也再次强调物联网设备制造商需要及时修补漏洞，并遵循适当的物联网安全标准。</p>
 ]]></content>
   </entry>
   <entry>
@@ -3689,6 +3813,21 @@ lsof -i -n -P  | awk &#39;&#123;print $1, $2,$5,$9&#125;&#39;
 ]]></content>
   </entry>
   <entry>
+    <title>警报! 物联网恶意软件Mirai和其他十几个变种依然活跃</title>
+    <url>//post/%E8%AD%A6%E6%8A%A5!%20Mirai%E5%83%B5%E5%B0%B8%E7%BD%91%E7%BB%9C%E6%B4%BB%E8%B7%83%EF%BC%8C%E5%85%B6%E4%BB%96%E5%8D%81%E5%87%A0%E4%B8%AA%E5%8F%98%E7%A7%8D%E4%B9%9F%E6%98%AF%E5%A6%82%E6%AD%A4.html</url>
+    <content><![CDATA[<h1 id="警报-物联网恶意软件Mirai和其他十几个变种依然活跃"><a href="#警报-物联网恶意软件Mirai和其他十几个变种依然活跃" class="headerlink" title="警报! 物联网恶意软件Mirai和其他十几个变种依然活跃"></a>警报! 物联网恶意软件Mirai和其他十几个变种依然活跃</h1><h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>Mirai僵尸网络自2016年首次出现以来，已经有近五年的时间。自Mirai出现以来，一直是一个持续的物联网安全威胁。该恶意软件及其几个变种被认为是2021年第一季度引发对物联网（55%）和Linux（38%）系统攻击激增的原因。物联网设备制造商需要及时修补漏洞，并遵循适当的物联网安全标准。</p>
+<p><img src="https://i.pcmag.com/imagery/articles/04radPg0HVCyUfpdTaKkJ63-2.1569487823.fit_lim.jpg" alt="img"></p>
+<p>Mirai僵尸网络自2016年首次出现以来，已经有近五年的时间。自Mirai出现以来，一直是一个持续的物联网安全威胁。在McAfee最近的一份报告中，该恶意软件及其几个变种被认为是2021年第一季度引发对物联网（55%）和Linux（38%）系统攻击激增的原因。 安全研究人员警告说，恶意软件一直在控制世界各地的路由器、网络摄像机和DVR，以创建一个能够扰乱互联网的巨大僵尸网络。</p>
+<p><img src="https://cyware-ent.s3.amazonaws.com/image_bank/90cf_shutterstock_530465965.jpg" alt="Alert! Mirai Botnet is Active and So are its Dozen Other Variants"></p>
+<p>物联网恶意软件在互联网上扫描使用默认或薄弱用户名和密码的物联网设备。他们还寻求利用已知的，有时甚至是零日(0Day)漏洞来增加他们获得设备访问权限的机会。一旦触发漏洞，就会自动下载并执行恶意二进制文件，使物联网设备成为僵尸网络的一部分，然后可能被攻击者控制参与分布式拒绝服务（DDOS）攻击，导致被攻击目标服务中断。一些威胁者甚至将这些控制的僵尸网络作为一项服务（DDoS-for-Hire&#x2F; DDoS as a Service)出售。</p>
+<h2 id="变种继续增长"><a href="#变种继续增长" class="headerlink" title="变种继续增长"></a>变种继续增长</h2><p>自从Mirai的作者发布源代码以来，威胁者一直在通过创建他们自己的物联网僵尸网络军队的来发动大量的攻击。<br>虽然各种Mirai变体不断增加新的功能和漏洞，但其结构和目标仍然是相同的。</p>
+<p><img src="https://tse4-mm.cn.bing.net/th/id/OIP-C.kDawNYcjW-OuXL0ZbHHzawHaFW?pid=ImgDet&rs=1" alt="See the source image"></p>
+<h2 id="评估Mirai的突出地位"><a href="#评估Mirai的突出地位" class="headerlink" title="评估Mirai的突出地位"></a>评估Mirai的突出地位</h2><p>Fortinet的研究人员在跟踪物联网僵尸网络活动的过程中遇到了许多有趣的方面。<br>一个用于此目的的新蜜罐(Honeypot)系统被发现每天收到约200次攻击，在短短三周内总和接近4700次攻击。<br>这些攻击中约有4000次与Mirai变体有关。根据这些攻击，使用最多的变种是Hajime, SYLVEON, Kyton, PEDO, DNXFCOW, SORA, Cult, BOTNET, OWARI, 和Ecchi。<br>除了蜜罐，研究人员还发现Mirai的一个变种MANGA正在积极更新其列表中的漏洞载体。其中一些漏洞是针对OptiLink ONT1GEW GPON、Cisco HyperFlex和Tenda路由器中发现的漏洞。</p>
+<h2 id="另一个Mirai变体Moobot的活动出现了高峰"><a href="#另一个Mirai变体Moobot的活动出现了高峰" class="headerlink" title="另一个Mirai变体Moobot的活动出现了高峰"></a>另一个Mirai变体Moobot的活动出现了高峰</h2><p>根据AT&amp;T外星人实验室(AT&amp;T Alien Labs)的说法，另一个Mirai变体Moobot的活动出现了高峰。<br>事实证明，它是从一个新的网络地下恶意软件域推送出来的，该域被称为Cyberium，一直在锚定大量的Mirai变体活动。<br>研究人员观察到，Moobot正在积极扫描Tenda路由器中的一个远程代码执行漏洞。<br>Moobot的主要特征之一是在代码中多次使用硬编码字符串，如生成执行时使用的进程名称。</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>随着智能设备的数量不断爆炸，物联网在未来仍将是恶意软件运作的温床。显然，Mirai变种在攻击和发展方面的活跃状态使其更加令人担忧。它也再次强调物联网设备制造商需要及时修补漏洞，并遵循适当的物联网安全标准。</p>
+]]></content>
+  </entry>
+  <entry>
     <title></title>
     <url>//post/%E9%92%88%E5%AF%B9%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E9%A9%B1%E5%8A%A8%E7%9A%84%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%96%B0%E6%94%BB%E5%87%BB%E6%96%B9%E6%B3%95.html</url>
     <content><![CDATA[<hr>
@@ -3826,144 +3965,5 @@ lsof -i -n -P  | awk &#39;&#123;print $1, $2,$5,$9&#125;&#39;
       <tags>
         <tag>网络安全</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>VSCode Markdown Snippet插件的使用问题备注</title>
-    <url>//post/VSCode%20Markdown%20Snippet%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98%E5%A4%87%E6%B3%A8.html</url>
-    <content><![CDATA[<h1 id="VSCode-Markdown-Snippet插件的使用问题备注"><a href="#VSCode-Markdown-Snippet插件的使用问题备注" class="headerlink" title="VSCode Markdown Snippet插件的使用问题备注"></a>VSCode Markdown Snippet插件的使用问题备注</h1><h2 id="官方给出的使用帮助"><a href="#官方给出的使用帮助" class="headerlink" title="官方给出的使用帮助"></a>官方给出的使用帮助</h2><p><a href="https://code.visualstudio.com/docs/editor/userdefinedsnippets">https://code.visualstudio.com/docs/editor/userdefinedsnippets</a></p>
-<h2 id="一个简短的示例"><a href="#一个简短的示例" class="headerlink" title="一个简短的示例"></a>一个简短的示例</h2><p><a href="https://www.jianshu.com/p/a87e9ca2d208">https://www.jianshu.com/p/a87e9ca2d208</a></p>
-<p>记得在配置文件中添加相应的配置，不仅仅是相关语言的配置哦，setting中也记得</p>
-<p><a href="https://blog.csdn.net/serryuer/article/details/89393760">https://blog.csdn.net/serryuer/article/details/89393760</a></p>
-<h2 id="代码备注"><a href="#代码备注" class="headerlink" title="代码备注"></a>代码备注</h2><pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"hexo title"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-		<span class="token property">"prefix"</span><span class="token operator">:</span> <span class="token string">"hexo"</span><span class="token punctuation">,</span>
-		<span class="token property">"body"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
-			<span class="token string">"---"</span><span class="token punctuation">,</span>
-			<span class="token string">"title: $CLIPBOARD"</span><span class="token punctuation">,</span>
-			<span class="token string">"date: $&#123;3:$CURRENT_YEAR&#125;-$&#123;4:$CURRENT_MONTH&#125;-$&#123;5:$CURRENT_DATE&#125; $&#123;6:$CURRENT_HOUR&#125;:$&#123;7:$CURRENT_MINUTE&#125;:$&#123;8:$CURRENT_SECOND&#125;"</span><span class="token punctuation">,</span>
-			<span class="token comment">// "categories: $&#123;9|咨询, 编程开发, 网络空间, 学习笔记, 科普|&#125;",</span>
-			<span class="token comment">// "tags: [$&#123;10:tags&#125;]",</span>
-			<span class="token string">"---"</span><span class="token punctuation">,</span>
-			<span class="token string">"$11"</span>
-		<span class="token punctuation">]</span><span class="token punctuation">,</span>
-		<span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"Front-Matter"</span>
-	<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>效果如下所示：</p>
-<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">---
-title: 大家好，我是明说网络的小明同学
-date: 2022-02-26 17:20:22
----<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-]]></content>
-  </entry>
-  <entry>
-    <title>在你的hexo博客中使用nodeppt，一款迄今为止最好的网页版演示库</title>
-    <url>//post/NODEPPT%E8%BF%99%E5%8F%AF%E8%83%BD%E6%98%AF%E8%BF%84%E4%BB%8A%E4%B8%BA%E6%AD%A2%E6%9C%80%E5%A5%BD%E7%9A%84%E7%BD%91%E9%A1%B5%E7%89%88%E6%BC%94%E7%A4%BA%E5%BA%93.html</url>
-    <content><![CDATA[<p>大家好，我是明说网络的小明同学。</p>
-<p>今天我和大家分享一个非常酷的网页PPT工具，NODEPPT</p>
-<h1 id="NODEPPT这可能是迄今为止最好的网页版演示库"><a href="#NODEPPT这可能是迄今为止最好的网页版演示库" class="headerlink" title="NODEPPT这可能是迄今为止最好的网页版演示库"></a>NODEPPT这可能是迄今为止最好的网页版演示库</h1><p>一开始看到这个库的时候，我就喜欢上了。因为他效果非常的棒，而且能够非常好的和hexo结合。这样我们能够一次生成，到哪都可以演示PPT，还能配上相应的技术文档，是不是很酷啊！</p>
-<h2 id="NODEPPT-Demo"><a href="#NODEPPT-Demo" class="headerlink" title="NODEPPT Demo"></a>NODEPPT Demo</h2><p>项目的演示网址在这：<a href="https://nodeppt.js.org/#slide=1">https://nodeppt.js.org/#slide=1</a></p>
-<p><img src="/post/NODEPPT%E8%BF%99%E5%8F%AF%E8%83%BD%E6%98%AF%E8%BF%84%E4%BB%8A%E4%B8%BA%E6%AD%A2%E6%9C%80%E5%A5%BD%E7%9A%84%E7%BD%91%E9%A1%B5%E7%89%88%E6%BC%94%E7%A4%BA%E5%BA%93/image-20220226172518524.png" alt="image-20220226172518524"></p>
-<p>主要说明了这个库包含什么样的功能</p>
-<h2 id="NODE-PPT-Github"><a href="#NODE-PPT-Github" class="headerlink" title="NODE PPT Github"></a>NODE PPT Github</h2><p>官网地址：<a href="https://github.com/ksky521/nodeppt">https://github.com/ksky521/nodeppt</a></p>
-<h1 id="Hexo中使用PPT-Demo"><a href="#Hexo中使用PPT-Demo" class="headerlink" title="Hexo中使用PPT Demo"></a>Hexo中使用PPT Demo</h1><p>以下是我使用官网的<a href="https://raw.githubusercontent.com/ksky521/nodeppt/master/site/index.md">demo</a>制作的一个PPT，注意它是嵌入在我这个网页中的，以下网页你可以左右滑动。</p>
-<iframe src="../nodeppt/slides.html" width="100%" height="500" name="topFrame" scrolling="yes" noresize="noresize" frameborder="0" id="topFrame"></iframe>
-
-
-
-<p>如果你觉得这个功能很酷，想要添加到你的站点里面去，那么就和我一起往下走吧。</p>
-<h2 id="如何在Hexo中添加Nodeppt"><a href="#如何在Hexo中添加Nodeppt" class="headerlink" title="如何在Hexo中添加Nodeppt"></a>如何在Hexo中添加Nodeppt</h2><p>前提，确保你的noteppt能够正常使用。这是前提，至于怎么熟练的玩好nodeppt，额…… 还是去官网吧，这里不误导人了。</p>
-<p>整体的思路是，两步走：</p>
-<ul>
-<li>第一步先使用nodeppt在相应的public目录生成相应的文件,如html,js,img等等</li>
-<li>在post中引用相应的文件</li>
-</ul>
-<h3 id="首先熟悉nodeppt的build方法"><a href="#首先熟悉nodeppt的build方法" class="headerlink" title="首先熟悉nodeppt的build方法"></a>首先熟悉nodeppt的build方法</h3><p>输入<code>nodeppt build --help</code></p>
-<pre class="line-numbers language-none"><code class="language-none">Usage: nodeppt build [options] [entry]
-
-build html file
-
-Options:
-  -m, --map         Release sourcemap
-  -d, --dest &lt;dir&gt;  output directory
-  -h, --help        output usage information
-  Examples:
-
-    nodeppt build slide.md<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>我们需要使用的就是这个<code>-d</code>参数。目的是将生成的文件放入网站的public目录下</p>
-<h3 id="源文件目录说明"><a href="#源文件目录说明" class="headerlink" title="源文件目录说明"></a>源文件目录说明</h3><p>存放源文件的目录结构如下所示</p>
-<pre class="line-numbers language-none"><code class="language-none">root&#x2F;public
-		├──nodeppt
-root&#x2F;source
-├── slideshare
-│   ├── another.md
-│   ├── build.sh
-│   ├── buildlist.txt
-│   ├── makefile
-│   └── slides.md<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<ul>
-<li>buildlist.txt 代表等待生成的ppt文件列表</li>
-</ul>
-<pre class="line-numbers language-none"><code class="language-none">slides.md
-another.md%<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<ul>
-<li><p>build.sh </p>
-<p>在slideshare目录下运行本文件，作用是使用nodeppt按上面文件内容的顺序构建，输出目录为<code>public/nodeppt</code></p>
-</li>
-</ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">NODEPPT&#x3D;&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;node&#x2F;17.5.0&#x2F;bin&#x2F;nodeppt
-Destination&#x3D;..&#x2F;..&#x2F;public&#x2F;nodeppt&#x2F;
-build_files&#x3D;$(cat buildlist.txt | xargs)
-for file in $build_files
-do
-    # echo $file
-    $NODEPPT build .&#x2F;$file -d $Destination
-done<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<ul>
-<li>makefile 本文件主要用于使用一个脚本完成所有的工作</li>
-</ul>
-<pre class="line-numbers language-makefile" data-language="makefile"><code class="language-makefile"><span class="token symbol">all</span><span class="token punctuation">:</span>
-        bash build.sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<p>至此，你使用在当前目录<code>make</code>就能将生成好的PPT网页放入public目录的noteppt目录中。</p>
-<h3 id="那么怎么使用呢？"><a href="#那么怎么使用呢？" class="headerlink" title="那么怎么使用呢？"></a>那么怎么使用呢？</h3><p>在上一步中，我们生成了ppt文件，放在了<code>public/nodeppt/</code>中，假设文件名为<code>slides.html</code></p>
-<p>那么我们可以在hexo的post中简单的使用如下命令，就可以引用我们的PPT</p>
-<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>iframe</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>../nodeppt/slides.html<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>100%<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>500<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>topFrame<span class="token punctuation">"</span></span> <span class="token attr-name">scrolling</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>yes<span class="token punctuation">"</span></span> <span class="token attr-name">noresize</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>noresize<span class="token punctuation">"</span></span> <span class="token attr-name">frameborder</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>topFrame<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>iframe</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>需要修改的部分就是iframe中的src部分。</p>
-<p>最后放下一个一键上线部署的脚本</p>
-<pre class="line-numbers language-makefile" data-language="makefile"><code class="language-makefile"><span class="token symbol">all</span><span class="token punctuation">:</span>
-	make nodeppt
-	hexo g 
-	hexo d 
-
-<span class="token symbol">nodeppt</span><span class="token punctuation">:</span>
-	<span class="token variable">$</span><span class="token punctuation">(</span>MAKE<span class="token punctuation">)</span> -C source/slideshare/
-
-<span class="token symbol">test</span><span class="token punctuation">:</span>
-	make nodeppt
-	hexo g
-	hexo s
-
-<span class="token symbol">deploy</span><span class="token punctuation">:</span>
-	make nodeppt
-	hexo g 
-	hexo d
-	<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="最后附上本次示例的PPT"><a href="#最后附上本次示例的PPT" class="headerlink" title="最后附上本次示例的PPT"></a>最后附上本次示例的PPT</h2><p>试试看左右滑动</p>
-<iframe src="../nodeppt/use-nodeppt-in-hexo-demo.html" width="100%" height="500" name="topFrame" scrolling="yes" noresize="noresize" frameborder="0" id="topFrame"></iframe>
-
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><h2 id="静态压缩"><a href="#静态压缩" class="headerlink" title="静态压缩"></a>静态压缩</h2><p><a href="https://hasaik.com/posts/495d0b23.html">https://hasaik.com/posts/495d0b23.html</a></p>
-<p>使用Hexo-Neat成功<a href="https://github.com/rozbo/hexo-neat">https://github.com/rozbo/hexo-neat</a></p>
-<p>Hexo静态资源压缩<a href="https://www.jianshu.com/p/5e48e532ae58">https://www.jianshu.com/p/5e48e532ae58</a></p>
-<p><a href="https://rye-catcher.github.io/2019/10/21/Nodeppt-%E5%85%A5%E5%9D%91%E6%8C%87%E5%8D%97/">https://rye-catcher.github.io/2019/10/21/Nodeppt-%E5%85%A5%E5%9D%91%E6%8C%87%E5%8D%97/</a></p>
-<p>给博客文章嵌入 PPT 演示<a href="https://hexo.fluid-dev.com/posts/hexo-nodeppt/">https://hexo.fluid-dev.com/posts/hexo-nodeppt/</a></p>
-<h3 id="添加自定义网页"><a href="#添加自定义网页" class="headerlink" title="添加自定义网页"></a>添加自定义网页</h3><p><a href="https://www.jianshu.com/p/524b073f9b37">https://www.jianshu.com/p/524b073f9b37</a></p>
-]]></content>
   </entry>
 </search>
