@@ -874,10 +874,12 @@ display2(num2);&#x2F;&#x2F;使用引用传递，相当于指针操作，作用�
 <h1 id="推荐一块比较好的主题AURORA"><a href="#推荐一块比较好的主题AURORA" class="headerlink" title="推荐一块比较好的主题AURORA"></a>推荐一块比较好的主题AURORA</h1><p>插件主题长这个样子</p>
 <p><img src="/post/%E4%B8%80%E4%B8%AAgithub%E5%BF%AB%E9%80%9F%E5%BB%BA%E7%AB%99%E4%B8%BB%E9%A2%98%E6%8E%A8%E8%8D%90/image-20220226162421002.png" alt="image-20220226162421002"></p>
 <p>插件具有详细的说明文档 <a href="https://aurora.tridiamond.tech/zh/guide/">https://aurora.tridiamond.tech/zh/guide/</a></p>
+<p>该主题的网址：<a href="https://github.com/auroral-ui/hexo-theme-aurora">https://github.com/auroral-ui/hexo-theme-aurora</a></p>
 <h1 id="关于图片显示的问题"><a href="#关于图片显示的问题" class="headerlink" title="关于图片显示的问题"></a>关于图片显示的问题</h1><p>关于图片显示，建议看这篇文章，<a href="https://moeci.com/posts/hexo-typora/">https://moeci.com/posts/hexo-typora/</a></p>
 <p>描述了，怎么结合hexo和typora来实现markdown无缝衔接，并且还能深入了解图片出错到底是什么原因</p>
 <p>不过该博主的插件最终也没有让我成功，还是hexo-asset-image救了我<a href="https://github.com/xcodebuild/hexo-asset-image">https://github.com/xcodebuild/hexo-asset-image</a></p>
-<h1 id="最后给自己打个广告吧"><a href="#最后给自己打个广告吧" class="headerlink" title="最后给自己打个广告吧"></a>最后给自己打个广告吧</h1><p><img src="/post/%E4%B8%80%E4%B8%AAgithub%E5%BF%AB%E9%80%9F%E5%BB%BA%E7%AB%99%E4%B8%BB%E9%A2%98%E6%8E%A8%E8%8D%90/image-20220226163311302.png" alt="image-20220226163311302"></p>
+<h1 id="最后给自己打个广告吧"><a href="#最后给自己打个广告吧" class="headerlink" title="最后给自己打个广告吧"></a>最后给自己打个广告吧</h1><p>发现大家都好牛啊！</p>
+<p><img src="/post/%E4%B8%80%E4%B8%AAgithub%E5%BF%AB%E9%80%9F%E5%BB%BA%E7%AB%99%E4%B8%BB%E9%A2%98%E6%8E%A8%E8%8D%90/image-20220226163311302.png" alt="image-20220226163311302"></p>
 <p>大家可以通过主页的相关链接在你喜欢的平台找到我！</p>
 ]]></content>
   </entry>
