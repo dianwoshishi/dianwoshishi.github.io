@@ -3384,6 +3384,31 @@ CONTAINER ID   IMAGE                   COMMAND                  CREATED         
 
 <p>等上一会(或者直接查看容器的log,等到服务启动完毕）</p>
 <p><img src="https://pic2.zhimg.com/v2-44444e8da322770bdb86a62870384321_b.jpg" alt="img"></p>
+<p>rabbitmq相关端口的说明：<a href="https://www.rabbitmq.com/networking.html#ports">https://www.rabbitmq.com/networking.html#ports</a></p>
+<blockquote><span class="custom-blockquote-svg"><svg width="24" height="24" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg" data-reactroot="">
+<path fill="" d="M22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C13.8 22 15.5 21.5 17 20.6L22 22L20.7 17C21.5 15.5 22 13.8 22 12Z" undefined="1"></path>
+<path fill="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z" undefined="1"></path>
+<path fill="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z" undefined="1"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M17 8.5C15.23 8.97 14.07 10.84 14.01 13.27C14 13.33 14 13.4 14 13.47V13.5"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M9 8.5C7.23 8.97 6.07 10.84 6.01 13.27C6 13.33 6 13.4 6 13.47V13.5"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z"></path>
+</svg>
+</span><p>CLI tools, client libraries and RabbitMQ nodes also open connections (client TCP sockets). Firewalls can prevent nodes and CLI tools from communicating with each other. Make sure the following ports are accessible:</p>
+<ul>
+<li>4369: <a href="http://erlang.org/doc/man/epmd.html">epmd</a>, a peer discovery service used by RabbitMQ nodes and CLI tools</li>
+<li>5672, 5671: used by AMQP 0-9-1 and AMQP 1.0 clients without and with TLS</li>
+<li>5552, 5551: used by the <a href="https://www.rabbitmq.com/streams.html">RabbitMQ Stream protocol</a> clients without and with TLS</li>
+<li>6000 through 6500 (usually 6000, 6001, 6002, and so on through 6005): used by <a href="https://www.rabbitmq.com/stream.html">RabbitMQ Stream</a> replication</li>
+<li>25672: used for inter-node and CLI tools communication (Erlang distribution server port) and is allocated from a dynamic range (limited to a single port by default, computed as AMQP port + 20000). Unless external connections on these ports are really necessary (e.g. the cluster uses <a href="https://www.rabbitmq.com/federation.html">federation</a> or CLI tools are used on machines outside the subnet), these ports should not be publicly exposed. See <a href="https://www.rabbitmq.com/networking.html">networking guide</a> for details.</li>
+<li>35672-35682: used by CLI tools (Erlang distribution client ports) for communication with nodes and is allocated from a dynamic range (computed as server distribution port + 10000 through server distribution port + 10010). See <a href="https://www.rabbitmq.com/networking.html">networking guide</a> for details.</li>
+<li>15672, 15671: <a href="https://www.rabbitmq.com/management.html">HTTP API</a> clients, <a href="https://www.rabbitmq.com/management.html">management UI</a> and <a href="https://www.rabbitmq.com/management-cli.html">rabbitmqadmin</a>, without and with TLS (only if the <a href="https://www.rabbitmq.com/management.html">management plugin</a> is enabled)</li>
+<li>61613, 61614: <a href="https://stomp.github.io/stomp-specification-1.2.html">STOMP clients</a> without and with TLS (only if the <a href="https://www.rabbitmq.com/stomp.html">STOMP plugin</a> is enabled)</li>
+<li>1883, 8883: <a href="http://mqtt.org/">MQTT clients</a> without and with TLS, if the <a href="https://www.rabbitmq.com/mqtt.html">MQTT plugin</a> is enabled</li>
+<li>15674: STOMP-over-WebSockets clients (only if the <a href="https://www.rabbitmq.com/web-stomp.html">Web STOMP plugin</a> is enabled)</li>
+<li>15675: MQTT-over-WebSockets clients (only if the <a href="https://www.rabbitmq.com/web-mqtt.html">Web MQTT plugin</a> is enabled)</li>
+<li>15692: Prometheus metrics (only if the <a href="https://www.rabbitmq.com/prometheus.html">Prometheus plugin</a> is enabled)</li>
+</ul></blockquote>
 <h3 id="Python实操"><a href="#Python实操" class="headerlink" title="Python实操"></a>Python实操</h3><p>其实，不管什么指南文档，都没有官方的文档清晰透彻。</p>
 <p><a href="https://link.zhihu.com/?target=https://www.rabbitmq.com/getstarted.html">https://www.rabbitmq.com/getstarted.htmlwww.rabbitmq.com/getstarted.html</a></p>
 <p>有这样，还有那样，非常的清晰。</p>
@@ -4186,5 +4211,249 @@ lsof -i -n -P  | awk &#39;&#123;print $1, $2,$5,$9&#125;&#39;
 <p><a href="https://www.thedefensepost.com/2021/06/23/eu-joint-cyber-unit/">https://www.thedefensepost.com/2021/06/23/eu-joint-cyber-unit/</a></p>
 <p><a href="https://news.yahoo.com/eu-wants-emergency-team-nightmare-123014135.html?guccounter=1&amp;guce_referrer=aHR0cHM6Ly9jbi5iaW5nLmNvbS8&amp;guce_referrer_sig=AQAAAG2x8KqN3MAlhHZKrQqweB3N_umneTJv2XRD9ToL2zQWF4Nx7CDTTXjNXZHD2PDsdYEdplyyY3cg5P00EInHKrEjTulc1Y3OIkS2J1qp1WbWATAli91CdA4WR-SLe7u9n8F9UJdE8DRlOwdp1tEBmSk15xfgPCqSXIpttYN6Tn3q">https://news.yahoo.com/eu-wants-emergency-team-nightmare-123014135.html?guccounter=1&amp;guce_referrer=aHR0cHM6Ly9jbi5iaW5nLmNvbS8&amp;guce_referrer_sig=AQAAAG2x8KqN3MAlhHZKrQqweB3N_umneTJv2XRD9ToL2zQWF4Nx7CDTTXjNXZHD2PDsdYEdplyyY3cg5P00EInHKrEjTulc1Y3OIkS2J1qp1WbWATAli91CdA4WR-SLe7u9n8F9UJdE8DRlOwdp1tEBmSk15xfgPCqSXIpttYN6Tn3q</a></p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>Markdown相关语法学习记录</title>
+    <url>//post/Markdown%E7%9B%B8%E5%85%B3%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95.html</url>
+    <content><![CDATA[<h1 id="markdown-中流程图详解"><a href="#markdown-中流程图详解" class="headerlink" title="markdown 中流程图详解"></a>markdown 中流程图详解</h1><p><a href="https://blog.csdn.net/suoxd123/article/details/84992282">https://blog.csdn.net/suoxd123/article/details/84992282</a></p>
+<pre class="line-numbers language-mermaid" data-language="mermaid"><code class="language-mermaid">graph TB
+A[Apple]--&gt;B&#123;Boy&#125;
+A---C(Cat)
+B.-&gt;D((Dog))
+C&#x3D;&#x3D;喵&#x3D;&#x3D;&gt;D
+style A fill:#2ff,fill-opacity:0.1,stroke:#faa,stroke-width:4px
+style D stroke:#000,stroke-width:8px;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-mermaid" data-language="mermaid"><code class="language-mermaid">
+sequenceDiagram
+participant 张 as 张三
+participant 李 as 李四
+participant 王 as  王五   
+张 -&gt;&gt; +李: 你好！李四, 最近怎么样?
+李--&gt;&gt; 王: 你最近怎么样，王五？
+李--x -张: 我很好，谢谢!
+activate 王
+李-x 王: 我很好，谢谢!   
+Note over 李,王: 李四想了很长时间, 文字太长了&lt;br&#x2F;&gt;不适合放在一行.
+deactivate 王
+loop 李四再想想
+李--&gt;&gt;王: 我还要想想
+王--&gt;&gt;李: 想想吧
+end
+李--&gt;&gt;张: 打量着王五...
+张-&gt;&gt;王: 很好... 王五, 你怎么样?
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>实测，在本博客系统中不支持流程图特性，不过typora支持，这。。。反正不影响。先这么用着吧</p>
+]]></content>
+      <categories>
+        <category>编程语言</category>
+        <category>笔记记录</category>
+      </categories>
+      <tags>
+        <tag>markdown</tag>
+        <tag>流程图</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker中单容器开启多服务时systemctl引发的血案及破案过程</title>
+    <url>//post/docker%E4%B8%AD%E5%8D%95%E5%AE%B9%E5%99%A8%E5%BC%80%E5%90%AF%E5%A4%9A%E6%9C%8D%E5%8A%A1%E6%97%B6systemctl%E5%BC%95%E5%8F%91%E7%9A%84%E8%A1%80%E6%A1%88%E5%8F%8A%E7%A0%B4%E6%A1%88%E8%BF%87%E7%A8%8B.html</url>
+    <content><![CDATA[<h1 id="docker中单容器开启多服务时systemctl引发的血案及破案过程"><a href="#docker中单容器开启多服务时systemctl引发的血案及破案过程" class="headerlink" title="docker中单容器开启多服务时systemctl引发的血案及破案过程"></a>docker中单容器开启多服务时systemctl引发的血案及破案过程</h1><p>问题的起源来源于，想要将一个运行在centos7上的项目，移植到docker上，实现快速部署。原项目，我们暂且称之为<code>Myproject</code>， 提供了install_centos7.sh和Vagrant的构建文件。Vagrant 文件工作的很好，但是笔者是在虚拟机中完成的vagrant构建的验证，也遇见了不少问题，例如嵌套虚拟化的问题</p>
+<p>但，虚拟机里面搞总感觉不得劲，又加上vagrant比较小众，我就盯上了Docker。本来想着这不是很简单吗，pull一个centos7的image，然后run一个container，bash install一下就完了呗。</p>
+<p>没想到这就开始了，痛苦的采坑之旅。</p>
+<h2 id="docker安装Myproject出现的的问题"><a href="#docker安装Myproject出现的的问题" class="headerlink" title="docker安装Myproject出现的的问题"></a>docker安装Myproject出现的的问题</h2><p>由于docker的设计原则是一个container只运行一个服务，所以像Myproject这样的需要多个服务的(redis, httpd, psql, mongo, rabbitmq等)，想要在一个容器中使用，存在很多限制。</p>
+<p>问题包括，但不限于<a href="https://blog.csdn.net/henni_719/article/details/99689411">docker中执行systemctl命令问题记录和解决_WELTest的专栏-CSDN博客_docker systemctl</a></p>
+<p><a href="https://stackoverflow.com/questions/39169403/not-able-to-use-systemd-on-ubuntu-docker-container">Not able to use systemd on ubuntu docker container - Stack Overflow</a></p>
+<h3 id="问题有：Failed-to-get-D-Bus-connection-Operation-not-permitted"><a href="#问题有：Failed-to-get-D-Bus-connection-Operation-not-permitted" class="headerlink" title="问题有：Failed to get D-Bus connection: Operation not permitted"></a>问题有：Failed to get D-Bus connection: Operation not permitted</h3><p>解决这个问题的一个方法是使用<code>--privileged</code>和<code>/usr/sbin/init</code></p>
+<ul>
+<li><p>privileged的作用是使得docker的环境以管理员角色运行</p>
+</li>
+<li><p>&#x2F;usr&#x2F;sbin&#x2F;init是</p>
+</li>
+</ul>
+<blockquote><span class="custom-blockquote-svg"><svg width="24" height="24" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg" data-reactroot="">
+<path fill="" d="M22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C13.8 22 15.5 21.5 17 20.6L22 22L20.7 17C21.5 15.5 22 13.8 22 12Z" undefined="1"></path>
+<path fill="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z" undefined="1"></path>
+<path fill="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z" undefined="1"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M17 8.5C15.23 8.97 14.07 10.84 14.01 13.27C14 13.33 14 13.4 14 13.47V13.5"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M9 8.5C7.23 8.97 6.07 10.84 6.01 13.27C6 13.33 6 13.4 6 13.47V13.5"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z"></path>
+</svg>
+</span><p>&#x2F;usr&#x2F;sbin&#x2F;init 启动容器之后可以使用systemctl方法<br>-privileged&#x3D;true 获取宿主机root权限（特殊权限-）</p>
+<p><a href="https://www.cnblogs.com/lph970417/p/14754072.html">docker -privileged和&#x2F;usr&#x2F;sbin&#x2F;init - lvph - 博客园</a></p></blockquote>
+<p>但是这个方法使用后出现了以下问题：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"> ~  docker run -itd --privileged --name centos7 centos:7 &#x2F;usr&#x2F;sbin&#x2F;init
+a2f71d42e0f4c5c13b06a607da719df40e428305188c1a3154889a1bc4991f6d
+ ~  docker exec -it centos7 ps aux
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.4  0.1  42716  3888 ?        Ss   10:44   0:00 &#x2F;usr&#x2F;sbin&#x2F;init
+root         8  0.0  0.1  51748  3400 pts&#x2F;1    Rs+  10:44   0:00 ps aux
+ ~  docker exec -it centos7 &#x2F;bin&#x2F;bash
+[root@a2f71d42e0f4 &#x2F;]# systemctl
+Failed to get D-Bus connection: No such file or directory<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>还有一种方法是：run docker image with <code>docker run --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro &lt;image&gt;</code> and <code>systemctl</code> works fine</p>
+<p>经过试验，也解决不了我的问题</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"> ~  docker run --privileged -itd  -v &#x2F;sys&#x2F;fs&#x2F;cgroup:&#x2F;sys&#x2F;fs&#x2F;cgroup:ro --name centos7 centos:7 &#x2F;usr&#x2F;sbin&#x2F;init
+7ff1b85e7c9fecf17c889e0c2a25ab73203131ecdcb629180798fa1c07b4ee22
+ ~  docker exec -it centos7 ps aux
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  1.0  0.1  42716  3944 ?        Ss   10:49   0:00 &#x2F;usr&#x2F;sbin&#x2F;init
+root         8  0.0  0.1  51748  3456 pts&#x2F;1    Rs+  10:49   0:00 ps aux
+ ~  docker exec -it centos7 &#x2F;bin&#x2F;bash
+[root@7ff1b85e7c9f &#x2F;]# systemctl
+Failed to get D-Bus connection: No such file or directory
+
+
+ ~  docker run -it \
+    --volume &#x2F;sys&#x2F;fs&#x2F;cgroup:&#x2F;sys&#x2F;fs&#x2F;cgroup:ro \
+    --rm centos:7 &#x2F;bin&#x2F;bash
+[root@9c3b2edf75ff &#x2F;]# systemctl
+Failed to get D-Bus connection: Operation not permitted
+[root@9c3b2edf75ff &#x2F;]#<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="Failed-to-connect-to-bus-No-such-file-or-directory"><a href="#Failed-to-connect-to-bus-No-such-file-or-directory" class="headerlink" title="Failed to connect to bus: No such file or directory"></a>Failed to connect to bus: No such file or directory</h3><p>在搜索资料的过程中发现了这篇文章， 对这个问题的解释比较到位：<a href="https://ehds.github.io/2021/01/21/docker_systemctl/">如何在Docker里面使用systemctl - Ehds</a></p>
+<p><strong>容器里面是没有systemd进程的，而很多进程管理工具都需要和systemd通信，这里面就有我们这里的主角systemctl。docker只是提供了进程隔离，不是操作系统的虚拟。</strong></p>
+<blockquote><span class="custom-blockquote-svg"><svg width="24" height="24" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg" data-reactroot="">
+<path fill="" d="M22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C13.8 22 15.5 21.5 17 20.6L22 22L20.7 17C21.5 15.5 22 13.8 22 12Z" undefined="1"></path>
+<path fill="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z" undefined="1"></path>
+<path fill="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z" undefined="1"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M17 8.5C15.23 8.97 14.07 10.84 14.01 13.27C14 13.33 14 13.4 14 13.47V13.5"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M9 8.5C7.23 8.97 6.07 10.84 6.01 13.27C6 13.33 6 13.4 6 13.47V13.5"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z"></path>
+</svg>
+</span><p>That’s because “systemctl” talks to the systemd daemon by using the d-bus. In a container there is no systemd-daemon. Asking for a start will probably not quite do what you expect - the dev-mapping need to be a bit longer.<br>This is by design. Docker should be running a process in the foreground in your container and it will be spawned as PID 1 within the container’s pid namespace. Docker is designed for process isolation, not for OS virtualization, so there are no other OS processes and daemons running inside the container (like systemd, cron, syslog, etc), only your entrypoint or command you run.<br>If they included systemd commands, you’d find a lot of things not working since your entrypoint replaces init. Systemd also makes use to cgroups which docker restricts inside of containers since the ability to change cgroups could allow a process to escape the container’s isolation. Without systemd running as init inside your container, there’s no daemon to process your start and stop commands.</p></blockquote>
+<p>给出解决方案，确实能work</p>
+<blockquote><span class="custom-blockquote-svg"><svg width="24" height="24" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg" data-reactroot="">
+<path fill="" d="M22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C13.8 22 15.5 21.5 17 20.6L22 22L20.7 17C21.5 15.5 22 13.8 22 12Z" undefined="1"></path>
+<path fill="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z" undefined="1"></path>
+<path fill="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z" undefined="1"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M17 8.5C15.23 8.97 14.07 10.84 14.01 13.27C14 13.33 14 13.4 14 13.47V13.5"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M9 8.5C7.23 8.97 6.07 10.84 6.01 13.27C6 13.33 6 13.4 6 13.47V13.5"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z"></path>
+</svg>
+</span><p>  解决方案</p>
+<ol>
+<li><p>我们可以在启动容器的时候将在启动参数加上 &#x2F;sbin&#x2F;init 来让其生效。<br>以centos为例：<br><code>docker run -d -v /sys/fs/cgroup/:/sys/fs/cgroup:ro --cap-add SYS_ADMIN --name systemd_websrv centos /sbin/init</code><br>就可以正常使用systemd了<br>但是如果容器重启，那么就可能导致失效。</p>
+</li>
+<li><p>替换systemctl<br>使用 <a href="https://github.com/gdraheim/docker-systemctl-replacement">docker-systemctl-replacement</a>替换容器中的systemctl。<br>以ubuntu镜像为例：<br>1). 安装python2<br><code>sudo apt install python</code><br>2). 替换systemcl (注意路径，可以使用<code>whereis systemctl</code>查看当前默认路径)<br><code>wget https://raw.githubusercontent.com/gdraheim/docker-systemctl-replacement/master/files/docker/systemctl.py -O /bin/systemctl</code><br>3). 给定权限<br><code>sudo chmod a+x /bin/systemctl</code><br>这样接可以使用非systemd的systemctl，但是因为是非官方的systemcl所以可能存在一些未知问题。</p>
+</li>
+</ol>
+<p>最好还是建议将docker作为进程隔离环境，<code>single app single container</code>， 但是遇到非常特殊的情况下，可以上述两个解决方案，如果有更好的方案，欢迎提出。</p></blockquote>
+<p>上面这些在单容器单服务下都工作的很好，但是在笔者的场景下呢？情况不是太好</p>
+<h3 id="事情还没有完"><a href="#事情还没有完" class="headerlink" title="事情还没有完"></a>事情还没有完</h3><p>当我们想要像在虚拟机上一样，在一个容器中运行多个container，比如一般网站的配置，redis，httpd，mongo，rabbitmq等等，这该怎么搞？不要问我为什么不把容器拆分，要问就是配置起来太麻烦了。</p>
+<p>笔者遇到一个问题就是，按照上述copy的方法对container中所有服务安装完毕之后，一切非常正常，但问题发生在，重启container，systemctl就再也启动不起来某些服务，例如httpd，psql等。</p>
+<p>经过一番周折，以及和systemctl.py的作者进行沟通，最后发现：其实这个问题的根源还是在<code>systemctl</code>上.</p>
+<p>在centos系统中，systemctl需要使用d-bus来与systemd通信，完成服务的启动。但是在docker的容器中并没有systemd-daemon的守护进程，所以上述通信是不会完成的。这就导致了前面所说的两个问题:D-Bus connection: Operation not permitted以及No such file or directory的问题</p>
+<p>下面举个例子</p>
+<p>一般我们启动容器的过程一般使用<code>docker run -t -i centos:7 /bin/bash</code>, 那么容器中一号进程就是<code>/bin/bash</code>, 而不是我们熟悉的systemd。</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"> ~  docker pull centos:7
+7: Pulling from library&#x2F;centos
+2d473b07cdd5: Downloading
+7: Pulling from library&#x2F;centos
+2d473b07cdd5: Pull complete
+Digest: sha256:c73f515d06b0fa07bb18d8202035e739a494ce760aa73129f60f4bf2bd22b407
+Status: Downloaded newer image for centos:7
+docker.io&#x2F;library&#x2F;centos:7
+ ~  docker run -itd --name centos7 centos:7
+c625bedacd894f9db6ca065839e413bb02e46cf6b602822f26baebfab745982a
+ ~  docker exec -it centos7 ps aux
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.4  0.1  11844  2944 pts&#x2F;0    Ss+  10:41   0:00 &#x2F;bin&#x2F;bash
+root        14  0.0  0.1  51748  3448 pts&#x2F;1    Rs+  10:41   0:00 ps aux<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>对象都没有了，所以暴d-bus的错误，就很容易解释了。</p>
+<p>上述描述是对这个问题的通俗解释，想要了解关于这个问题的根本原因可以看下面两个链接，进一步了解，基本都是在解释一号进程的问题</p>
+<p><a href="https://stackoverflow.com/questions/49285658/how-to-solve-docker-issue-failed-to-connect-to-bus-no-such-file-or-directory">linux - how to solve Docker issue Failed to connect to bus: No such file or directory - Stack Overflow</a></p>
+<p><a href="https://stackoverflow.com/questions/39169403/not-able-to-use-systemd-on-ubuntu-docker-container">Not able to use systemd on ubuntu docker container - Stack Overflow</a></p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>问题的根源找到了，解决这个问题的思路就非常的清晰了，就是使服务的管理不依赖于systemd。</p>
+<blockquote><span class="custom-blockquote-svg"><svg width="24" height="24" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg" data-reactroot="">
+<path fill="" d="M22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C13.8 22 15.5 21.5 17 20.6L22 22L20.7 17C21.5 15.5 22 13.8 22 12Z" undefined="1"></path>
+<path fill="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z" undefined="1"></path>
+<path fill="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z" undefined="1"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M17 8.5C15.23 8.97 14.07 10.84 14.01 13.27C14 13.33 14 13.4 14 13.47V13.5"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M9 8.5C7.23 8.97 6.07 10.84 6.01 13.27C6 13.33 6 13.4 6 13.47V13.5"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z"></path>
+</svg>
+</span><p>Do not rely on systemd as a process manager but have the docker container run your desired application in the foreground.</p></blockquote>
+<p>有一款工具，就能够实现执行systemctl而不依赖于systemd，他就是<a href="https://github.com/gdraheim/docker-systemctl-replacement">GitHub - gdraheim&#x2F;docker-systemctl-replacement: docker systemctl replacement - allows to deploy to systemd-controlled containers without starting an actual systemd daemon (e.g. centos7, ubuntu16)</a>， 这个github仓库专门在处理这个问题。同时，如果你不想写一些dockerfile来实现上述过程，你也可以使用该作者的另一个仓库，<a href="https://github.com/gdraheim/docker-systemctl-images/blob/master/centos-httpd.dockerfile">docker-systemctl-images&#x2F;centos-httpd.dockerfile at master · gdraheim&#x2F;docker-systemctl-images · GitHub</a></p>
+<p>在这里，作者给出了很多版本的可以使用systemctl的镜像，非常的有用。</p>
+<h3 id="在使用systemctl的过程中，其实也踩了很多坑"><a href="#在使用systemctl的过程中，其实也踩了很多坑" class="headerlink" title="在使用systemctl的过程中，其实也踩了很多坑"></a>在使用systemctl的过程中，其实也踩了很多坑</h3><p><strong>第一个问题是，什么时候拷贝的问题？</strong></p>
+<p>最最朴素的想法是，拷贝一次就行了呗，当初我也是这样想的，结果，水很深。</p>
+<blockquote><span class="custom-blockquote-svg"><svg width="24" height="24" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg" data-reactroot="">
+<path fill="" d="M22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C13.8 22 15.5 21.5 17 20.6L22 22L20.7 17C21.5 15.5 22 13.8 22 12Z" undefined="1"></path>
+<path fill="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z" undefined="1"></path>
+<path fill="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z" undefined="1"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M17 8.5C15.23 8.97 14.07 10.84 14.01 13.27C14 13.33 14 13.4 14 13.47V13.5"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M9 8.5C7.23 8.97 6.07 10.84 6.01 13.27C6 13.33 6 13.4 6 13.47V13.5"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z"></path>
+</svg>
+</span><p>Most os packages with a systemd service have declared a dependency on systemd. When you install an os package it updates systemd which overwrites &#x2F;usr&#x2F;bin&#x2F;systemctl which in turn kills the replacement functionality. The next “systemctl” is again executed by systemd which does not work in a container easily as you know. So after a os package install it helps to just drop-in the replacement script again.</p>
+<p><a href="https://github.com/gdraheim/docker-systemctl-replacement/issues/137#issuecomment-1052164317">can not start the service when reboot? · Issue #137 · gdraheim&#x2F;docker-systemctl-replacement · GitHub</a></p></blockquote>
+<p>这是与作者沟通时候，作者的解释，很容易懂，大致就是，安装软件时会更新systemctl，那么我们之前一次的拷贝不就失效了嘛。所以安装了软件之后，就拷贝一下吧！！！</p>
+<p>时机：</p>
+<blockquote><span class="custom-blockquote-svg"><svg width="24" height="24" viewBox="0 0 24 24" fill="" xmlns="http://www.w3.org/2000/svg" data-reactroot="">
+<path fill="" d="M22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C13.8 22 15.5 21.5 17 20.6L22 22L20.7 17C21.5 15.5 22 13.8 22 12Z" undefined="1"></path>
+<path fill="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z" undefined="1"></path>
+<path fill="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z" undefined="1"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M17 8.5C15.23 8.97 14.07 10.84 14.01 13.27C14 13.33 14 13.4 14 13.47V13.5"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M9 8.5C7.23 8.97 6.07 10.84 6.01 13.27C6 13.33 6 13.4 6 13.47V13.5"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z"></path>
+</svg>
+</span><p>After “yum install” and before the next “systemctl” execution.</p>
+<p><a href="https://github.com/gdraheim/docker-systemctl-replacement/issues/137#issuecomment-1052200067">can not start the service when reboot? · Issue #137 · gdraheim&#x2F;docker-systemctl-replacement · GitHub</a></p></blockquote>
+<p><strong>第二个问题是，启动点设为systemctl还是&#x2F;bin&#x2F;bash&#x2F;还是&#x2F;usr&#x2F;sbin&#x2F;init.</strong></p>
+<p>首先给出答案，需要设置成systemctl，因为它负责移除对systemd的依赖，所以要让它成为一号进程。</p>
+<p>这个可以看看作者给出的dockerfile</p>
+<pre class="line-numbers language-dockerfile" data-language="dockerfile"><code class="language-dockerfile">FROM centos:7.7.1908
+
+LABEL __copyright__&#x3D;&quot;(C) Guido Draheim, licensed under the EUPL&quot; \
+      __version__&#x3D;&quot;1.4.4147&quot;
+EXPOSE 80
+
+COPY files&#x2F;docker&#x2F;systemctl.py &#x2F;usr&#x2F;bin&#x2F;systemctl
+RUN yum install -y httpd httpd-tools
+COPY files&#x2F;docker&#x2F;systemctl.py &#x2F;usr&#x2F;bin&#x2F;systemctl
+
+RUN echo TEST_OK &gt; &#x2F;var&#x2F;www&#x2F;html&#x2F;index.html
+
+RUN systemctl enable httpd
+CMD &#x2F;usr&#x2F;bin&#x2F;systemctl<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>**问题的根源在<code>systemctl</code>,它需要像docker容器中的systemd通信，但是却没有对象</li>
+<li>解决问题的方法在于，解除systemctl与systemd的依赖关系，这里我们用到了一个systemctl.py的工具</li>
+<li>使用systemctl.py需要注意拷贝的时机，以及设置systemctl作为容器一号进程</li>
+</ul>
+<h2 id="参考资料及备注"><a href="#参考资料及备注" class="headerlink" title="参考资料及备注"></a>参考资料及备注</h2><h3 id="一号进程有什么作用？"><a href="#一号进程有什么作用？" class="headerlink" title="一号进程有什么作用？"></a>一号进程有什么作用？</h3><p>Docker 的 stop 和 kill 命令都是用来向容器发送信号的。注意，只有容器中的 1 号进程能够收到信号，这一点非常关键！究竟谁是 1 号进程则主要由 EntryPoint, CMD, RUN 等指令的写法决定，所以这些指令的使用是很有讲究的。<a href="https://www.cnblogs.com/sparkdev/p/7598590.html">在 docker 容器中捕获信号 - sparkdev - 博客园</a></p>
+<p>CMD 和 ENTRYPOINT 指令都支持 exec 模式和 shell 模式的写法，所以要理解 CMD 和 ENTRYPOINT 指令的用法，就得先区分 exec 模式和 shell 模式。这两种模式主要用来指定容器中的不同进程为 1 号进程。</p>
+<p>使用 exec 模式时，容器中的任务进程就是容器内的 1 号进程，exec 模式是建议的使用模式</p>
+<p>使用 shell 模式时，docker 会以 &#x2F;bin&#x2F;sh -c “task command” 的方式执行任务命令。也就是说容器中的 1 号进程不是任务进程而是 bash 进程</p>
+<p>CMD 指令的目的是：为容器提供默认的执行命令。<br>CMD 指令有三种使用方式，其中的一种是为 ENTRYPOINT 提供默认的参数：<br><strong>CMD [“param1”,”param2”]</strong><br>另外两种使用方式分别是 exec 模式和 shell 模式：<br><strong>CMD [“executable”,”param1”,”param2”]</strong>    &#x2F;&#x2F; 这是 exec 模式的写法，注意需要使用双引号。<br><strong>CMD command param1 param2</strong>                  &#x2F;&#x2F; 这是 shell 模式的写法。</p>
+<p>注意命令行参数可以覆盖 CMD 指令的设置，但是只能是重写，却不能给 CMD 中的命令通过命令行传递参数。</p>
+<p>ENTRYPOINT 指令的目的也是为容器指定默认执行的任务。<br>ENTRYPOINT 指令有两种使用方式，就是我们前面介绍的 exec 模式和 shell 模式：<br><strong>ENTRYPOINT [“executable”, “param1”, “param2”]</strong>   &#x2F;&#x2F; 这是 exec 模式的写法，注意需要使用双引号。<br><strong>ENTRYPOINT command param1 param2</strong>                   &#x2F;&#x2F; 这是 shell 模式的写法。</p>
+<p><strong>指定 ENTRYPOINT  指令为 exec 模式时，命令行上指定的参数会作为参数添加到 ENTRYPOINT 指定命令的参数列表中</strong></p>
+<p>命令行参数被 ENTRYPOINT  指令的 shell 模式忽略了。</p>
+<p><img src="https://images2018.cnblogs.com/blog/952033/201802/952033-20180223131745112-1674454515.png"></p>
+<p><a href="https://www.ctl.io/developers/blog/post/dockerfile-entrypoint-vs-cmd/">https://www.ctl.io/developers/blog/post/dockerfile-entrypoint-vs-cmd/</a></p>
+<h3 id="其他参考资料"><a href="#其他参考资料" class="headerlink" title="其他参考资料"></a>其他参考资料</h3><p><a href="https://stackoverflow.com/questions/39169403/not-able-to-use-systemd-on-ubuntu-docker-container">Not able to use systemd on ubuntu docker container - Stack Overflow</a></p>
+]]></content>
+      <categories>
+        <category>编程开发</category>
+        <category>运维管理</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>systemd</tag>
+        <tag>systemctl</tag>
+      </tags>
   </entry>
 </search>
