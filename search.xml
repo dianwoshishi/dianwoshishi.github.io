@@ -97,35 +97,36 @@
 <pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">#include &lt;stdio.h&gt;
 
 int main()&#123;
-	int i &#x3D; 0;
-	printf(&quot;i &#x3D; 0,++i &#x3D; %d\n&quot;, ++i);
-	i &#x3D; 0;
-	
-	printf(&quot;i &#x3D; 0,i++ &#x3D; %d\n&quot;, i++);
+    int i &#x3D; 0;
+    printf(&quot;i &#x3D; 0,++i &#x3D; %d\n&quot;, ++i);
+    i &#x3D; 0;
+
+    printf(&quot;i &#x3D; 0,i++ &#x3D; %d\n&quot;, i++);
 
 
 
-	i &#x3D; 1;
-	printf(&quot;i &#x3D; 1,(i++)+(++i) &#x3D; %d\n&quot;, (i++)+(++i));
+    i &#x3D; 1;
+    printf(&quot;i &#x3D; 1,(i++)+(++i) &#x3D; %d\n&quot;, (i++)+(++i));
 
 
-	i &#x3D; 1;
-	printf(&quot;i &#x3D; 1,(++i)+(i++) &#x3D; %d\n&quot;, (++i)+(i++));
+    i &#x3D; 1;
+    printf(&quot;i &#x3D; 1,(++i)+(i++) &#x3D; %d\n&quot;, (++i)+(i++));
 
-	i &#x3D; 1;
-	printf(&quot;i &#x3D; 1,(++i)+(++i) &#x3D; %d\n&quot;, (++i)+(++i));
+    i &#x3D; 1;
+    printf(&quot;i &#x3D; 1,(++i)+(++i) &#x3D; %d\n&quot;, (++i)+(++i));
 
-	return 0;
+    return 0;
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>使用<code>make</code>进行构建，<code>makefile</code>如下所示</p>
 <pre class="line-numbers language-makefile" data-language="makefile"><code class="language-makefile">OBJ<span class="token operator">=</span>selfincre
 
 <span class="token symbol"><span class="token variable">$</span>(OBJ)</span><span class="token punctuation">:</span>
-	g++ -Wall main.c -o <span class="token variable">$@</span>
+    g++ -Wall main.c -o <span class="token variable">$@</span>
 
 <span class="token symbol">clean</span><span class="token punctuation">:</span>
-	-rm -rf <span class="token variable">$</span><span class="token punctuation">(</span>OBJ<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    -rm -rf <span class="token variable">$</span><span class="token punctuation">(</span>OBJ<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>本机所用的环境如下所示：</p>
 <pre class="line-numbers language-txt" data-language="txt"><code class="language-txt">Ubuntu 16.04 (64位，内核版本4.15.0-142-generic）
 gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.12)
@@ -134,46 +135,45 @@ make：GNU Make 4.1，Built for x86_64-pc-linux-gnu<span aria-hidden="true" clas
 <p>结果如下：</p>
 <p><img src="/post/C%E8%AF%AD%E8%A8%80%E5%9B%9E%E5%A4%B4%E7%9C%8B--%E5%8F%8C%E8%83%9E%E8%83%8Ei++%E5%92%8C++i%E7%9A%84%E6%95%85%E4%BA%8B/image-20210726110945317.png" alt="image-20210726110945317"></p>
 <h2 id="汇编分析"><a href="#汇编分析" class="headerlink" title="汇编分析"></a>汇编分析</h2><p>在ubuntu中我们使用<code>objdump ~d ./selfincre &gt; objdump.txt</code>，将程序进行反汇编，我们将不重要的信息剔除，只保留<code>main</code>函数，如下所示，在部分汇编语句中进行了注释，可以结合‘餐食’。</p>
-<pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">
-.&#x2F;selfincre:     file format elf64-x86-64
+<pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">.&#x2F;selfincre:     file format elf64-x86-64
 
 0000000000400526 &lt;main&gt;:
-  400526:	55                   	push   %rbp
-  400527:	48 89 e5             	mov    %rsp,%rbp
-  40052a:	48 83 ec 10          	sub    $0x10,%rsp
-  40052e:	c7 45 fc 00 00 00 00 	movl   $0x0,-0x4(%rbp) # -0x4(%rbp) 是局部变量i，本操作为赋值为0
-  400535:	83 45 fc 01          	addl   $0x1,-0x4(%rbp) # i + 1
-  400539:	8b 45 fc             	mov    -0x4(%rbp),%eax # 将i放入eax
-  40053c:	89 c6                	mov    %eax,%esi				# 将eax复制给esi，作为printf的第一个参数
-  40053e:	bf 04 06 40 00       	mov    $0x400604,%edi
-  400543:	b8 00 00 00 00       	mov    $0x0,%eax
-  400548:	e8 b3 fe ff ff       	callq  400400 &lt;printf@plt&gt;
-  40054d:	c7 45 fc 00 00 00 00 	movl   $0x0,-0x4(%rbp)	## -0x4(%rbp) 是局部变量i，本操作为赋值为0
-  400554:	8b 45 fc             	mov    -0x4(%rbp),%eax	## i赋值给eax
-  400557:	8d 50 01             	lea    0x1(%rax),%edx					## 取rax的值加一（注意：rax本身并没有+1)，并赋值给edx
-  40055a:	89 55 fc             	mov    %edx,-0x4(%rbp)				## 将edx赋值给局部变量i
-  40055d:	89 c6                	mov    %eax,%esi				## 注意这里的eax并没有进行+1操作，所以值自赋值为0后并未改变，作为printf的第一个参数
-  40055f:	bf 0e 06 40 00       	mov    $0x40060e,%edi
-  400564:	b8 00 00 00 00       	mov    $0x0,%eax
-  400569:	e8 92 fe ff ff       	callq  400400 &lt;printf@plt&gt;
-  40056e:	b8 00 00 00 00       	mov    $0x0,%eax
-  400573:	c9                   	leaveq 
-  400574:	c3                   	retq   
-  400575:	66 2e 0f 1f 84 00 00 	nopw   %cs:0x0(%rax,%rax,1)
-  40057c:	00 00 00 
-  40057f:	90                   	nop<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  400526:    55                       push   %rbp
+  400527:    48 89 e5                 mov    %rsp,%rbp
+  40052a:    48 83 ec 10              sub    $0x10,%rsp
+  40052e:    c7 45 fc 00 00 00 00     movl   $0x0,-0x4(%rbp) # -0x4(%rbp) 是局部变量i，本操作为赋值为0
+  400535:    83 45 fc 01              addl   $0x1,-0x4(%rbp) # i + 1
+  400539:    8b 45 fc                 mov    -0x4(%rbp),%eax # 将i放入eax
+  40053c:    89 c6                    mov    %eax,%esi                # 将eax复制给esi，作为printf的第一个参数
+  40053e:    bf 04 06 40 00           mov    $0x400604,%edi
+  400543:    b8 00 00 00 00           mov    $0x0,%eax
+  400548:    e8 b3 fe ff ff           callq  400400 &lt;printf@plt&gt;
+  40054d:    c7 45 fc 00 00 00 00     movl   $0x0,-0x4(%rbp)    ## -0x4(%rbp) 是局部变量i，本操作为赋值为0
+  400554:    8b 45 fc                 mov    -0x4(%rbp),%eax    ## i赋值给eax
+  400557:    8d 50 01                 lea    0x1(%rax),%edx                    ## 取rax的值加一（注意：rax本身并没有+1)，并赋值给edx
+  40055a:    89 55 fc                 mov    %edx,-0x4(%rbp)                ## 将edx赋值给局部变量i
+  40055d:    89 c6                    mov    %eax,%esi                ## 注意这里的eax并没有进行+1操作，所以值自赋值为0后并未改变，作为printf的第一个参数
+  40055f:    bf 0e 06 40 00           mov    $0x40060e,%edi
+  400564:    b8 00 00 00 00           mov    $0x0,%eax
+  400569:    e8 92 fe ff ff           callq  400400 &lt;printf@plt&gt;
+  40056e:    b8 00 00 00 00           mov    $0x0,%eax
+  400573:    c9                       leaveq 
+  400574:    c3                       retq   
+  400575:    66 2e 0f 1f 84 00 00     nopw   %cs:0x0(%rax,%rax,1)
+  40057c:    00 00 00 
+  40057f:    90                       nop<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="分析-i"><a href="#分析-i" class="headerlink" title="分析++i"></a>分析++i</h3><p>主要分析一下C代码</p>
 <pre class="line-numbers language-C" data-language="C"><code class="language-C">++i;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>汇编如下所示：</p>
-<pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">40052e:	c7 45 fc 00 00 00 00 	movl   $0x0,-0x4(%rbp) # -0x4(%rbp) 是局部变量i，本操作为赋值为0
- 400535:	83 45 fc 01          	addl   $0x1,-0x4(%rbp) # i + 1
- 400539:	8b 45 fc             	mov    -0x4(%rbp),%eax # 将i放入eax
- 40053c:	89 c6                	mov    %eax,%esi				# 将eax复制给esi，作为printf的第一个参数
- 40053e:	bf 04 06 40 00       	mov    $0x400604,%edi
- 400543:	b8 00 00 00 00       	mov    $0x0,%eax
- 400548:	e8 b3 fe ff ff       	callq  400400 &lt;printf@plt&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">  40052e:    c7 45 fc 00 00 00 00     movl   $0x0,-0x4(%rbp) # -0x4(%rbp) 是局部变量i，本操作为赋值为0
+400535:    83 45 fc 01              addl   $0x1,-0x4(%rbp) # i + 1
+400539:    8b 45 fc                 mov    -0x4(%rbp),%eax # 将i放入eax
+40053c:    89 c6                    mov    %eax,%esi                # 将eax复制给esi，作为printf的第一个参数
+40053e:    bf 04 06 40 00           mov    $0x400604,%edi
+400543:    b8 00 00 00 00           mov    $0x0,%eax
+400548:    e8 b3 fe ff ff           callq  400400 &lt;printf@plt&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>++i正如字面的意思一样，先加后用！</strong></p>
 <p>其加一汇编操作，均在<code>-0x4(%rbp)</code>进行，加一操作为<code>addl   $0x1,-0x4(%rbp)</code>，<strong>因此++i直接造成的结果就是i的改变。</strong></p>
@@ -181,19 +181,19 @@ make：GNU Make 4.1，Built for x86_64-pc-linux-gnu<span aria-hidden="true" clas
 <pre class="line-numbers language-c" data-language="c"><code class="language-c">i<span class="token operator">++</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>汇编如下所示：</p>
-<pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">40054d:	c7 45 fc 00 00 00 00 	movl   $0x0,-0x4(%rbp)	## -0x4(%rbp) 是局部变量i，本操作为赋值为0
-400554:	8b 45 fc             	mov    -0x4(%rbp),%eax	## i赋值给eax
-400557:	8d 50 01             	lea    0x1(%rax),%edx					## 取rax的值加一（注意：rax本身并没有+1)，并赋值给edx
-40055a:	89 55 fc             	mov    %edx,-0x4(%rbp)				## 将edx赋值给局部变量i
-40055d:	89 c6                	mov    %eax,%esi				## 注意这里的eax并没有进行+1操作，所以值自赋值为0后并未改变，作为printf的第一个参数
-40055f:	bf 0e 06 40 00       	mov    $0x40060e,%edi
-400564:	b8 00 00 00 00       	mov    $0x0,%eax
-400569:	e8 92 fe ff ff       	callq  400400 &lt;printf@plt&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">40054d:    c7 45 fc 00 00 00 00     movl   $0x0,-0x4(%rbp)    ## -0x4(%rbp) 是局部变量i，本操作为赋值为0
+400554:    8b 45 fc                 mov    -0x4(%rbp),%eax    ## i赋值给eax
+400557:    8d 50 01                 lea    0x1(%rax),%edx                    ## 取rax的值加一（注意：rax本身并没有+1)，并赋值给edx
+40055a:    89 55 fc                 mov    %edx,-0x4(%rbp)                ## 将edx赋值给局部变量i
+40055d:    89 c6                    mov    %eax,%esi                ## 注意这里的eax并没有进行+1操作，所以值自赋值为0后并未改变，作为printf的第一个参数
+40055f:    bf 0e 06 40 00           mov    $0x40060e,%edi
+400564:    b8 00 00 00 00           mov    $0x0,%eax
+400569:    e8 92 fe ff ff           callq  400400 &lt;printf@plt&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>i++正如字面的意思一样，先用后加！</strong></p>
 <p>其加一汇编操作，在寄存器<code>eax</code>的值的基础上进行，加一操作为<code>lea    0x1(%rax),%edx；mov    %edx,-0x4(%rbp)</code>。</p>
 <p>我们可以如下理解i++， 拆分为两句：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c">i<span class="token operator">++</span> 	<span class="token operator">--</span><span class="token operator">></span> 	i<span class="token punctuation">;</span>i <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">i<span class="token operator">++</span>     <span class="token operator">--</span><span class="token operator">></span>     i<span class="token punctuation">;</span>i <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p><code>i++</code>相当于：先使用<code>i</code>，在对<code>i</code>进行加一操作。</p>
 <ul>
@@ -217,60 +217,56 @@ printf(&quot;i &#x3D; 1,(++i)+(++i) &#x3D; %d\n&quot;, (++i)+(++i));<span aria-h
 <h3 id="分析-i-i"><a href="#分析-i-i" class="headerlink" title="分析(i++)+(++i)"></a>分析(i++)+(++i)</h3><p>首先我们先进行一个简单一些的分析，<code>i = 1;(i++)+(++i)</code> 的结果是多少呢？</p>
 <pre class="line-numbers language-asm" data-language="asm"><code class="language-asm"># (i++)+(++i)
 # i &#x3D; 1
-40056e:	c7 45 fc 01 00 00 00 	movl   $0x1,-0x4(%rbp)		## -0x4(%rbp) 就是局部变量i，本操作为赋值为1,i &#x3D; 1
+40056e:    c7 45 fc 01 00 00 00     movl   $0x1,-0x4(%rbp)        ## -0x4(%rbp) 就是局部变量i，本操作为赋值为1,i &#x3D; 1
 # i++
-400575:	8b 45 fc             	mov    -0x4(%rbp),%eax		## eax &#x3D; i &#x3D; 1
-400578:	8d 50 01             	lea    0x1(%rax),%edx			## 取rax的值加一，赋值给edx
-40057b:	89 55 fc             	mov    %edx,-0x4(%rbp)		## i &#x3D; edx, 此时i &#x3D; 2
+400575:    8b 45 fc                 mov    -0x4(%rbp),%eax        ## eax &#x3D; i &#x3D; 1
+400578:    8d 50 01                 lea    0x1(%rax),%edx            ## 取rax的值加一，赋值给edx
+40057b:    89 55 fc                 mov    %edx,-0x4(%rbp)        ## i &#x3D; edx, 此时i &#x3D; 2
 # ++i
-40057e:	83 45 fc 01          	addl   $0x1,-0x4(%rbp)		## i+ 1 &#x3D; i,此时i &#x3D; 3
+40057e:    83 45 fc 01              addl   $0x1,-0x4(%rbp)        ## i+ 1 &#x3D; i,此时i &#x3D; 3
 # $1 + $2
-400582:	8b 55 fc             	mov    -0x4(%rbp),%edx		## i的值赋给edx，也就是3
-400585:	01 d0                	add    %edx,%eax					## 执行eax + edx &#x3D; eax 也就是1 + 3 &#x3D; 4
-400587:	89 c6                	mov    %eax,%esi					## eax赋给esi，作为printf的第一个参数，也就是4
-400589:	bf 74 06 40 00       	mov    $0x400674,%edi
-40058e:	b8 00 00 00 00       	mov    $0x0,%eax
-400593:	e8 68 fe ff ff       	callq  400400 &lt;printf@plt&gt;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+400582:    8b 55 fc                 mov    -0x4(%rbp),%edx        ## i的值赋给edx，也就是3
+400585:    01 d0                    add    %edx,%eax                    ## 执行eax + edx &#x3D; eax 也就是1 + 3 &#x3D; 4
+400587:    89 c6                    mov    %eax,%esi                    ## eax赋给esi，作为printf的第一个参数，也就是4
+400589:    bf 74 06 40 00           mov    $0x400674,%edi
+40058e:    b8 00 00 00 00           mov    $0x0,%eax
+400593:    e8 68 fe ff ff           callq  400400 &lt;printf@plt&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>通过第二节的分析，我们知道，其实<code>(i++)+(++i) </code>的可以看做<code>(i_1 + (++i_2))</code>（<code>i_1</code>是因为此时<code>i_1</code>的值是eax的值，<code>i_1</code> 不等同于<code>i_2</code>，并不随<code>i</code>的值变化）， <del>再由C语言中表达式的计算是由右到左，所以会先计算<code>++i</code>，然后是</del>再相加。那么结果应该是1 + 2 &#x3D; 3。</p>
 <p>但是，实际结果却是4.为什么呢？</p>
 <p>原因就是在进行<code>++i</code>的时候，虽然后续用的是<code>eax</code>的值，但是这句话（第5行）随后进行的操作改变了<code>-0x4(%rbp)</code>的值（第6、7行）。其本意是<code>-0x4(%rbp)+1</code>，但是此时<code>-0x4(%rbp)</code>的值已经被<code>i++</code>修改过了，为2，所以<code>++i</code>的结果就成为了3。最终两式一加，结果为4.</p>
 <h3 id="分析-i-i-1"><a href="#分析-i-i-1" class="headerlink" title="分析(++i)+(++i)"></a>分析(++i)+(++i)</h3><p>下面我们分析<code>(++i)+(++i) = 6？</code></p>
 <p>汇编代码如下所示：</p>
-<pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">
-# (++i)+(++i)
+<pre class="line-numbers language-asm" data-language="asm"><code class="language-asm"># (++i)+(++i)
 # i &#x3D; 1
-400598:	c7 45 fc 01 00 00 00 	movl   $0x1,-0x4(%rbp)		# -0x4(%rbp) &#x3D; i &#x3D; 1
+400598:    c7 45 fc 01 00 00 00     movl   $0x1,-0x4(%rbp)        # -0x4(%rbp) &#x3D; i &#x3D; 1
 #(++i)
-40059f:	83 45 fc 01          	addl   $0x1,-0x4(%rbp)		# -0x4(%rbp) &#x3D; i &#x3D; 2
+40059f:    83 45 fc 01              addl   $0x1,-0x4(%rbp)        # -0x4(%rbp) &#x3D; i &#x3D; 2
 #(++i)
-4005a3:	83 45 fc 01          	addl   $0x1,-0x4(%rbp)		# -0x4(%rbp) &#x3D; i &#x3D; 3
+4005a3:    83 45 fc 01              addl   $0x1,-0x4(%rbp)        # -0x4(%rbp) &#x3D; i &#x3D; 3
 # $1 + $2
-4005a7:	8b 45 fc             	mov    -0x4(%rbp),%eax		# -0x4(%rbp)赋值给eax， eax &#x3D; 3
-4005aa:	01 c0                	add    %eax,%eax					# eax + eax &#x3D; 6
-4005ac:	89 c6                	mov    %eax,%esi
-4005ae:	bf 8c 06 40 00       	mov    $0x40068c,%edi
-4005b3:	b8 00 00 00 00       	mov    $0x0,%eax
-4005b8:	e8 43 fe ff ff       	callq  400400 &lt;printf@plt&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+4005a7:    8b 45 fc                 mov    -0x4(%rbp),%eax        # -0x4(%rbp)赋值给eax， eax &#x3D; 3
+4005aa:    01 c0                    add    %eax,%eax                    # eax + eax &#x3D; 6
+4005ac:    89 c6                    mov    %eax,%esi
+4005ae:    bf 8c 06 40 00           mov    $0x40068c,%edi
+4005b3:    b8 00 00 00 00           mov    $0x0,%eax
+4005b8:    e8 43 fe ff ff           callq  400400 &lt;printf@plt&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>经过上一小节的分析，其实这里已经非常简单了，因为两次<code>++i</code>不断的改变<code>-0x4(%rbp)</code>的值，使得<code>-0x4(%rbp)</code>在使用时变成了3，最终两式相加为6.</p>
 <h3 id="练手题目"><a href="#练手题目" class="headerlink" title="练手题目"></a>练手题目</h3><pre class="line-numbers language-txt" data-language="txt"><code class="language-txt">i &#x3D; 1;
 printf(&quot;i &#x3D; 1,(++i)+(i++) &#x3D; %d\n&quot;, (++i)+(i++));<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-
-
-<pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">400598:	c7 45 fc 01 00 00 00 	movl   $0x1,-0x4(%rbp)
-40059f:	83 45 fc 01          	addl   $0x1,-0x4(%rbp)
-4005a3:	8b 45 fc             	mov    -0x4(%rbp),%eax
-4005a6:	8d 50 01             	lea    0x1(%rax),%edx
-4005a9:	89 55 fc             	mov    %edx,-0x4(%rbp)
-4005ac:	8b 55 fc             	mov    -0x4(%rbp),%edx
-4005af:	01 d0                	add    %edx,%eax
-4005b1:	89 c6                	mov    %eax,%esi
-4005b3:	bf ac 06 40 00       	mov    $0x4006ac,%edi
-4005b8:	b8 00 00 00 00       	mov    $0x0,%eax
-4005bd:	e8 3e fe ff ff       	callq  400400 &lt;printf@plt&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">400598:    c7 45 fc 01 00 00 00     movl   $0x1,-0x4(%rbp)
+40059f:    83 45 fc 01              addl   $0x1,-0x4(%rbp)
+4005a3:    8b 45 fc                 mov    -0x4(%rbp),%eax
+4005a6:    8d 50 01                 lea    0x1(%rax),%edx
+4005a9:    89 55 fc                 mov    %edx,-0x4(%rbp)
+4005ac:    8b 55 fc                 mov    -0x4(%rbp),%edx
+4005af:    01 d0                    add    %edx,%eax
+4005b1:    89 c6                    mov    %eax,%esi
+4005b3:    bf ac 06 40 00           mov    $0x4006ac,%edi
+4005b8:    b8 00 00 00 00           mov    $0x0,%eax
+4005bd:    e8 3e fe ff ff           callq  400400 &lt;printf@plt&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>他的结果是5，通过上述分析，你算对了吗？</p>
 <p>关键提示：</p>
@@ -298,99 +294,95 @@ printf(&quot;i &#x3D; 1,(++i)+(i++) &#x3D; %d\n&quot;, (++i)+(i++));<span aria-h
 <p>&#x3D;&#x3D;&#x3D;&#x3D;</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
 <span class="token keyword">int</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-	<span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-	<span class="token keyword">return</span> i<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> i<span class="token operator">++</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span>
 
 <span class="token keyword">int</span> <span class="token function">g</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-	<span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-	<span class="token keyword">return</span> i<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> i<span class="token operator">++</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span>
 
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
 
-	<span class="token keyword">int</span> ret <span class="token operator">=</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token function">g</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	
+    <span class="token keyword">int</span> ret <span class="token operator">=</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token function">g</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span> ret<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token function">g</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span> ret<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-	<span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> b <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">,</span> c <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">,</span> d <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span>
-	d <span class="token operator">=</span> a <span class="token operator">*</span> b <span class="token operator">+</span> c <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span>
-	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span> d<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token function">g</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> b <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">,</span> c <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">,</span> d <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span>
+    d <span class="token operator">=</span> a <span class="token operator">*</span> b <span class="token operator">+</span> c <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span> d<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-
-
-<pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">
-0000000000400526 &lt;_Z1fv&gt;:
-  400526:	55                   	push   %rbp
-  400527:	48 89 e5             	mov    %rsp,%rbp
-  40052a:	c7 45 fc 01 00 00 00 	movl   $0x1,-0x4(%rbp)
-  400531:	8b 45 fc             	mov    -0x4(%rbp),%eax
-  400534:	8d 50 01             	lea    0x1(%rax),%edx
-  400537:	89 55 fc             	mov    %edx,-0x4(%rbp)
-  40053a:	5d                   	pop    %rbp
-  40053b:	c3                   	retq   
+<pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">0000000000400526 &lt;_Z1fv&gt;:
+  400526:    55                       push   %rbp
+  400527:    48 89 e5                 mov    %rsp,%rbp
+  40052a:    c7 45 fc 01 00 00 00     movl   $0x1,-0x4(%rbp)
+  400531:    8b 45 fc                 mov    -0x4(%rbp),%eax
+  400534:    8d 50 01                 lea    0x1(%rax),%edx
+  400537:    89 55 fc                 mov    %edx,-0x4(%rbp)
+  40053a:    5d                       pop    %rbp
+  40053b:    c3                       retq   
 
 000000000040053c &lt;_Z1gv&gt;:
-  40053c:	55                   	push   %rbp
-  40053d:	48 89 e5             	mov    %rsp,%rbp
-  400540:	c7 45 fc 01 00 00 00 	movl   $0x1,-0x4(%rbp)
-  400547:	8b 45 fc             	mov    -0x4(%rbp),%eax
-  40054a:	8d 50 01             	lea    0x1(%rax),%edx
-  40054d:	89 55 fc             	mov    %edx,-0x4(%rbp)
-  400550:	5d                   	pop    %rbp
-  400551:	c3                   	retq   
+  40053c:    55                       push   %rbp
+  40053d:    48 89 e5                 mov    %rsp,%rbp
+  400540:    c7 45 fc 01 00 00 00     movl   $0x1,-0x4(%rbp)
+  400547:    8b 45 fc                 mov    -0x4(%rbp),%eax
+  40054a:    8d 50 01                 lea    0x1(%rax),%edx
+  40054d:    89 55 fc                 mov    %edx,-0x4(%rbp)
+  400550:    5d                       pop    %rbp
+  400551:    c3                       retq   
 
 0000000000400552 &lt;main&gt;:
-  400552:	55                   	push   %rbp
-  400553:	48 89 e5             	mov    %rsp,%rbp
-  400556:	53                   	push   %rbx
-  400557:	48 83 ec 28          	sub    $0x28,%rsp
-  40055b:	e8 c6 ff ff ff       	callq  400526 &lt;_Z1fv&gt;		#f()
-  400560:	89 c3                	mov    %eax,%ebx
-  400562:	e8 d5 ff ff ff       	callq  40053c &lt;_Z1gv&gt;		#g()
-  400567:	01 d8                	add    %ebx,%eax
-  400569:	89 45 dc             	mov    %eax,-0x24(%rbp)
-  40056c:	8b 45 dc             	mov    -0x24(%rbp),%eax
-  40056f:	89 c6                	mov    %eax,%esi
-  400571:	bf 74 06 40 00       	mov    $0x400674,%edi
-  400576:	b8 00 00 00 00       	mov    $0x0,%eax
-  40057b:	e8 80 fe ff ff       	callq  400400 &lt;printf@plt&gt;
-  400580:	e8 a1 ff ff ff       	callq  400526 &lt;_Z1fv&gt;		#f()
-  400585:	89 c3                	mov    %eax,%ebx
-  400587:	e8 b0 ff ff ff       	callq  40053c &lt;_Z1gv&gt;		#g()
-  40058c:	01 d8                	add    %ebx,%eax
-  40058e:	89 c6                	mov    %eax,%esi
-  400590:	bf 74 06 40 00       	mov    $0x400674,%edi
-  400595:	b8 00 00 00 00       	mov    $0x0,%eax
-  40059a:	e8 61 fe ff ff       	callq  400400 &lt;printf@plt&gt;
-  40059f:	c7 45 e0 01 00 00 00 	movl   $0x1,-0x20(%rbp) #a
-  4005a6:	c7 45 e4 02 00 00 00 	movl   $0x2,-0x1c(%rbp)	#b
-  4005ad:	c7 45 e8 03 00 00 00 	movl   $0x3,-0x18(%rbp)	#c
-  4005b4:	c7 45 ec 04 00 00 00 	movl   $0x4,-0x14(%rbp) #d
-  4005bb:	8b 45 e0             	mov    -0x20(%rbp),%eax
-  4005be:	0f af 45 e4          	imul   -0x1c(%rbp),%eax # a * b
-  4005c2:	8b 55 e8             	mov    -0x18(%rbp),%edx 
-  4005c5:	01 d2                	add    %edx,%edx				# c + c &#x3D; c*2
-  4005c7:	01 d0                	add    %edx,%eax				# 相加
-  4005c9:	89 45 ec             	mov    %eax,-0x14(%rbp)
-  4005cc:	8b 45 ec             	mov    -0x14(%rbp),%eax
-  4005cf:	89 c6                	mov    %eax,%esi
-  4005d1:	bf 74 06 40 00       	mov    $0x400674,%edi
-  4005d6:	b8 00 00 00 00       	mov    $0x0,%eax
-  4005db:	e8 20 fe ff ff       	callq  400400 &lt;printf@plt&gt;
-  4005e0:	b8 00 00 00 00       	mov    $0x0,%eax
-  4005e5:	48 83 c4 28          	add    $0x28,%rsp
-  4005e9:	5b                   	pop    %rbx
-  4005ea:	5d                   	pop    %rbp
-  4005eb:	c3                   	retq   
-  4005ec:	0f 1f 40 00          	nopl   0x0(%rax)
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  400552:    55                       push   %rbp
+  400553:    48 89 e5                 mov    %rsp,%rbp
+  400556:    53                       push   %rbx
+  400557:    48 83 ec 28              sub    $0x28,%rsp
+  40055b:    e8 c6 ff ff ff           callq  400526 &lt;_Z1fv&gt;        #f()
+  400560:    89 c3                    mov    %eax,%ebx
+  400562:    e8 d5 ff ff ff           callq  40053c &lt;_Z1gv&gt;        #g()
+  400567:    01 d8                    add    %ebx,%eax
+  400569:    89 45 dc                 mov    %eax,-0x24(%rbp)
+  40056c:    8b 45 dc                 mov    -0x24(%rbp),%eax
+  40056f:    89 c6                    mov    %eax,%esi
+  400571:    bf 74 06 40 00           mov    $0x400674,%edi
+  400576:    b8 00 00 00 00           mov    $0x0,%eax
+  40057b:    e8 80 fe ff ff           callq  400400 &lt;printf@plt&gt;
+  400580:    e8 a1 ff ff ff           callq  400526 &lt;_Z1fv&gt;        #f()
+  400585:    89 c3                    mov    %eax,%ebx
+  400587:    e8 b0 ff ff ff           callq  40053c &lt;_Z1gv&gt;        #g()
+  40058c:    01 d8                    add    %ebx,%eax
+  40058e:    89 c6                    mov    %eax,%esi
+  400590:    bf 74 06 40 00           mov    $0x400674,%edi
+  400595:    b8 00 00 00 00           mov    $0x0,%eax
+  40059a:    e8 61 fe ff ff           callq  400400 &lt;printf@plt&gt;
+  40059f:    c7 45 e0 01 00 00 00     movl   $0x1,-0x20(%rbp) #a
+  4005a6:    c7 45 e4 02 00 00 00     movl   $0x2,-0x1c(%rbp)    #b
+  4005ad:    c7 45 e8 03 00 00 00     movl   $0x3,-0x18(%rbp)    #c
+  4005b4:    c7 45 ec 04 00 00 00     movl   $0x4,-0x14(%rbp) #d
+  4005bb:    8b 45 e0                 mov    -0x20(%rbp),%eax
+  4005be:    0f af 45 e4              imul   -0x1c(%rbp),%eax # a * b
+  4005c2:    8b 55 e8                 mov    -0x18(%rbp),%edx 
+  4005c5:    01 d2                    add    %edx,%edx                # c + c &#x3D; c*2
+  4005c7:    01 d0                    add    %edx,%eax                # 相加
+  4005c9:    89 45 ec                 mov    %eax,-0x14(%rbp)
+  4005cc:    8b 45 ec                 mov    -0x14(%rbp),%eax
+  4005cf:    89 c6                    mov    %eax,%esi
+  4005d1:    bf 74 06 40 00           mov    $0x400674,%edi
+  4005d6:    b8 00 00 00 00           mov    $0x0,%eax
+  4005db:    e8 20 fe ff ff           callq  400400 &lt;printf@plt&gt;
+  4005e0:    b8 00 00 00 00           mov    $0x0,%eax
+  4005e5:    48 83 c4 28              add    $0x28,%rsp
+  4005e9:    5b                       pop    %rbx
+  4005ea:    5d                       pop    %rbp
+  4005eb:    c3                       retq   
+  4005ec:    0f 1f 40 00              nopl   0x0(%rax)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>从汇编代码可以看出，实际上<code>f()+g()</code> 和<code>a * b + c *2</code>的顺序均为从左向右。</p>
 <p>实际上，之前自己记忆中一直是以下这句：</p>
@@ -423,40 +415,40 @@ printf(&quot;i &#x3D; 1,(++i)+(i++) &#x3D; %d\n&quot;, (++i)+(i++));<span aria-h
 ]]></content>
   </entry>
   <entry>
-    <title>Linux下从汇编手撕c++-值传递和引用传递e</title>
+    <title>Linux下从汇编手撕c++值传递和引用传递</title>
     <url>//post/Linux%E4%B8%8B%E6%89%8B%E6%92%95c++-%E5%80%BC%E4%BC%A0%E9%80%92%E5%92%8C%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92.html</url>
     <content><![CDATA[<h1 id="Linux下从汇编手撕c-值传递和引用传递"><a href="#Linux下从汇编手撕c-值传递和引用传递" class="headerlink" title="Linux下从汇编手撕c++-值传递和引用传递"></a>Linux下从汇编手撕c++-值传递和引用传递</h1><h2 id="示例程序"><a href="#示例程序" class="headerlink" title="示例程序"></a>示例程序</h2><p><code>main.c</code></p>
 <p>主要分为两个部分，每个部分使用一个display函数，函数内使得传入的参数自加1，然后打印到标准输出上。不同的地方在于，display1使用了值传递，display2使用了引用传递</p>
 <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;stdio.h&gt;
 
 void display1(int num)&#123; &#x2F;&#x2F;int num，属于值传递
-	num++;
-	printf(&quot;display1: %d\n&quot;, num);
+    num++;
+    printf(&quot;display1: %d\n&quot;, num);
 &#125;
 
 void display2(int &amp; num)&#123; &#x2F;&#x2F;int &amp; num ，属于引用传递
-	num++;
-	printf(&quot;display2: %d\n&quot;, num);
+    num++;
+    printf(&quot;display2: %d\n&quot;, num);
 &#125;
 
 int main()&#123;
-	int num1 &#x3D; 0, num2 &#x3D; 0;
-	display1(num1);
-	printf(&quot;num1:%d\n&quot;, num1);
-	printf(&quot;--------------------\n&quot;);
-	display2(num2);
-	printf(&quot;num2:%d\n&quot;, num2);
-	return 0;
+    int num1 &#x3D; 0, num2 &#x3D; 0;
+    display1(num1);
+    printf(&quot;num1:%d\n&quot;, num1);
+    printf(&quot;--------------------\n&quot;);
+    display2(num2);
+    printf(&quot;num2:%d\n&quot;, num2);
+    return 0;
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><code>makefile</code></p>
 <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">OBJ&#x3D;reference
 
 $(OBJ):
-	g++ main.c -o $@
+    g++ main.c -o $@
 
 clean:
-	-rm -rf $(OBJ)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    -rm -rf $(OBJ)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>在ubuntu中使用<code>make</code>命令进行编译并运行，结果如下图所示。</p>
 <p><img src="/post/Linux%E4%B8%8B%E6%89%8B%E6%92%95c++-%E5%80%BC%E4%BC%A0%E9%80%92%E5%92%8C%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92/image-20210724002053895.png" alt="image-20210724002053895"></p>
@@ -469,95 +461,92 @@ clean:
 </ul>
 <h2 id="提出问题"><a href="#提出问题" class="headerlink" title="提出问题"></a>提出问题</h2><p>是什么原因造成了仅仅一个<code>&amp;</code>符号的差异，导致函数内值传递和引用传递的差别呢？</p>
 <h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p><code>objdump -d ./reference &gt; objdump.txt</code></p>
-<pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">
-.&#x2F;reference:     file format elf64-x86-64
+<pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">.&#x2F;reference:     file format elf64-x86-64
 
 00000000004005d6 &lt;_Z8display1i&gt;:
-  4005d6:	55                   	push   %rbp
-  4005d7:	48 89 e5             	mov    %rsp,%rbp
-  4005da:	48 83 ec 10          	sub    $0x10,%rsp
-  4005de:	89 7d fc             	mov    %edi,-0x4(%rbp) #将值取出到%rbp-0x4
-  4005e1:	83 45 fc 01          	addl   $0x1,-0x4(%rbp)	# +1运算
-  4005e5:	8b 45 fc             	mov    -0x4(%rbp),%eax	#写回%rbp-0x4, 仍然是局部变量，生命周期在函数内
-  4005e8:	89 c6                	mov    %eax,%esi
-  4005ea:	bf 44 07 40 00       	mov    $0x400744,%edi
-  4005ef:	b8 00 00 00 00       	mov    $0x0,%eax
-  4005f4:	e8 b7 fe ff ff       	callq  4004b0 &lt;printf@plt&gt;
-  4005f9:	90                   	nop
-  4005fa:	c9                   	leaveq 
-  4005fb:	c3                   	retq   
+  4005d6:    55                       push   %rbp
+  4005d7:    48 89 e5                 mov    %rsp,%rbp
+  4005da:    48 83 ec 10              sub    $0x10,%rsp
+  4005de:    89 7d fc                 mov    %edi,-0x4(%rbp) #将值取出到%rbp-0x4
+  4005e1:    83 45 fc 01              addl   $0x1,-0x4(%rbp)    # +1运算
+  4005e5:    8b 45 fc                 mov    -0x4(%rbp),%eax    #写回%rbp-0x4, 仍然是局部变量，生命周期在函数内
+  4005e8:    89 c6                    mov    %eax,%esi
+  4005ea:    bf 44 07 40 00           mov    $0x400744,%edi
+  4005ef:    b8 00 00 00 00           mov    $0x0,%eax
+  4005f4:    e8 b7 fe ff ff           callq  4004b0 &lt;printf@plt&gt;
+  4005f9:    90                       nop
+  4005fa:    c9                       leaveq 
+  4005fb:    c3                       retq   
 
 00000000004005fc &lt;_Z8display2Ri&gt;:
-  4005fc:	55                   	push   %rbp
-  4005fd:	48 89 e5             	mov    %rsp,%rbp
-  400600:	48 83 ec 10          	sub    $0x10,%rsp
-  400604:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)#将值取出到%rbp-0x8， 注意此时%rdi为地址
-  400608:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
-  40060c:	8b 00                	mov    (%rax),%eax
-  40060e:	8d 50 01             	lea    0x1(%rax),%edx  #加一
-  400611:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
-  400615:	89 10                	mov    %edx,(%rax) # 将结果放入原地址所指的内存当中，
-  400617:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
-  40061b:	8b 00                	mov    (%rax),%eax
-  40061d:	89 c6                	mov    %eax,%esi
-  40061f:	bf 52 07 40 00       	mov    $0x400752,%edi
-  400624:	b8 00 00 00 00       	mov    $0x0,%eax
-  400629:	e8 82 fe ff ff       	callq  4004b0 &lt;printf@plt&gt;
-  40062e:	90                   	nop
-  40062f:	c9                   	leaveq 
-  400630:	c3                   	retq   
+  4005fc:    55                       push   %rbp
+  4005fd:    48 89 e5                 mov    %rsp,%rbp
+  400600:    48 83 ec 10              sub    $0x10,%rsp
+  400604:    48 89 7d f8              mov    %rdi,-0x8(%rbp)#将值取出到%rbp-0x8， 注意此时%rdi为地址
+  400608:    48 8b 45 f8              mov    -0x8(%rbp),%rax
+  40060c:    8b 00                    mov    (%rax),%eax
+  40060e:    8d 50 01                 lea    0x1(%rax),%edx  #加一
+  400611:    48 8b 45 f8              mov    -0x8(%rbp),%rax
+  400615:    89 10                    mov    %edx,(%rax) # 将结果放入原地址所指的内存当中，
+  400617:    48 8b 45 f8              mov    -0x8(%rbp),%rax
+  40061b:    8b 00                    mov    (%rax),%eax
+  40061d:    89 c6                    mov    %eax,%esi
+  40061f:    bf 52 07 40 00           mov    $0x400752,%edi
+  400624:    b8 00 00 00 00           mov    $0x0,%eax
+  400629:    e8 82 fe ff ff           callq  4004b0 &lt;printf@plt&gt;
+  40062e:    90                       nop
+  40062f:    c9                       leaveq 
+  400630:    c3                       retq   
 
 0000000000400631 &lt;main&gt;:
-  400631:	55                   	push   %rbp
-  400632:	48 89 e5             	mov    %rsp,%rbp
-  400635:	48 83 ec 10          	sub    $0x10,%rsp
-  400639:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
-  400640:	00 00 
-  400642:	48 89 45 f8          	mov    %rax,-0x8(%rbp)
-  400646:	31 c0                	xor    %eax,%eax
-  400648:	c7 45 f4 00 00 00 00 	movl   $0x0,-0xc(%rbp)
-  40064f:	c7 45 f0 00 00 00 00 	movl   $0x0,-0x10(%rbp)
-  400656:	8b 45 f4             	mov    -0xc(%rbp),%eax # 将%rbp-0xc的值放入%eax，相当于复制了一份
-  400659:	89 c7                	mov    %eax,%edi
-  40065b:	e8 76 ff ff ff       	callq  4005d6 &lt;_Z8display1i&gt;
-  400660:	8b 45 f4             	mov    -0xc(%rbp),%eax
-  400663:	89 c6                	mov    %eax,%esi
-  400665:	bf 60 07 40 00       	mov    $0x400760,%edi
-  40066a:	b8 00 00 00 00       	mov    $0x0,%eax
-  40066f:	e8 3c fe ff ff       	callq  4004b0 &lt;printf@plt&gt;
-  400674:	bf 69 07 40 00       	mov    $0x400769,%edi
-  400679:	e8 12 fe ff ff       	callq  400490 &lt;puts@plt&gt;
-  40067e:	48 8d 45 f0          	lea    -0x10(%rbp),%rax # 将%rbp-0xc的地址放入%eax，想到与对原地址进行操作
-  400682:	48 89 c7             	mov    %rax,%rdi
-  400685:	e8 72 ff ff ff       	callq  4005fc &lt;_Z8display2Ri&gt;
-  40068a:	8b 45 f0             	mov    -0x10(%rbp),%eax
-  40068d:	89 c6                	mov    %eax,%esi
-  40068f:	bf 7e 07 40 00       	mov    $0x40077e,%edi
-  400694:	b8 00 00 00 00       	mov    $0x0,%eax
-  400699:	e8 12 fe ff ff       	callq  4004b0 &lt;printf@plt&gt;
-  40069e:	b8 00 00 00 00       	mov    $0x0,%eax
-  4006a3:	48 8b 55 f8          	mov    -0x8(%rbp),%rdx
-  4006a7:	64 48 33 14 25 28 00 	xor    %fs:0x28,%rdx
-  4006ae:	00 00 
-  4006b0:	74 05                	je     4006b7 &lt;main+0x86&gt;
-  4006b2:	e8 e9 fd ff ff       	callq  4004a0 &lt;__stack_chk_fail@plt&gt;
-  4006b7:	c9                   	leaveq 
-  4006b8:	c3                   	retq   
-  4006b9:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
+  400631:    55                       push   %rbp
+  400632:    48 89 e5                 mov    %rsp,%rbp
+  400635:    48 83 ec 10              sub    $0x10,%rsp
+  400639:    64 48 8b 04 25 28 00     mov    %fs:0x28,%rax
+  400640:    00 00 
+  400642:    48 89 45 f8              mov    %rax,-0x8(%rbp)
+  400646:    31 c0                    xor    %eax,%eax
+  400648:    c7 45 f4 00 00 00 00     movl   $0x0,-0xc(%rbp)
+  40064f:    c7 45 f0 00 00 00 00     movl   $0x0,-0x10(%rbp)
+  400656:    8b 45 f4                 mov    -0xc(%rbp),%eax # 将%rbp-0xc的值放入%eax，相当于复制了一份
+  400659:    89 c7                    mov    %eax,%edi
+  40065b:    e8 76 ff ff ff           callq  4005d6 &lt;_Z8display1i&gt;
+  400660:    8b 45 f4                 mov    -0xc(%rbp),%eax
+  400663:    89 c6                    mov    %eax,%esi
+  400665:    bf 60 07 40 00           mov    $0x400760,%edi
+  40066a:    b8 00 00 00 00           mov    $0x0,%eax
+  40066f:    e8 3c fe ff ff           callq  4004b0 &lt;printf@plt&gt;
+  400674:    bf 69 07 40 00           mov    $0x400769,%edi
+  400679:    e8 12 fe ff ff           callq  400490 &lt;puts@plt&gt;
+  40067e:    48 8d 45 f0              lea    -0x10(%rbp),%rax # 将%rbp-0xc的地址放入%eax，想到与对原地址进行操作
+  400682:    48 89 c7                 mov    %rax,%rdi
+  400685:    e8 72 ff ff ff           callq  4005fc &lt;_Z8display2Ri&gt;
+  40068a:    8b 45 f0                 mov    -0x10(%rbp),%eax
+  40068d:    89 c6                    mov    %eax,%esi
+  40068f:    bf 7e 07 40 00           mov    $0x40077e,%edi
+  400694:    b8 00 00 00 00           mov    $0x0,%eax
+  400699:    e8 12 fe ff ff           callq  4004b0 &lt;printf@plt&gt;
+  40069e:    b8 00 00 00 00           mov    $0x0,%eax
+  4006a3:    48 8b 55 f8              mov    -0x8(%rbp),%rdx
+  4006a7:    64 48 33 14 25 28 00     xor    %fs:0x28,%rdx
+  4006ae:    00 00 
+  4006b0:    74 05                    je     4006b7 &lt;main+0x86&gt;
+  4006b2:    e8 e9 fd ff ff           callq  4004a0 &lt;__stack_chk_fail@plt&gt;
+  4006b7:    c9                       leaveq 
+  4006b8:    c3                       retq   
+  4006b9:    0f 1f 80 00 00 00 00     nopl   0x0(%rax)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>通过上述汇编代码（相关关键步骤已经使用注释进行了说明）。</p>
 <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">display1(num1);
 display2(num2);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">400656:	8b 45 f4             	mov    -0xc(%rbp),%eax # 注意mov操作！！将%rbp-0xc的值（也就是局部变量num1）放入%eax，相当于复制了一份
-400659:	89 c7                	mov    %eax,%edi
-40065b:	e8 76 ff ff ff       	callq  4005d6 &lt;_Z8display1i&gt;  
+<pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">400656:    8b 45 f4                 mov    -0xc(%rbp),%eax # 注意mov操作！！将%rbp-0xc的值（也就是局部变量num1）放入%eax，相当于复制了一份
+400659:    89 c7                    mov    %eax,%edi
+40065b:    e8 76 ff ff ff           callq  4005d6 &lt;_Z8display1i&gt;  
 
-40067e:	48 8d 45 f0          	lea    -0x10(%rbp),%rax # 注意lea 操作！！将%rbp-0xc（也就是局部变量num2）的地址放入%eax，想当于对原地址进行操作
-400682:	48 89 c7             	mov    %rax,%rdi
-400685:	e8 72 ff ff ff       	callq  4005fc &lt;_Z8display2Ri&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+40067e:    48 8d 45 f0              lea    -0x10(%rbp),%rax # 注意lea 操作！！将%rbp-0xc（也就是局部变量num2）的地址放入%eax，想当于对原地址进行操作
+400682:    48 89 c7                 mov    %rax,%rdi
+400685:    e8 72 ff ff ff           callq  4005fc &lt;_Z8display2Ri&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>可以看出：</p>
 <ul>
@@ -579,8 +568,7 @@ display2(num2);&#x2F;&#x2F;使用引用传递，相当于指针操作，作用�
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过对值传递和引用传递的汇编代码的分析，我们清晰的看出值传递本是上是传递了一个原值的副本，其变化并不影响调用函数的值；引用传递的本质是指针，其变化，直接作用于调用函数的值。</p>
 ]]></content>
       <categories>
-        <category>开发</category>
-        <category>编程</category>
+        <category>编程开发</category>
       </categories>
       <tags>
         <tag>C语言回头看</tag>
@@ -1481,18 +1469,18 @@ OBJ<span class="token operator">=</span>stack
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">//main.c</span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
 <span class="token keyword">int</span> <span class="token function">display</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">*</span>name<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-	
-	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"hello world! %s\n"</span><span class="token punctuation">,</span> name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"hello world! %s\n"</span><span class="token punctuation">,</span> name<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span>
 <span class="token keyword">char</span> <span class="token operator">*</span>g_pstr <span class="token operator">=</span> <span class="token string">"global_I'm a string\n"</span><span class="token punctuation">;</span>
 <span class="token keyword">int</span> 
 <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-	<span class="token keyword">char</span> <span class="token operator">*</span>pname <span class="token operator">=</span> <span class="token string">"III'm a stringI'm a stringII'm a stringI'm a stringII'm a stringI'm a stringII'm a stringI'm a stringII'm a stringI'm a stringII'm a stringI'm a stringII'm a stringI'm a stringII'm a stringI'm a stringII'm a stringI'm a stringII'm a stringI'm a stringI'm a stringI'm a string"</span><span class="token punctuation">;</span>
-	<span class="token function">puts</span><span class="token punctuation">(</span>pname<span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token function">puts</span><span class="token punctuation">(</span>g_pstr<span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token keyword">char</span> name<span class="token punctuation">[</span><span class="token number">256</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"local_string_I'm a string"</span><span class="token punctuation">;</span> 
-	<span class="token function">display</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">char</span> <span class="token operator">*</span>pname <span class="token operator">=</span> <span class="token string">"III'm a stringI'm a stringII'm a stringI'm a stringII'm a stringI'm a stringII'm a stringI'm a stringII'm a stringI'm a stringII'm a stringI'm a stringII'm a stringI'm a stringII'm a stringI'm a stringII'm a stringI'm a stringII'm a stringI'm a stringI'm a stringI'm a string"</span><span class="token punctuation">;</span>
+    <span class="token function">puts</span><span class="token punctuation">(</span>pname<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">puts</span><span class="token punctuation">(</span>g_pstr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">char</span> name<span class="token punctuation">[</span><span class="token number">256</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"local_string_I'm a string"</span><span class="token punctuation">;</span> 
+    <span class="token function">display</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>上述程序实现的功能很简单，就是输出三个字符串pname，g_pstr和name，为了便于说明，其中故意使用了一个函数调用<code>int display(char *)</code>。</p>
@@ -1503,113 +1491,103 @@ OBJ<span class="token operator">=</span>stack
 OBJ<span class="token operator">=</span>printf.main
 
 <span class="token symbol"><span class="token variable">$</span>(OBJ)</span><span class="token punctuation">:</span>
-	gcc main.c -o <span class="token variable">$@</span>
+    gcc main.c -o <span class="token variable">$@</span>
 
 <span class="token symbol">clean</span><span class="token punctuation">:</span>
-	-rm <span class="token variable">$</span><span class="token punctuation">(</span>OBJ<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    -rm <span class="token variable">$</span><span class="token punctuation">(</span>OBJ<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>我们生成的文件名为<code>printf.main</code>，这里你可以改为你喜欢的任意名称。</p>
 <p>使用<code>make</code>命令进行编译，会生成最终文件。运行后就可以看见输出。</p>
 <h2 id="提出问题"><a href="#提出问题" class="headerlink" title="提出问题"></a>提出问题</h2><p>我们想要知道字符串常量在程序运行中存储的位置</p>
 <h2 id="分析问题"><a href="#分析问题" class="headerlink" title="分析问题"></a>分析问题</h2><p>我们通过命令<code>objdump -d ./printf.main</code>, 查看相应的汇编代码。如下所示，定位到关键步骤，关键步骤已经使用‘#’注释</p>
-<pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">
-.&#x2F;printf.main:     file format elf64-x86-64
+<pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">.&#x2F;printf.main:     file format elf64-x86-64
 
 00000000004005d6 &lt;display&gt;:
-  4005d6:	55                   	push   %rbp
-  4005d7:	48 89 e5             	mov    %rsp,%rbp
-  4005da:	48 83 ec 10          	sub    $0x10,%rsp
-  4005de:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
-  4005e2:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
-  4005e6:	48 89 c6             	mov    %rax,%rsi
-  4005e9:	bf 48 07 40 00       	mov    $0x400748,%edi
-  4005ee:	b8 00 00 00 00       	mov    $0x0,%eax
-  4005f3:	e8 b8 fe ff ff       	callq  4004b0 &lt;printf@plt&gt;
-  4005f8:	90                   	nop
-  4005f9:	c9                   	leaveq 
-  4005fa:	c3                   	retq   
+  4005d6:    55                       push   %rbp
+  4005d7:    48 89 e5                 mov    %rsp,%rbp
+  4005da:    48 83 ec 10              sub    $0x10,%rsp
+  4005de:    48 89 7d f8              mov    %rdi,-0x8(%rbp)
+  4005e2:    48 8b 45 f8              mov    -0x8(%rbp),%rax
+  4005e6:    48 89 c6                 mov    %rax,%rsi
+  4005e9:    bf 48 07 40 00           mov    $0x400748,%edi
+  4005ee:    b8 00 00 00 00           mov    $0x0,%eax
+  4005f3:    e8 b8 fe ff ff           callq  4004b0 &lt;printf@plt&gt;
+  4005f8:    90                       nop
+  4005f9:    c9                       leaveq 
+  4005fa:    c3                       retq   
 
 00000000004005fb &lt;main&gt;:
-  4005fb:	55                   	push   %rbp
-  4005fc:	48 89 e5             	mov    %rsp,%rbp
-  4005ff:	48 81 ec 20 01 00 00 	sub    $0x120,%rsp
-  400606:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
-  40060d:	00 00 
-  40060f:	48 89 45 f8          	mov    %rax,-0x8(%rbp)
-  400613:	31 c0                	xor    %eax,%eax
-  400615:	48 c7 85 e8 fe ff ff 	movq   $0x400770,-0x118(%rbp)			# 0x400770作为pname的地址
-  40061c:	70 07 40 00 
-  400620:	48 8b 85 e8 fe ff ff 	mov    -0x118(%rbp),%rax
-  400627:	48 89 c7             	mov    %rax,%rdi
-  40062a:	e8 61 fe ff ff       	callq  400490 &lt;puts@plt&gt;
-  40062f:	48 8b 05 12 0a 20 00 	mov    0x200a12(%rip),%rax        # 601048 &lt;g_pstr&gt;
-  400636:	48 89 c7             	mov    %rax,%rdi
-  400639:	e8 52 fe ff ff       	callq  400490 &lt;puts@plt&gt;
-  40063e:	48 b8 6c 6f 63 61 6c 	movabs $0x74735f6c61636f6c,%rax		#‘local_st’ &quot;local_string_I&#39;m a string&quot;变量以常量整型的方式进行复制。
-  400645:	5f 73 74 
-  400648:	48 89 85 f0 fe ff ff 	mov    %rax,-0x110(%rbp)
-  40064f:	48 b8 72 69 6e 67 5f 	movabs $0x6d27495f676e6972,%rax  # ‘ring_I&#39;m’
-  400656:	49 27 6d 
-  400659:	48 89 85 f8 fe ff ff 	mov    %rax,-0x108(%rbp)
-  400660:	48 b8 20 61 20 73 74 	movabs $0x6e69727473206120,%rax
-  400667:	72 69 6e 
-  40066a:	48 89 85 00 ff ff ff 	mov    %rax,-0x100(%rbp)
-  400671:	48 c7 85 08 ff ff ff 	movq   $0x67,-0xf8(%rbp)
-  400678:	67 00 00 00 
-  40067c:	48 8d 95 10 ff ff ff 	lea    -0xf0(%rbp),%rdx
-  400683:	b8 00 00 00 00       	mov    $0x0,%eax
-  400688:	b9 1c 00 00 00       	mov    $0x1c,%ecx
-  40068d:	48 89 d7             	mov    %rdx,%rdi
-  400690:	f3 48 ab             	rep stos %rax,%es:(%rdi)
-  400693:	48 8d 85 f0 fe ff ff 	lea    -0x110(%rbp),%rax
-  40069a:	48 89 c7             	mov    %rax,%rdi
-  40069d:	e8 34 ff ff ff       	callq  4005d6 &lt;display&gt;
-  4006a2:	b8 00 00 00 00       	mov    $0x0,%eax
-  4006a7:	48 8b 75 f8          	mov    -0x8(%rbp),%rsi
-  4006ab:	64 48 33 34 25 28 00 	xor    %fs:0x28,%rsi
-  4006b2:	00 00 
-  4006b4:	74 05                	je     4006bb &lt;main+0xc0&gt;
-  4006b6:	e8 e5 fd ff ff       	callq  4004a0 &lt;__stack_chk_fail@plt&gt;
-  4006bb:	c9                   	leaveq 
-  4006bc:	c3                   	retq   
-  4006bd:	0f 1f 00             	nopl   (%rax)
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  4005fb:    55                       push   %rbp
+  4005fc:    48 89 e5                 mov    %rsp,%rbp
+  4005ff:    48 81 ec 20 01 00 00     sub    $0x120,%rsp
+  400606:    64 48 8b 04 25 28 00     mov    %fs:0x28,%rax
+  40060d:    00 00 
+  40060f:    48 89 45 f8              mov    %rax,-0x8(%rbp)
+  400613:    31 c0                    xor    %eax,%eax
+  400615:    48 c7 85 e8 fe ff ff     movq   $0x400770,-0x118(%rbp)            # 0x400770作为pname的地址
+  40061c:    70 07 40 00 
+  400620:    48 8b 85 e8 fe ff ff     mov    -0x118(%rbp),%rax
+  400627:    48 89 c7                 mov    %rax,%rdi
+  40062a:    e8 61 fe ff ff           callq  400490 &lt;puts@plt&gt;
+  40062f:    48 8b 05 12 0a 20 00     mov    0x200a12(%rip),%rax        # 601048 &lt;g_pstr&gt;
+  400636:    48 89 c7                 mov    %rax,%rdi
+  400639:    e8 52 fe ff ff           callq  400490 &lt;puts@plt&gt;
+  40063e:    48 b8 6c 6f 63 61 6c     movabs $0x74735f6c61636f6c,%rax        #‘local_st’ &quot;local_string_I&#39;m a string&quot;变量以常量整型的方式进行复制。
+  400645:    5f 73 74 
+  400648:    48 89 85 f0 fe ff ff     mov    %rax,-0x110(%rbp)
+  40064f:    48 b8 72 69 6e 67 5f     movabs $0x6d27495f676e6972,%rax  # ‘ring_I&#39;m’
+  400656:    49 27 6d 
+  400659:    48 89 85 f8 fe ff ff     mov    %rax,-0x108(%rbp)
+  400660:    48 b8 20 61 20 73 74     movabs $0x6e69727473206120,%rax
+  400667:    72 69 6e 
+  40066a:    48 89 85 00 ff ff ff     mov    %rax,-0x100(%rbp)
+  400671:    48 c7 85 08 ff ff ff     movq   $0x67,-0xf8(%rbp)
+  400678:    67 00 00 00 
+  40067c:    48 8d 95 10 ff ff ff     lea    -0xf0(%rbp),%rdx
+  400683:    b8 00 00 00 00           mov    $0x0,%eax
+  400688:    b9 1c 00 00 00           mov    $0x1c,%ecx
+  40068d:    48 89 d7                 mov    %rdx,%rdi
+  400690:    f3 48 ab                 rep stos %rax,%es:(%rdi)
+  400693:    48 8d 85 f0 fe ff ff     lea    -0x110(%rbp),%rax
+  40069a:    48 89 c7                 mov    %rax,%rdi
+  40069d:    e8 34 ff ff ff           callq  4005d6 &lt;display&gt;
+  4006a2:    b8 00 00 00 00           mov    $0x0,%eax
+  4006a7:    48 8b 75 f8              mov    -0x8(%rbp),%rsi
+  4006ab:    64 48 33 34 25 28 00     xor    %fs:0x28,%rsi
+  4006b2:    00 00 
+  4006b4:    74 05                    je     4006bb &lt;main+0xc0&gt;
+  4006b6:    e8 e5 fd ff ff           callq  4004a0 &lt;__stack_chk_fail@plt&gt;
+  4006bb:    c9                       leaveq 
+  4006bc:    c3                       retq   
+  4006bd:    0f 1f 00                 nopl   (%rax)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-
-
-<h3 id="第一个pname参数"><a href="#第一个pname参数" class="headerlink" title="第一个pname参数"></a>第一个pname参数</h3><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">400615:	48 c7 85 e8 fe ff ff 	movq   $0x400770,-0x118(%rbp)			# 0x400770作为pname的地址
-40061c:	70 07 40 00 
-400620:	48 8b 85 e8 fe ff ff 	mov    -0x118(%rbp),%rax
-400627:	48 89 c7             	mov    %rax,%rdi
-40062a:	e8 61 fe ff ff       	callq  400490 &lt;puts@plt&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
+<h3 id="第一个pname参数"><a href="#第一个pname参数" class="headerlink" title="第一个pname参数"></a>第一个pname参数</h3><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">400615:    48 c7 85 e8 fe ff ff     movq   $0x400770,-0x118(%rbp)            # 0x400770作为pname的地址
+40061c:    70 07 40 00 
+400620:    48 8b 85 e8 fe ff ff     mov    -0x118(%rbp),%rax
+400627:    48 89 c7                 mov    %rax,%rdi
+40062a:    e8 61 fe ff ff           callq  400490 &lt;puts@plt&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>![image-20210720102416074](从hello world开始，复习C语言知识——字符串常亮&#x2F;image-20210720102416074.png)</p>
 <p>查看地址<strong>0x400770</strong>，得到字符串。</p>
-<h3 id="第二个参数g-pstr"><a href="#第二个参数g-pstr" class="headerlink" title="第二个参数g_pstr"></a>第二个参数g_pstr</h3><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">40062f:	48 8b 05 12 0a 20 00 	mov    0x200a12(%rip),%rax        # 601048 &lt;g_pstr&gt;
-400636:	48 89 c7             	mov    %rax,%rdi
-400639:	e8 52 fe ff ff       	callq  400490 &lt;puts@plt&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-
+<h3 id="第二个参数g-pstr"><a href="#第二个参数g-pstr" class="headerlink" title="第二个参数g_pstr"></a>第二个参数g_pstr</h3><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">40062f:    48 8b 05 12 0a 20 00     mov    0x200a12(%rip),%rax        # 601048 &lt;g_pstr&gt;
+400636:    48 89 c7                 mov    %rax,%rdi
+400639:    e8 52 fe ff ff           callq  400490 &lt;puts@plt&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>![image-20210720102733348](从hello world开始，复习C语言知识——字符串常亮&#x2F;image-20210720102733348.png)</p>
 <p>查看地址<strong>0x400759</strong>，得到地址</p>
-<h3 id="第三个参数字符串常量"><a href="#第三个参数字符串常量" class="headerlink" title="第三个参数字符串常量"></a>第三个参数字符串常量</h3><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">40063e:	48 b8 6c 6f 63 61 6c 	movabs $0x74735f6c61636f6c,%rax		#‘local_st’ &quot;local_string_I&#39;m a string&quot;变量以常量整型的方式进行复制。
-400645:	5f 73 74 
-400648:	48 89 85 f0 fe ff ff 	mov    %rax,-0x110(%rbp)
-40064f:	48 b8 72 69 6e 67 5f 	movabs $0x6d27495f676e6972,%rax  # ‘ring_I&#39;m’
-400656:	49 27 6d 
-400659:	48 89 85 f8 fe ff ff 	mov    %rax,-0x108(%rbp)
-400660:	48 b8 20 61 20 73 74 	movabs $0x6e69727473206120,%rax
-400667:	72 69 6e 
-40066a:	48 89 85 00 ff ff ff 	mov    %rax,-0x100(%rbp)
-400671:	48 c7 85 08 ff ff ff 	movq   $0x67,-0xf8(%rbp)
-400678:	67 00 00 00 
-40067c:	48 8d 95 10 ff ff ff 	lea    -0xf0(%rbp),%rdx
-400683:	b8 00 00 00 00       	mov    $0x0,%eax<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
+<h3 id="第三个参数字符串常量"><a href="#第三个参数字符串常量" class="headerlink" title="第三个参数字符串常量"></a>第三个参数字符串常量</h3><pre class="line-numbers language-asm" data-language="asm"><code class="language-asm">40063e:    48 b8 6c 6f 63 61 6c     movabs $0x74735f6c61636f6c,%rax        #‘local_st’ &quot;local_string_I&#39;m a string&quot;变量以常量整型的方式进行复制。
+400645:    5f 73 74 
+400648:    48 89 85 f0 fe ff ff     mov    %rax,-0x110(%rbp)
+40064f:    48 b8 72 69 6e 67 5f     movabs $0x6d27495f676e6972,%rax  # ‘ring_I&#39;m’
+400656:    49 27 6d 
+400659:    48 89 85 f8 fe ff ff     mov    %rax,-0x108(%rbp)
+400660:    48 b8 20 61 20 73 74     movabs $0x6e69727473206120,%rax
+400667:    72 69 6e 
+40066a:    48 89 85 00 ff ff ff     mov    %rax,-0x100(%rbp)
+400671:    48 c7 85 08 ff ff ff     movq   $0x67,-0xf8(%rbp)
+400678:    67 00 00 00 
+40067c:    48 8d 95 10 ff ff ff     lea    -0xf0(%rbp),%rdx
+400683:    b8 00 00 00 00           mov    $0x0,%eax<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>0x74735f6c61636f6c -&gt; 为字符串”local_st“</p>
 <p>0x6d27495f676e6972-&gt;为字符串”ring_I’m“</p>
@@ -1625,6 +1603,12 @@ OBJ<span class="token operator">=</span>printf.main
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>其他的常量也可以依次类推。</p>
 <p>一般我们的理解都是字符串常量都是放在<code>rodata</code>中，但是通过汇编代码，我们可以清晰的看出，当字符串常量初始化给一个数组时，字符串常量并不会放在<code>rodata</code>中，二是将字符串常量转化为多个整型常量，然后在运行时直接复制到栈上。</p>
 ]]></content>
+      <categories>
+        <category>编程开发</category>
+      </categories>
+      <tags>
+        <tag>C语言 - 汇编 - 逆向 - CTF</tag>
+      </tags>
   </entry>
   <entry>
     <title>从一个hello world说起</title>
@@ -2321,6 +2305,7 @@ plt<span class="token punctuation">.</span>legend<span class="token punctuation"
 
 plt<span class="token punctuation">.</span>grid<span class="token punctuation">(</span><span class="token punctuation">)</span>
 plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>经过经过分析有了如下所示图：<br><img src="/post/%E5%85%B3%E4%BA%8ERFC%E6%96%87%E6%A1%A3%E6%9C%89%E8%B6%A3%E7%9A%84%E4%BA%8B%E6%83%85/%E5%B9%B4%E4%BB%BD%E5%9B%BE.png" alt="img"><br>果然有问题！！！！上图横坐标为RFC编号，纵坐标为RFC编号对应的年份。可以看出RFC文档从一九六几年到今天一共发表8000余份。有意思的是，其中有一些凸起的部分，就是一些异常点。例如2000年前有一个极高的凸起，这代表这个编号的年份远远超出这个编号附近的年份，这与我们的常识不符。实际上，查看这个异常点，如下图所示：<br><img src="/post/%E5%85%B3%E4%BA%8ERFC%E6%96%87%E6%A1%A3%E6%9C%89%E8%B6%A3%E7%9A%84%E4%BA%8B%E6%83%85/image-20201218225458777.png" alt="img"><br>其中RFC1849的年份为2010年，但其附近的RFC文档编号均为1995年，其中相差15年，造成第一幅图中的凸起。</p>
 <p><a id="org4e04c37"></a></p>
 <h3 id="第二个发现"><a href="#第二个发现" class="headerlink" title="第二个发现"></a>第二个发现</h3><p>同时，我们还会发现另一个有意思的现象。如下图所示：<br><img src="/post/%E5%85%B3%E4%BA%8ERFC%E6%96%87%E6%A1%A3%E6%9C%89%E8%B6%A3%E7%9A%84%E4%BA%8B%E6%83%85/%E6%95%B4%E6%95%B0%E9%97%B4%E9%9A%94%E7%A4%BA%E6%84%8F%E5%9B%BE.png" alt="整数间隔示意图"><br>其中编号为1299，1399，1499，1599，1699,&amp;#x2026;等，均出现凸起现象。并且实际上1299，1399，1499，1599，1699，1799，1899，1999的年份均为1997年。存在明显的人为痕迹。</p>
@@ -2561,6 +2546,7 @@ plt<span class="token punctuation">.</span>show<span class="token punctuation">(
     <span class="token keyword">int</span> key<span class="token punctuation">;</span>
     ipdata ipcount<span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span class="token class-name">roc_node_t</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>红黑树的实现使用Linux Kernel自带的rbtree数据结构，头文件为：</p>
 <pre><code>#include &lt;linux/rbtree.h&gt;
 </code></pre>
@@ -2705,8 +2691,8 @@ plt<span class="token punctuation">.</span>show<span class="token punctuation">(
     <span class="token function">roc_dump</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">roc_destroy</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>root<span class="token punctuation">,</span> roc_free<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p><a id="orgde188bf"></a></p>
 <h1 id="Linux驱动"><a href="#Linux驱动" class="headerlink" title="Linux驱动"></a>Linux驱动</h1><p>考虑在内核实现的原因是目前Linux相关设备非常多，可能具有一定的参考价值和移植性。<br>笔者的内核环境为：</p>
 <pre><code>  uname -r
@@ -2848,7 +2834,7 @@ MODULE_LICENSE(&quot;Dual BSD/GPL&quot;);MODULE_AUTHOR(&quot;dianwoshishi&quot;)
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>linux驱动编写（总结篇）,<a href="https://blog.csdn.net/feixiaoxing/article/details/79913476?spm=1001.2014.3001.5506">https://blog.csdn.net/feixiaoxing/article/details/79913476?spm=1001.2014.3001.5506</a><br>智能路由器设备流量、网速统计及上下线提醒（基于netfilter编程）,<a href="https://blog.csdn.net/u012819339/article/details/50513387?spm=1001.2014.3001.5506">https://blog.csdn.net/u012819339/article/details/50513387?spm=1001.2014.3001.5506</a><br>利用Linux内核模块Netfilter hook UDP报文, <a href="https://blog.csdn.net/qq_41791640/article/details/104933006?spm=1001.2014.3001.5506">https://blog.csdn.net/qq_41791640/article/details/104933006?spm=1001.2014.3001.5506</a><br>Netfilter的使用和实现, <a href="https://blog.csdn.net/zhangskd/article/details/22678659?spm=1001.2014.3001.5506">https://blog.csdn.net/zhangskd/article/details/22678659?spm=1001.2014.3001.5506</a></p>
 ]]></content>
       <categories>
-        <category>开发</category>
+        <category>编程开发</category>
       </categories>
       <tags>
         <tag>Linux</tag>
@@ -4428,8 +4414,11 @@ RUN echo TEST_OK &gt; &#x2F;var&#x2F;www&#x2F;html&#x2F;index.html
 RUN systemctl enable httpd
 CMD &#x2F;usr&#x2F;bin&#x2F;systemctl<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<p>关于entrypoint 和cmd的区别，可以看看这篇文章，讲的很透彻，也有案例。<a href="http://www.johnzaccone.io/entrypoint-vs-cmd-back-to-basics/">ENTRYPOINT vs CMD: Back to Basics</a></p>
+<p>看了这篇不过瘾的话，在第一篇的基础上再看这篇就可以了</p>
+<p><a href="https://www.ctl.io/developers/blog/post/dockerfile-entrypoint-vs-cmd/">https://www.ctl.io/developers/blog/post/dockerfile-entrypoint-vs-cmd/</a></p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
-<li>**问题的根源在<code>systemctl</code>,它需要像docker容器中的systemd通信，但是却没有对象</li>
+<li>问题的根源在<code>systemctl</code>,它需要像docker容器中的systemd通信，但是却没有对象</li>
 <li>解决问题的方法在于，解除systemctl与systemd的依赖关系，这里我们用到了一个systemctl.py的工具</li>
 <li>使用systemctl.py需要注意拷贝的时机，以及设置systemctl作为容器一号进程</li>
 </ul>
@@ -4442,8 +4431,6 @@ CMD &#x2F;usr&#x2F;bin&#x2F;systemctl<span aria-hidden="true" class="line-number
 <p>ENTRYPOINT 指令的目的也是为容器指定默认执行的任务。<br>ENTRYPOINT 指令有两种使用方式，就是我们前面介绍的 exec 模式和 shell 模式：<br><strong>ENTRYPOINT [“executable”, “param1”, “param2”]</strong>   &#x2F;&#x2F; 这是 exec 模式的写法，注意需要使用双引号。<br><strong>ENTRYPOINT command param1 param2</strong>                   &#x2F;&#x2F; 这是 shell 模式的写法。</p>
 <p><strong>指定 ENTRYPOINT  指令为 exec 模式时，命令行上指定的参数会作为参数添加到 ENTRYPOINT 指定命令的参数列表中</strong></p>
 <p>命令行参数被 ENTRYPOINT  指令的 shell 模式忽略了。</p>
-<p><img src="https://images2018.cnblogs.com/blog/952033/201802/952033-20180223131745112-1674454515.png"></p>
-<p><a href="https://www.ctl.io/developers/blog/post/dockerfile-entrypoint-vs-cmd/">https://www.ctl.io/developers/blog/post/dockerfile-entrypoint-vs-cmd/</a></p>
 <h3 id="其他参考资料"><a href="#其他参考资料" class="headerlink" title="其他参考资料"></a>其他参考资料</h3><p><a href="https://stackoverflow.com/questions/39169403/not-able-to-use-systemd-on-ubuntu-docker-container">Not able to use systemd on ubuntu docker container - Stack Overflow</a></p>
 ]]></content>
       <categories>
@@ -4454,6 +4441,90 @@ CMD &#x2F;usr&#x2F;bin&#x2F;systemctl<span aria-hidden="true" class="line-number
         <tag>docker</tag>
         <tag>systemd</tag>
         <tag>systemctl</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>提升你的工作效率：Linux工具推荐</title>
+    <url>//post/%E6%8F%90%E5%8D%87%E4%BD%A0%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%95%88%E7%8E%87_Linux%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90.html</url>
+    <content><![CDATA[<h1 id="提升你的工作效率：Linux工具推荐"><a href="#提升你的工作效率：Linux工具推荐" class="headerlink" title="提升你的工作效率：Linux工具推荐"></a>提升你的工作效率：Linux工具推荐</h1><h2 id="变更管理"><a href="#变更管理" class="headerlink" title="变更管理"></a>变更管理</h2><h3 id="比较目录差异"><a href="#比较目录差异" class="headerlink" title="比较目录差异"></a>比较目录差异</h3><p>A lesser known similar feature is <em>process substitution</em>, <code>&lt;( CMD )</code> will execute <code>CMD</code> and place the output in a temporary file and substitute the <code>&lt;()</code> with that file’s name. This is useful when commands expect values to be passed by file instead of by STDIN. For example, <code>diff &lt;(ls foo) &lt;(ls bar)</code> will show differences between files in dirs  <code>foo</code> and <code>bar</code>.</p>
+<h3 id="查找工具"><a href="#查找工具" class="headerlink" title="查找工具"></a>查找工具</h3><p><a href="https://github.com/sharkdp/fd">GitHub - sharkdp&#x2F;fd: A simple, fast and user-friendly alternative to &#39;find&#39;</a></p>
+<h3 id="命令行历史搜索工具"><a href="#命令行历史搜索工具" class="headerlink" title="命令行历史搜索工具"></a>命令行历史搜索工具</h3><p><a href="https://github.com/zsh-users/zsh-history-substring-search">GitHub - zsh-users&#x2F;zsh-history-substring-search: 🐠 ZSH port of Fish history search (up arrow)</a></p>
+<h3 id="宇宙级神奇tmux"><a href="#宇宙级神奇tmux" class="headerlink" title="宇宙级神奇tmux"></a>宇宙级神奇tmux</h3><p><a href="https://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/">https://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/</a></p>
+]]></content>
+      <categories>
+        <category>编程开发</category>
+        <category>效率提升</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>tool</tag>
+        <tag>efficency</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>程序性能测试方法和工具</title>
+    <url>//post/%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95.html</url>
+    <content><![CDATA[<h1 id="程序性能测试方法和工具"><a href="#程序性能测试方法和工具" class="headerlink" title="程序性能测试方法和工具"></a>程序性能测试方法和工具</h1><p>在开发的过程中，对于编码是一个部分，但同时写出来的代码怎么样，在操作系统上的表现怎么样，是需要进行测试的。这里就给出一些性能测试的方法和工具</p>
+<h2 id="python-CProfile"><a href="#python-CProfile" class="headerlink" title="python CProfile"></a>python CProfile</h2><pre class="line-numbers language-none"><code class="language-none">python3 -m cProfile test_python_profiling.py
+python3 -m cProfile -o profiling.out test_python_profiling.py
+python3 -m pstats profiling.out
+profiling.out% help
+
+Documented commands (type help &lt;topic&gt;):
+&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+EOF  add  callees  callers  help  quit  read  reverse  sort  stats  strip<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="python-line-profiling"><a href="#python-line-profiling" class="headerlink" title="python line_profiling"></a>python line_profiling</h3><p><a href="https://github.com/pyutils/line_profiler">https://github.com/pyutils/line_profiler</a></p>
+<p><a href="https://missing.csail.mit.edu/2020/debugging-profiling/">https://missing.csail.mit.edu/2020/debugging-profiling/</a></p>
+]]></content>
+      <categories>
+        <category>编程开发</category>
+        <category>性能测试</category>
+      </categories>
+      <tags>
+        <tag>性能工具</tag>
+        <tag>系统资源</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python的for_else结构你使用过吗</title>
+    <url>//post/Python%E7%9A%84for_else%E7%BB%93%E6%9E%84%E4%BD%A0%E4%BD%BF%E7%94%A8%E8%BF%87%E5%90%97.html</url>
+    <content><![CDATA[<p>大家好，我是明说网络的小明同学。</p>
+<p>今天学到了一个Python的非常有用的新知识，在这分享给大家，相信能让大家的代码更加简洁。</p>
+<p>在编写程序的过程中，一种常见的运行流程是：运行for循环，直到找到某个对象，然后跳出循环。</p>
+<p>这里有个问题，如果我跳出循环或循环结束，我需要确定发生了什么情况。<br>一种方法是创建一个标志或存储变量，让我进行第二次测试，查看循环是如何退出的。</p>
+<p>例如，假设我需要搜索一个列表并处理每个项目，直到找到一个标志项目，然后停止处理。如果缺少标志项，则需要引发异常。</p>
+<p>像这样</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">flagfound <span class="token operator">=</span> <span class="token boolean">False</span>
+<span class="token keyword">for</span> i <span class="token keyword">in</span> mylist<span class="token punctuation">:</span>
+    <span class="token keyword">if</span> i <span class="token operator">==</span> theflag<span class="token punctuation">:</span>
+        flagfound <span class="token operator">=</span> <span class="token boolean">True</span>
+        <span class="token keyword">break</span>
+    process<span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> <span class="token keyword">not</span> flagfound<span class="token punctuation">:</span>
+    <span class="token keyword">raise</span> ValueError<span class="token punctuation">(</span><span class="token string">"List argument missing terminal flag."</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>所以就出现了上面代码中的<code>flagfound</code>变量。但是维护这个<code>flagfound</code>超难受！</p>
+<p>如果你有这个问题，那么恭喜你，<code>for...else</code>能够结束你的痛苦。</p>
+<p>但是使用<code>for...else</code>结构，却能使你的代码更加的简洁，看下面的代码，是否更加简洁？</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">for</span> i <span class="token keyword">in</span> mylist<span class="token punctuation">:</span>
+    <span class="token keyword">if</span> i <span class="token operator">==</span> theflag<span class="token punctuation">:</span>
+        <span class="token keyword">break</span>
+    process<span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+    <span class="token keyword">raise</span> ValueError<span class="token punctuation">(</span><span class="token string">"List argument missing terminal flag."</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><code>for...else</code>你学会了吗?</p>
+<p>参考资料</p>
+<p><a href="https://stackoverflow.com/questions/9979970/why-does-python-use-else-after-for-and-while-loops/9980752#9980752">if statement - Why does python use &#39;else&#39; after for and while loops? - Stack Overflow</a></p>
+]]></content>
+      <categories>
+        <category>编程开发</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>技巧</tag>
       </tags>
   </entry>
 </search>
